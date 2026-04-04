@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import AperivueLogo from "./AperivueLogo";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -17,8 +18,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-xl font-bold tracking-tight">
-          <span className="text-primary">Aperi</span>vue
+        <Link href="/" className="hover:opacity-80 transition-opacity">
+          <AperivueLogo variant="full" size="sm" />
         </Link>
 
         {/* Desktop */}
