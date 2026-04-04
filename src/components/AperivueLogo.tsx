@@ -35,9 +35,9 @@ function ApertureIcon({ size = 32 }: { size?: number }) {
     return `M${x1},${y1} L${x2},${y2} L${x3},${y3} Z`;
   });
 
-  // Eye shape (vesica piscis)
-  const eyeW = 46;
-  const eyeH = 22;
+  // Eye shape (rounder, taller proportion)
+  const eyeW = 38;
+  const eyeH = 34;
 
   return (
     <svg
