@@ -64,7 +64,6 @@ export default function AboutPage() {
             { year: "2022", text: "Yonsei University — M.D." },
             { year: "2023", text: "MI2RL — Medical Imaging Research" },
             { year: "2025", text: "Samsung Changwon Hospital — Radiology Resident" },
-            { year: "2026", text: "Asan Medical Center — Fellowship & Ph.D." },
             { year: "2026", text: "Aperivue founded" },
           ].map((item) => (
             <div key={item.year + item.text} className="relative">

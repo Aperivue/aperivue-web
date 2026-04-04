@@ -18,6 +18,7 @@ const products = [
       "Evidence-based management recommendations",
       "Web, desktop, and mobile (planned)",
     ],
+    link: "/rads/tirads",
   },
   {
     name: "ScrubCode",
@@ -91,14 +92,23 @@ export default function ProductsPage() {
               ))}
             </ul>
             {product.link && (
-              <a
-                href={product.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-block text-sm font-medium text-primary hover:underline"
-              >
-                Visit &rarr;
-              </a>
+              product.link.startsWith("/") ? (
+                <Link
+                  href={product.link}
+                  className="mt-6 inline-block text-sm font-medium text-primary hover:underline"
+                >
+                  Try it &rarr;
+                </Link>
+              ) : (
+                <a
+                  href={product.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-block text-sm font-medium text-primary hover:underline"
+                >
+                  Visit &rarr;
+                </a>
+              )
             )}
           </div>
         ))}
