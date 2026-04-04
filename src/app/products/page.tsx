@@ -44,41 +44,48 @@ const products = [
   },
 ];
 
+function statusBadge(status: string) {
+  if (status === "Active")
+    return "bg-green-500/10 text-green-600 dark:text-green-400";
+  if (status === "In Development")
+    return "bg-accent/10 text-accent";
+  return "bg-foreground/5 text-foreground/50";
+}
+
 export default function ProductsPage() {
   return (
     <main className="mx-auto flex max-w-6xl flex-1 flex-col px-6 py-16">
-      <h1 className="text-3xl font-bold tracking-tight md:text-4xl">Products</h1>
+      <p className="text-xs font-medium uppercase tracking-widest text-accent">
+        Products
+      </p>
+      <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+        What We Build
+      </h1>
       <p className="mt-4 text-foreground/60">
-        Tools and content for medical professionals.
+        Tools and content that bridge the gap between AI research and clinical practice.
       </p>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           <div
             key={product.name}
-            className="flex flex-col rounded-2xl border border-border p-6 transition-shadow hover:shadow-lg"
+            className="flex flex-col rounded-2xl border border-border bg-surface p-8 transition-shadow hover:shadow-lg"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
               <h2 className="text-xl font-semibold">{product.name}</h2>
               <span
-                className={`rounded-full px-3 py-1 text-xs font-medium ${
-                  product.status === "Active"
-                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                    : product.status === "In Development"
-                      ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
-                      : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
-                }`}
+                className={`rounded-full px-3 py-0.5 text-xs font-medium ${statusBadge(product.status)}`}
               >
                 {product.status}
               </span>
             </div>
-            <p className="mt-3 flex-1 text-sm text-foreground/70">
+            <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/70">
               {product.description}
             </p>
-            <ul className="mt-4 space-y-1">
+            <ul className="mt-5 space-y-2">
               {product.features.map((f) => (
                 <li key={f} className="flex items-start gap-2 text-sm text-foreground/60">
-                  <span className="mt-1 text-primary">&#x2713;</span>
+                  <span className="mt-0.5 text-primary">&#x2713;</span>
                   {f}
                 </li>
               ))}

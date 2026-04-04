@@ -9,7 +9,12 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="mx-auto flex max-w-4xl flex-1 flex-col px-6 py-16">
-      <h1 className="text-3xl font-bold tracking-tight md:text-4xl">About</h1>
+      <p className="text-xs font-medium uppercase tracking-widest text-accent">
+        About
+      </p>
+      <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+        The Team Behind Aperivue
+      </h1>
 
       <section className="mt-12 flex flex-col gap-8 md:flex-row">
         <div className="shrink-0">
