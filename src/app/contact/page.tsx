@@ -47,6 +47,30 @@ export default function ContactPage() {
             @scrubcode — Medical AI &amp; Deep Learning
           </a>
         </div>
+
+        <div className="rounded-2xl border border-border p-6">
+          <h2 className="font-semibold">LinkedIn</h2>
+          <a
+            href="https://www.linkedin.com/in/eugene8998/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block text-primary hover:underline"
+          >
+            Yoojin Nam
+          </a>
+        </div>
+
+        <div className="rounded-2xl border border-border p-6">
+          <h2 className="font-semibold">X (Twitter)</h2>
+          <a
+            href="https://x.com/aperivue"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block text-primary hover:underline"
+          >
+            @aperivue
+          </a>
+        </div>
       </div>
     </main>
   );

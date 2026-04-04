@@ -28,6 +28,22 @@ export default function Footer() {
           >
             YouTube
           </a>
+          <a
+            href="https://www.linkedin.com/in/eugene8998/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://x.com/aperivue"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary"
+          >
+            X
+          </a>
         </div>
       </div>
     </footer>
