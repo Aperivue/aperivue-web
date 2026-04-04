@@ -31,7 +31,8 @@ export default function Footer() {
               </span>
               <a href="https://github.com/aperivue" target="_blank" rel="noopener noreferrer" className="hover:text-primary">GitHub</a>
               <a href="https://youtube.com/@scrubcode" target="_blank" rel="noopener noreferrer" className="hover:text-primary">YouTube</a>
-              <a href="https://www.linkedin.com/in/eugene8998/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn</a>
+              <a href="https://www.linkedin.com/company/aperivue" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn</a>
+              <a href="https://instagram.com/aperivue" target="_blank" rel="noopener noreferrer" className="hover:text-primary">Instagram</a>
               <a href="https://x.com/aperivue" target="_blank" rel="noopener noreferrer" className="hover:text-primary">X</a>
             </div>
           </div>

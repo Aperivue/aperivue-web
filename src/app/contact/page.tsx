@@ -21,7 +21,8 @@ export default function ContactPage() {
           { label: "Email", href: "mailto:contact@aperivue.com", text: "contact@aperivue.com" },
           { label: "GitHub", href: "https://github.com/aperivue", text: "github.com/aperivue", external: true },
           { label: "YouTube", href: "https://youtube.com/@scrubcode", text: "@scrubcode — Medical AI & Deep Learning", external: true },
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/eugene8998/", text: "Yoojin Nam", external: true },
+          { label: "LinkedIn", href: "https://www.linkedin.com/company/aperivue", text: "Aperivue", external: true },
+          { label: "Instagram", href: "https://instagram.com/aperivue", text: "@aperivue", external: true },
           { label: "X (Twitter)", href: "https://x.com/aperivue", text: "@aperivue", external: true },
         ].map((item) => (
           <div key={item.label} className="rounded-2xl border border-border bg-surface p-6">
