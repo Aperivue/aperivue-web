@@ -73,7 +73,7 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-8 text-xs text-foreground/40">
-              Asan Medical Center &middot; KAIST &middot; 10+ peer-reviewed publications
+              Built by a radiologist &middot; 10+ peer-reviewed publications
             </p>
           </div>
 
@@ -179,9 +179,9 @@ export default function Home() {
       <section className="px-6 py-20">
         <div className="mx-auto grid max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
           {[
-            { value: "10+", label: "Publications" },
-            { value: "KAIST", label: "Engineering Foundation" },
-            { value: "AMC", label: "Asan Medical Center" },
+            { value: "10+", label: "Peer-Reviewed Publications" },
+            { value: "M.D.", label: "Radiologist" },
+            { value: "AI", label: "Medical Imaging Research" },
             { value: "OSS", label: "Open Source" },
           ].map((item) => (
             <div key={item.label} className="text-center">
