@@ -22,9 +22,17 @@ export const metadata: Metadata = {
   description:
     "Aperivue builds intelligent tools for radiology and medical imaging. RADS scoring, AI-powered diagnostics, and research content.",
   metadataBase: new URL("https://aperivue.com"),
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/favicon-180.png",
+  },
   openGraph: {
     siteName: "Aperivue",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
 };
 
