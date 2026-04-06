@@ -1,0 +1,119 @@
+---
+title: "How to Check STROBE Compliance with AI: A Free, Open-Source Approach"
+description: "Learn how to audit your observational study manuscript against all 22 STROBE checklist items using a free, open-source AI tool. Step-by-step guide with examples."
+date: "2026-04-06"
+tags: ["STROBE", "reporting-guidelines", "manuscript-quality", "Claude-Code", "open-source"]
+---
+
+## What Is the STROBE Checklist?
+
+The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) Statement was published simultaneously in Lancet, BMJ, and PLoS Medicine in 2007. It provides a checklist of 22 items that should be addressed when reporting cohort studies, case-control studies, and cross-sectional studies. Each item corresponds to a specific section of a research manuscript — from the title and abstract through the discussion.
+
+STROBE is not a quality assessment tool. It does not evaluate whether a study was well-designed or whether its conclusions are valid. Rather, it ensures that the reporting of the study is complete enough for readers to assess its strengths and limitations. This distinction matters because a well-conducted study can still be poorly reported, and poor reporting makes it impossible for clinicians and policymakers to use the evidence appropriately.
+
+The 22 items cover the following manuscript sections: title and abstract (1 item), introduction (2 items), methods (9 items), results (5 items), discussion (4 items), and other information (1 item for funding). Some items have sub-items, and three items have study-design-specific versions for cohort, case-control, and cross-sectional studies.
+
+## Why STROBE Compliance Matters
+
+Despite being available for nearly two decades, STROBE compliance in published observational studies remains inconsistent. A systematic review examining adherence trends found that average compliance improved from roughly 38% in 2005 to 58% by 2011, but this still means nearly half of all required items were inadequately reported or missing entirely.
+
+More recent assessments tell a similar story. In allergy and immunology research, full compliance with individual STROBE items ranged from 41% to 47%. In surgical oncology, emergency medicine, and ophthalmology, comparable gaps have been documented repeatedly.
+
+This matters for three practical reasons. First, journals increasingly require STROBE checklists at submission. Editors and peer reviewers use them to screen manuscripts, and incomplete adherence can trigger desk rejection or major revision requests. Second, systematic reviewers rely on complete reporting to extract data and assess risk of bias. Missing information about confounders, selection criteria, or handling of missing data can lead to exclusion from meta-analyses. Third, funding agencies and institutional review boards are beginning to mandate reporting guideline adherence as a condition of grant compliance.
+
+## Common STROBE Reporting Gaps
+
+Not all 22 items are equally likely to be missed. Research examining STROBE compliance patterns has identified several items that are consistently underreported.
+
+**Bias** (Item 9) is one of the most frequently missing items, with some studies reporting compliance rates as low as 5% to 11%. Authors often fail to describe the direction and magnitude of potential biases, or they mention limitations in the discussion without addressing bias systematically in the methods section.
+
+**Study size** (Item 10), which asks authors to explain how the study size was arrived at, is another chronically underreported item. Compliance rates for this item range from 0% to 17% across specialties. Many observational studies use convenience samples without any formal sample size calculation, and authors frequently omit this fact rather than stating it explicitly.
+
+**Missing data** (Item 12c) asks authors to explain how missing data were addressed. Compliance rates here are particularly low — often below 10%. This is especially problematic because the handling of missing data can substantially influence results and conclusions in observational research.
+
+**Quantifying the risk of bias** in the discussion (Item 19) and **generalizability** (Item 21) are also frequently incomplete. Authors may acknowledge limitations in vague terms without connecting them to specific design choices or population characteristics.
+
+## How AI Can Help Check STROBE Compliance
+
+Manually checking a manuscript against all 22 STROBE items is tedious but not conceptually difficult. You read each checklist item, search the manuscript for the relevant information, and record whether it is present, partially addressed, or missing. The challenge is that this process takes 30 to 60 minutes per manuscript, it requires careful reading of both the checklist definitions and the manuscript text, and it is easy to miss partial compliance or misclassify items when fatigued.
+
+AI-assisted compliance checking addresses these pain points. A language model can read the full manuscript text, compare it systematically against each checklist item, and produce a structured report — typically in under two minutes. The output is not a substitute for expert judgment, but it serves as a first-pass audit that catches obvious gaps before you submit to a journal or send the manuscript to co-authors for review.
+
+Several commercial tools offer this capability, including SciSpace and PeerGenius. However, these are subscription-based services that process your manuscript through third-party servers. For researchers working with sensitive data or institutional manuscripts, this raises data handling concerns.
+
+## Step-by-Step: Using the check-reporting Skill
+
+The `check-reporting` skill is a free, open-source Claude Code skill that performs STROBE compliance auditing locally on your machine. No manuscript text is uploaded to third-party services beyond the Claude API that powers Claude Code itself.
+
+### Installation
+
+```bash
+git clone https://github.com/Aperivue/medical-research-skills.git
+cp -r medical-research-skills/skills/check-reporting ~/.claude/skills/
+```
+
+After copying the skill directory, restart Claude Code. The skill is automatically discovered from `~/.claude/skills/`.
+
+### Running a STROBE Check
+
+Open Claude Code in the directory containing your manuscript file (Word, PDF, or plain text), and type:
+
+```
+/check-reporting
+```
+
+Claude Code will ask you to identify the manuscript file and the target guideline. Select STROBE, and specify whether your study is a cohort, case-control, or cross-sectional design. The skill uses the appropriate study-design-specific items.
+
+### What Happens Behind the Scenes
+
+The skill reads your manuscript, loads the bundled STROBE checklist (Creative Commons BY license), and evaluates each of the 22 items individually. For each item, it searches the manuscript text for the required information and classifies it as:
+
+- **PRESENT** — The item is fully addressed in the manuscript.
+- **PARTIAL** — Some relevant information exists but is incomplete.
+- **MISSING** — The item is not addressed.
+
+Each classification includes a brief explanation citing the specific manuscript text (or lack thereof) that led to the assessment.
+
+## Interpreting Your Compliance Report
+
+The output is a structured table with all 22 items, their compliance status, and explanatory notes. A typical report might look like this:
+
+| Item | Description | Status | Notes |
+|------|------------|--------|-------|
+| 1a | Title/abstract: study design | PRESENT | "Cross-sectional study" stated in title |
+| 9 | Bias | MISSING | No discussion of potential biases in Methods |
+| 10 | Study size | PARTIAL | States N=342 but no sample size justification |
+| 12c | Missing data | MISSING | No mention of missing data handling |
+
+Focus first on MISSING items — these are the clearest gaps that reviewers will flag. Then address PARTIAL items, which often need only a sentence or two of additional detail. PRESENT items generally need no action, but you may want to verify that the skill's assessment matches your own reading.
+
+The compliance report is a starting point for revision, not a final verdict. Some items may be classified as MISSING because the relevant information appears in a supplementary file that was not included in the check. Others may be classified as PRESENT based on superficial keyword matching when the actual content is insufficient. Always review the notes column critically.
+
+## Beyond STROBE: Other Guidelines Supported
+
+The `check-reporting` skill supports nine reporting guidelines in total:
+
+- **STROBE** — Observational studies (cohort, case-control, cross-sectional)
+- **CONSORT** — Randomized controlled trials
+- **STARD** — Diagnostic accuracy studies
+- **TRIPOD+AI** — Prediction models including AI/ML
+- **PRISMA 2020** — Systematic reviews and meta-analyses
+- **ARRIVE 2.0** — Animal research
+- **CARE** — Case reports
+- **SPIRIT** — Study protocols
+- **CLAIM** — AI in medical imaging
+
+This means the same installation covers your entire research portfolio. If you are writing a diagnostic accuracy study, switch to STARD. If you are preparing a systematic review protocol, use PRISMA. The workflow is identical — only the checklist changes.
+
+The skill is part of the [medical-research-skills](https://github.com/Aperivue/medical-research-skills) package, which includes eight additional skills covering literature search, statistical analysis, publication figures, study design review, and presentation preparation. All skills are MIT licensed and free to use.
+
+## Getting Started
+
+Install the skill, run it against a manuscript you are currently revising, and review the output. Most researchers find that the first compliance check reveals two or three items they had not considered — particularly around bias, study size justification, and missing data handling. Addressing these items before submission strengthens the manuscript and reduces the likelihood of revision requests related to reporting completeness.
+
+```bash
+git clone https://github.com/Aperivue/medical-research-skills.git
+cp -r medical-research-skills/skills/check-reporting ~/.claude/skills/
+```
+
+The STROBE checklist has been available since 2007. The tools to check compliance automatically have not — until now.
