@@ -33,9 +33,12 @@ export default function TiradsPage() {
         <footer className="mt-10 space-y-2 rounded-xl border border-border bg-muted p-4 text-xs text-foreground/50 leading-relaxed">
           <p>
             <strong>Disclaimer:</strong> This tool is for educational and
-            clinical decision-support purposes only. It does not replace
-            professional medical judgment. Always correlate with clinical
-            findings and patient risk factors.
+            research purposes only. It is not a medical device and has not
+            been cleared or approved by the FDA, KFDA/MFDS, or any
+            regulatory authority. It is not intended for clinical diagnosis
+            or treatment decisions. It does not replace professional
+            medical judgment. Always correlate with clinical findings and
+            institutional protocols.
           </p>
           <p>
             <strong>References:</strong> ACR TI-RADS — Tessler et al., JACR
