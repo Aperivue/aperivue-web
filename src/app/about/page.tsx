@@ -32,15 +32,16 @@ export default function AboutPage() {
             Founder &amp; Medical AI Researcher
           </p>
           <p className="mt-4 leading-relaxed text-foreground/80">
-            Radiology resident and doctoral candidate at Asan Medical Center,
-            University of Ulsan College of Medicine. Research focus on diagnostic
+            Radiology resident at Samsung Changwon Hospital, Sungkyunkwan
+            University School of Medicine. Research focus on diagnostic
             accuracy studies, medical image analysis with deep learning, and
             AI validation in clinical workflows.
           </p>
           <p className="mt-3 leading-relaxed text-foreground/80">
-            Previously at KAIST (B.S.), Yonsei University College of Medicine (M.D.),
-            and MI2RL (Medical Imaging &amp; Intelligent Reality Lab). Contributor to
-            MeducAI — a multi-agent system for automated manuscript quality assurance.
+            KAIST (B.S. in Biological Sciences), Yonsei University College of
+            Medicine (M.D.), and MI2RL (Medical Imaging &amp; Intelligent Reality
+            Lab) at Asan Medical Center. Contributor to MeducAI — a multi-agent
+            system for automated manuscript quality assurance.
           </p>
         </div>
       </section>
@@ -60,10 +61,10 @@ export default function AboutPage() {
         <h2 className="text-2xl font-semibold">Timeline</h2>
         <div className="mt-6 space-y-4 border-l-2 border-primary/30 pl-6">
           {[
-            { year: "2016", text: "KAIST — B.S. in Bio & Brain Engineering" },
-            { year: "2022", text: "Yonsei University — M.D." },
-            { year: "2023", text: "MI2RL — Medical Imaging Research" },
-            { year: "2025", text: "Samsung Changwon Hospital — Radiology Resident" },
+            { year: "2011", text: "KAIST — B.S. in Biological Sciences" },
+            { year: "2016", text: "Yonsei University College of Medicine — M.D." },
+            { year: "2021", text: "Samsung Changwon Hospital — Radiology Resident" },
+            { year: "2024", text: "MI2RL, Asan Medical Center — Medical AI Research" },
             { year: "2026", text: "Aperivue founded" },
           ].map((item) => (
             <div key={item.year + item.text} className="relative">
