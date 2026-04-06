@@ -8,12 +8,11 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/skills", label: "Skills" },
-  { href: "/rads/tirads", label: "TI-RADS" },
-  { href: "/rads/lungrads", label: "Lung-RADS" },
+  { href: "/rads", label: "Aperivue RADS", external: true },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-];
+] as const;
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,6 +30,7 @@ export default function Header() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="text-sm font-medium text-foreground/70 transition-colors hover:text-primary"
               >
                 {link.label}
@@ -78,6 +78,7 @@ export default function Header() {
               <Link
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
+                {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="text-sm font-medium text-foreground/70 hover:text-primary"
               >
                 {link.label}

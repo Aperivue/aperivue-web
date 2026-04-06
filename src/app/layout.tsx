@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 const GA_ID = "G-69BL25N2TL";
@@ -27,7 +25,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://aperivue.com"),
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
     ],
     apple: "/favicon-180.png",
@@ -37,6 +36,19 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Aperivue",
+  url: "https://aperivue.com",
+  logo: "https://aperivue.com/favicon-512.png",
+  sameAs: [
+    "https://github.com/aperivue",
+    "https://youtube.com/@scrubcode",
+    "https://www.linkedin.com/company/aperivue",
+  ],
 };
 
 export default function RootLayout({
@@ -62,9 +74,13 @@ export default function RootLayout({
             gtag('config', '${GA_ID}');
           `}
         </Script>
-        <Header />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
         {children}
-        <Footer />
       </body>
     </html>
   );

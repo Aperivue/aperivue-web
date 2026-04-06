@@ -3,12 +3,12 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "Aperivue products — RADS Tool for structured radiology reporting.",
+  description: "Aperivue products — Aperivue RADS for structured radiology reporting.",
 };
 
 const products = [
   {
-    name: "RADS Tool",
+    name: "Aperivue RADS",
     status: "In Development",
     description:
       "Unified scoring calculator for TI-RADS, BI-RADS, Lung-RADS, LI-RADS, and more. Generate structured radiology reports with evidence-based recommendations.",
@@ -18,7 +18,7 @@ const products = [
       "Evidence-based management recommendations",
       "Web, desktop, and mobile (planned)",
     ],
-    link: "/rads/tirads",
+    link: "/rads",
   },
   {
     name: "ScrubCode",

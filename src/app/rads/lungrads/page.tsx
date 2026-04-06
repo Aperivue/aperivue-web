@@ -18,7 +18,7 @@ export default function LungRadsPage() {
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-accent">
-            RADS Tool
+            Aperivue RADS
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
             Lung Cancer Screening CT Report Generator

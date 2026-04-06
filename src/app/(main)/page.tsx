@@ -58,10 +58,10 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
-                href="/products"
+                href="/rads"
                 className="rounded-full bg-gradient-to-r from-primary to-primary-dark px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
-                Explore RADS Tool
+                Explore Aperivue RADS
               </Link>
               <a
                 href="https://youtube.com/@scrubcode"
@@ -93,7 +93,7 @@ export default function Home() {
           </p>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {/* Featured — RADS Tool */}
+            {/* Featured — Aperivue RADS */}
             <div className="relative col-span-full overflow-hidden rounded-2xl border border-primary/20 bg-surface p-8 md:col-span-2">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
               <div className="relative">
@@ -103,7 +103,7 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h4l3-7 4 14 3-7h4" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold">RADS Tool</h3>
+                  <h3 className="text-xl font-semibold">Aperivue RADS</h3>
                   <span className="rounded-full bg-accent/10 px-3 py-0.5 text-xs font-medium text-accent">
                     In Development
                   </span>
