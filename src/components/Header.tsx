@@ -7,6 +7,7 @@ import AperivueLogo from "./AperivueLogo";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
+  { href: "/skills", label: "Skills" },
   { href: "/rads/tirads", label: "TI-RADS" },
   { href: "/rads/lungrads", label: "Lung-RADS" },
   { href: "/blog", label: "Blog" },
