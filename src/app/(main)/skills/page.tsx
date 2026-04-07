@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Medical Research Skills for Claude Code | Aperivue",
   description:
-    "9 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. Anti-hallucination citations, 9 reporting guidelines, publication-ready figures.",
+    "14 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. Anti-hallucination citations, 15 reporting guidelines, publication-ready figures.",
   keywords: [
     "claude code skills",
     "medical research",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Medical Research Skills for Claude Code",
     description:
-      "9 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
+      "14 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
     url: "https://aperivue.com/skills",
   },
 };
@@ -132,6 +132,54 @@ const skills = [
       "Generalization pipeline",
     ],
   },
+  {
+    name: "write-paper",
+    title: "Manuscript Writing",
+    description:
+      "Full 8-phase IMRAD pipeline from outline to submission-ready manuscript with built-in critic-fixer loops.",
+    features: [
+      "19 journal profiles included",
+      "AI writing pattern detection",
+      "Section-level word budgets",
+    ],
+    isNew: true,
+  },
+  {
+    name: "self-review",
+    title: "Self-Review",
+    description:
+      "Pre-submission check across 7 categories: study design, reference standard, statistics, clinical framing, reproducibility, reporting, and guideline compliance.",
+    features: [
+      "Critical / Flag / Pass assessment",
+      "Reviewer-perspective feedback",
+      "Actionable fix suggestions",
+    ],
+    isNew: true,
+  },
+  {
+    name: "revise",
+    title: "Revision Response",
+    description:
+      "Parses reviewer decision letters, classifies comments as MAJOR/MINOR/REBUTTAL, and generates point-by-point responses.",
+    features: [
+      "Structured response templates",
+      "Change log with page/line refs",
+      "Cover letter generation",
+    ],
+    isNew: true,
+  },
+  {
+    name: "manage-project",
+    title: "Project Management",
+    description:
+      "Scaffold research projects, track writing progress, generate submission checklists and backwards timelines.",
+    features: [
+      "Project scaffolding (init)",
+      "Phase progress tracking",
+      "Pre-submission checklist",
+    ],
+    isNew: true,
+  },
 ];
 
 const pipelineSteps = [
@@ -139,7 +187,10 @@ const pipelineSteps = [
   { label: "Study\nDesign", skill: "design-study" },
   { label: "Analysis", skill: "analyze-stats" },
   { label: "Figures", skill: "make-figures" },
+  { label: "Writing", skill: "write-paper", isNew: true },
   { label: "Reporting", skill: "check-reporting" },
+  { label: "Self-Review", skill: "self-review", isNew: true },
+  { label: "Revision", skill: "revise", isNew: true },
   { label: "Presenting", skill: "present-paper" },
 ];
 
@@ -155,7 +206,7 @@ export default function SkillsPage() {
           Medical Research Skills for Claude Code
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
-          9 skills covering the full research lifecycle — from literature search
+          14 skills covering the full research lifecycle — from literature search
           to manuscript revision. Built by physicians, battle-tested on real
           publications. MIT licensed.
         </p>
@@ -188,7 +239,12 @@ export default function SkillsPage() {
         <div className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-2">
           {pipelineSteps.map((step, i) => (
             <div key={step.skill} className="flex items-center gap-2">
-              <div className="rounded-lg border border-border bg-surface px-4 py-2 text-center text-xs font-medium leading-tight whitespace-pre-line">
+              <div className="relative rounded-lg border border-border bg-surface px-4 py-2 text-center text-xs font-medium leading-tight whitespace-pre-line">
+                {"isNew" in step && step.isNew && (
+                  <span className="absolute -top-2 -right-2 rounded-full bg-primary px-1.5 py-0.5 text-[8px] font-bold text-white">
+                    NEW
+                  </span>
+                )}
                 {step.label}
                 <span className="mt-1 block text-[10px] text-accent">
                   {step.skill}
@@ -201,7 +257,8 @@ export default function SkillsPage() {
           ))}
         </div>
         <p className="mt-3 text-center text-xs text-foreground/40">
-          + grant-builder &middot; intake-project &middot; publish-skill
+          + grant-builder &middot; intake-project &middot; manage-project &middot;
+          publish-skill
         </p>
       </section>
 
@@ -219,6 +276,11 @@ export default function SkillsPage() {
                 <span className="rounded-full bg-accent/10 px-3 py-0.5 text-[10px] font-mono text-accent">
                   {skill.name}
                 </span>
+                {"isNew" in skill && skill.isNew && (
+                  <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                    NEW
+                  </span>
+                )}
               </div>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/70">
                 {skill.description}
@@ -254,7 +316,7 @@ export default function SkillsPage() {
           </div>
           <div>
             <h3 className="font-semibold text-primary">
-              9 Reporting Guidelines
+              15 Reporting Guidelines
             </h3>
             <p className="mt-2 text-sm text-foreground/60">
               STROBE, STARD, TRIPOD+AI, PRISMA, ARRIVE built-in. CONSORT,
