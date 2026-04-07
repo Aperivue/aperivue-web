@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 const GITHUB_URL =
-  "https://github.com/Aperivue/medical-research-skills";
+  "https://github.com/Aperivue/medsci-skills";
 
 const skills = [
   {
@@ -371,8 +371,8 @@ export default function SkillsPage() {
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
-{`git clone https://github.com/aperivue/medical-research-skills.git
-cp -r medical-research-skills/skills/* ~/.claude/skills/`}
+{`git clone https://github.com/aperivue/medsci-skills.git
+cp -r medsci-skills/skills/* ~/.claude/skills/`}
               </code>
             </pre>
           </div>
@@ -382,8 +382,8 @@ cp -r medical-research-skills/skills/* ~/.claude/skills/`}
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
-{`git clone https://github.com/aperivue/medical-research-skills.git
-cp -r medical-research-skills/skills/check-reporting ~/.claude/skills/`}
+{`git clone https://github.com/aperivue/medsci-skills.git
+cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
               </code>
             </pre>
           </div>
