@@ -24,7 +24,7 @@ export default function RadsHeader() {
           </span>
         </Link>
 
-        {/* Right: Tabs */}
+        {/* Right: Tabs + Home link */}
         <div className="flex items-center gap-1">
           {radsTabs.map((tab) => {
             const isActive = pathname.startsWith(tab.href);
@@ -42,6 +42,17 @@ export default function RadsHeader() {
               </Link>
             );
           })}
+
+          {/* Divider */}
+          <div className="mx-1.5 h-4 w-px bg-border" />
+
+          {/* Back to main site */}
+          <Link
+            href="/"
+            className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+          >
+            aperivue.com
+          </Link>
         </div>
       </nav>
     </header>
