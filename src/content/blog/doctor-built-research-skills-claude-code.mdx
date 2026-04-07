@@ -1,0 +1,133 @@
+---
+title: "How a Non-Programmer Doctor Built 15 Research Automation Skills with Claude Code"
+description: "A radiology resident with no coding background built an open-source toolkit that automates systematic reviews, manuscript writing, and statistical analysis — using nothing but Claude Code and domain expertise."
+date: "2026-04-07"
+tags: ["claude-code", "research-automation", "medical-ai", "open-source", "systematic-review"]
+---
+
+## The Problem — Research Is 80% Repetitive Work
+
+Running five research projects at once sounds impressive on a CV. In practice, it means downloading the same batch of PDFs from PubMed for the third time this week, reformatting the same PRISMA flow diagram in a slightly different style, and checking whether your manuscript actually reports every item on the STARD checklist — again.
+
+I am a radiology resident. My training is in reading CT scans and placing catheters, not in writing Python scripts. But after spending months on systematic reviews, diagnostic accuracy studies, and AI validation papers, I noticed a pattern: about 80% of my research time went to tasks that were mechanical, predictable, and identical across projects.
+
+Downloading open-access PDFs from Unpaywall and PMC. Running the same bivariate meta-analysis model with different datasets. Checking manuscript compliance against reporting guidelines. Writing the "Statistical Analysis" section for the fifteenth time.
+
+The research itself — the clinical question, the study design, the interpretation — that was the 20% that actually required a doctor's judgment. Everything else was copy-paste with minor variations.
+
+## The First Skill — It Started with a PDF
+
+The turning point came during a meta-analysis on CBCT-guided lung biopsies. I needed full-text PDFs for 76 included studies. The standard approach: click through PubMed, check if it is open access, try Unpaywall, try the publisher site, repeat 76 times.
+
+I had been using Claude Code for a few weeks at that point — mostly for small tasks like reformatting tables or debugging R scripts. So I tried something different. Instead of asking Claude to write a complete program, I described my actual problem:
+
+*"I have a list of 76 DOIs. I need to download the full-text PDFs. Some are open access through Unpaywall, some are in PMC, and the rest I'll need to get through my institution. Can you help me batch-download the OA ones first?"*
+
+Claude Code wrote a Python script. It did not work perfectly on the first try — PMC's website blocked the download with a JavaScript challenge. So I described that problem too, and we iterated. Three rounds of conversation later, I had a working pipeline: Unpaywall first, then Europe PMC's REST API (which bypasses the JavaScript issue), then OpenAlex and Crossref as fallbacks.
+
+That script saved me an afternoon. More importantly, it planted an idea: what if I saved this as a reusable skill, so next time I start a meta-analysis, the PDF retrieval step is already solved?
+
+## From One Script to 15 Skills
+
+Claude Code has a feature called [skills](https://docs.anthropic.com/en/docs/claude-code/skills) — instruction files that teach it how to handle specific types of tasks. You write a SKILL.md file describing the workflow, the inputs, the outputs, and the constraints. Next time you ask Claude to do that task, it follows the skill instead of starting from scratch.
+
+Over the following weeks, every time I caught myself repeating a research task across projects, I turned it into a skill:
+
+**Literature search** became `search-lit` — searches PubMed, Semantic Scholar, and bioRxiv, then verifies every citation against the actual database before including it. No hallucinated references.
+
+**Statistical analysis** became `analyze-stats` — generates reproducible Python or R code for diagnostic accuracy, inter-rater agreement, survival analysis, and meta-analysis. Outputs publication-ready tables with proper confidence intervals and effect sizes.
+
+**Manuscript writing** became `write-paper` — an 8-phase pipeline from outline to submission-ready draft, with built-in checks for AI writing patterns (it flags and rewrites phrases like "it is worth noting" or "comprehensive analysis").
+
+**Reporting compliance** became `check-reporting` — audits a manuscript against 15 reporting guidelines including STROBE, STARD, TRIPOD+AI, PRISMA, and risk-of-bias tools like QUADAS-2 and RoB 2. Returns a checklist with PRESENT, PARTIAL, or MISSING for each item.
+
+**Figures** became `make-figures` — generates ROC curves, forest plots, PRISMA flow diagrams, Bland-Altman plots, and confusion matrices at 300 DPI, colorblind-safe, sized for journal submission.
+
+The full list reached 15 skills:
+
+| Skill | What It Does |
+|-------|-------------|
+| `search-lit` | Literature search with citation verification |
+| `analyze-stats` | Statistical analysis code generation |
+| `write-paper` | Full IMRAD manuscript pipeline |
+| `check-reporting` | Compliance audit (15 guidelines) |
+| `make-figures` | Publication-ready figures |
+| `meta-analysis` | Systematic review pipeline (8 phases) |
+| `design-study` | Study design and validity review |
+| `self-review` | Pre-submission quality check |
+| `revise` | Response to peer reviewers |
+| `manage-project` | Project scaffolding and tracking |
+| `intake-project` | New project classification |
+| `grant-builder` | Grant proposal structuring |
+| `present-paper` | Presentation and speaker notes |
+| `publish-skill` | Skill packaging for distribution |
+| `fulltext-retrieval` | OA PDF batch download |
+
+Each skill was born from a real problem in a real project — not from a hypothetical "what if someone needed this" exercise.
+
+## What I Actually Did (It Wasn't Coding)
+
+I want to be clear about what my role was in building these skills, because it was not programming.
+
+I did not learn Python. I did not study software architecture. I did not read documentation about REST APIs. What I did was:
+
+**Define the problem precisely.** "I need to check if my manuscript reports all 22 items on the STARD checklist" is a better starting point than "help me with my paper." The specificity of the request determines the quality of the output.
+
+**Bring domain knowledge.** Claude Code can generate a forest plot, but it does not know that diagnostic accuracy meta-analyses require a bivariate model instead of a simple random-effects model. It does not know that QUADAS-2 has four domains with separate risk-of-bias and applicability assessments. That knowledge came from me — from years of reading radiology literature and attending journal clubs.
+
+**Test against real manuscripts.** Every skill was tested on actual papers I was writing. When `check-reporting` missed a STARD item or when `analyze-stats` used the wrong statistical test, I described the error and we fixed it. The skills improved through use, not through abstract design.
+
+**Iterate based on failure.** The PDF retrieval skill went through three versions before it worked reliably. The manuscript writing skill needed a dedicated "AI pattern detection" phase after I noticed the output sounded robotic. Each failure taught me to write a better skill description.
+
+The pattern was always the same: describe the problem, let Claude Code build a solution, test it on real data, describe what went wrong, improve. Repeat until it works.
+
+## Making It Open Source
+
+After a few weeks, I had a collection of skills that worked well enough for my own research. The question was whether to keep them private or share them.
+
+The answer was obvious. Every medical researcher faces the same repetitive tasks. If a radiology resident in South Korea can automate systematic reviews with these skills, so can a cardiology fellow in Boston or a public health researcher in London.
+
+I packaged the skills into a single repository and published it on GitHub:
+
+```bash
+git clone https://github.com/Aperivue/medsci-skills.git
+cp -r medsci-skills/skills/* ~/.claude/skills/
+```
+
+That is the entire installation process. Clone the repository, copy the skill files, and Claude Code picks them up automatically.
+
+The skills are MIT-licensed — free to use, modify, and distribute. The only requirement is that you have a Claude Code subscription.
+
+## What Changed in My Research Workflow
+
+The difference is concrete and measurable.
+
+**Systematic review PDF retrieval:** From a full afternoon of manual downloading to a 10-minute batch script that retrieves all open-access papers automatically. The remaining paywalled papers still need institutional access, but the OA portion (typically 40-50% in my field) is handled without any manual clicks.
+
+**Reporting compliance check:** From a 2-hour manual walkthrough of a 22-item STARD checklist to a 3-minute automated audit that flags missing items with specific suggestions for what to add.
+
+**Statistical analysis:** From writing R code from scratch (or more honestly, copying from a previous project and modifying) to describing the analysis in plain English and getting reproducible, documented code with publication-ready output.
+
+**Manuscript drafting:** From staring at a blank document to having a structured first draft that follows IMRAD conventions, uses active voice, and avoids the 18 most common AI writing patterns.
+
+**Peer review response:** From dreading the revision letter to having a structured, point-by-point response framework with tracked changes mapped to specific reviewer comments.
+
+None of these skills replace the researcher. They replace the mechanical parts of the researcher's work. I still design the studies, interpret the results, and make the clinical arguments. But I spend far less time on formatting, checking, and re-checking.
+
+## Lessons for Fellow Researchers
+
+If you are a physician-researcher considering something similar, here is what I learned:
+
+**You do not need to learn to code.** You need to learn to describe problems clearly. If you can write a case report — presenting history, findings, differential diagnosis, and final diagnosis in a structured format — you already have the skill that matters most. Problem description is problem solving.
+
+**Start with your biggest pain point.** Do not try to automate your entire workflow at once. Pick the one task that wastes the most time and automate that first. For me, it was PDF retrieval. For you, it might be reference formatting, figure generation, or compliance checking.
+
+**Your domain expertise is the hard part.** The fact that you know a bivariate model is appropriate for DTA meta-analysis, or that TRIPOD+AI requires reporting of calibration metrics — that knowledge is what makes the skills accurate. AI provides the execution; you provide the judgment.
+
+**Share what you build.** Research automation should not be a competitive advantage. It should be infrastructure. The faster we all get through the mechanical parts of research, the more time we spend on the questions that matter.
+
+The repository is at [github.com/Aperivue/medsci-skills](https://github.com/Aperivue/medsci-skills). It is free, it is open source, and it was built by a doctor who still cannot explain what a decorator does in Python.
+
+---
+
+*Yoojin Nam, MD is a radiology AI researcher and the founder of [Aperivue](https://aperivue.com). He builds open-source tools for medical imaging and research automation.*
