@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Medical Research Skills for Claude Code | Aperivue",
   description:
-    "15 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. Anti-hallucination citations, 15 reporting guidelines, publication-ready figures.",
+    "16 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. Anti-hallucination citations, 15 reporting guidelines, publication-ready figures.",
   keywords: [
     "claude code skills",
     "medical research",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Medical Research Skills for Claude Code",
     description:
-      "15 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
+      "16 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
     url: "https://aperivue.com/skills",
   },
 };
@@ -49,7 +49,7 @@ const skills = [
     name: "search-lit",
     title: "Literature Search",
     description:
-      "PubMed + Semantic Scholar + bioRxiv search with anti-hallucination citation verification.",
+      "PubMed + Semantic Scholar + bioRxiv search with anti-hallucination citation verification. Token-efficient error handling.",
     features: [
       "Every reference verified via API",
       "BibTeX export",
@@ -57,13 +57,25 @@ const skills = [
     ],
   },
   {
+    name: "fulltext-retrieval",
+    title: "Full-Text Retrieval",
+    description:
+      "Batch open-access PDF downloader. Unpaywall → PMC → OpenAlex → CrossRef pipeline. OA-only — no paywall bypass.",
+    features: [
+      "DOI list or TSV input",
+      "PDF validation built-in",
+      "Manual-needed list for paywalled papers",
+    ],
+    isNew: true,
+  },
+  {
     name: "check-reporting",
     title: "Reporting Guidelines",
     description:
-      "Manuscript compliance audit against 9 reporting guidelines with item-by-item assessment.",
+      "Manuscript compliance audit against 15 reporting guidelines with item-by-item assessment and section boundary checks.",
     features: [
       "STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI",
-      "PRESENT / PARTIAL / MISSING status",
+      "Results/Discussion boundary check",
       "Actionable fix suggestions",
     ],
   },
@@ -82,7 +94,7 @@ const skills = [
     name: "analyze-stats",
     title: "Statistical Analysis",
     description:
-      "Reproducible Python/R code for diagnostic accuracy, inter-rater agreement, and more.",
+      "Reproducible Python/R code for diagnostic accuracy, inter-rater agreement, and more. Calibration mandatory for prediction models.",
     features: [
       "DTA, survival, demographics tables",
       "Publication-ready output",
@@ -159,11 +171,11 @@ const skills = [
     name: "write-paper",
     title: "Manuscript Writing",
     description:
-      "Full 8-phase IMRAD pipeline from outline to submission-ready manuscript with built-in critic-fixer loops.",
+      "Full 8-phase IMRAD pipeline from outline to submission-ready manuscript with built-in critic-fixer loops and section boundary enforcement.",
     features: [
-      "19 journal profiles included",
+      "Anti-interpretation guardrails in Results",
+      "Interactive Discussion with anchor papers",
       "AI writing pattern detection",
-      "Section-level word budgets",
     ],
     isNew: true,
   },
@@ -171,11 +183,11 @@ const skills = [
     name: "self-review",
     title: "Self-Review",
     description:
-      "Pre-submission check across 7 categories: study design, reference standard, statistics, clinical framing, reproducibility, reporting, and guideline compliance.",
+      "Pre-submission check across 10 categories with research-type branching (AI, observational, educational, meta-analysis, case report, surgical).",
     features: [
-      "Critical / Flag / Pass assessment",
-      "Reviewer-perspective feedback",
-      "Actionable fix suggestions",
+      "Major / Minor severity classification",
+      "Calibration mandatory for prediction models",
+      "R0 numbering for /revise pipeline",
     ],
     isNew: true,
   },
@@ -207,6 +219,7 @@ const skills = [
 
 const pipelineSteps = [
   { label: "Literature\nReview", skill: "search-lit" },
+  { label: "Full-Text\nRetrieval", skill: "fulltext-retrieval", isNew: true },
   { label: "Study\nDesign", skill: "design-study" },
   { label: "Analysis", skill: "analyze-stats" },
   { label: "Figures", skill: "make-figures" },
@@ -229,7 +242,7 @@ export default function SkillsPage() {
           Medical Research Skills for Claude Code
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
-          15 skills covering the full research lifecycle — from literature search
+          16 skills covering the full research lifecycle — from literature search
           to manuscript revision. Built by physicians, battle-tested on real
           publications. MIT licensed.
         </p>
@@ -339,7 +352,7 @@ export default function SkillsPage() {
           </div>
           <div>
             <h3 className="font-semibold text-primary">
-              15 Reporting Guidelines
+              16 Reporting Guidelines
             </h3>
             <p className="mt-2 text-sm text-foreground/60">
               STROBE, STARD, TRIPOD+AI, PRISMA, ARRIVE built-in. CONSORT,
