@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Medical Research Skills for Claude Code | Aperivue",
   description:
-    "14 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. Anti-hallucination citations, 15 reporting guidelines, publication-ready figures.",
+    "15 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. Anti-hallucination citations, 15 reporting guidelines, publication-ready figures.",
   keywords: [
     "claude code skills",
     "medical research",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Medical Research Skills for Claude Code",
     description:
-      "14 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
+      "15 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
     url: "https://aperivue.com/skills",
   },
 };
@@ -33,6 +33,18 @@ const GITHUB_URL =
   "https://github.com/Aperivue/medical-research-skills";
 
 const skills = [
+  {
+    name: "orchestrate",
+    title: "Orchestrator",
+    description:
+      "Single entry point for the full bundle. Classifies your request and routes to the right skill — or chains multiple skills for multi-step workflows.",
+    features: [
+      "Automatic intent classification",
+      "Multi-skill workflow chaining",
+      "Project context detection",
+    ],
+    isNew: true,
+  },
   {
     name: "search-lit",
     title: "Literature Search",
@@ -133,6 +145,17 @@ const skills = [
     ],
   },
   {
+    name: "meta-analysis",
+    title: "Meta-Analysis",
+    description:
+      "Full 8-phase systematic review and meta-analysis pipeline. DTA (bivariate/HSROC) and intervention MA with PRISMA-DTA compliance.",
+    features: [
+      "Protocol to manuscript pipeline",
+      "Bivariate & HSROC models",
+      "PRISMA-DTA compliant",
+    ],
+  },
+  {
     name: "write-paper",
     title: "Manuscript Writing",
     description:
@@ -206,7 +229,7 @@ export default function SkillsPage() {
           Medical Research Skills for Claude Code
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
-          14 skills covering the full research lifecycle — from literature search
+          15 skills covering the full research lifecycle — from literature search
           to manuscript revision. Built by physicians, battle-tested on real
           publications. MIT licensed.
         </p>
@@ -257,8 +280,8 @@ export default function SkillsPage() {
           ))}
         </div>
         <p className="mt-3 text-center text-xs text-foreground/40">
-          + grant-builder &middot; intake-project &middot; manage-project &middot;
-          publish-skill
+          + orchestrate &middot; meta-analysis &middot; grant-builder &middot;
+          intake-project &middot; manage-project &middot; publish-skill
         </p>
       </section>
 
