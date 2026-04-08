@@ -42,7 +42,7 @@ export default function GuideContentKo({ lang }: { lang: string }) {
       {/* Hero */}
       <section>
         <p className="text-xs font-medium uppercase tracking-widest text-accent">
-          한국어 가이드
+          가이드
         </p>
         <h1 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
           코딩 경험 없는 의사를 위한

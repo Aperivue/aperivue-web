@@ -48,7 +48,7 @@
     "description": "문헌 검색부터 원고 수정까지 연구 전체 과정을 다루는 20개 스킬. 의사가 직접 개발하고, 실제 논문에서 검증. MIT 라이선스.",
     "viewGithub": "GitHub에서 보기",
     "installNow": "지금 설치",
-    "koGuide": "한국어 가이드",
+    "koGuide": "가이드",
     "pipeline": "연구 파이프라인",
     "demoTitle": "End-to-End 파이프라인 데모",
     "demoDesc": "라이브 데모: sklearn.datasets.load_breast_cancer()에서 Figure 4개, STARD 준수 감사, 12장 발표 슬라이드까지 — orchestrate Full Pipeline Mode로 스킬을 체이닝하여 자동 생성.",

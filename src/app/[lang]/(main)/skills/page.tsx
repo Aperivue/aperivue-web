@@ -87,7 +87,7 @@ export default async function SkillsPage({
             href={`/${lang}/skills/guide`}
             className="rounded-full border border-primary px-7 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
           >
-            한국어 가이드
+            {t.koGuide}
           </a>
         </div>
       </section>
