@@ -173,7 +173,7 @@ export default function ContentKo({ lang }: { lang: string }) {
                   </p>
                   <div className="mt-3 rounded-lg border border-border bg-muted p-3">
                     <p className="text-xs text-foreground/40">예시 프롬프트</p>
-                    <code className="mt-1 block text-sm text-foreground/70">
+                    <code className="mt-1 block break-all text-sm text-foreground/70">
                       {skill.prompt}
                     </code>
                   </div>
@@ -195,7 +195,7 @@ export default function ContentKo({ lang }: { lang: string }) {
           스킬을 선택하고 실행합니다.
         </p>
         <div className="mt-3 rounded-lg border border-border bg-surface p-3">
-          <code className="text-sm text-foreground/70">
+          <code className="break-all text-sm text-foreground/70">
             /orchestrate 이 CSV 데이터로 연구를 처음부터 끝까지 진행하고 싶어
           </code>
         </div>

@@ -7,10 +7,10 @@ export default function RadsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="overflow-x-hidden">
       <RadsHeader />
       <main className="flex-1">{children}</main>
       <RadsFooter />
-    </>
+    </div>
   );
 }

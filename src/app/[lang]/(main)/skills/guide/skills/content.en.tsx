@@ -173,7 +173,7 @@ export default function ContentEn({ lang }: { lang: string }) {
                   </p>
                   <div className="mt-3 rounded-lg border border-border bg-muted p-3">
                     <p className="text-xs text-foreground/40">Example prompt</p>
-                    <code className="mt-1 block text-sm text-foreground/70">
+                    <code className="mt-1 block break-all text-sm text-foreground/70">
                       {skill.prompt}
                     </code>
                   </div>
@@ -195,7 +195,7 @@ export default function ContentEn({ lang }: { lang: string }) {
           The Orchestrator will automatically pick the right skill and run it for you.
         </p>
         <div className="mt-3 rounded-lg border border-border bg-surface p-3">
-          <code className="text-sm text-foreground/70">
+          <code className="break-all text-sm text-foreground/70">
             /orchestrate I want to take this CSV data through an entire research pipeline
           </code>
         </div>
