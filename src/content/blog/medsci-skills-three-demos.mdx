@@ -1,0 +1,177 @@
+---
+title: "Three Demos, Three Study Types: MedSci Skills End-to-End Pipeline"
+description: "We ran three public datasets — Wisconsin Breast Cancer, BCG vaccine meta-analysis, and NHANES obesity — through MedSci Skills. Each produced a complete manuscript, publication-ready figures, reporting compliance audit, and presentation slides."
+date: "2026-04-08"
+tags: ["medsci-skills", "demo", "diagnostic-accuracy", "meta-analysis", "epidemiology", "open-source", "STARD", "PRISMA", "STROBE"]
+---
+
+# Three Demos, Three Study Types: MedSci Skills End-to-End Pipeline
+
+Most AI writing tools can draft a paragraph. Few can run the statistics correctly, generate figures at journal resolution, audit reporting compliance, and build a slide deck — all from the same dataset in a single session.
+
+We built three end-to-end demos using only public data and MedSci Skills. Each demo covers a different study type, uses different statistical methods, and produces a different set of outputs. The goal: prove that 20 skills working together can handle the full research pipeline, not just the easy parts.
+
+---
+
+## Demo 1: Diagnostic Accuracy — Wisconsin Breast Cancer
+
+**Input:** One line of Python.
+
+```python
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()  # 569 samples, 30 features
+```
+
+**What the pipeline produced:**
+
+The `analyze-stats` skill generated a Table 1 with automatic normality testing (Kolmogorov-Smirnov for n >= 50) and appropriate test selection — t-test for normal distributions, Mann-Whitney U otherwise. No manual statistical decisions required.
+
+Three classifiers were compared: Logistic Regression (AUC 0.995), SVM (AUC 0.994), and Random Forest (AUC 0.987). All confidence intervals use the DeLong method, not bootstrap. The DeLong test caught a significant difference between SVM and Random Forest (p = 0.043) that point estimates alone would have missed.
+
+| Metric | Value |
+|--------|-------|
+| Best AUC | 0.995 (95% CI: 0.990-1.000) |
+| Figures | 4 at 300 dpi (ROC, confusion matrix, calibration, threshold) |
+| Manuscript | ~1,600 words, IMRAD structure |
+| STARD audit | 19/30 PRESENT, 5 PARTIAL, 6 MISSING — with fix recommendations |
+| Slides | 12 with speaker notes |
+
+The STARD compliance audit is worth highlighting. The `check-reporting` skill checked all 30 STARD 2015 items and provided specific fix text for each missing item. For example:
+
+> **Item 7 (Sampling):** Add: "The dataset comprised a convenience series of FNA specimens collected at a single academic center."
+
+This is what typically takes a reviewer 30+ minutes — done in seconds, with actionable fixes.
+
+---
+
+## Demo 2: Meta-Analysis — BCG Vaccine Efficacy
+
+**Input:** One R dataset.
+
+```r
+library(metafor)
+data(dat.bcg)  # 13 RCTs, 357,347 participants
+```
+
+**What the pipeline produced:**
+
+The classic Colditz et al. (1994) BCG vaccine dataset. One R script handled: random-effects modeling (REML), forest plot, funnel plot, meta-regression, and a three-test publication bias battery.
+
+**Pooled result:** RR = 0.49 (95% CI: 0.34-0.70) — BCG reduced TB risk by 51%.
+
+But heterogeneity was massive: I-squared = 92.2%. The meta-regression identified absolute latitude as the key moderator, explaining 75.6% of between-study variance (p < 0.001). BCG works better at higher latitudes. This is the textbook finding — reproduced automatically with the correct bubble plot.
+
+**Publication bias assessment:**
+
+| Test | Result |
+|------|--------|
+| Egger's regression | p = 0.189 (no asymmetry) |
+| Begg's rank correlation | p = 0.952 |
+| Trim-and-fill | 1 study imputed, adjusted RR = 0.52 (still significant) |
+
+Leave-one-out sensitivity analysis confirmed no single study drove the overall result.
+
+| Metric | Value |
+|--------|-------|
+| Studies | 13 RCTs |
+| Participants | 357,347 |
+| Figures | 4 at 300 dpi (forest, funnel, trim-and-fill, bubble) |
+| Manuscript | ~1,800 words with PRISMA compliance |
+| PRISMA audit | Full 27-item checklist |
+| Slides | 12 with speaker notes |
+
+---
+
+## Demo 3: Epidemiology — NHANES Obesity and Diabetes
+
+**Input:** Real CDC data.
+
+```python
+# Download 3 XPT files from CDC (free, no registration)
+# DEMO_J.XPT (demographics), BMX_J.XPT (body measures), GHB_J.XPT (glycohemoglobin)
+```
+
+**What the pipeline produced:**
+
+NHANES 2017-2018 data — 4,866 US adults after exclusions. Two Python scripts handled: data merging, BMI recoding (WHO categories), diabetes classification (ADA HbA1c >= 6.5%), survey weight application, and adjusted logistic regression.
+
+**Key finding:** Obesity was associated with 4.5 times the odds of diabetes (adjusted OR 4.50, 95% CI: 4.49-4.51), controlling for age, sex, race/ethnicity, and education.
+
+The critical insight most tools miss: survey weights. NHANES uses a complex survey design. Without weights, diabetes prevalence was 14.9%. With proper survey weights, it dropped to 10.2%. If you skip weights, your estimates are biased. MedSci Skills computes both and shows why this matters.
+
+| Metric | Value |
+|--------|-------|
+| Participants | 4,866 US adults |
+| Data source | CDC (free, no registration) |
+| Figures | 4 at 300 dpi (prevalence bar, OR forest, HbA1c density, subgroup) |
+| Manuscript | ~1,700 words with STROBE compliance |
+| STROBE audit | Full 22-item checklist |
+| Slides | 12 with speaker notes |
+
+---
+
+## Side-by-Side Comparison
+
+| | Demo 1: WBC | Demo 2: BCG | Demo 3: NHANES |
+|---|:-----------:|:-----------:|:--------------:|
+| **Study type** | Diagnostic accuracy | Meta-analysis | Cross-sectional |
+| **Language** | Python | R | Python |
+| **Key statistic** | AUC 0.995 | RR 0.49 | OR 4.50 |
+| **CI method** | DeLong | Wald (log-scale) | Survey-weighted |
+| **Figures** | 4 | 4 | 4 |
+| **Reporting guideline** | STARD 2015 | PRISMA 2020 | STROBE |
+| **Manuscript** | ~1,600 words | ~1,800 words | ~1,700 words |
+| **Slides** | 12 | 12 | 12 |
+| **Adversarial review** | PASS | PASS | PASS |
+
+Each demo used 5-6 of the 20 available skills. The pipeline chain: `clean-data` → `analyze-stats` → `make-figures` → `write-paper` → `check-reporting` → `present-paper`.
+
+---
+
+## What Makes This Different
+
+**Statistical rigor.** DeLong CIs for AUC, not bootstrap. Wilson score intervals for proportions. Survey weights for NHANES. Prediction intervals for meta-analysis. These are details that generic AI tools consistently get wrong.
+
+**Anti-hallucination.** Every citation in every manuscript is tagged `[UNVERIFIED]` unless verified against PubMed or CrossRef APIs. The system forces manual checking rather than generating plausible-looking fake DOIs.
+
+**Reporting compliance built in.** STARD, PRISMA, and STROBE audits are not afterthoughts — they are part of the pipeline. Each audit returns item-by-item assessment with specific fix recommendations.
+
+**Reproducibility.** Fixed random seeds, version headers, full parameter logging. Every output can be regenerated from the same input.
+
+---
+
+## The Numbers
+
+| Metric | Total across 3 demos |
+|--------|---------------------|
+| Skills used | 6 of 20 |
+| Scripts | 7 (4 Python, 1 R, 2 Python) |
+| Figures | 12 (all 300 dpi) |
+| Manuscript words | ~5,100 |
+| Reporting items checked | 79 (30 STARD + 27 PRISMA + 22 STROBE) |
+| Presentation slides | 36 (with speaker notes) |
+| Hallucinated citations | 0 |
+| Cost | $0 (open source, MIT license) |
+
+---
+
+## Try It Yourself
+
+```bash
+git clone https://github.com/Aperivue/medsci-skills.git
+cp -r medsci-skills/skills/* ~/.claude/skills/
+```
+
+Each demo is self-contained in the `demo/` directory:
+
+- `demo/01_wisconsin_bc/` — Diagnostic accuracy
+- `demo/02_metafor_bcg/` — Meta-analysis
+- `demo/03_nhanes_obesity/` — Epidemiology
+
+Run the Python/R scripts, then use the Claude Code skills to generate the manuscript, figures, compliance audit, and slides.
+
+---
+
+*MedSci Skills is open source, MIT licensed, and free forever. Built by a radiologist who actually writes papers.*
+
+*[View on GitHub](https://github.com/Aperivue/medsci-skills) | [All 20 Skills](/skills) | [How I Built This](/blog/doctor-built-research-skills-claude-code)*
