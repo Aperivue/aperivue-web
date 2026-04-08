@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Medical Research Skills for Claude Code | Aperivue",
   description:
-    "16 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. Anti-hallucination citations, 15 reporting guidelines, publication-ready figures.",
+    "20 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. End-to-end pipeline mode, anti-hallucination citations, 15 reporting guidelines, publication-ready figures.",
   keywords: [
     "claude code skills",
     "medical research",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Medical Research Skills for Claude Code",
     description:
-      "16 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
+      "20 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
     url: "https://aperivue.com/skills",
   },
 };
@@ -32,15 +32,18 @@ export const metadata: Metadata = {
 const GITHUB_URL =
   "https://github.com/Aperivue/medsci-skills";
 
+const DEMO_URL =
+  "https://github.com/Aperivue/medsci-skills/tree/main/demo/01_wisconsin_bc";
+
 const skills = [
   {
     name: "orchestrate",
     title: "Orchestrator",
     description:
-      "Single entry point for the full bundle. Classifies your request and routes to the right skill — or chains multiple skills for multi-step workflows.",
+      "Single entry point for the full bundle. Classifies your request and routes to the right skill — or chains multiple skills end-to-end via Full Pipeline Mode.",
     features: [
       "Automatic intent classification",
-      "Multi-skill workflow chaining",
+      "End-to-end pipeline: skills chain automatically",
       "Project context detection",
     ],
     isNew: true,
@@ -215,6 +218,54 @@ const skills = [
     ],
     isNew: true,
   },
+  {
+    name: "calc-sample-size",
+    title: "Sample Size Calculator",
+    description:
+      "Power analysis and sample size estimation for diagnostic accuracy, group comparison, and correlation studies.",
+    features: [
+      "DTA (sensitivity/specificity) power",
+      "Two-group comparison (t-test, chi-square)",
+      "Reproducible R/Python code output",
+    ],
+    isNew: true,
+  },
+  {
+    name: "clean-data",
+    title: "Data Cleaning",
+    description:
+      "Standardize, validate, and transform raw research datasets. Handles missing data, outlier detection, and variable recoding.",
+    features: [
+      "Missing data summary & imputation",
+      "Outlier detection (IQR, Z-score)",
+      "Codebook generation",
+    ],
+    isNew: true,
+  },
+  {
+    name: "find-journal",
+    title: "Journal Finder",
+    description:
+      "Match your manuscript to target journals by scope, impact factor, turnaround time, and open-access policy.",
+    features: [
+      "Scope & audience matching",
+      "Impact factor / CiteScore lookup",
+      "OA fee & turnaround estimates",
+    ],
+    isNew: true,
+  },
+  {
+    name: "write-protocol",
+    title: "Protocol Writing",
+    description:
+      "Generate SPIRIT-compliant study protocols and PROSPERO registration drafts for systematic reviews.",
+    features: [
+      "SPIRIT checklist integration",
+      "PROSPERO registration draft",
+      "Ethics submission boilerplate",
+    ],
+    isNew: true,
+  },
 ];
 
 const pipelineSteps = [
@@ -242,7 +293,7 @@ export default function SkillsPage() {
           Medical Research Skills for Claude Code
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
-          16 skills covering the full research lifecycle — from literature search
+          20 skills covering the full research lifecycle — from literature search
           to manuscript revision. Built by physicians, battle-tested on real
           publications. MIT licensed.
         </p>
@@ -296,6 +347,37 @@ export default function SkillsPage() {
           + orchestrate &middot; meta-analysis &middot; grant-builder &middot;
           intake-project &middot; manage-project &middot; publish-skill
         </p>
+      </section>
+
+      {/* End-to-End Demo */}
+      <section className="mt-12 rounded-2xl border border-primary/20 bg-primary/5 p-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="text-lg font-bold">
+              End-to-End Pipeline Demo
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-foreground/70">
+              Live demo: from{" "}
+              <code className="rounded bg-surface px-1.5 py-0.5 text-xs font-mono">
+                sklearn.datasets.load_breast_cancer()
+              </code>{" "}
+              to a full manuscript with 4 figures, STARD compliance audit, and
+              12-slide presentation — all generated by chaining skills via{" "}
+              <code className="rounded bg-surface px-1.5 py-0.5 text-xs font-mono">
+                orchestrate
+              </code>{" "}
+              Full Pipeline Mode.
+            </p>
+          </div>
+          <a
+            href={DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+          >
+            View Demo on GitHub &rarr;
+          </a>
+        </div>
       </section>
 
       {/* Skills Grid */}
