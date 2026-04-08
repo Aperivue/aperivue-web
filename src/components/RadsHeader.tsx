@@ -52,6 +52,18 @@ export default function RadsHeader() {
           >
             aperivue.com
           </Link>
+
+          <div className="mx-1.5 h-4 w-px bg-border" />
+
+          <Link
+            href={pathname.replace(`/${lang}`, `/${lang === "ko" ? "en" : "ko"}`)}
+            onClick={() => {
+              document.cookie = `NEXT_LOCALE=${lang === "ko" ? "en" : "ko"};path=/;max-age=31536000`;
+            }}
+            className="rounded-md border border-border px-2 py-1 text-xs font-medium text-foreground/60 transition-colors hover:bg-muted hover:text-foreground"
+          >
+            {lang === "ko" ? "EN" : "한국어"}
+          </Link>
         </div>
       </nav>
     </header>
