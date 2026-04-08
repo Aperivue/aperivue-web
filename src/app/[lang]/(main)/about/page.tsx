@@ -37,7 +37,7 @@ export default async function AboutPage({
           />
         </div>
         <div>
-          <h2 className="text-2xl font-semibold">Yoojin Nam, M.D.</h2>
+          <h2 className="text-2xl font-semibold">{lang === "ko" ? "남유진" : "Yoojin Nam, M.D."}</h2>
           <p className="mt-1 text-sm text-foreground/60">
             {t.founderTitle}
           </p>
