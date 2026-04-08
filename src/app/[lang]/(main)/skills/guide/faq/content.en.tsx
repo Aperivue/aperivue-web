@@ -39,7 +39,15 @@ const faqs = [
   },
   {
     q: "How do I update the skills?",
-    a: "Download the latest ZIP from GitHub and overwrite the skills/ folder. If you have customized any skills, back them up before overwriting.",
+    a: "The easiest way: tell Claude 'Update MedSci Skills from https://github.com/Aperivue/medsci-skills' and it will pull the latest version and overwrite the files. Alternatively, download the latest ZIP from GitHub and overwrite the skills/ folder manually. If you have customized any skills, back them up before overwriting.",
+  },
+  {
+    q: "Do I need to memorize slash commands?",
+    a: "No. You can describe what you need in plain language — for example, 'search PubMed for lung nodule AI studies' or 'check my manuscript against STARD guidelines.' Claude will automatically pick the right skill. Slash commands like /search-lit or /check-reporting are available as shortcuts, but they are entirely optional.",
+  },
+  {
+    q: "Do I need any programming knowledge?",
+    a: "No. MedSci Skills were built by a physician with no programming background. You interact with Claude in natural language — the same way you would explain a task to a colleague. Claude handles the code, file management, and tool selection behind the scenes. The only technical skill you need is your own research expertise.",
   },
 ];
 

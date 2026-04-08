@@ -12,7 +12,48 @@ export default function InstallContentKo({ lang }: { lang: string }) {
         터미널(명령어 입력 창)은 사용하지 않습니다.
       </p>
 
-      <div className="mt-8 space-y-6">
+      {/* Quick Start */}
+      <section className="mt-8 rounded-2xl border-2 border-primary/30 bg-primary/5 p-6">
+        <h2 className="text-lg font-bold text-primary">빠른 설치 — Claude에게 시키세요</h2>
+        <p className="mt-2 text-sm text-foreground/70">
+          Claude Code가 이미 설치되어 있다면, 직접 다운로드할 필요 없습니다.
+          아래 문장을 Claude Code에 그대로 붙여넣기 하세요:
+        </p>
+
+        <div className="mt-4 rounded-xl border border-border bg-surface p-4">
+          <p className="text-xs font-medium text-foreground/40">Claude Code에 복사 &amp; 붙여넣기</p>
+          <p className="mt-2 text-sm text-foreground/80">
+            &quot;https://github.com/Aperivue/medsci-skills 에서 MedSci Skills를 설치해줘. 레포를 클론해서 스킬 폴더들을 ~/.claude/skills/에 복사해줘.&quot;
+          </p>
+        </div>
+
+        <p className="mt-4 text-sm text-foreground/70">
+          Claude가 알아서 레포지토리를 다운로드하고, 파일을 복사하고, 설치를 확인해줍니다.
+          이게 끝입니다. 바로 스킬을 사용할 수 있습니다.
+        </p>
+
+        <div className="mt-4 rounded-xl border border-border bg-muted p-4">
+          <p className="text-xs font-medium text-foreground/40">자연어로 바로 사용해보세요</p>
+          <div className="mt-2 space-y-2 text-sm text-foreground/80">
+            <p>&quot;폐결절 AI 진단 관련 최신 논문 10편 찾아줘&quot;</p>
+            <p>&quot;내 논문 원고를 STARD 2015 가이드라인으로 검사해줘&quot;</p>
+            <p>&quot;이 CSV 파일로 인구통계학적 표를 만들어줘&quot;</p>
+          </div>
+        </div>
+
+        <p className="mt-4 text-xs text-foreground/40">
+          슬래시 명령어를 외울 필요 없습니다. 하고 싶은 일을 평소 말하듯 설명하면,
+          Claude가 알맞은 스킬을 자동으로 선택합니다.
+        </p>
+      </section>
+
+      <div className="mt-6 flex items-center gap-3">
+        <div className="h-px flex-1 bg-border" />
+        <span className="text-xs font-medium text-foreground/30">또는 직접 설치하기</span>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      <div className="mt-6 space-y-6">
         <StepCard number={1} title="Claude Code Desktop 다운로드">
           <p>
             Claude Code Desktop은 Anthropic이 만든 공식 데스크탑 앱입니다.

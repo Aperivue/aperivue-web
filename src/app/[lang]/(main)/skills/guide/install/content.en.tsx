@@ -12,7 +12,48 @@ export default function InstallContentEn({ lang }: { lang: string }) {
         No terminal or command line required.
       </p>
 
-      <div className="mt-8 space-y-6">
+      {/* Quick Start */}
+      <section className="mt-8 rounded-2xl border-2 border-primary/30 bg-primary/5 p-6">
+        <h2 className="text-lg font-bold text-primary">Quick Start — Just ask Claude</h2>
+        <p className="mt-2 text-sm text-foreground/70">
+          Already have Claude Code installed? You don&apos;t need to download anything manually.
+          Just paste this into Claude Code:
+        </p>
+
+        <div className="mt-4 rounded-xl border border-border bg-surface p-4">
+          <p className="text-xs font-medium text-foreground/40">Copy &amp; paste into Claude Code</p>
+          <p className="mt-2 text-sm text-foreground/80">
+            &quot;Install MedSci Skills from https://github.com/Aperivue/medsci-skills — clone the repo and copy all skill folders into ~/.claude/skills/&quot;
+          </p>
+        </div>
+
+        <p className="mt-4 text-sm text-foreground/70">
+          Claude will handle the rest — cloning the repository, copying the files, and confirming the installation.
+          That&apos;s it. You can start using the skills right away.
+        </p>
+
+        <div className="mt-4 rounded-xl border border-border bg-muted p-4">
+          <p className="text-xs font-medium text-foreground/40">Try a skill in natural language</p>
+          <div className="mt-2 space-y-2 text-sm text-foreground/80">
+            <p>&quot;Search PubMed for recent studies on AI-assisted lung nodule detection and give me the top 10 results&quot;</p>
+            <p>&quot;Check my manuscript against STARD 2015 guidelines&quot;</p>
+            <p>&quot;Analyze this CSV and generate a demographics table with appropriate statistics&quot;</p>
+          </div>
+        </div>
+
+        <p className="mt-4 text-xs text-foreground/40">
+          No slash commands required. Just describe what you need in plain English.
+          Claude will pick the right skill automatically.
+        </p>
+      </section>
+
+      <div className="mt-6 flex items-center gap-3">
+        <div className="h-px flex-1 bg-border" />
+        <span className="text-xs font-medium text-foreground/30">OR INSTALL MANUALLY</span>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      <div className="mt-6 space-y-6">
         <StepCard number={1} title="Download Claude Code Desktop">
           <p>
             Claude Code Desktop is the official desktop app by Anthropic.
