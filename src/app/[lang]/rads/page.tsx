@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { hasLocale } from "../dictionaries";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Aperivue RADS — Radiology Scoring & Structured Reporting",
@@ -7,13 +9,80 @@ export const metadata: Metadata = {
     "Free structured radiology report generators for TI-RADS, Lung-RADS, BI-RADS, and LI-RADS. Evidence-based scoring calculators with PACS-ready output.",
 };
 
-const modules = [
+const modulesEn = [
   {
     name: "TI-RADS",
     description:
       "Thyroid ultrasound structured reporting with ACR TI-RADS, K-TIRADS, and EU-TIRADS scoring. Multi-nodule support and FNA criteria.",
-    href: "/rads/tirads",
     status: "live" as const,
+  },
+  {
+    name: "Lung-RADS",
+    description:
+      "Lung cancer screening CT report generator with Lung-RADS v2022. Solid, part-solid, and ground-glass nodule classification.",
+    status: "live" as const,
+  },
+  {
+    name: "BI-RADS",
+    description:
+      "Breast imaging structured reporting with BI-RADS assessment categories for mammography, ultrasound, and MRI.",
+    status: "coming" as const,
+  },
+  {
+    name: "LI-RADS",
+    description:
+      "Liver imaging reporting and data system for CT and MRI. HCC diagnostic algorithm with ancillary features.",
+    status: "coming" as const,
+  },
+];
+
+const modulesKo = [
+  {
+    name: "TI-RADS",
+    description:
+      "ACR TI-RADS, K-TIRADS, EU-TIRADS 기반 갑상선 초음파 구조화 리포트. 다중 결절 지원 및 FNA 기준 포함.",
+    status: "live" as const,
+  },
+  {
+    name: "Lung-RADS",
+    description:
+      "Lung-RADS v2022 기반 폐암 선별 CT 리포트 생성. 고형, 부분 고형, 간유리 결절 분류.",
+    status: "live" as const,
+  },
+  {
+    name: "BI-RADS",
+    description:
+      "유방 영상 구조화 리포트. 유방촬영, 초음파, MRI를 위한 BI-RADS 평가 카테고리.",
+    status: "coming" as const,
+  },
+  {
+    name: "LI-RADS",
+    description:
+      "CT 및 MRI 기반 간 영상 리포팅 시스템. 보조 소견을 포함한 HCC 진단 알고리즘.",
+    status: "coming" as const,
+  },
+];
+
+const uiText = {
+  en: {
+    tagline: "Structured Radiology Reporting",
+    subtitle: "Free, evidence-based scoring calculators with structured report generation. Built by a radiologist, for radiologists.",
+    live: "Live",
+    coming: "Coming Soon",
+    open: "Open calculator",
+  },
+  ko: {
+    tagline: "구조화된 영상의학 리포트",
+    subtitle: "무료 근거 기반 스코어링 계산기와 구조화 리포트 생성. 영상의학과 의사가 직접 만들었습니다.",
+    live: "운영 중",
+    coming: "준비 중",
+    open: "계산기 열기",
+  },
+};
+
+const modulesMeta = [
+  {
+    href: "/rads/tirads",
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h4l3-7 4 14 3-7h4" />
@@ -21,11 +90,7 @@ const modules = [
     ),
   },
   {
-    name: "Lung-RADS",
-    description:
-      "Lung cancer screening CT report generator with Lung-RADS v2022. Solid, part-solid, and ground-glass nodule classification.",
     href: "/rads/lungrads",
-    status: "live" as const,
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -33,11 +98,7 @@ const modules = [
     ),
   },
   {
-    name: "BI-RADS",
-    description:
-      "Breast imaging structured reporting with BI-RADS assessment categories for mammography, ultrasound, and MRI.",
     href: "#",
-    status: "coming" as const,
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-3-3v6" />
@@ -46,11 +107,7 @@ const modules = [
     ),
   },
   {
-    name: "LI-RADS",
-    description:
-      "Liver imaging reporting and data system for CT and MRI. HCC diagnostic algorithm with ancillary features.",
     href: "#",
-    status: "coming" as const,
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -59,13 +116,23 @@ const modules = [
   },
 ];
 
-export default function RadsLandingPage() {
+export default async function RadsLandingPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+
+  const locale = lang as "en" | "ko";
+  const t = uiText[locale];
+  const modules = locale === "ko" ? modulesKo : modulesEn;
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
-      {/* Header */}
       <div className="text-center">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">
-          Structured Radiology Reporting
+          {t.tagline}
         </p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
           Aperivue{" "}
@@ -74,14 +141,13 @@ export default function RadsLandingPage() {
           </span>
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
-          Free, evidence-based scoring calculators with structured report
-          generation. Built by a radiologist, for radiologists.
+          {t.subtitle}
         </p>
       </div>
 
-      {/* Module Grid */}
       <div className="mt-14 grid gap-6 sm:grid-cols-2">
-        {modules.map((mod) => {
+        {modules.map((mod, i) => {
+          const meta = modulesMeta[i];
           const isLive = mod.status === "live";
 
           const cardClassName = `group relative flex flex-col rounded-2xl border p-8 transition-all ${
@@ -92,12 +158,11 @@ export default function RadsLandingPage() {
 
           const inner = (
             <>
-              {/* Status Badge */}
               <div className="flex items-center justify-between">
                 <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${
                   isLive ? "bg-primary/10 text-primary" : "bg-muted text-foreground/30"
                 }`}>
-                  {mod.icon}
+                  {meta.icon}
                 </div>
                 <span
                   className={`rounded-full px-3 py-0.5 text-xs font-medium ${
@@ -106,7 +171,7 @@ export default function RadsLandingPage() {
                       : "bg-foreground/5 text-foreground/40"
                   }`}
                 >
-                  {isLive ? "Live" : "Coming Soon"}
+                  {isLive ? t.live : t.coming}
                 </span>
               </div>
 
@@ -117,14 +182,14 @@ export default function RadsLandingPage() {
 
               {isLive && (
                 <p className="mt-5 text-sm font-medium text-primary group-hover:underline">
-                  Open calculator &rarr;
+                  {t.open} &rarr;
                 </p>
               )}
             </>
           );
 
           return isLive ? (
-            <Link key={mod.name} href={mod.href} className={cardClassName}>
+            <Link key={mod.name} href={`/${lang}${meta.href}`} className={cardClassName}>
               {inner}
             </Link>
           ) : (

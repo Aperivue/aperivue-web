@@ -10,20 +10,20 @@
     "tagline": "의료 AI 도구 & 연구",
     "hero": "보이지 않는 것을",
     "heroHighlight": "열다",
-    "description": "영상의학과 전문의가 만든 진단 도구와 근거 기반 콘텐츠. 구조화된 RADS 스코어링부터 AI 연구까지.",
+    "description": "영상의학과 의사가 만든 진단 도구와 근거 기반 콘텐츠. 구조화된 RADS 스코어링부터 AI 연구까지.",
     "ctaRads": "Aperivue RADS 둘러보기",
     "ctaYoutube": "ScrubCode 보기",
-    "credibility": "영상의학과 전문의가 직접 개발",
+    "credibility": "영상의학과 의사가 직접 개발",
     "whatWeBuild": "만드는 것들",
     "whatWeBuildSub": "AI 연구와 임상 사이의 격차를 연결하는 도구와 콘텐츠.",
     "radsDesc": "TI-RADS, BI-RADS, Lung-RADS, LI-RADS 통합 계산기. 근거 기반 권고와 함께하는 구조화된 영상의학 리포트 — 모든 스코어링 시스템을 하나의 도구로.",
     "scrubcodeDesc": "Medical AI 논문과 딥러닝 개념을 해설하는 YouTube 채널. 기초, 핫테이크, 그리고 바이브 코딩 — 기술을 이해하고 싶은 임상의를 위해.",
     "medglowDesc": "근거 기반 스킨케어와 피부과학의 만남. 뷰티 산업의 마케팅 주장과 임상 근거를 분리하는 YouTube 콘텐츠.",
     "followResearch": "연구를 팔로우하세요",
-    "followSub": "의료 AI 인사이트, 논문 분석, 도구 업데이트 — 직접 만드는 영상의학과 전문의로부터.",
+    "followSub": "의료 AI 인사이트, 논문 분석, 도구 업데이트 — 직접 만드는 영상의학과 의사로부터.",
     "readBlog": "블로그 읽기",
     "peerReviewed": "동료심사 논문",
-    "radiologist": "영상의학과 전문의",
+    "radiologist": "영상의학과 의사",
     "medicalImaging": "의료 영상 연구",
     "openSource": "오픈소스"
   },
@@ -33,7 +33,7 @@
     "bio1": "성균관대학교 의과대학 삼성창원병원 영상의학과 전공의. 진단 정확도 연구, 딥러닝 기반 의료 영상 분석, 임상 워크플로우에서의 AI 검증에 초점.",
     "bio2": "KAIST (생명과학 학사), 연세대학교 의과대학 (의학사), 서울아산병원 MI2RL (Medical Imaging & Intelligent Reality Lab). 자동화된 원고 품질 보증을 위한 멀티에이전트 시스템 MeducAI 기여자.",
     "mission": "미션",
-    "missionText": "Aperivue는 영상의학을 더 똑똑하고 접근하기 쉽게 만드는 것을 목표로 합니다. 구조화된 RADS 스코어링 계산기부터 AI 지원 진단 파이프라인까지, 영상의학과 전문의가 더 효율적으로 일할 수 있도록 돕는 실용적인 도구를 만듭니다.",
+    "missionText": "Aperivue는 영상의학을 더 똑똑하고 접근하기 쉽게 만드는 것을 목표로 합니다. 구조화된 RADS 스코어링 계산기부터 AI 지원 진단 파이프라인까지, 영상의학과 의사가 더 효율적으로 일할 수 있도록 돕는 실용적인 도구를 만듭니다.",
     "timeline": "타임라인",
     "contact": "연락처",
     "contactSub": "질문이 있거나 협업하고 싶으신가요? 아래로 연락주세요."
@@ -69,7 +69,7 @@
   },
   "products": {
     "title": "제품 소개",
-    "description": "영상의학과 전문의와 의학 연구자를 위한 무료 오픈소스 도구."
+    "description": "영상의학과 의사와 의학 연구자를 위한 무료 오픈소스 도구."
   },
   "guide": {
     "nav": {

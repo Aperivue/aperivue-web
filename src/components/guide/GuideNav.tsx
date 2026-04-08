@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const baseSections = [
-  { path: "/skills/guide", label: "시작하기" },
-  { path: "/skills/guide/install", label: "1. 설치" },
-  { path: "/skills/guide/first-pipeline", label: "2. 첫 파이프라인" },
-  { path: "/skills/guide/skills", label: "3. 스킬 안내" },
-  { path: "/skills/guide/customize", label: "4. 커스터마이즈" },
-  { path: "/skills/guide/faq", label: "FAQ" },
+  { path: "/skills/guide", en: "Getting Started", ko: "시작하기" },
+  { path: "/skills/guide/install", en: "1. Installation", ko: "1. 설치" },
+  { path: "/skills/guide/first-pipeline", en: "2. First Pipeline", ko: "2. 첫 파이프라인" },
+  { path: "/skills/guide/skills", en: "3. Skills Guide", ko: "3. 스킬 안내" },
+  { path: "/skills/guide/customize", en: "4. Customize", ko: "4. 커스터마이즈" },
+  { path: "/skills/guide/faq", en: "FAQ", ko: "FAQ" },
 ];
 
 export default function GuideNav() {
@@ -21,6 +21,7 @@ export default function GuideNav() {
       {baseSections.map((section) => {
         const href = `/${lang}${section.path}`;
         const isActive = pathname === href;
+        const label = lang === "ko" ? section.ko : section.en;
         return (
           <Link
             key={section.path}
@@ -31,7 +32,7 @@ export default function GuideNav() {
                 : "text-foreground/50 hover:bg-muted hover:text-foreground/70"
             }`}
           >
-            {section.label}
+            {label}
           </Link>
         );
       })}
