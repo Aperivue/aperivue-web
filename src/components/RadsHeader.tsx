@@ -16,16 +16,15 @@ export default function RadsHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        {/* Left: Logo + RADS */}
-        <Link href={`/${lang}/rads`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        {/* Left: Logo → Homepage */}
+        <Link href={`/${lang}`} className="flex items-center gap-2 transition-opacity hover:opacity-80">
           <AperivueLogo variant="icon" size="sm" />
-          <span className="text-sm font-semibold tracking-tight">
-            <span className="text-primary">Aperivue</span>{" "}
-            <span className="text-foreground/70">RADS</span>
+          <span className="text-sm font-semibold tracking-tight text-primary">
+            aperivue
           </span>
         </Link>
 
-        {/* Right: Tabs + Home link */}
+        {/* Right: RADS Tabs + Language */}
         <div className="flex items-center gap-1">
           {radsTabs.map((tab) => {
             const isActive = pathname.startsWith(tab.href);
@@ -45,15 +44,6 @@ export default function RadsHeader() {
           })}
 
           <div className="mx-1 h-4 w-px bg-border sm:mx-1.5" />
-
-          <Link
-            href={`/${lang}`}
-            className="hidden rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/60 transition-colors hover:bg-muted hover:text-foreground sm:block"
-          >
-            aperivue.com
-          </Link>
-
-          <div className="hidden h-4 w-px bg-border sm:mx-1.5 sm:block" />
 
           <Link
             href={pathname.replace(`/${lang}`, `/${lang === "ko" ? "en" : "ko"}`)}
