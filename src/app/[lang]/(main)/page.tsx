@@ -58,7 +58,9 @@ export default async function Home({
               </span>
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-foreground/70">
-              {t.description}
+              {t.descriptionLine1}
+              <br />
+              {t.descriptionLine2}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
@@ -94,7 +96,7 @@ export default async function Home({
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {/* Aperivue RADS */}
-            <div className="relative col-span-full overflow-hidden rounded-2xl border border-primary/20 bg-surface p-8 md:col-span-2">
+            <Link href={`/${lang}/rads`} className="relative col-span-full overflow-hidden rounded-2xl border border-primary/20 bg-surface p-8 transition-shadow hover:shadow-lg md:col-span-2">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
               <div className="relative">
                 <div className="flex items-center gap-3">
@@ -115,7 +117,7 @@ export default async function Home({
                   ))}
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* ScrubCode */}
             <div className="rounded-2xl border border-border bg-surface p-8 transition-shadow hover:shadow-lg">
