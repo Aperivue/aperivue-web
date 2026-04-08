@@ -1,0 +1,146 @@
+{
+  "skills": [
+    {
+      "name": "orchestrate",
+      "title": "Orchestrator",
+      "description": "Single entry point for the full bundle. Classifies your request and routes to the right skill — or chains multiple skills end-to-end via Full Pipeline Mode.",
+      "features": ["Automatic intent classification", "End-to-end pipeline: skills chain automatically", "Project context detection"],
+      "isNew": true
+    },
+    {
+      "name": "search-lit",
+      "title": "Literature Search",
+      "description": "PubMed + Semantic Scholar + bioRxiv search with anti-hallucination citation verification. Token-efficient error handling.",
+      "features": ["Every reference verified via API", "BibTeX export", "No fabricated citations"]
+    },
+    {
+      "name": "fulltext-retrieval",
+      "title": "Full-Text Retrieval",
+      "description": "Batch open-access PDF downloader. Unpaywall → PMC → OpenAlex → CrossRef pipeline. OA-only — no paywall bypass.",
+      "features": ["DOI list or TSV input", "PDF validation built-in", "Manual-needed list for paywalled papers"],
+      "isNew": true
+    },
+    {
+      "name": "check-reporting",
+      "title": "Reporting Guidelines",
+      "description": "Manuscript compliance audit against 15 reporting guidelines with item-by-item assessment and section boundary checks.",
+      "features": ["STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI", "Results/Discussion boundary check", "Actionable fix suggestions"]
+    },
+    {
+      "name": "design-study",
+      "title": "Study Design",
+      "description": "Identifies analysis unit, cohort logic, data leakage risks, and validation strategy.",
+      "features": ["Leakage risk detection", "Comparator design review", "Reporting guideline matching"]
+    },
+    {
+      "name": "analyze-stats",
+      "title": "Statistical Analysis",
+      "description": "Reproducible Python/R code for diagnostic accuracy, inter-rater agreement, and more. Calibration mandatory for prediction models.",
+      "features": ["DTA, survival, demographics tables", "Publication-ready output", "Effect sizes with CIs"]
+    },
+    {
+      "name": "make-figures",
+      "title": "Publication Figures",
+      "description": "Journal-spec figures: ROC curves, forest plots, flow diagrams, Kaplan-Meier, and more.",
+      "features": ["300 DPI, colorblind-safe", "PRISMA / CONSORT / STARD flows", "Bland-Altman, confusion matrices"]
+    },
+    {
+      "name": "grant-builder",
+      "title": "Grant Proposals",
+      "description": "Structures significance, innovation, approach, milestones, and consortium roles.",
+      "features": ["NIH / NRF format support", "Specific aims page", "Budget justification"]
+    },
+    {
+      "name": "intake-project",
+      "title": "Project Intake",
+      "description": "Classifies new research projects, summarizes state, and recommends next steps.",
+      "features": ["Project type classification", "Missing input detection", "Lightweight scaffolding"]
+    },
+    {
+      "name": "present-paper",
+      "title": "Paper Presentations",
+      "description": "Academic presentation prep: paper analysis, speaker scripts, slide note injection, Q&A.",
+      "features": ["Audience-adapted scripts", "PPTX note injection utility", "Multi-perspective Q&A prep"]
+    },
+    {
+      "name": "publish-skill",
+      "title": "Skill Publishing",
+      "description": "Convert personal Claude Code skills into distributable, open-source-ready packages.",
+      "features": ["Automated PII audit", "License compatibility check", "Generalization pipeline"]
+    },
+    {
+      "name": "meta-analysis",
+      "title": "Meta-Analysis",
+      "description": "Full 8-phase systematic review and meta-analysis pipeline. DTA (bivariate/HSROC) and intervention MA with PRISMA-DTA compliance.",
+      "features": ["Protocol to manuscript pipeline", "Bivariate & HSROC models", "PRISMA-DTA compliant"]
+    },
+    {
+      "name": "write-paper",
+      "title": "Manuscript Writing",
+      "description": "Full 8-phase IMRAD pipeline from outline to submission-ready manuscript with built-in critic-fixer loops and section boundary enforcement.",
+      "features": ["Anti-interpretation guardrails in Results", "Interactive Discussion with anchor papers", "AI writing pattern detection"],
+      "isNew": true
+    },
+    {
+      "name": "self-review",
+      "title": "Self-Review",
+      "description": "Pre-submission check across 10 categories with research-type branching (AI, observational, educational, meta-analysis, case report, surgical).",
+      "features": ["Major / Minor severity classification", "Calibration mandatory for prediction models", "R0 numbering for /revise pipeline"],
+      "isNew": true
+    },
+    {
+      "name": "revise",
+      "title": "Revision Response",
+      "description": "Parses reviewer decision letters, classifies comments as MAJOR/MINOR/REBUTTAL, and generates point-by-point responses.",
+      "features": ["Structured response templates", "Change log with page/line refs", "Cover letter generation"],
+      "isNew": true
+    },
+    {
+      "name": "manage-project",
+      "title": "Project Management",
+      "description": "Scaffold research projects, track writing progress, generate submission checklists and backwards timelines.",
+      "features": ["Project scaffolding (init)", "Phase progress tracking", "Pre-submission checklist"],
+      "isNew": true
+    },
+    {
+      "name": "calc-sample-size",
+      "title": "Sample Size Calculator",
+      "description": "Power analysis and sample size estimation for diagnostic accuracy, group comparison, and correlation studies.",
+      "features": ["DTA (sensitivity/specificity) power", "Two-group comparison (t-test, chi-square)", "Reproducible R/Python code output"],
+      "isNew": true
+    },
+    {
+      "name": "clean-data",
+      "title": "Data Cleaning",
+      "description": "Standardize, validate, and transform raw research datasets. Handles missing data, outlier detection, and variable recoding.",
+      "features": ["Missing data summary & imputation", "Outlier detection (IQR, Z-score)", "Codebook generation"],
+      "isNew": true
+    },
+    {
+      "name": "find-journal",
+      "title": "Journal Finder",
+      "description": "Match your manuscript to target journals by scope, impact factor, turnaround time, and open-access policy.",
+      "features": ["Scope & audience matching", "Impact factor / CiteScore lookup", "OA fee & turnaround estimates"],
+      "isNew": true
+    },
+    {
+      "name": "write-protocol",
+      "title": "Protocol Writing",
+      "description": "Generate SPIRIT-compliant study protocols and PROSPERO registration drafts for systematic reviews.",
+      "features": ["SPIRIT checklist integration", "PROSPERO registration draft", "Ethics submission boilerplate"],
+      "isNew": true
+    }
+  ],
+  "pipelineSteps": [
+    { "label": "Literature\nReview", "skill": "search-lit" },
+    { "label": "Full-Text\nRetrieval", "skill": "fulltext-retrieval", "isNew": true },
+    { "label": "Study\nDesign", "skill": "design-study" },
+    { "label": "Analysis", "skill": "analyze-stats" },
+    { "label": "Figures", "skill": "make-figures" },
+    { "label": "Writing", "skill": "write-paper", "isNew": true },
+    { "label": "Reporting", "skill": "check-reporting" },
+    { "label": "Self-Review", "skill": "self-review", "isNew": true },
+    { "label": "Revision", "skill": "revise", "isNew": true },
+    { "label": "Presenting", "skill": "present-paper" }
+  ]
+}

@@ -1,4 +1,10 @@
 import type { Metadata } from "next";
+import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
+import { notFound } from "next/navigation";
+import skillsEn from "@/content/data/skills.en.json";
+import skillsKo from "@/content/data/skills.ko.json";
+
+const skillsData = { en: skillsEn, ko: skillsKo };
 
 export const metadata: Metadata = {
   title: "Medical Research Skills for Claude Code | Aperivue",
@@ -35,272 +41,29 @@ const GITHUB_URL =
 const DEMO_URL =
   "https://github.com/Aperivue/medsci-skills/tree/main/demo/01_wisconsin_bc";
 
-const skills = [
-  {
-    name: "orchestrate",
-    title: "Orchestrator",
-    description:
-      "Single entry point for the full bundle. Classifies your request and routes to the right skill — or chains multiple skills end-to-end via Full Pipeline Mode.",
-    features: [
-      "Automatic intent classification",
-      "End-to-end pipeline: skills chain automatically",
-      "Project context detection",
-    ],
-    isNew: true,
-  },
-  {
-    name: "search-lit",
-    title: "Literature Search",
-    description:
-      "PubMed + Semantic Scholar + bioRxiv search with anti-hallucination citation verification. Token-efficient error handling.",
-    features: [
-      "Every reference verified via API",
-      "BibTeX export",
-      "No fabricated citations",
-    ],
-  },
-  {
-    name: "fulltext-retrieval",
-    title: "Full-Text Retrieval",
-    description:
-      "Batch open-access PDF downloader. Unpaywall → PMC → OpenAlex → CrossRef pipeline. OA-only — no paywall bypass.",
-    features: [
-      "DOI list or TSV input",
-      "PDF validation built-in",
-      "Manual-needed list for paywalled papers",
-    ],
-    isNew: true,
-  },
-  {
-    name: "check-reporting",
-    title: "Reporting Guidelines",
-    description:
-      "Manuscript compliance audit against 15 reporting guidelines with item-by-item assessment and section boundary checks.",
-    features: [
-      "STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI",
-      "Results/Discussion boundary check",
-      "Actionable fix suggestions",
-    ],
-  },
-  {
-    name: "design-study",
-    title: "Study Design",
-    description:
-      "Identifies analysis unit, cohort logic, data leakage risks, and validation strategy.",
-    features: [
-      "Leakage risk detection",
-      "Comparator design review",
-      "Reporting guideline matching",
-    ],
-  },
-  {
-    name: "analyze-stats",
-    title: "Statistical Analysis",
-    description:
-      "Reproducible Python/R code for diagnostic accuracy, inter-rater agreement, and more. Calibration mandatory for prediction models.",
-    features: [
-      "DTA, survival, demographics tables",
-      "Publication-ready output",
-      "Effect sizes with CIs",
-    ],
-  },
-  {
-    name: "make-figures",
-    title: "Publication Figures",
-    description:
-      "Journal-spec figures: ROC curves, forest plots, flow diagrams, Kaplan-Meier, and more.",
-    features: [
-      "300 DPI, colorblind-safe",
-      "PRISMA / CONSORT / STARD flows",
-      "Bland-Altman, confusion matrices",
-    ],
-  },
-  {
-    name: "grant-builder",
-    title: "Grant Proposals",
-    description:
-      "Structures significance, innovation, approach, milestones, and consortium roles.",
-    features: [
-      "NIH / NRF format support",
-      "Specific aims page",
-      "Budget justification",
-    ],
-  },
-  {
-    name: "intake-project",
-    title: "Project Intake",
-    description:
-      "Classifies new research projects, summarizes state, and recommends next steps.",
-    features: [
-      "Project type classification",
-      "Missing input detection",
-      "Lightweight scaffolding",
-    ],
-  },
-  {
-    name: "present-paper",
-    title: "Paper Presentations",
-    description:
-      "Academic presentation prep: paper analysis, speaker scripts, slide note injection, Q&A.",
-    features: [
-      "Audience-adapted scripts",
-      "PPTX note injection utility",
-      "Multi-perspective Q&A prep",
-    ],
-  },
-  {
-    name: "publish-skill",
-    title: "Skill Publishing",
-    description:
-      "Convert personal Claude Code skills into distributable, open-source-ready packages.",
-    features: [
-      "Automated PII audit",
-      "License compatibility check",
-      "Generalization pipeline",
-    ],
-  },
-  {
-    name: "meta-analysis",
-    title: "Meta-Analysis",
-    description:
-      "Full 8-phase systematic review and meta-analysis pipeline. DTA (bivariate/HSROC) and intervention MA with PRISMA-DTA compliance.",
-    features: [
-      "Protocol to manuscript pipeline",
-      "Bivariate & HSROC models",
-      "PRISMA-DTA compliant",
-    ],
-  },
-  {
-    name: "write-paper",
-    title: "Manuscript Writing",
-    description:
-      "Full 8-phase IMRAD pipeline from outline to submission-ready manuscript with built-in critic-fixer loops and section boundary enforcement.",
-    features: [
-      "Anti-interpretation guardrails in Results",
-      "Interactive Discussion with anchor papers",
-      "AI writing pattern detection",
-    ],
-    isNew: true,
-  },
-  {
-    name: "self-review",
-    title: "Self-Review",
-    description:
-      "Pre-submission check across 10 categories with research-type branching (AI, observational, educational, meta-analysis, case report, surgical).",
-    features: [
-      "Major / Minor severity classification",
-      "Calibration mandatory for prediction models",
-      "R0 numbering for /revise pipeline",
-    ],
-    isNew: true,
-  },
-  {
-    name: "revise",
-    title: "Revision Response",
-    description:
-      "Parses reviewer decision letters, classifies comments as MAJOR/MINOR/REBUTTAL, and generates point-by-point responses.",
-    features: [
-      "Structured response templates",
-      "Change log with page/line refs",
-      "Cover letter generation",
-    ],
-    isNew: true,
-  },
-  {
-    name: "manage-project",
-    title: "Project Management",
-    description:
-      "Scaffold research projects, track writing progress, generate submission checklists and backwards timelines.",
-    features: [
-      "Project scaffolding (init)",
-      "Phase progress tracking",
-      "Pre-submission checklist",
-    ],
-    isNew: true,
-  },
-  {
-    name: "calc-sample-size",
-    title: "Sample Size Calculator",
-    description:
-      "Power analysis and sample size estimation for diagnostic accuracy, group comparison, and correlation studies.",
-    features: [
-      "DTA (sensitivity/specificity) power",
-      "Two-group comparison (t-test, chi-square)",
-      "Reproducible R/Python code output",
-    ],
-    isNew: true,
-  },
-  {
-    name: "clean-data",
-    title: "Data Cleaning",
-    description:
-      "Standardize, validate, and transform raw research datasets. Handles missing data, outlier detection, and variable recoding.",
-    features: [
-      "Missing data summary & imputation",
-      "Outlier detection (IQR, Z-score)",
-      "Codebook generation",
-    ],
-    isNew: true,
-  },
-  {
-    name: "find-journal",
-    title: "Journal Finder",
-    description:
-      "Match your manuscript to target journals by scope, impact factor, turnaround time, and open-access policy.",
-    features: [
-      "Scope & audience matching",
-      "Impact factor / CiteScore lookup",
-      "OA fee & turnaround estimates",
-    ],
-    isNew: true,
-  },
-  {
-    name: "write-protocol",
-    title: "Protocol Writing",
-    description:
-      "Generate SPIRIT-compliant study protocols and PROSPERO registration drafts for systematic reviews.",
-    features: [
-      "SPIRIT checklist integration",
-      "PROSPERO registration draft",
-      "Ethics submission boilerplate",
-    ],
-    isNew: true,
-  },
-];
-
-const pipelineSteps = [
-  { label: "Literature\nReview", skill: "search-lit" },
-  { label: "Full-Text\nRetrieval", skill: "fulltext-retrieval", isNew: true },
-  { label: "Study\nDesign", skill: "design-study" },
-  { label: "Analysis", skill: "analyze-stats" },
-  { label: "Figures", skill: "make-figures" },
-  { label: "Writing", skill: "write-paper", isNew: true },
-  { label: "Reporting", skill: "check-reporting" },
-  { label: "Self-Review", skill: "self-review", isNew: true },
-  { label: "Revision", skill: "revise", isNew: true },
-  { label: "Presenting", skill: "present-paper" },
-];
-
 export default async function SkillsPage({
   params,
 }: {
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+  const t = (await getDictionary(lang as Locale)).skills;
+  const data = skillsData[lang as Locale];
+  const skills = data.skills;
+  const pipelineSteps = data.pipelineSteps;
   return (
     <main className="mx-auto flex max-w-6xl flex-1 flex-col px-6 py-16">
       {/* Hero */}
       <section className="text-center">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">
-          Open Source
+          {t.badge}
         </p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
-          Medical Research Skills for Claude Code
+          {t.title}
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
-          20 skills covering the full research lifecycle — from literature search
-          to manuscript revision. Built by physicians, battle-tested on real
-          publications. MIT licensed.
+          {t.description}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <a
@@ -312,13 +75,13 @@ export default async function SkillsPage({
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
             </svg>
-            View on GitHub
+            {t.viewGithub}
           </a>
           <a
             href="#installation"
             className="rounded-full border border-border px-7 py-3 text-sm font-semibold transition-colors hover:bg-muted"
           >
-            Install Now
+            {t.installNow}
           </a>
           <a
             href={`/${lang}/skills/guide`}
@@ -332,7 +95,7 @@ export default async function SkillsPage({
       {/* Pipeline */}
       <section className="mt-20">
         <h2 className="text-center text-lg font-semibold text-foreground/80">
-          Research Pipeline
+          {t.pipeline}
         </h2>
         <div className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-2">
           {pipelineSteps.map((step, i) => (
@@ -365,7 +128,7 @@ export default async function SkillsPage({
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-lg font-bold">
-              End-to-End Pipeline Demo
+              {t.demoTitle}
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-foreground/70">
               Live demo: from{" "}
@@ -386,14 +149,14 @@ export default async function SkillsPage({
             rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
           >
-            View Demo on GitHub &rarr;
+            {t.viewDemo} &rarr;
           </a>
         </div>
       </section>
 
       {/* Skills Grid */}
       <section className="mt-16">
-        <h2 className="text-xl font-bold">All Skills</h2>
+        <h2 className="text-xl font-bold">{t.allSkills}</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill) => (
             <div
@@ -466,9 +229,9 @@ export default async function SkillsPage({
 
       {/* Installation */}
       <section id="installation" className="mt-16">
-        <h2 className="text-xl font-bold">Installation</h2>
+        <h2 className="text-xl font-bold">{t.installation}</h2>
         <p className="mt-3 text-sm text-foreground/60">
-          Copy skills to your Claude Code skills directory. That&apos;s it.
+          {t.installDesc}
         </p>
 
         {/* Desktop App (non-coders) */}
@@ -477,17 +240,16 @@ export default async function SkillsPage({
             <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
               NEW
             </span>
-            <h3 className="font-semibold">Claude Code Desktop (No terminal needed)</h3>
+            <h3 className="font-semibold">{t.desktopNew}</h3>
           </div>
           <p className="mt-2 text-sm text-foreground/60">
-            No programming experience? Use the Desktop app instead of the CLI.
-            Download ZIP from GitHub, copy the skills folder — done.
+            {t.desktopDesc}
           </p>
           <a
             href={`/${lang}/skills/guide/install`}
             className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
           >
-            Step-by-step guide (Korean) &rarr;
+            {t.stepByStep} &rarr;
           </a>
         </div>
 
@@ -495,7 +257,7 @@ export default async function SkillsPage({
         <div className="mt-4 space-y-4">
           <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-surface p-6">
             <p className="mb-2 text-xs font-medium text-foreground/50">
-              CLI — Install all skills
+              {t.cliAll}
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
@@ -506,7 +268,7 @@ cp -r medsci-skills/skills/* ~/.claude/skills/`}
           </div>
           <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-surface p-6">
             <p className="mb-2 text-xs font-medium text-foreground/50">
-              CLI — Install a single skill
+              {t.cliSingle}
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
@@ -532,7 +294,7 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
 
       {/* CTA */}
       <section className="mt-16 text-center">
-        <h2 className="text-lg font-semibold">Ready to streamline your research?</h2>
+        <h2 className="text-lg font-semibold">{t.readyToStreamline}</h2>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
           <a
             href={GITHUB_URL}
@@ -543,7 +305,7 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
             <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
             </svg>
-            Star on GitHub
+            {t.starGithub}
           </a>
           <a
             href={`${GITHUB_URL}#installation`}
@@ -551,7 +313,7 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
             rel="noopener noreferrer"
             className="rounded-full border border-border px-7 py-3 text-sm font-semibold transition-colors hover:bg-muted"
           >
-            Read the Docs
+            {t.readDocs}
           </a>
         </div>
         <p className="mt-6 text-xs text-foreground/40">

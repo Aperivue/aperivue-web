@@ -1,0 +1,146 @@
+{
+  "skills": [
+    {
+      "name": "orchestrate",
+      "title": "오케스트레이터",
+      "description": "전체 스킬 번들의 단일 진입점. 요청을 분류하여 적합한 스킬로 라우팅하거나, Full Pipeline Mode로 여러 스킬을 자동으로 체이닝합니다.",
+      "features": ["자동 의도 분류", "End-to-end 파이프라인: 스킬 자동 연결", "프로젝트 컨텍스트 감지"],
+      "isNew": true
+    },
+    {
+      "name": "search-lit",
+      "title": "문헌 검색",
+      "description": "PubMed + Semantic Scholar + bioRxiv 검색. 인용 조작 방지 기능으로 모든 레퍼런스를 API로 검증합니다.",
+      "features": ["모든 레퍼런스 API 검증", "BibTeX 내보내기", "가짜 인용 방지"]
+    },
+    {
+      "name": "fulltext-retrieval",
+      "title": "전문 다운로드",
+      "description": "오픈 액세스 PDF 일괄 다운로드. Unpaywall → PMC → OpenAlex → CrossRef 순서로 탐색합니다.",
+      "features": ["DOI 목록 또는 TSV 입력", "PDF 유효성 자동 검증", "유료 논문 수동 확인 목록 생성"],
+      "isNew": true
+    },
+    {
+      "name": "check-reporting",
+      "title": "보고 가이드라인",
+      "description": "15개 보고 가이드라인 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
+      "features": ["STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI", "Results/Discussion 경계 확인", "구체적 수정 제안"]
+    },
+    {
+      "name": "design-study",
+      "title": "연구 설계",
+      "description": "분석 단위, 코호트 논리, 데이터 누출 위험, 검증 전략을 식별합니다.",
+      "features": ["데이터 누출 위험 감지", "비교군 설계 검토", "보고 가이드라인 매칭"]
+    },
+    {
+      "name": "analyze-stats",
+      "title": "통계 분석",
+      "description": "진단 정확도, 평가자 간 일치도 등을 위한 재현 가능한 Python/R 코드. 예측 모델에는 calibration 필수.",
+      "features": ["DTA, 생존분석, 인구통계 테이블", "출판 수준 결과물", "효과 크기 + 신뢰구간"]
+    },
+    {
+      "name": "make-figures",
+      "title": "논문용 Figure",
+      "description": "저널 규격 Figure: ROC curve, forest plot, flow diagram, Kaplan-Meier 등.",
+      "features": ["300 DPI, 색각이상 안전 팔레트", "PRISMA / CONSORT / STARD 흐름도", "Bland-Altman, confusion matrix"]
+    },
+    {
+      "name": "grant-builder",
+      "title": "연구비 신청서",
+      "description": "연구의 중요성, 혁신성, 접근법, 마일스톤, 컨소시엄 역할을 구조화합니다.",
+      "features": ["NIH / 한국연구재단 형식 지원", "Specific Aims 페이지", "예산 정당화"]
+    },
+    {
+      "name": "intake-project",
+      "title": "프로젝트 접수",
+      "description": "새 연구 프로젝트를 분류하고, 현재 상태를 요약하며, 다음 단계를 제안합니다.",
+      "features": ["프로젝트 유형 분류", "누락 입력 감지", "경량 스캐폴딩"]
+    },
+    {
+      "name": "present-paper",
+      "title": "논문 발표 준비",
+      "description": "학술 발표 준비: 논문 분석, 발표 스크립트, 슬라이드 노트 삽입, Q&A 대비.",
+      "features": ["청중 맞춤 스크립트", "PPTX 노트 자동 삽입", "다관점 Q&A 준비"]
+    },
+    {
+      "name": "publish-skill",
+      "title": "스킬 배포",
+      "description": "개인 Claude Code 스킬을 배포 가능한 오픈소스 패키지로 변환합니다.",
+      "features": ["자동 개인정보 감사", "라이선스 호환성 검사", "범용화 파이프라인"]
+    },
+    {
+      "name": "meta-analysis",
+      "title": "메타분석",
+      "description": "8단계 체계적 문헌고찰 및 메타분석 파이프라인. DTA (bivariate/HSROC) 및 중재 MA를 PRISMA-DTA 기준으로.",
+      "features": ["프로토콜부터 원고까지 파이프라인", "Bivariate & HSROC 모델", "PRISMA-DTA 준수"]
+    },
+    {
+      "name": "write-paper",
+      "title": "원고 작성",
+      "description": "개요부터 투고 가능 원고까지 8단계 IMRAD 파이프라인. Critic-Fixer 루프와 섹션 경계 제어 내장.",
+      "features": ["Results 섹션 해석 방지 가드레일", "앵커 논문 기반 Discussion", "AI 작문 패턴 감지"],
+      "isNew": true
+    },
+    {
+      "name": "self-review",
+      "title": "자가 리뷰",
+      "description": "투고 전 10개 카테고리 점검. 연구 유형별 분기 지원 (AI, 관찰, 교육, 메타분석, 증례, 외과).",
+      "features": ["Major / Minor 심각도 분류", "예측 모델 calibration 필수 확인", "R0 넘버링 (/revise 연계)"],
+      "isNew": true
+    },
+    {
+      "name": "revise",
+      "title": "리비전 대응",
+      "description": "심사 결과 레터를 파싱하여 MAJOR/MINOR/REBUTTAL로 분류하고, 항목별 응답을 생성합니다.",
+      "features": ["구조화된 응답 템플릿", "페이지/라인 참조 변경 이력", "커버 레터 생성"],
+      "isNew": true
+    },
+    {
+      "name": "manage-project",
+      "title": "프로젝트 관리",
+      "description": "연구 프로젝트 스캐폴딩, 작성 진행 추적, 투고 체크리스트 및 역방향 타임라인 생성.",
+      "features": ["프로젝트 구조 생성 (init)", "단계별 진행 추적", "투고 전 체크리스트"],
+      "isNew": true
+    },
+    {
+      "name": "calc-sample-size",
+      "title": "표본 크기 계산",
+      "description": "진단 정확도, 그룹 비교, 상관관계 연구를 위한 검정력 분석 및 표본 크기 추정.",
+      "features": ["DTA (민감도/특이도) 검정력", "두 그룹 비교 (t-test, chi-square)", "재현 가능한 R/Python 코드"],
+      "isNew": true
+    },
+    {
+      "name": "clean-data",
+      "title": "데이터 정제",
+      "description": "연구 데이터셋 표준화, 유효성 검증, 변환. 결측치, 이상치 감지, 변수 리코딩을 처리합니다.",
+      "features": ["결측치 요약 및 대체", "이상치 감지 (IQR, Z-score)", "코드북 생성"],
+      "isNew": true
+    },
+    {
+      "name": "find-journal",
+      "title": "저널 추천",
+      "description": "스코프, Impact Factor, 심사 기간, OA 정책을 기반으로 투고 저널을 매칭합니다.",
+      "features": ["스코프 & 독자층 매칭", "Impact Factor / CiteScore 조회", "OA 비용 & 심사 기간 추정"],
+      "isNew": true
+    },
+    {
+      "name": "write-protocol",
+      "title": "프로토콜 작성",
+      "description": "SPIRIT 기준 연구 프로토콜과 체계적 문헌고찰용 PROSPERO 등록 초안을 생성합니다.",
+      "features": ["SPIRIT 체크리스트 통합", "PROSPERO 등록 초안", "윤리위원회 제출 보일러플레이트"],
+      "isNew": true
+    }
+  ],
+  "pipelineSteps": [
+    { "label": "문헌\n검색", "skill": "search-lit" },
+    { "label": "전문\n다운로드", "skill": "fulltext-retrieval", "isNew": true },
+    { "label": "연구\n설계", "skill": "design-study" },
+    { "label": "통계\n분석", "skill": "analyze-stats" },
+    { "label": "Figure\n생성", "skill": "make-figures" },
+    { "label": "원고\n작성", "skill": "write-paper", "isNew": true },
+    { "label": "보고\n가이드라인", "skill": "check-reporting" },
+    { "label": "자가\n리뷰", "skill": "self-review", "isNew": true },
+    { "label": "리비전\n대응", "skill": "revise", "isNew": true },
+    { "label": "발표\n준비", "skill": "present-paper" }
+  ]
+}
