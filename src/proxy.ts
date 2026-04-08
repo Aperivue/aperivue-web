@@ -34,12 +34,12 @@ export function proxy(request: NextRequest) {
 
   if (pathnameHasLocale) return;
 
-  // Check cookie preference first
+  // Cookie preference → default to English (target audience: doctors comfortable with English)
   const cookieLocale = request.cookies.get("NEXT_LOCALE")?.value;
   const locale =
     cookieLocale && locales.includes(cookieLocale)
       ? cookieLocale
-      : getLocale(request);
+      : defaultLocale;
 
   request.nextUrl.pathname = `/${locale}${pathname}`;
   return NextResponse.redirect(request.nextUrl);
