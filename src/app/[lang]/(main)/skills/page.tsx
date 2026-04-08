@@ -53,7 +53,7 @@ export default async function SkillsPage({
   const skills = data.skills;
   const pipelineSteps = data.pipelineSteps;
   return (
-    <main className="mx-auto flex max-w-6xl flex-1 flex-col px-6 py-16">
+    <main className="mx-auto flex max-w-6xl flex-1 flex-col overflow-hidden px-6 py-16">
       {/* Hero */}
       <section className="text-center">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">

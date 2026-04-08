@@ -15,10 +15,10 @@ export default async function MainLayout({
   const dict = await getDictionary(lang as Locale);
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <Header lang={lang} dict={dict} />
       {children}
       <Footer lang={lang} dict={dict} />
-    </>
+    </div>
   );
 }

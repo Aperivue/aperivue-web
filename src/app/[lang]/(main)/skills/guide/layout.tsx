@@ -33,7 +33,7 @@ export default async function GuideLayout({
   const { lang } = await params;
 
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-16">
+    <main className="mx-auto w-full max-w-6xl flex-1 overflow-hidden px-6 py-16">
       <div className="grid w-full gap-8 md:grid-cols-[12rem_minmax(0,1fr)]">
         <aside className="md:sticky md:top-24 md:self-start">
           <GuideNav />
