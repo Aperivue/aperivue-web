@@ -315,6 +315,12 @@ export default function SkillsPage() {
           >
             Install Now
           </a>
+          <a
+            href="/guide"
+            className="rounded-full border border-primary px-7 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+          >
+            한국어 가이드
+          </a>
         </div>
       </section>
 
@@ -459,10 +465,32 @@ export default function SkillsPage() {
         <p className="mt-3 text-sm text-foreground/60">
           Copy skills to your Claude Code skills directory. That&apos;s it.
         </p>
+
+        {/* Desktop App (non-coders) */}
+        <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-6">
+          <div className="flex items-center gap-3">
+            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              NEW
+            </span>
+            <h3 className="font-semibold">Claude Code Desktop (No terminal needed)</h3>
+          </div>
+          <p className="mt-2 text-sm text-foreground/60">
+            No programming experience? Use the Desktop app instead of the CLI.
+            Download ZIP from GitHub, copy the skills folder — done.
+          </p>
+          <a
+            href="/guide/install"
+            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            Step-by-step guide (Korean) &rarr;
+          </a>
+        </div>
+
+        {/* CLI (developers) */}
         <div className="mt-4 space-y-4">
           <div className="rounded-xl border border-border bg-surface p-6">
             <p className="mb-2 text-xs font-medium text-foreground/50">
-              Install all skills
+              CLI — Install all skills
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
@@ -473,7 +501,7 @@ cp -r medsci-skills/skills/* ~/.claude/skills/`}
           </div>
           <div className="rounded-xl border border-border bg-surface p-6">
             <p className="mb-2 text-xs font-medium text-foreground/50">
-              Install a single skill
+              CLI — Install a single skill
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
@@ -486,15 +514,14 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
         <p className="mt-4 text-xs text-foreground/40">
           Requires{" "}
           <a
-            href="https://claude.ai/code"
+            href="https://claude.ai/download"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-primary"
           >
-            Claude Code
+            Claude Code Desktop
           </a>{" "}
-          CLI or IDE extension. Python 3.9+ for statistical analysis and
-          figure generation.
+          or CLI. Python 3.9+ for statistical analysis and figure generation.
         </p>
       </section>
 
