@@ -81,9 +81,11 @@ export default function InstallContentKo({ lang }: { lang: string }) {
             <p>3. <strong>Download ZIP</strong>을 클릭합니다.</p>
             <p>4. 다운로드된 ZIP 파일의 압축을 풀어줍니다.</p>
           </div>
-          <div className="mt-4 flex h-40 items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/50 text-sm text-foreground/30">
-            GitHub &quot;Download ZIP&quot; 버튼 스크린샷 위치
-          </div>
+          <img
+            src="/images/guide/guide-github-download.png"
+            alt="GitHub Download ZIP 버튼"
+            className="mt-4 rounded-xl border border-border"
+          />
         </StepCard>
 
         <StepCard number={3} title="스킬 폴더 복사">
@@ -170,9 +172,11 @@ export default function InstallContentKo({ lang }: { lang: string }) {
             </div>
             <p>3. 20개 스킬 목록이 나오면 설치 완료입니다.</p>
           </div>
-          <div className="mt-4 flex h-32 items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/50 text-sm text-foreground/30">
-            Claude Code Desktop에서 /orchestrate 실행 결과 스크린샷 위치
-          </div>
+          <img
+            src="/images/guide/guide-orchestrate-result.png"
+            alt="/orchestrate 실행 결과"
+            className="mt-4 rounded-xl border border-border"
+          />
         </StepCard>
 
         <StepCard number={5} title="Python 설치 (선택)">

@@ -81,9 +81,11 @@ export default function InstallContentEn({ lang }: { lang: string }) {
             <p>3. Click <strong>Download ZIP</strong>.</p>
             <p>4. Extract the downloaded ZIP file.</p>
           </div>
-          <div className="mt-4 flex h-40 items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/50 text-sm text-foreground/30">
-            Screenshot: GitHub &quot;Download ZIP&quot; button
-          </div>
+          <img
+            src="/images/guide/guide-github-download.png"
+            alt="GitHub Download ZIP button"
+            className="mt-4 rounded-xl border border-border"
+          />
         </StepCard>
 
         <StepCard number={3} title="Copy the skills folder">
@@ -171,9 +173,11 @@ export default function InstallContentEn({ lang }: { lang: string }) {
             </div>
             <p>3. If you see a list of 20 skills, the installation is complete.</p>
           </div>
-          <div className="mt-4 flex h-32 items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/50 text-sm text-foreground/30">
-            Screenshot: /orchestrate output in Claude Code Desktop
-          </div>
+          <img
+            src="/images/guide/guide-orchestrate-result.png"
+            alt="/orchestrate output in Claude Code Desktop"
+            className="mt-4 rounded-xl border border-border"
+          />
         </StepCard>
 
         <StepCard number={5} title="Install Python (optional)">
