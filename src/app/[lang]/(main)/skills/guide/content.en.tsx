@@ -52,7 +52,6 @@ export default function GuideContentEn({ lang }: { lang: string }) {
         <p className="mt-4 text-foreground/60">
           No coding experience needed. Just install the Claude Code Desktop app,
           copy 20 research skills, and you are ready to go.
-          <br />
           Your first manuscript draft in 15 minutes.
         </p>
       </section>
