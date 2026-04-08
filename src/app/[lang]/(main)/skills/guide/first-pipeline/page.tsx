@@ -8,7 +8,13 @@ export const metadata: Metadata = {
     "공개 데이터로 논문 초고, Figure 4개, STARD 감사, PPT 슬라이드까지 자동 생성하는 end-to-end 데모.",
 };
 
-export default function FirstPipelinePage() {
+export default async function FirstPipelinePage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
   return (
     <div>
       <h1 className="text-2xl font-bold">Step 2. 첫 파이프라인 실행</h1>
@@ -173,13 +179,13 @@ export default function FirstPipelinePage() {
       {/* Navigation */}
       <div className="mt-10 flex items-center justify-between">
         <Link
-          href="/guide/install"
+          href={`/${lang}/skills/guide/install`}
           className="text-sm text-foreground/50 hover:text-primary"
         >
           &larr; 이전: 설치
         </Link>
         <Link
-          href="/guide/skills"
+          href={`/${lang}/skills/guide/skills`}
           className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
           다음: 상황별 스킬 안내 &rarr;

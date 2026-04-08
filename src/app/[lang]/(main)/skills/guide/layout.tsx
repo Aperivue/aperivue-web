@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "MedSci Skills 시작 가이드",
     description:
       "코딩 경험 없는 의사도 10분이면 시작할 수 있습니다. Claude Code Desktop + 20개 연구 스킬.",
-    url: "https://aperivue.com/guide",
+    url: "https://aperivue.com/skills/guide",
   },
 };
 
@@ -29,12 +29,12 @@ export default function GuideLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="mx-auto flex max-w-6xl flex-1 flex-col px-6 py-16">
-      <div className="flex flex-col gap-8 md:flex-row">
-        <aside className="md:w-48 md:shrink-0">
+    <main className="mx-auto max-w-6xl flex-1 px-6 py-16">
+      <div className="grid gap-8 md:grid-cols-[12rem_1fr]">
+        <aside>
           <GuideNav />
         </aside>
-        <article className="min-w-0 flex-1" lang="ko">
+        <article className="min-w-0" lang="ko">
           {children}
         </article>
       </div>

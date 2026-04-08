@@ -1,40 +1,48 @@
 import Link from "next/link";
 
-const steps = [
-  {
-    number: 1,
-    title: "설치",
-    description: "Claude Code Desktop과 MedSci Skills를 설치합니다.",
-    href: "/guide/install",
-    time: "10분",
-  },
-  {
-    number: 2,
-    title: "첫 파이프라인",
-    description:
-      "공개 데이터로 논문 초고, Figure, 보고 가이드라인 감사까지 한 번에 실행합니다.",
-    href: "/guide/first-pipeline",
-    time: "5분",
-  },
-  {
-    number: 3,
-    title: "상황별 스킬 안내",
-    description:
-      "내 연구 상황에 맞는 스킬을 찾아 바로 사용합니다.",
-    href: "/guide/skills",
-    time: "참고용",
-  },
-  {
-    number: 4,
-    title: "커스터마이즈",
-    description:
-      "스킬을 수정하거나 나만의 스킬을 만들어 자율적으로 발전시킵니다.",
-    href: "/guide/customize",
-    time: "선택",
-  },
-];
+function getSteps(lang: string) {
+  return [
+    {
+      number: 1,
+      title: "설치",
+      description: "Claude Code Desktop과 MedSci Skills를 설치합니다.",
+      href: `/${lang}/skills/guide/install`,
+      time: "10분",
+    },
+    {
+      number: 2,
+      title: "첫 파이프라인",
+      description:
+        "공개 데이터로 논문 초고, Figure, 보고 가이드라인 감사까지 한 번에 실행합니다.",
+      href: `/${lang}/skills/guide/first-pipeline`,
+      time: "5분",
+    },
+    {
+      number: 3,
+      title: "상황별 스킬 안내",
+      description:
+        "내 연구 상황에 맞는 스킬을 찾아 바로 사용합니다.",
+      href: `/${lang}/skills/guide/skills`,
+      time: "참고용",
+    },
+    {
+      number: 4,
+      title: "커스터마이즈",
+      description:
+        "스킬을 수정하거나 나만의 스킬을 만들어 자율적으로 발전시킵니다.",
+      href: `/${lang}/skills/guide/customize`,
+      time: "선택",
+    },
+  ];
+}
 
-export default function GuideLanding() {
+export default async function GuideLanding({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
   return (
     <div>
       {/* Hero */}
@@ -92,7 +100,7 @@ export default function GuideLanding() {
       <section className="mt-10">
         <h2 className="text-lg font-semibold">진행 순서</h2>
         <div className="mt-6 space-y-4">
-          {steps.map((step) => (
+          {getSteps(lang).map((step) => (
             <Link
               key={step.number}
               href={step.href}
@@ -126,7 +134,7 @@ export default function GuideLanding() {
       <section className="mt-10 text-center">
         <p className="text-sm text-foreground/50">
           문제가 생겼나요?{" "}
-          <Link href="/guide/faq" className="text-primary underline">
+          <Link href={`/${lang}/skills/guide/faq`} className="text-primary underline">
             자주 묻는 질문
           </Link>
           을 확인하세요.

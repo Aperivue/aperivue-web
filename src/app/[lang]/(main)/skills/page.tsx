@@ -281,7 +281,12 @@ const pipelineSteps = [
   { label: "Presenting", skill: "present-paper" },
 ];
 
-export default function SkillsPage() {
+export default async function SkillsPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
   return (
     <main className="mx-auto flex max-w-6xl flex-1 flex-col px-6 py-16">
       {/* Hero */}
@@ -316,7 +321,7 @@ export default function SkillsPage() {
             Install Now
           </a>
           <a
-            href="/guide"
+            href={`/${lang}/skills/guide`}
             className="rounded-full border border-primary px-7 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
           >
             한국어 가이드
@@ -344,7 +349,7 @@ export default function SkillsPage() {
                 </span>
               </div>
               {i < pipelineSteps.length - 1 && (
-                <span className="text-foreground/30">&rarr;</span>
+                <span className="hidden text-foreground/30 sm:inline">&rarr;</span>
               )}
             </div>
           ))}
@@ -393,7 +398,7 @@ export default function SkillsPage() {
           {skills.map((skill) => (
             <div
               key={skill.name}
-              className="flex flex-col rounded-2xl border border-border bg-surface p-8 transition-shadow hover:shadow-lg"
+              className="flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-8 transition-shadow hover:shadow-lg"
             >
               <div className="flex items-center gap-3">
                 <h3 className="text-lg font-semibold">{skill.title}</h3>
@@ -406,7 +411,7 @@ export default function SkillsPage() {
                   </span>
                 )}
               </div>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/70">
+              <p className="mt-3 flex-1 break-words text-sm leading-relaxed text-foreground/70">
                 {skill.description}
               </p>
               <ul className="mt-4 space-y-1.5">
@@ -479,7 +484,7 @@ export default function SkillsPage() {
             Download ZIP from GitHub, copy the skills folder — done.
           </p>
           <a
-            href="/guide/install"
+            href={`/${lang}/skills/guide/install`}
             className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
           >
             Step-by-step guide (Korean) &rarr;
@@ -488,7 +493,7 @@ export default function SkillsPage() {
 
         {/* CLI (developers) */}
         <div className="mt-4 space-y-4">
-          <div className="rounded-xl border border-border bg-surface p-6">
+          <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-surface p-6">
             <p className="mb-2 text-xs font-medium text-foreground/50">
               CLI — Install all skills
             </p>
@@ -499,7 +504,7 @@ cp -r medsci-skills/skills/* ~/.claude/skills/`}
               </code>
             </pre>
           </div>
-          <div className="rounded-xl border border-border bg-surface p-6">
+          <div className="min-w-0 overflow-hidden rounded-xl border border-border bg-surface p-6">
             <p className="mb-2 text-xs font-medium text-foreground/50">
               CLI — Install a single skill
             </p>
@@ -551,7 +556,7 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
         </div>
         <p className="mt-6 text-xs text-foreground/40">
           MIT License &middot; Built by{" "}
-          <a href="/about" className="underline hover:text-primary">
+          <a href={`/${lang}/about`} className="underline hover:text-primary">
             Aperivue
           </a>
         </p>

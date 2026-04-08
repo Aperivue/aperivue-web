@@ -136,7 +136,13 @@ const categories = [
   },
 ];
 
-export default function SkillsGuidePage() {
+export default async function SkillsGuidePage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
   return (
     <div>
       <h1 className="text-2xl font-bold">Step 3. 상황별 스킬 안내</h1>
@@ -211,13 +217,13 @@ export default function SkillsGuidePage() {
       {/* Navigation */}
       <div className="mt-10 flex items-center justify-between">
         <Link
-          href="/guide/first-pipeline"
+          href={`/${lang}/skills/guide/first-pipeline`}
           className="text-sm text-foreground/50 hover:text-primary"
         >
           &larr; 이전: 첫 파이프라인
         </Link>
         <Link
-          href="/guide/customize"
+          href={`/${lang}/skills/guide/customize`}
           className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
           다음: 커스터마이즈 &rarr;

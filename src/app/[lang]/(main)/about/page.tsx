@@ -1,19 +1,29 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "About",
   description: "About Aperivue and Yoojin Nam — Medical AI researcher and developer.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+  const t = (await getDictionary(lang as Locale)).about;
+
   return (
     <main className="mx-auto flex max-w-4xl flex-1 flex-col px-6 py-16">
       <p className="text-xs font-medium uppercase tracking-widest text-accent">
         About
       </p>
       <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
-        The Team Behind Aperivue
+        {t.title}
       </h1>
 
       <section className="mt-12 flex flex-col gap-8 md:flex-row">
@@ -29,36 +39,26 @@ export default function AboutPage() {
         <div>
           <h2 className="text-2xl font-semibold">Yoojin Nam, M.D.</h2>
           <p className="mt-1 text-sm text-foreground/60">
-            Founder &amp; Medical AI Researcher
+            {t.founderTitle}
           </p>
           <p className="mt-4 leading-relaxed text-foreground/80">
-            Radiology resident at Samsung Changwon Hospital, Sungkyunkwan
-            University School of Medicine. Research focus on diagnostic
-            accuracy studies, medical image analysis with deep learning, and
-            AI validation in clinical workflows.
+            {t.bio1}
           </p>
           <p className="mt-3 leading-relaxed text-foreground/80">
-            KAIST (B.S. in Biological Sciences), Yonsei University College of
-            Medicine (M.D.), and MI2RL (Medical Imaging &amp; Intelligent Reality
-            Lab) at Asan Medical Center. Contributor to MeducAI — a multi-agent
-            system for automated manuscript quality assurance.
+            {t.bio2}
           </p>
         </div>
       </section>
 
       <section className="mt-16">
-        <h2 className="text-2xl font-semibold">Mission</h2>
+        <h2 className="text-2xl font-semibold">{t.mission}</h2>
         <p className="mt-4 leading-relaxed text-foreground/80">
-          Aperivue aims to make radiology smarter and more accessible.
-          We build practical tools that help radiologists work more efficiently —
-          from structured RADS scoring calculators to AI-assisted diagnostic pipelines.
-          Our content bridges the gap between cutting-edge AI research and
-          everyday clinical practice.
+          {t.missionText}
         </p>
       </section>
 
       <section className="mt-16">
-        <h2 className="text-2xl font-semibold">Timeline</h2>
+        <h2 className="text-2xl font-semibold">{t.timeline}</h2>
         <div className="mt-6 space-y-4 border-l-2 border-primary/30 pl-6">
           {[
             { year: "2011", text: "KAIST — B.S. in Biological Sciences" },
@@ -71,6 +71,37 @@ export default function AboutPage() {
               <div className="absolute -left-[1.65rem] top-1 h-3 w-3 rounded-full bg-primary" />
               <p className="text-sm font-semibold text-primary">{item.year}</p>
               <p className="text-sm text-foreground/70">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="mt-16">
+        <h2 className="text-2xl font-semibold">{t.contact}</h2>
+        <p className="mt-4 text-foreground/60">
+          {t.contactSub}
+        </p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {[
+            { label: "Email", href: "mailto:contact@aperivue.com", text: "contact@aperivue.com" },
+            { label: "GitHub", href: "https://github.com/aperivue", text: "github.com/aperivue", external: true },
+            { label: "YouTube", href: "https://youtube.com/@scrubcode", text: "@scrubcode — Medical AI & Deep Learning", external: true },
+            { label: "LinkedIn", href: "https://www.linkedin.com/company/aperivue", text: "Aperivue", external: true },
+            { label: "Instagram", href: "https://instagram.com/aperivue", text: "@aperivue", external: true },
+            { label: "X (Twitter)", href: "https://x.com/aperivue", text: "@aperivue", external: true },
+          ].map((item) => (
+            <div key={item.label} className="rounded-2xl border border-border bg-surface p-6">
+              <h3 className="text-xs font-medium uppercase tracking-wider text-foreground/40">
+                {item.label}
+              </h3>
+              <a
+                href={item.href}
+                {...("external" in item && item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="mt-2 block text-sm font-medium text-primary hover:underline"
+              >
+                {item.text}
+              </a>
             </div>
           ))}
         </div>

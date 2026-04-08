@@ -4,19 +4,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AperivueLogo from "./AperivueLogo";
 
-const radsTabs = [
-  { href: "/rads/tirads", label: "TI-RADS" },
-  { href: "/rads/lungrads", label: "Lung-RADS" },
-];
-
 export default function RadsHeader() {
   const pathname = usePathname();
+  const lang = pathname.split("/")[1] || "en";
+
+  const radsTabs = [
+    { href: `/${lang}/rads/tirads`, label: "TI-RADS" },
+    { href: `/${lang}/rads/lungrads`, label: "Lung-RADS" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         {/* Left: Logo + RADS */}
-        <Link href="/rads" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+        <Link href={`/${lang}/rads`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <AperivueLogo variant="icon" size="sm" />
           <span className="text-sm font-semibold tracking-tight">
             <span className="text-primary">Aperivue</span>{" "}
@@ -43,12 +44,10 @@ export default function RadsHeader() {
             );
           })}
 
-          {/* Divider */}
           <div className="mx-1.5 h-4 w-px bg-border" />
 
-          {/* Back to main site */}
           <Link
-            href="/"
+            href={`/${lang}`}
             className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
           >
             aperivue.com

@@ -6,7 +6,13 @@ export const metadata: Metadata = {
   description: "스킬을 수정하거나 나만의 스킬을 만들어 자율적으로 발전시키는 방법.",
 };
 
-export default function CustomizePage() {
+export default async function CustomizePage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
   return (
     <div>
       <h1 className="text-2xl font-bold">Step 4. 커스터마이즈</h1>
@@ -162,13 +168,13 @@ tools:
       {/* Navigation */}
       <div className="mt-10 flex items-center justify-between">
         <Link
-          href="/guide/skills"
+          href={`/${lang}/skills/guide/skills`}
           className="text-sm text-foreground/50 hover:text-primary"
         >
           &larr; 이전: 상황별 스킬 안내
         </Link>
         <Link
-          href="/guide/faq"
+          href={`/${lang}/skills/guide/faq`}
           className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
           FAQ &rarr;

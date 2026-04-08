@@ -1,7 +1,19 @@
 import Link from "next/link";
 import AperivueLogo from "./AperivueLogo";
 
-export default function Footer() {
+interface FooterDict {
+  nav: { products: string; skills: string; blog: string; about: string };
+  footer: { tagline: string; company: string };
+  about: { contact: string };
+}
+
+export default function Footer({
+  lang,
+  dict,
+}: {
+  lang: string;
+  dict: FooterDict;
+}) {
   return (
     <footer className="mt-auto border-t border-border bg-muted">
       <div className="mx-auto max-w-6xl px-6 py-12">
@@ -10,7 +22,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <AperivueLogo variant="full" size="sm" />
             <p className="text-sm text-foreground/50">
-              Opening what cannot be seen.
+              {dict.footer.tagline}
             </p>
           </div>
 
@@ -18,12 +30,12 @@ export default function Footer() {
           <div className="flex gap-16 text-sm text-foreground/60">
             <div className="flex flex-col gap-2">
               <span className="text-xs font-medium uppercase tracking-wider text-foreground/40">
-                Company
+                {dict.footer.company}
               </span>
-              <Link href="/about" className="hover:text-primary">About</Link>
-              <Link href="/products" className="hover:text-primary">Products</Link>
-              <Link href="/blog" className="hover:text-primary">Blog</Link>
-              <Link href="/contact" className="hover:text-primary">Contact</Link>
+              <Link href={`/${lang}/about`} className="hover:text-primary">{dict.nav.about}</Link>
+              <Link href={`/${lang}/products`} className="hover:text-primary">{dict.nav.products}</Link>
+              <Link href={`/${lang}/blog`} className="hover:text-primary">{dict.nav.blog}</Link>
+              <Link href={`/${lang}/about#contact`} className="hover:text-primary">{dict.about.contact}</Link>
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-xs font-medium uppercase tracking-wider text-foreground/40">

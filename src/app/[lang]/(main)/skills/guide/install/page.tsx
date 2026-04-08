@@ -9,7 +9,13 @@ export const metadata: Metadata = {
     "Claude Code Desktop 설치부터 MedSci Skills 20개 스킬 설치까지. 터미널 없이 Finder/탐색기로 완료.",
 };
 
-export default function InstallPage() {
+export default async function InstallPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
   return (
     <div>
       <h1 className="text-2xl font-bold">Step 1. 설치</h1>
@@ -310,7 +316,7 @@ export default function InstallPage() {
         </dl>
         <p className="mt-4 text-xs text-foreground/40">
           더 많은 질문은{" "}
-          <Link href="/guide/faq" className="text-primary underline">
+          <Link href={`/${lang}/skills/guide/faq`} className="text-primary underline">
             FAQ 페이지
           </Link>
           를 참고하세요.
@@ -320,7 +326,7 @@ export default function InstallPage() {
       {/* Next step */}
       <div className="mt-10 flex justify-end">
         <Link
-          href="/guide/first-pipeline"
+          href={`/${lang}/skills/guide/first-pipeline`}
           className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
           다음: 첫 파이프라인 실행 &rarr;

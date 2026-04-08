@@ -49,7 +49,13 @@ const faqs = [
   },
 ];
 
-export default function FaqPage() {
+export default async function FaqPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
   return (
     <div>
       <h1 className="text-2xl font-bold">자주 묻는 질문</h1>
@@ -87,7 +93,7 @@ export default function FaqPage() {
             GitHub Issues
           </a>
           <Link
-            href="/contact"
+            href={`/${lang}/about#contact`}
             className="rounded-full border border-border px-5 py-2 text-sm font-medium transition-colors hover:bg-surface"
           >
             문의하기
@@ -98,13 +104,13 @@ export default function FaqPage() {
       {/* Navigation */}
       <div className="mt-10 flex items-center justify-between">
         <Link
-          href="/guide/customize"
+          href={`/${lang}/skills/guide/customize`}
           className="text-sm text-foreground/50 hover:text-primary"
         >
           &larr; 이전: 커스터마이즈
         </Link>
         <Link
-          href="/guide"
+          href={`/${lang}/skills/guide`}
           className="text-sm text-foreground/50 hover:text-primary"
         >
           가이드 처음으로

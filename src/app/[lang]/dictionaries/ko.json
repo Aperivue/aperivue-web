@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "products": "제품",
+    "skills": "스킬",
+    "rads": "RADS",
+    "blog": "블로그",
+    "about": "소개"
+  },
+  "home": {
+    "tagline": "의료 AI 도구 & 연구",
+    "hero": "보이지 않는 것을",
+    "heroHighlight": "열다",
+    "description": "영상의학과 전문의가 만든 진단 도구와 근거 기반 콘텐츠. 구조화된 RADS 스코어링부터 AI 연구까지.",
+    "ctaRads": "Aperivue RADS 둘러보기",
+    "ctaYoutube": "ScrubCode 보기",
+    "credibility": "영상의학과 전문의가 직접 개발",
+    "whatWeBuild": "만드는 것들",
+    "whatWeBuildSub": "AI 연구와 임상 사이의 격차를 연결하는 도구와 콘텐츠.",
+    "radsDesc": "TI-RADS, BI-RADS, Lung-RADS, LI-RADS 통합 계산기. 근거 기반 권고와 함께하는 구조화된 영상의학 리포트 — 모든 스코어링 시스템을 하나의 도구로.",
+    "scrubcodeDesc": "Medical AI 논문과 딥러닝 개념을 해설하는 YouTube 채널. 기초, 핫테이크, 그리고 바이브 코딩 — 기술을 이해하고 싶은 임상의를 위해.",
+    "medglowDesc": "근거 기반 스킨케어와 피부과학의 만남. 뷰티 산업의 마케팅 주장과 임상 근거를 분리하는 YouTube 콘텐츠.",
+    "followResearch": "연구를 팔로우하세요",
+    "followSub": "의료 AI 인사이트, 논문 분석, 도구 업데이트 — 직접 만드는 영상의학과 전문의로부터.",
+    "readBlog": "블로그 읽기",
+    "peerReviewed": "동료심사 논문",
+    "radiologist": "영상의학과 전문의",
+    "medicalImaging": "의료 영상 연구",
+    "openSource": "오픈소스"
+  },
+  "about": {
+    "title": "Aperivue를 만드는 사람",
+    "founderTitle": "창업자 & 의료 AI 연구자",
+    "bio1": "성균관대학교 의과대학 삼성창원병원 영상의학과 전공의. 진단 정확도 연구, 딥러닝 기반 의료 영상 분석, 임상 워크플로우에서의 AI 검증에 초점.",
+    "bio2": "KAIST (생명과학 학사), 연세대학교 의과대학 (의학사), 서울아산병원 MI2RL (Medical Imaging & Intelligent Reality Lab). 자동화된 원고 품질 보증을 위한 멀티에이전트 시스템 MeducAI 기여자.",
+    "mission": "미션",
+    "missionText": "Aperivue는 영상의학을 더 똑똑하고 접근하기 쉽게 만드는 것을 목표로 합니다. 구조화된 RADS 스코어링 계산기부터 AI 지원 진단 파이프라인까지, 영상의학과 전문의가 더 효율적으로 일할 수 있도록 돕는 실용적인 도구를 만듭니다.",
+    "timeline": "타임라인",
+    "contact": "연락처",
+    "contactSub": "질문이 있거나 협업하고 싶으신가요? 아래로 연락주세요."
+  },
+  "footer": {
+    "tagline": "보이지 않는 것을 열다.",
+    "company": "회사"
+  },
+  "skills": {
+    "badge": "오픈소스",
+    "title": "Claude Code용 의학 연구 스킬",
+    "description": "문헌 검색부터 원고 수정까지 연구 전체 과정을 다루는 20개 스킬. 의사가 직접 개발하고, 실제 논문에서 검증. MIT 라이선스.",
+    "viewGithub": "GitHub에서 보기",
+    "installNow": "지금 설치",
+    "koGuide": "한국어 가이드",
+    "pipeline": "연구 파이프라인",
+    "demoTitle": "End-to-End 파이프라인 데모",
+    "demoDesc": "라이브 데모: sklearn.datasets.load_breast_cancer()에서 Figure 4개, STARD 준수 감사, 12장 발표 슬라이드까지 — orchestrate Full Pipeline Mode로 스킬을 체이닝하여 자동 생성.",
+    "viewDemo": "GitHub에서 데모 보기",
+    "allSkills": "모든 스킬",
+    "keyFeatures": "주요 기능",
+    "installation": "설치",
+    "installDesc": "Claude Code 스킬 디렉토리에 복사하면 끝.",
+    "desktopNew": "Claude Code Desktop (터미널 불필요)",
+    "desktopDesc": "프로그래밍 경험이 없으신가요? CLI 대신 Desktop 앱을 사용하세요. GitHub에서 ZIP 다운로드 후 스킬 폴더 복사 — 끝.",
+    "stepByStep": "단계별 가이드",
+    "cliAll": "CLI — 전체 스킬 설치",
+    "cliSingle": "CLI — 단일 스킬 설치",
+    "requires": "Claude Code Desktop 또는 CLI 필요. 통계 분석 및 Figure 생성에는 Python 3.9+ 필요.",
+    "readyToStreamline": "연구를 효율화할 준비가 되셨나요?",
+    "starGithub": "GitHub에서 Star",
+    "readDocs": "문서 읽기"
+  },
+  "products": {
+    "title": "제품 소개",
+    "description": "영상의학과 전문의와 의학 연구자를 위한 무료 오픈소스 도구."
+  },
+  "guide": {
+    "nav": {
+      "start": "시작하기",
+      "install": "1. 설치",
+      "firstPipeline": "2. 첫 파이프라인",
+      "skills": "3. 스킬 안내",
+      "customize": "4. 커스터마이즈",
+      "faq": "FAQ"
+    }
+  }
+}

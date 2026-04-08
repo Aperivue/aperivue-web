@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { getDictionary, hasLocale, type Locale } from "../dictionaries";
+import { notFound } from "next/navigation";
 
 function HeroVisual() {
   return (
     <div className="relative flex items-center justify-center">
-      {/* Concentric rings — CT slice / aperture motif */}
       <div className="relative h-64 w-64 md:h-80 md:w-80">
         {[0, 1, 2, 3, 4].map((i) => (
           <div
@@ -16,7 +17,6 @@ function HeroVisual() {
             }}
           />
         ))}
-        {/* Center glow */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent opacity-80 blur-sm" />
           <div className="absolute h-4 w-4 rounded-full bg-gradient-to-br from-primary to-accent" />
@@ -26,10 +26,17 @@ function HeroVisual() {
   );
 }
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+  const t = (await getDictionary(lang as Locale)).home;
+
   return (
     <main className="flex flex-1 flex-col">
-      {/* Pulse ring animation */}
       <style>{`
         @keyframes pulse-ring {
           0%, 100% { opacity: 0.15; transform: scale(1); }
@@ -40,28 +47,25 @@ export default function Home() {
       {/* Hero */}
       <section className="px-6 py-24 md:py-32">
         <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-5">
-          {/* Left — text */}
           <div className="md:col-span-3">
             <p className="text-xs font-medium uppercase tracking-widest text-accent">
-              Medical AI Tools &amp; Research
+              {t.tagline}
             </p>
-            <h1 className="mt-4 text-5xl font-bold tracking-tighter md:text-7xl">
-              Opening What{" "}
+            <h1 className="mt-4 text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl">
+              {t.hero}{" "}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Cannot Be Seen
+                {t.heroHighlight}
               </span>
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-foreground/70">
-              Diagnostic tools and evidence-based content for radiologists —
-              from structured RADS scoring to AI research. Built by a
-              radiologist, for radiologists.
+              {t.description}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
-                href="/rads"
+                href={`/${lang}/rads`}
                 className="rounded-full bg-gradient-to-r from-primary to-primary-dark px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
-                Explore Aperivue RADS
+                {t.ctaRads}
               </Link>
               <a
                 href="https://youtube.com/@scrubcode"
@@ -69,15 +73,13 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="rounded-full border border-border px-7 py-3 text-sm font-semibold transition-colors hover:bg-muted"
               >
-                Watch ScrubCode &#9654;
+                {t.ctaYoutube} &#9654;
               </a>
             </div>
             <p className="mt-8 text-xs text-foreground/40">
-              Built by a radiologist &middot; 10+ peer-reviewed publications
+              {t.credibility} &middot; 10+ {t.peerReviewed}
             </p>
           </div>
-
-          {/* Right — visual */}
           <div className="hidden md:col-span-2 md:block">
             <HeroVisual />
           </div>
@@ -87,13 +89,11 @@ export default function Home() {
       {/* What We Build */}
       <section className="border-t border-border bg-muted px-6 py-24">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-semibold tracking-tight">What We Build</h2>
-          <p className="mt-3 text-foreground/60">
-            Tools and content that bridge the gap between AI research and clinical practice.
-          </p>
+          <h2 className="text-3xl font-semibold tracking-tight">{t.whatWeBuild}</h2>
+          <p className="mt-3 text-foreground/60">{t.whatWeBuildSub}</p>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {/* Featured — Aperivue RADS */}
+            {/* Aperivue RADS */}
             <div className="relative col-span-full overflow-hidden rounded-2xl border border-primary/20 bg-surface p-8 md:col-span-2">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
               <div className="relative">
@@ -108,17 +108,11 @@ export default function Home() {
                     In Development
                   </span>
                 </div>
-                <p className="mt-4 max-w-2xl text-foreground/70">
-                  Unified calculator for TI-RADS, BI-RADS, Lung-RADS, and LI-RADS.
-                  Structured radiology reporting with evidence-based recommendations
-                  — one tool for all scoring systems.
-                </p>
+                <p className="mt-4 max-w-2xl text-foreground/70">{t.radsDesc}</p>
                 <div className="mt-6 flex flex-wrap gap-3 text-xs text-foreground/50">
-                  <span className="rounded-full border border-border px-3 py-1">TI-RADS</span>
-                  <span className="rounded-full border border-border px-3 py-1">BI-RADS</span>
-                  <span className="rounded-full border border-border px-3 py-1">Lung-RADS</span>
-                  <span className="rounded-full border border-border px-3 py-1">LI-RADS</span>
-                  <span className="rounded-full border border-border px-3 py-1">Structured Reports</span>
+                  {["TI-RADS", "BI-RADS", "Lung-RADS", "LI-RADS", "Structured Reports"].map((tag) => (
+                    <span key={tag} className="rounded-full border border-border px-3 py-1">{tag}</span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -137,11 +131,7 @@ export default function Home() {
                   Active
                 </span>
               </div>
-              <p className="mt-4 text-sm text-foreground/70">
-                YouTube channel breaking down Medical AI papers and deep learning
-                concepts. Foundations, hot takes, and vibe coding — for clinicians
-                who want to understand the technology.
-              </p>
+              <p className="mt-4 text-sm text-foreground/70">{t.scrubcodeDesc}</p>
               <a
                 href="https://youtube.com/@scrubcode"
                 target="_blank"
@@ -165,11 +155,7 @@ export default function Home() {
                   Coming Soon
                 </span>
               </div>
-              <p className="mt-4 text-sm text-foreground/70">
-                Evidence-based skincare meets dermatology science. YouTube content
-                with a medical lens on the beauty industry — separating marketing
-                claims from clinical evidence.
-              </p>
+              <p className="mt-4 text-sm text-foreground/70">{t.medglowDesc}</p>
             </div>
           </div>
         </div>
@@ -179,15 +165,13 @@ export default function Home() {
       <section className="px-6 py-20">
         <div className="mx-auto grid max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
           {[
-            { value: "10+", label: "Peer-Reviewed Publications" },
-            { value: "M.D.", label: "Radiologist" },
-            { value: "AI", label: "Medical Imaging Research" },
-            { value: "OSS", label: "Open Source" },
+            { value: "10+", label: t.peerReviewed },
+            { value: "M.D.", label: t.radiologist },
+            { value: "AI", label: t.medicalImaging },
+            { value: "OSS", label: t.openSource },
           ].map((item) => (
             <div key={item.label} className="text-center">
-              <p className="text-2xl font-bold text-primary md:text-3xl">
-                {item.value}
-              </p>
+              <p className="text-2xl font-bold text-primary md:text-3xl">{item.value}</p>
               <p className="mt-1 text-xs text-foreground/50">{item.label}</p>
             </div>
           ))}
@@ -197,17 +181,14 @@ export default function Home() {
       {/* CTA */}
       <section className="bg-foreground px-6 py-20 text-background">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-bold md:text-3xl">Follow the Research</h2>
-          <p className="mt-4 text-background/60">
-            Medical AI insights, paper breakdowns, and tool updates —
-            from a radiologist who builds.
-          </p>
+          <h2 className="text-2xl font-bold md:text-3xl">{t.followResearch}</h2>
+          <p className="mt-4 text-background/60">{t.followSub}</p>
           <div className="mt-8 flex justify-center gap-4">
             <Link
-              href="/blog"
+              href={`/${lang}/blog`}
               className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Read the Blog
+              {t.readBlog}
             </Link>
             <a
               href="https://youtube.com/@scrubcode"

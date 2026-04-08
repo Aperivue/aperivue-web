@@ -9,6 +9,21 @@ const nextConfig: NextConfig = {
         destination: "https://aperivue.com/:path*",
         permanent: true,
       },
+      {
+        source: "/guide/:path*",
+        destination: "/skills/guide/:path*",
+        permanent: true,
+      },
+      {
+        source: "/guide",
+        destination: "/skills/guide",
+        permanent: true,
+      },
+      {
+        source: "/contact",
+        destination: "/about#contact",
+        permanent: true,
+      },
     ];
   },
 };
