@@ -8,6 +8,44 @@ export default function ContentKo({ lang }: { lang: string }) {
         스킬은 그냥 텍스트 파일입니다. 누구나 수정하고 새로 만들 수 있습니다.
       </p>
 
+      {/* Quick way */}
+      <section className="mt-8 rounded-2xl border-2 border-primary/30 bg-primary/5 p-6">
+        <h2 className="text-lg font-bold text-primary">쉬운 방법 — Claude에게 시키세요</h2>
+        <p className="mt-2 text-sm text-foreground/70">
+          파일을 직접 열 필요 없습니다. 바꾸고 싶은 걸 Claude에게 말하세요:
+        </p>
+        <div className="mt-4 space-y-3">
+          <div className="rounded-xl border border-border bg-surface p-4">
+            <p className="text-xs font-medium text-foreground/40">기존 스킬 수정</p>
+            <p className="mt-2 text-sm text-foreground/80">
+              &quot;check-reporting 스킬이 결과를 항상 한국어로 출력하도록 바꿔줘&quot;
+            </p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-4">
+            <p className="text-xs font-medium text-foreground/40">새 스킬 만들기</p>
+            <p className="mt-2 text-sm text-foreground/80">
+              &quot;radiology-report라는 새 스킬을 만들어줘. ACR 가이드라인에 맞는 구조화 판독문을 생성하는 스킬이야&quot;
+            </p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-4">
+            <p className="text-xs font-medium text-foreground/40">최신 버전으로 업데이트</p>
+            <p className="mt-2 text-sm text-foreground/80">
+              &quot;https://github.com/Aperivue/medsci-skills 에서 MedSci Skills를 최신 버전으로 업데이트해줘&quot;
+            </p>
+          </div>
+        </div>
+        <p className="mt-4 text-xs text-foreground/40">
+          Claude가 SKILL.md 파일을 수정하고, 폴더를 만들고, 모든 걸 알아서 처리합니다.
+          아래는 내부에서 어떤 일이 일어나는지 참고용으로 정리한 것입니다.
+        </p>
+      </section>
+
+      <div className="mt-6 flex items-center gap-3">
+        <div className="h-px flex-1 bg-border" />
+        <span className="text-xs font-medium text-foreground/30">참고: 직접 편집하기</span>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
       {/* SKILL.md anatomy */}
       <section className="mt-8">
         <h2 className="text-lg font-semibold">스킬의 구조</h2>

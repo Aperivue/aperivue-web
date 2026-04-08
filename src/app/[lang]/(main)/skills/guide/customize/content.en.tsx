@@ -8,6 +8,44 @@ export default function ContentEn({ lang }: { lang: string }) {
         Skills are just text files. Anyone can modify them or create new ones.
       </p>
 
+      {/* Quick way */}
+      <section className="mt-8 rounded-2xl border-2 border-primary/30 bg-primary/5 p-6">
+        <h2 className="text-lg font-bold text-primary">The easy way — Just ask Claude</h2>
+        <p className="mt-2 text-sm text-foreground/70">
+          You don&apos;t need to open any files yourself. Tell Claude what you want changed:
+        </p>
+        <div className="mt-4 space-y-3">
+          <div className="rounded-xl border border-border bg-surface p-4">
+            <p className="text-xs font-medium text-foreground/40">Modify an existing skill</p>
+            <p className="mt-2 text-sm text-foreground/80">
+              &quot;Change check-reporting so it always outputs results in Korean&quot;
+            </p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-4">
+            <p className="text-xs font-medium text-foreground/40">Create a new skill</p>
+            <p className="mt-2 text-sm text-foreground/80">
+              &quot;Create a new skill called radiology-report that generates structured radiology reports following ACR guidelines&quot;
+            </p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-4">
+            <p className="text-xs font-medium text-foreground/40">Update to the latest version</p>
+            <p className="mt-2 text-sm text-foreground/80">
+              &quot;Update MedSci Skills from https://github.com/Aperivue/medsci-skills to the latest version&quot;
+            </p>
+          </div>
+        </div>
+        <p className="mt-4 text-xs text-foreground/40">
+          Claude will edit the SKILL.md files, create folders, and handle everything for you.
+          Below is a reference for what happens behind the scenes.
+        </p>
+      </section>
+
+      <div className="mt-6 flex items-center gap-3">
+        <div className="h-px flex-1 bg-border" />
+        <span className="text-xs font-medium text-foreground/30">REFERENCE: MANUAL EDITING</span>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
       {/* SKILL.md anatomy */}
       <section className="mt-8">
         <h2 className="text-lg font-semibold">Anatomy of a Skill</h2>
