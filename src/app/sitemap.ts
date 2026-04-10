@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/rads", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/rads/tirads", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/rads/lungrads", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/rads/birads", priority: 0.9, changeFrequency: "monthly" as const },
   ];
 
   const entries: MetadataRoute.Sitemap = [];
