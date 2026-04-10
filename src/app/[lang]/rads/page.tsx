@@ -25,8 +25,8 @@ const modulesEn = [
   {
     name: "BI-RADS",
     description:
-      "Breast imaging structured reporting with BI-RADS assessment categories for mammography, ultrasound, and MRI.",
-    status: "coming" as const,
+      "Breast imaging structured reporting with BI-RADS assessment categories for mammography and ultrasound. Multi-finding support and PACS-ready report.",
+    status: "live" as const,
   },
   {
     name: "LI-RADS",
@@ -52,8 +52,8 @@ const modulesKo = [
   {
     name: "BI-RADS",
     description:
-      "유방 영상 구조화 리포트. 유방촬영, 초음파, MRI를 위한 BI-RADS 평가 카테고리.",
-    status: "coming" as const,
+      "유방 영상 구조화 리포트. 유방촬영 및 초음파를 위한 BI-RADS 평가 카테고리. 다중 소견 지원 및 PACS 바로 복사.",
+    status: "live" as const,
   },
   {
     name: "LI-RADS",
@@ -98,7 +98,7 @@ const modulesMeta = [
     ),
   },
   {
-    href: "#",
+    href: "/rads/birads",
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-3-3v6" />
