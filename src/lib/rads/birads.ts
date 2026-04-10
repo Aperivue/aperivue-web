@@ -1,17 +1,18 @@
 // ---------------------------------------------------------------------------
-// BI-RADS descriptor engine — Mammography & Ultrasound
-// Phase A: Mammography + US. Phase B: MRI (future).
+// BI-RADS descriptor engine — Mammography, Ultrasound & MRI
+// Phase A: Mammography + US. Phase B: MRI.
 // All logic runs client-side. Zero server calls.
 // Reference: ACR BI-RADS Atlas 5th Edition (2013)
 // ---------------------------------------------------------------------------
 
 // ── Modality ─────────────────────────────────────────────────────────────
 
-export type BiRadsModality = "mammo" | "us";
+export type BiRadsModality = "mammo" | "us" | "mri";
 
 export const BIRADS_MODALITIES: { value: BiRadsModality; label: string; desc: string }[] = [
   { value: "mammo", label: "Mammography", desc: "2D / 3D (tomosynthesis)" },
   { value: "us", label: "Ultrasound", desc: "B-mode ± Doppler" },
+  { value: "mri", label: "MRI", desc: "Contrast-enhanced breast MRI" },
 ];
 
 // ── BI-RADS Assessment Categories ────────────────────────────────────────
@@ -526,4 +527,226 @@ export function formatClockLocation(
   if (depth) parts.push(`${depth} third`);
   if (distanceMm) parts.push(`${distanceMm} mm from nipple`);
   return parts.join(", ");
+}
+
+// ── MRI Descriptors (ACR BI-RADS 5th Ed. — MRI lexicon) ──────────────────
+// Reference: Morris EA et al. ACR BI-RADS Atlas 5th Ed. 2013, MRI section.
+
+// MRI Finding type
+export type MriFindingType =
+  | "focus"
+  | "mass"
+  | "non_mass_enhancement"
+  | "non_enhancing_finding"
+  | "no_finding"
+  | "";
+
+export const MRI_FINDING_TYPES: { value: MriFindingType; label: string; desc: string }[] = [
+  { value: "", label: "Select finding type", desc: "" },
+  { value: "no_finding", label: "No abnormal enhancement (BI-RADS 1)", desc: "" },
+  { value: "focus", label: "Focus", desc: "<5 mm punctate enhancing dot, too small to characterize" },
+  { value: "mass", label: "Mass", desc: "3D space-occupying lesion with convex outward borders" },
+  { value: "non_mass_enhancement", label: "Non-mass Enhancement (NME)", desc: "Enhancement not a mass; described by distribution and internal pattern" },
+  { value: "non_enhancing_finding", label: "Non-enhancing Finding", desc: "Finding identified on non-contrast sequences (e.g., T2 hyperintense cyst, fat-containing lesion)" },
+];
+
+// MRI Mass — Shape
+export type MriMassShape = "oval" | "round" | "irregular" | "";
+export const MRI_MASS_SHAPES: { value: MriMassShape; label: string }[] = [
+  { value: "", label: "Not selected" },
+  { value: "oval", label: "Oval" },
+  { value: "round", label: "Round" },
+  { value: "irregular", label: "Irregular" },
+];
+
+// MRI Mass — Margin
+export type MriMassMargin =
+  | "circumscribed"
+  | "not_circumscribed_irregular"
+  | "not_circumscribed_spiculated"
+  | "";
+export const MRI_MASS_MARGINS: { value: MriMassMargin; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "circumscribed", label: "Circumscribed", desc: "Well-defined, abrupt interface" },
+  { value: "not_circumscribed_irregular", label: "Not circumscribed — Irregular", desc: "Uneven, bumpy interface" },
+  { value: "not_circumscribed_spiculated", label: "Not circumscribed — Spiculated", desc: "Lines radiating from mass border" },
+];
+
+// MRI Mass — Internal enhancement pattern
+export type MriMassEnhancement =
+  | "homogeneous"
+  | "heterogeneous"
+  | "rim_enhancement"
+  | "dark_internal_septations"
+  | "enhancing_internal_septations"
+  | "central_enhancement"
+  | "";
+export const MRI_MASS_ENHANCEMENTS: { value: MriMassEnhancement; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "homogeneous", label: "Homogeneous", desc: "Uniform enhancement throughout the mass" },
+  { value: "heterogeneous", label: "Heterogeneous", desc: "Non-uniform enhancement — variable signal intensity" },
+  { value: "rim_enhancement", label: "Rim enhancement", desc: "Enhancement at periphery — suspicious for malignancy" },
+  { value: "dark_internal_septations", label: "Dark internal septations", desc: "Low-signal internal septa — benign feature" },
+  { value: "enhancing_internal_septations", label: "Enhancing internal septations", desc: "Enhancing septa — suspicious" },
+  { value: "central_enhancement", label: "Central enhancement", desc: "Enhancement centralward — may suggest fibroadenoma" },
+];
+
+// MRI NME — Distribution
+export type MriNmeDistribution =
+  | "focal"
+  | "linear"
+  | "segmental"
+  | "regional"
+  | "multiple_regions"
+  | "diffuse"
+  | "";
+export const MRI_NME_DISTRIBUTIONS: { value: MriNmeDistribution; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "focal", label: "Focal", desc: "Occupies <25% of a quadrant; round/oval area" },
+  { value: "linear", label: "Linear", desc: "In a line, may branch — suggests duct or segment" },
+  { value: "segmental", label: "Segmental", desc: "Triangle/cone toward nipple — suspicious for DCIS" },
+  { value: "regional", label: "Regional", desc: "Large geographic area of enhancement" },
+  { value: "multiple_regions", label: "Multiple regions", desc: "Two or more regions not in a duct distribution" },
+  { value: "diffuse", label: "Diffuse", desc: "Randomly distributed throughout the breast" },
+];
+
+// MRI NME — Internal enhancement pattern
+export type MriNmePattern =
+  | "homogeneous"
+  | "heterogeneous"
+  | "clumped"
+  | "clustered_ring"
+  | "";
+export const MRI_NME_PATTERNS: { value: MriNmePattern; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "homogeneous", label: "Homogeneous", desc: "Confluent uniform enhancement" },
+  { value: "heterogeneous", label: "Heterogeneous", desc: "Non-uniform enhancement within the region" },
+  { value: "clumped", label: "Clumped", desc: "Cobblestone or grape-like clusters — suspicious" },
+  { value: "clustered_ring", label: "Clustered ring", desc: "Rings around multiple small foci — highly suspicious for DCIS" },
+];
+
+// MRI — Kinetic curve (enhancement pattern over time)
+export type MriKineticInitial = "slow" | "medium" | "fast" | "";
+export type MriKineticDelayed = "persistent" | "plateau" | "washout" | "";
+
+export const MRI_KINETIC_INITIAL: { value: MriKineticInitial; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "slow", label: "Slow (<50%)", desc: "Initial signal increase <50% from baseline" },
+  { value: "medium", label: "Medium (50–100%)", desc: "Initial signal increase 50–100%" },
+  { value: "fast", label: "Fast (>100%)", desc: "Initial signal increase >100% — higher suspicion" },
+];
+
+export const MRI_KINETIC_DELAYED: { value: MriKineticDelayed; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "persistent", label: "Persistent (Type I)", desc: "Signal continues to increase — favors benign" },
+  { value: "plateau", label: "Plateau (Type II)", desc: "Signal stabilizes — intermediate" },
+  { value: "washout", label: "Washout (Type III)", desc: "Signal decreases after peak — suspicious" },
+];
+
+// MRI — T2 signal characteristics
+export type MriT2Signal =
+  | "high"
+  | "intermediate"
+  | "low"
+  | "mixed"
+  | "";
+export const MRI_T2_SIGNALS: { value: MriT2Signal; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "high", label: "High T2 signal", desc: "Bright on T2 — cyst, mucinous, fibroadenoma" },
+  { value: "intermediate", label: "Intermediate T2 signal", desc: "Similar to parenchyma" },
+  { value: "low", label: "Low T2 signal", desc: "Dark on T2 — invasive carcinoma, fibrosis" },
+  { value: "mixed", label: "Mixed T2 signal", desc: "Heterogeneous T2 signal" },
+];
+
+// MRI — Background parenchymal enhancement (BPE)
+export type MriBpe = "minimal" | "mild" | "moderate" | "marked" | "";
+export const MRI_BPE_OPTIONS: { value: MriBpe; label: string; desc: string }[] = [
+  { value: "", label: "Not selected", desc: "" },
+  { value: "minimal", label: "Minimal (<25%)", desc: "Very little normal parenchymal enhancement" },
+  { value: "mild", label: "Mild (25–50%)", desc: "Mild background enhancement" },
+  { value: "moderate", label: "Moderate (50–75%)", desc: "Moderate; may obscure findings" },
+  { value: "marked", label: "Marked (>75%)", desc: "Extensive; reduces sensitivity" },
+];
+
+// MRI Associated features
+export interface MriAssociatedFeatures {
+  nippleRetraction: boolean;
+  nippleInvasion: boolean;
+  skinThickening: boolean;
+  skinInvasion: boolean;
+  edema: boolean;
+  lymphadenopathy: boolean;
+  pectoralisInvolvement: boolean;
+  chestWallInvolvement: boolean;
+}
+
+export const MRI_ASSOCIATED_FEATURE_OPTIONS: {
+  key: keyof MriAssociatedFeatures;
+  label: string;
+}[] = [
+  { key: "nippleRetraction", label: "Nipple retraction" },
+  { key: "nippleInvasion", label: "Nipple invasion" },
+  { key: "skinThickening", label: "Skin thickening" },
+  { key: "skinInvasion", label: "Skin invasion" },
+  { key: "edema", label: "Edema (skin / trabecular)" },
+  { key: "lymphadenopathy", label: "Axillary lymphadenopathy" },
+  { key: "pectoralisInvolvement", label: "Pectoralis muscle involvement" },
+  { key: "chestWallInvolvement", label: "Chest wall involvement" },
+];
+
+// MRI — Non-enhancing finding types
+export type MriNonEnhancingType =
+  | "ductal_precontrast_high"
+  | "cyst"
+  | "postop_hematoma"
+  | "postop_seroma"
+  | "signal_void_clip"
+  | "signal_void_other"
+  | "";
+export const MRI_NON_ENHANCING_TYPES: { value: MriNonEnhancingType; label: string }[] = [
+  { value: "", label: "Not selected" },
+  { value: "ductal_precontrast_high", label: "Ductal precontrast high signal (T1)" },
+  { value: "cyst", label: "Cyst (T2 hyperintense, no enhancement)" },
+  { value: "postop_hematoma", label: "Post-op hematoma / blood products" },
+  { value: "postop_seroma", label: "Post-op seroma" },
+  { value: "signal_void_clip", label: "Signal void — surgical clip" },
+  { value: "signal_void_other", label: "Signal void — other (calcification, air)" },
+];
+
+// ── MRI feature description helper ───────────────────────────────────────
+
+export function describeMriMass(
+  shape: MriMassShape,
+  margin: MriMassMargin,
+  enhancement: MriMassEnhancement,
+  t2: MriT2Signal,
+  kineticInitial: MriKineticInitial,
+  kineticDelayed: MriKineticDelayed,
+): string {
+  const parts: string[] = [];
+  if (shape) parts.push(shape);
+  if (margin) parts.push(margin.replace("not_circumscribed_", "").replace(/_/g, " ") + " margin");
+  if (enhancement) parts.push(enhancement.replace(/_/g, " ") + " enhancement");
+  if (t2) parts.push(t2.replace(/_/g, " ") + " on T2");
+  const kinetic: string[] = [];
+  if (kineticInitial) kinetic.push(`${kineticInitial} initial`);
+  if (kineticDelayed) kinetic.push(`${kineticDelayed} delayed`);
+  if (kinetic.length > 0) parts.push(`kinetic: ${kinetic.join(", ")}`);
+  return parts.length > 0 ? `Mass: ${parts.join(", ")}` : "Mass";
+}
+
+export function describeMriNme(
+  distribution: MriNmeDistribution,
+  pattern: MriNmePattern,
+  kineticInitial: MriKineticInitial,
+  kineticDelayed: MriKineticDelayed,
+): string {
+  const parts: string[] = [];
+  if (distribution) parts.push(`${distribution} distribution`);
+  if (pattern) parts.push(`${pattern.replace(/_/g, " ")} internal pattern`);
+  const kinetic: string[] = [];
+  if (kineticInitial) kinetic.push(`${kineticInitial} initial`);
+  if (kineticDelayed) kinetic.push(`${kineticDelayed} delayed`);
+  if (kinetic.length > 0) parts.push(`kinetic: ${kinetic.join(", ")}`);
+  return parts.length > 0 ? `NME: ${parts.join(", ")}` : "Non-mass enhancement";
 }

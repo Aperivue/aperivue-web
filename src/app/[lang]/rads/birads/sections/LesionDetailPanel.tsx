@@ -28,6 +28,18 @@ import {
   US_POSTERIOR_FEATURES,
   US_SPECIAL_CASES,
   US_ASSOCIATED_FEATURE_OPTIONS,
+  // MRI
+  MRI_FINDING_TYPES,
+  MRI_MASS_SHAPES,
+  MRI_MASS_MARGINS,
+  MRI_MASS_ENHANCEMENTS,
+  MRI_NME_DISTRIBUTIONS,
+  MRI_NME_PATTERNS,
+  MRI_KINETIC_INITIAL,
+  MRI_KINETIC_DELAYED,
+  MRI_T2_SIGNALS,
+  MRI_NON_ENHANCING_TYPES,
+  MRI_ASSOCIATED_FEATURE_OPTIONS,
 } from "@/lib/rads/birads";
 
 // ── Sub-components ────────────────────────────────────────────────────────
@@ -299,6 +311,152 @@ function UsAssociatedFeaturesPanel({
   );
 }
 
+// ── MRI descriptor panels ─────────────────────────────────────────────────
+
+function MriMassPanel({
+  lesion,
+  update,
+}: {
+  lesion: BiRadsLesion;
+  update: (p: Partial<BiRadsLesion>) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      <div>
+        <FieldLabel>Shape</FieldLabel>
+        <SelectField
+          value={lesion.mriMassShape}
+          onChange={(v) => update({ mriMassShape: v })}
+          options={MRI_MASS_SHAPES.map((o) => ({ value: o.value, label: o.label }))}
+        />
+      </div>
+      <div>
+        <FieldLabel>Margin</FieldLabel>
+        <SelectField
+          value={lesion.mriMassMargin}
+          onChange={(v) => update({ mriMassMargin: v })}
+          options={MRI_MASS_MARGINS.map((o) => ({ value: o.value, label: o.label }))}
+        />
+      </div>
+      <div>
+        <FieldLabel>Internal Enhancement Pattern</FieldLabel>
+        <SelectField
+          value={lesion.mriMassEnhancement}
+          onChange={(v) => update({ mriMassEnhancement: v })}
+          options={MRI_MASS_ENHANCEMENTS.map((o) => ({ value: o.value, label: o.label }))}
+        />
+      </div>
+      <div>
+        <FieldLabel>T2 Signal</FieldLabel>
+        <SelectField
+          value={lesion.mriT2Signal}
+          onChange={(v) => update({ mriT2Signal: v })}
+          options={MRI_T2_SIGNALS.map((o) => ({ value: o.value, label: o.label }))}
+        />
+      </div>
+    </div>
+  );
+}
+
+function MriNmePanel({
+  lesion,
+  update,
+}: {
+  lesion: BiRadsLesion;
+  update: (p: Partial<BiRadsLesion>) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      <div>
+        <FieldLabel>Distribution</FieldLabel>
+        <SelectField
+          value={lesion.mriNmeDistribution}
+          onChange={(v) => update({ mriNmeDistribution: v })}
+          options={MRI_NME_DISTRIBUTIONS.map((o) => ({ value: o.value, label: o.label }))}
+        />
+      </div>
+      <div>
+        <FieldLabel>Internal Enhancement Pattern</FieldLabel>
+        <SelectField
+          value={lesion.mriNmePattern}
+          onChange={(v) => update({ mriNmePattern: v })}
+          options={MRI_NME_PATTERNS.map((o) => ({ value: o.value, label: o.label }))}
+        />
+      </div>
+    </div>
+  );
+}
+
+function MriKineticPanel({
+  lesion,
+  update,
+}: {
+  lesion: BiRadsLesion;
+  update: (p: Partial<BiRadsLesion>) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      <div>
+        <FieldLabel>Initial Phase Enhancement</FieldLabel>
+        <SelectField
+          value={lesion.mriKineticInitial}
+          onChange={(v) => update({ mriKineticInitial: v })}
+          options={MRI_KINETIC_INITIAL.map((o) => ({ value: o.value, label: o.label }))}
+        />
+      </div>
+      <div>
+        <FieldLabel>Delayed Phase (Kinetic Curve)</FieldLabel>
+        <SelectField
+          value={lesion.mriKineticDelayed}
+          onChange={(v) => update({ mriKineticDelayed: v })}
+          options={MRI_KINETIC_DELAYED.map((o) => ({ value: o.value, label: o.label }))}
+        />
+        {lesion.mriKineticDelayed === "washout" && (
+          <p className="mt-1 text-[11px] text-orange-600 dark:text-orange-400">
+            Type III (Washout) — suspicious pattern, consider biopsy
+          </p>
+        )}
+        {lesion.mriKineticDelayed === "persistent" && (
+          <p className="mt-1 text-[11px] text-green-600 dark:text-green-400">
+            Type I (Persistent) — favors benign etiology
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MriAssociatedFeaturesPanel({
+  lesion,
+  update,
+}: {
+  lesion: BiRadsLesion;
+  update: (p: Partial<BiRadsLesion>) => void;
+}) {
+  return (
+    <div className="grid grid-cols-2 gap-2">
+      {MRI_ASSOCIATED_FEATURE_OPTIONS.map((opt) => (
+        <label key={opt.key} className="flex cursor-pointer items-center gap-2">
+          <input
+            type="checkbox"
+            checked={lesion.mriAssociated[opt.key]}
+            onChange={(e) =>
+              update({
+                mriAssociated: {
+                  ...lesion.mriAssociated,
+                  [opt.key]: e.target.checked,
+                },
+              })
+            }
+            className="h-3.5 w-3.5 rounded border-border text-primary accent-primary"
+          />
+          <span className="text-xs text-foreground/70">{opt.label}</span>
+        </label>
+      ))}
+    </div>
+  );
+}
+
 // ── Category selector ─────────────────────────────────────────────────────
 
 function CategorySelector({
@@ -424,6 +582,7 @@ export default function LesionDetailPanel() {
       <SectionDivider title="Descriptors" />
 
       {mod === "mammo" ? (
+        /* Mammography branch */
         <div className="space-y-3">
           <div>
             <FieldLabel>Finding type</FieldLabel>
@@ -460,7 +619,8 @@ export default function LesionDetailPanel() {
               </>
             )}
         </div>
-      ) : (
+      ) : mod === "us" ? (
+        /* Ultrasound branch */
         <div className="space-y-3">
           <div>
             <FieldLabel>Finding type</FieldLabel>
@@ -491,6 +651,59 @@ export default function LesionDetailPanel() {
               <UsAssociatedFeaturesPanel lesion={activeLesion} update={update} />
             </>
           )}
+        </div>
+      ) : (
+        /* MRI branch */
+        <div className="space-y-3">
+          <div>
+            <FieldLabel>Finding type</FieldLabel>
+            <SelectField
+              value={activeLesion.mriFindingType}
+              onChange={(v) => update({ mriFindingType: v })}
+              options={MRI_FINDING_TYPES.map((o) => ({ value: o.value, label: o.label }))}
+            />
+            {activeLesion.mriFindingType && (
+              <p className="mt-1 text-[11px] text-foreground/50">
+                {MRI_FINDING_TYPES.find((o) => o.value === activeLesion.mriFindingType)?.desc}
+              </p>
+            )}
+          </div>
+
+          {activeLesion.mriFindingType === "mass" && (
+            <MriMassPanel lesion={activeLesion} update={update} />
+          )}
+
+          {activeLesion.mriFindingType === "non_mass_enhancement" && (
+            <MriNmePanel lesion={activeLesion} update={update} />
+          )}
+
+          {(activeLesion.mriFindingType === "mass" ||
+            activeLesion.mriFindingType === "non_mass_enhancement") && (
+            <>
+              <SectionDivider title="Kinetic Analysis" />
+              <MriKineticPanel lesion={activeLesion} update={update} />
+            </>
+          )}
+
+          {activeLesion.mriFindingType === "non_enhancing_finding" && (
+            <div>
+              <FieldLabel>Non-enhancing finding type</FieldLabel>
+              <SelectField
+                value={activeLesion.mriNonEnhancingType}
+                onChange={(v) => update({ mriNonEnhancingType: v })}
+                options={MRI_NON_ENHANCING_TYPES.map((o) => ({ value: o.value, label: o.label }))}
+              />
+            </div>
+          )}
+
+          {activeLesion.mriFindingType &&
+            activeLesion.mriFindingType !== "no_finding" &&
+            activeLesion.mriFindingType !== "non_enhancing_finding" && (
+              <>
+                <SectionDivider title="Associated features" />
+                <MriAssociatedFeaturesPanel lesion={activeLesion} update={update} />
+              </>
+            )}
         </div>
       )}
 

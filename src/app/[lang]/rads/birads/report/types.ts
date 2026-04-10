@@ -23,6 +23,19 @@ import type {
   UsPosteriorFeatures,
   UsSpecialCase,
   UsAssociatedFeatures,
+  // MRI
+  MriFindingType,
+  MriMassShape,
+  MriMassMargin,
+  MriMassEnhancement,
+  MriNmeDistribution,
+  MriNmePattern,
+  MriKineticInitial,
+  MriKineticDelayed,
+  MriT2Signal,
+  MriBpe,
+  MriAssociatedFeatures,
+  MriNonEnhancingType,
 } from "@/lib/rads/birads";
 
 // ── Report State ──────────────────────────────────────────────────────────
@@ -38,6 +51,9 @@ export interface BiRadsReportState {
 
   // Mammography-only: breast composition
   breastComposition: BreastComposition;
+
+  // MRI-only: background parenchymal enhancement
+  mriBpe: MriBpe;
 
   lesions: BiRadsLesion[];
   activeLesionId: string;
@@ -93,6 +109,25 @@ export interface BiRadsLesion {
   // Associated features
   usAssociated: UsAssociatedFeatures;
 
+  // MRI descriptors
+  mriFindingType: MriFindingType;
+  // Mass
+  mriMassShape: MriMassShape;
+  mriMassMargin: MriMassMargin;
+  mriMassEnhancement: MriMassEnhancement;
+  // NME
+  mriNmeDistribution: MriNmeDistribution;
+  mriNmePattern: MriNmePattern;
+  // Kinetic (shared by mass and NME)
+  mriKineticInitial: MriKineticInitial;
+  mriKineticDelayed: MriKineticDelayed;
+  // T2 signal
+  mriT2Signal: MriT2Signal;
+  // Non-enhancing finding
+  mriNonEnhancingType: MriNonEnhancingType;
+  // Associated features
+  mriAssociated: MriAssociatedFeatures;
+
   // Free-text notes per lesion
   notes: string;
 }
@@ -103,6 +138,7 @@ export type BiRadsAction =
   | { type: "SET_MODALITY"; modality: BiRadsModality }
   | { type: "SET_CLINICAL_INFO"; payload: Partial<BiRadsReportState["clinicalInfo"]> }
   | { type: "SET_BREAST_COMPOSITION"; value: BreastComposition }
+  | { type: "SET_MRI_BPE"; value: MriBpe }
   | { type: "ADD_LESION" }
   | { type: "REMOVE_LESION"; id: string }
   | { type: "SET_ACTIVE_LESION"; id: string }

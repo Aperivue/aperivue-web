@@ -61,6 +61,27 @@ function createLesion(): BiRadsLesion {
       vascularity: false,
       elasticity: false,
     },
+    // MRI
+    mriFindingType: "",
+    mriMassShape: "",
+    mriMassMargin: "",
+    mriMassEnhancement: "",
+    mriNmeDistribution: "",
+    mriNmePattern: "",
+    mriKineticInitial: "",
+    mriKineticDelayed: "",
+    mriT2Signal: "",
+    mriNonEnhancingType: "",
+    mriAssociated: {
+      nippleRetraction: false,
+      nippleInvasion: false,
+      skinThickening: false,
+      skinInvasion: false,
+      edema: false,
+      lymphadenopathy: false,
+      pectoralisInvolvement: false,
+      chestWallInvolvement: false,
+    },
     notes: "",
   };
 }
@@ -73,6 +94,7 @@ const initialState: BiRadsReportState = {
   modality: "mammo",
   clinicalInfo: { indication: "", customIndication: "", comparison: "" },
   breastComposition: "",
+  mriBpe: "",
   lesions: [firstLesion],
   activeLesionId: firstLesion.id,
   otherFindings: "",
@@ -91,6 +113,9 @@ function reducer(state: BiRadsReportState, action: BiRadsAction): BiRadsReportSt
 
     case "SET_BREAST_COMPOSITION":
       return { ...state, breastComposition: action.value };
+
+    case "SET_MRI_BPE":
+      return { ...state, mriBpe: action.value };
 
     case "ADD_LESION": {
       const n = createLesion();

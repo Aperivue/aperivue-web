@@ -2,7 +2,7 @@
 
 import { BiRadsReportProvider, useBiRadsReport } from "./report/ReportContext";
 import type { BiRadsModality } from "@/lib/rads/birads";
-import { BREAST_COMPOSITIONS } from "@/lib/rads/birads";
+import { BREAST_COMPOSITIONS, MRI_BPE_OPTIONS } from "@/lib/rads/birads";
 import { BIRADS_INDICATIONS } from "./report/types";
 import LesionSidebar from "./sections/LesionSidebar";
 import LesionDetailPanel from "./sections/LesionDetailPanel";
@@ -11,6 +11,7 @@ import BiRadsReportPreview from "./sections/ReportPreview";
 const MODALITIES: { id: BiRadsModality; label: string; desc: string }[] = [
   { id: "mammo", label: "Mammography", desc: "2D / tomosynthesis" },
   { id: "us", label: "Ultrasound", desc: "B-mode ± Doppler" },
+  { id: "mri", label: "MRI", desc: "CE breast MRI" },
 ];
 
 // ── UI text (Korean / English) ────────────────────────────────────────────
@@ -22,6 +23,7 @@ const UI_TEXT = {
     comparison: "Comparison",
     compPlaceholder: "e.g. Mammography 2023-04",
     breastComposition: "Breast Composition (Mammography)",
+    mriBpe: "Background Parenchymal Enhancement (MRI)",
     findings: "Findings",
     otherFindings: "Other Findings",
     otherPlaceholder: "Skin changes, axillary findings, etc.",
@@ -32,6 +34,7 @@ const UI_TEXT = {
     comparison: "비교 검사",
     compPlaceholder: "예: 유방촬영 2023-04",
     breastComposition: "유방 구성 (유방촬영)",
+    mriBpe: "배경 유방 실질 조영증강 (MRI)",
     findings: "소견",
     otherFindings: "기타 소견",
     otherPlaceholder: "피부 변화, 액와부 소견 등",
@@ -135,8 +138,7 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
                 onClick={() =>
                   dispatch({
                     type: "SET_BREAST_COMPOSITION",
-                    value:
-                      state.breastComposition === comp.value ? "" : comp.value,
+                    value: state.breastComposition === comp.value ? "" : comp.value,
                   })
                 }
                 className={`rounded-lg border p-2.5 text-left text-xs transition-colors ${
@@ -147,6 +149,34 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
               >
                 <div className="font-semibold">{comp.label.split(" — ")[0]}</div>
                 <div className="mt-0.5 text-[10px] text-foreground/40 leading-tight">{comp.desc}</div>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Background Parenchymal Enhancement (MRI only) */}
+      {state.modality === "mri" && (
+        <section className="rounded-xl border border-border p-4">
+          <h3 className="mb-3 text-sm font-semibold">{t.mriBpe}</h3>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {MRI_BPE_OPTIONS.filter((b) => b.value !== "").map((bpe) => (
+              <button
+                key={bpe.value}
+                onClick={() =>
+                  dispatch({
+                    type: "SET_MRI_BPE",
+                    value: state.mriBpe === bpe.value ? "" : bpe.value,
+                  })
+                }
+                className={`rounded-lg border p-2.5 text-left text-xs transition-colors ${
+                  state.mriBpe === bpe.value
+                    ? "border-primary bg-primary/5 text-primary"
+                    : "border-border bg-surface text-foreground/60 hover:border-primary/30"
+                }`}
+              >
+                <div className="font-semibold">{bpe.label.split(" (")[0]}</div>
+                <div className="mt-0.5 text-[10px] text-foreground/40 leading-tight">{bpe.desc}</div>
               </button>
             ))}
           </div>

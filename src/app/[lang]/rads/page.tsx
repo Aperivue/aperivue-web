@@ -25,7 +25,7 @@ const modulesEn = [
   {
     name: "BI-RADS",
     description:
-      "Breast imaging structured reporting with BI-RADS assessment categories for mammography and ultrasound. Multi-finding support and PACS-ready report.",
+      "Breast imaging structured reporting with BI-RADS assessment categories for mammography, ultrasound, and MRI. Multi-finding support and PACS-ready report.",
     status: "live" as const,
   },
   {
@@ -52,7 +52,7 @@ const modulesKo = [
   {
     name: "BI-RADS",
     description:
-      "유방 영상 구조화 리포트. 유방촬영 및 초음파를 위한 BI-RADS 평가 카테고리. 다중 소견 지원 및 PACS 바로 복사.",
+      "유방 영상 구조화 리포트. 유방촬영, 초음파 및 MRI를 위한 BI-RADS 평가 카테고리. 다중 소견 지원 및 PACS 바로 복사.",
     status: "live" as const,
   },
   {

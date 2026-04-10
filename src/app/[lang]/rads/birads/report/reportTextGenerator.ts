@@ -6,11 +6,16 @@ import {
   describeMammoMass,
   describeMammoCalcifications,
   describeUsMass,
+  describeMriMass,
+  describeMriNme,
   MAMMO_ASSOCIATED_FEATURE_OPTIONS,
   US_ASSOCIATED_FEATURE_OPTIONS,
+  MRI_ASSOCIATED_FEATURE_OPTIONS,
   BREAST_COMPOSITIONS,
+  MRI_BPE_OPTIONS,
   ASYMMETRY_TYPES,
   US_SPECIAL_CASES,
+  MRI_NON_ENHANCING_TYPES,
 } from "@/lib/rads/birads";
 
 // ── Main generator ────────────────────────────────────────────────────────
@@ -18,7 +23,11 @@ import {
 export function generateBiRadsReportText(state: BiRadsReportState): string {
   const lines: string[] = [];
   const modalityLabel =
-    state.modality === "mammo" ? "MAMMOGRAPHY" : "BREAST ULTRASOUND";
+    state.modality === "mammo"
+      ? "MAMMOGRAPHY"
+      : state.modality === "mri"
+        ? "BREAST MRI"
+        : "BREAST ULTRASOUND";
 
   lines.push(modalityLabel);
   lines.push("");
@@ -40,6 +49,15 @@ export function generateBiRadsReportText(state: BiRadsReportState): string {
     const comp = BREAST_COMPOSITIONS.find((c) => c.value === state.breastComposition);
     if (comp) {
       lines.push(`Breast Composition: ${comp.label}.`);
+      lines.push("");
+    }
+  }
+
+  // Background parenchymal enhancement (MRI only)
+  if (state.modality === "mri" && state.mriBpe) {
+    const bpe = MRI_BPE_OPTIONS.find((b) => b.value === state.mriBpe);
+    if (bpe) {
+      lines.push(`Background Parenchymal Enhancement (BPE): ${bpe.label}.`);
       lines.push("");
     }
   }
@@ -98,7 +116,11 @@ export function generateAutoImpression(state: BiRadsReportState): string {
 
   if (items.length === 0) {
     const defaultCat =
-      state.modality === "mammo" ? "Mammography: BI-RADS 1. Negative." : "Breast US: BI-RADS 1. Negative.";
+      state.modality === "mammo"
+        ? "Mammography: BI-RADS 1. Negative."
+        : state.modality === "mri"
+          ? "Breast MRI: BI-RADS 1. Negative."
+          : "Breast US: BI-RADS 1. Negative.";
     return defaultCat;
   }
 
@@ -115,6 +137,7 @@ function formatIndication(state: BiRadsReportState): string {
 }
 
 function formatSize(lesion: BiRadsLesion, modality: BiRadsReportState["modality"]): string {
+  // US: mm. Mammo and MRI: cm.
   const unit = modality === "us" ? "mm" : "cm";
   const dims = [lesion.sizeA, lesion.sizeB, lesion.sizeC].filter(Boolean);
   if (dims.length === 0) return "";
@@ -146,7 +169,7 @@ function buildShortDescriptor(
     if (lesion.mammoFindingType === "intramammary_ln") return "Intramammary lymph node";
     if (lesion.mammoFindingType === "skin_lesion") return "Skin lesion";
     if (lesion.mammoFindingType === "no_finding") return "No abnormality";
-  } else {
+  } else if (modality === "us") {
     if (lesion.usFindingType === "mass") {
       return describeUsMass(
         lesion.usMassShape,
@@ -162,6 +185,31 @@ function buildShortDescriptor(
     }
     if (lesion.usFindingType === "no_finding") return "No abnormality";
     if (lesion.usFindingType === "non_mass") return "Non-mass finding";
+  } else if (modality === "mri") {
+    if (lesion.mriFindingType === "mass") {
+      return describeMriMass(
+        lesion.mriMassShape,
+        lesion.mriMassMargin,
+        lesion.mriMassEnhancement,
+        lesion.mriT2Signal,
+        lesion.mriKineticInitial,
+        lesion.mriKineticDelayed,
+      );
+    }
+    if (lesion.mriFindingType === "non_mass_enhancement") {
+      return describeMriNme(
+        lesion.mriNmeDistribution,
+        lesion.mriNmePattern,
+        lesion.mriKineticInitial,
+        lesion.mriKineticDelayed,
+      );
+    }
+    if (lesion.mriFindingType === "focus") return "Focus (<5 mm)";
+    if (lesion.mriFindingType === "non_enhancing_finding") {
+      const t = MRI_NON_ENHANCING_TYPES.find((n) => n.value === lesion.mriNonEnhancingType);
+      return t ? t.label : "Non-enhancing finding";
+    }
+    if (lesion.mriFindingType === "no_finding") return "No abnormal enhancement";
   }
   return "";
 }
@@ -194,9 +242,16 @@ function formatLesionBlock(
     if (activeAssoc.length > 0) {
       lines.push(`   Associated features: ${activeAssoc.join(", ")}.`);
     }
-  } else {
+  } else if (modality === "us") {
     const activeAssoc = US_ASSOCIATED_FEATURE_OPTIONS.filter(
       (o) => lesion.usAssociated[o.key],
+    ).map((o) => o.label.toLowerCase());
+    if (activeAssoc.length > 0) {
+      lines.push(`   Associated features: ${activeAssoc.join(", ")}.`);
+    }
+  } else if (modality === "mri") {
+    const activeAssoc = MRI_ASSOCIATED_FEATURE_OPTIONS.filter(
+      (o) => lesion.mriAssociated[o.key],
     ).map((o) => o.label.toLowerCase());
     if (activeAssoc.length > 0) {
       lines.push(`   Associated features: ${activeAssoc.join(", ")}.`);
