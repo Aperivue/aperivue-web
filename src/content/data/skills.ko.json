@@ -23,8 +23,8 @@
     {
       "name": "check-reporting",
       "title": "보고 가이드라인",
-      "description": "15개 보고 가이드라인 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
-      "features": ["STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI", "Results/Discussion 경계 확인", "구체적 수정 제안"]
+      "description": "22개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
+      "features": ["STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM", "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS", "Results/Discussion 경계 확인"]
     },
     {
       "name": "design-study",
@@ -35,14 +35,14 @@
     {
       "name": "analyze-stats",
       "title": "통계 분석",
-      "description": "진단 정확도, 평가자 간 일치도 등을 위한 재현 가능한 Python/R 코드. 예측 모델에는 calibration 필수.",
-      "features": ["DTA, 생존분석, 인구통계 테이블", "출판 수준 결과물", "효과 크기 + 신뢰구간"]
+      "description": "회귀분석, propensity score, 반복측정 등 13개 분석 유형을 위한 재현 가능한 Python/R 코드. 예측 모델에는 calibration 필수.",
+      "features": ["회귀(로지스틱/선형), propensity score (PSM/IPTW), 반복측정 (GEE/혼합모형)", "DTA, 생존분석, 인구통계, 일치도", "저널별 테이블 포맷팅"]
     },
     {
       "name": "make-figures",
       "title": "논문용 Figure",
-      "description": "저널 규격 Figure: ROC curve, forest plot, flow diagram, Kaplan-Meier 등.",
-      "features": ["300 DPI, 색각이상 안전 팔레트", "PRISMA / CONSORT / STARD 흐름도", "Bland-Altman, confusion matrix"]
+      "description": "저널 규격 Figure 및 visual abstract: ROC curve, forest plot, flow diagram, Kaplan-Meier 등.",
+      "features": ["300 DPI, 색각이상 안전 팔레트", "PRISMA / CONSORT / STARD 흐름도", "Visual/graphical abstract (python-pptx 템플릿)"]
     },
     {
       "name": "grant-builder",
@@ -105,8 +105,8 @@
     {
       "name": "calc-sample-size",
       "title": "표본 크기 계산",
-      "description": "진단 정확도, 그룹 비교, 상관관계 연구를 위한 검정력 분석 및 표본 크기 추정.",
-      "features": ["DTA (민감도/특이도) 검정력", "두 그룹 비교 (t-test, chi-square)", "재현 가능한 R/Python 코드"],
+      "description": "결정 트리 기반 검정 선택으로 11개 설계를 지원하는 대화형 표본 크기 계산기. Cox regression EPV 포함.",
+      "features": ["DTA, t-test, ANOVA, chi-square, McNemar, 생존분석", "로지스틱 회귀 & Cox EPV (Peduzzi 규칙)", "IRB 제출용 정당화 텍스트"],
       "isNew": true
     },
     {
@@ -128,6 +128,20 @@
       "title": "프로토콜 작성",
       "description": "SPIRIT 기준 연구 프로토콜과 체계적 문헌고찰용 PROSPERO 등록 초안을 생성합니다.",
       "features": ["SPIRIT 체크리스트 통합", "PROSPERO 등록 초안", "윤리위원회 제출 보일러플레이트"],
+      "isNew": true
+    },
+    {
+      "name": "add-journal",
+      "title": "저널 프로필 추가",
+      "description": "저널 프로필을 데이터베이스에 추가합니다. 저자 가이드라인에서 메타데이터를 추출하여 이중 프로필(write-paper + find-journal)을 품질 게이트와 함께 생성합니다.",
+      "features": ["저자 가이드라인 자동 추출", "이중 프로필 생성", "일괄 추가 모드"],
+      "isNew": true
+    },
+    {
+      "name": "deidentify",
+      "title": "비식별화",
+      "description": "LLM 분석 전 임상 연구 데이터를 비식별화합니다. 10개국 로케일 팩을 지원하는 독립 Python CLI. LLM 미사용.",
+      "features": ["정규식 + 휴리스틱 기반 PHI 탐지", "대화형 터미널 검토", "날짜 이동 & 가명처리"],
       "isNew": true
     }
   ],

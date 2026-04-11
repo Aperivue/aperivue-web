@@ -212,7 +212,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
                 /orchestrate List all available skills
               </code>
             </div>
-            <p>3. If you see a list of 20 skills, the installation is complete.</p>
+            <p>3. If you see a list of 22 skills, the installation is complete.</p>
           </div>
           <img
             src="/images/guide/guide-orchestrate-result.png"

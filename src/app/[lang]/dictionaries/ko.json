@@ -46,7 +46,7 @@
   "skills": {
     "badge": "오픈소스",
     "title": "Claude Code용 의학 연구 스킬",
-    "description": "문헌 검색부터 원고 수정까지 연구 전체 과정을 다루는 20개 스킬. 의사가 직접 개발하고, 실제 논문에서 검증. MIT 라이선스.",
+    "description": "문헌 검색부터 원고 수정까지 연구 전체 과정을 다루는 22개 스킬. 의사가 직접 개발하고, 실제 논문에서 검증. MIT 라이선스.",
     "viewGithub": "GitHub에서 보기",
     "installNow": "지금 설치",
     "koGuide": "가이드",

@@ -7,7 +7,7 @@ export default function InstallContentKo({ lang }: { lang: string }) {
     <div>
       <h1 className="text-2xl font-bold">Step 1. 설치</h1>
       <p className="mt-2 text-foreground/60">
-        Claude Code Desktop 앱을 설치하고, MedSci Skills 20개를 복사합니다.
+        Claude Code Desktop 앱을 설치하고, MedSci Skills 22개를 복사합니다.
         <br />
         터미널(명령어 입력 창)은 사용하지 않습니다.
       </p>
@@ -167,7 +167,7 @@ export default function InstallContentKo({ lang }: { lang: string }) {
 │   └── SKILL.md
 ├── write-paper/
 │   └── SKILL.md
-└── ... (20개 폴더)`}
+└── ... (22개 폴더)`}
                   </pre>
                 </div>
               </div>
@@ -211,7 +211,7 @@ export default function InstallContentKo({ lang }: { lang: string }) {
                 /orchestrate 어떤 스킬이 있는지 알려줘
               </code>
             </div>
-            <p>3. 20개 스킬 목록이 나오면 설치 완료입니다.</p>
+            <p>3. 22개 스킬 목록이 나오면 설치 완료입니다.</p>
           </div>
           <img
             src="/images/guide/guide-orchestrate-result.png"

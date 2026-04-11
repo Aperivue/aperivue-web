@@ -23,8 +23,8 @@
     {
       "name": "check-reporting",
       "title": "Reporting Guidelines",
-      "description": "Manuscript compliance audit against 15 reporting guidelines with item-by-item assessment and section boundary checks.",
-      "features": ["STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI", "Results/Discussion boundary check", "Actionable fix suggestions"]
+      "description": "Manuscript compliance audit against 22 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
+      "features": ["STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM", "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS", "Results/Discussion boundary check"]
     },
     {
       "name": "design-study",
@@ -35,14 +35,14 @@
     {
       "name": "analyze-stats",
       "title": "Statistical Analysis",
-      "description": "Reproducible Python/R code for diagnostic accuracy, inter-rater agreement, and more. Calibration mandatory for prediction models.",
-      "features": ["DTA, survival, demographics tables", "Publication-ready output", "Effect sizes with CIs"]
+      "description": "Reproducible Python/R code for 13 analysis types including regression, propensity score, and repeated measures. Calibration mandatory for prediction models.",
+      "features": ["Regression (logistic/linear), propensity score (PSM/IPTW), repeated measures (GEE/mixed)", "DTA, survival, demographics, agreement", "Publication-ready tables with journal-specific formatting"]
     },
     {
       "name": "make-figures",
       "title": "Publication Figures",
-      "description": "Journal-spec figures: ROC curves, forest plots, flow diagrams, Kaplan-Meier, and more.",
-      "features": ["300 DPI, colorblind-safe", "PRISMA / CONSORT / STARD flows", "Bland-Altman, confusion matrices"]
+      "description": "Journal-spec figures and visual abstracts: ROC curves, forest plots, flow diagrams, Kaplan-Meier, and more.",
+      "features": ["300 DPI, colorblind-safe", "PRISMA / CONSORT / STARD flows", "Visual/graphical abstracts (python-pptx template)"]
     },
     {
       "name": "grant-builder",
@@ -105,8 +105,8 @@
     {
       "name": "calc-sample-size",
       "title": "Sample Size Calculator",
-      "description": "Power analysis and sample size estimation for diagnostic accuracy, group comparison, and correlation studies.",
-      "features": ["DTA (sensitivity/specificity) power", "Two-group comparison (t-test, chi-square)", "Reproducible R/Python code output"],
+      "description": "Interactive sample size calculator with decision-tree guided test selection. Covers 11 designs including Cox regression EPV.",
+      "features": ["DTA, t-test, ANOVA, chi-square, McNemar, survival", "Logistic regression & Cox EPV (Peduzzi rule)", "IRB-ready justification text"],
       "isNew": true
     },
     {
@@ -128,6 +128,20 @@
       "title": "Protocol Writing",
       "description": "Generate SPIRIT-compliant study protocols and PROSPERO registration drafts for systematic reviews.",
       "features": ["SPIRIT checklist integration", "PROSPERO registration draft", "Ethics submission boilerplate"],
+      "isNew": true
+    },
+    {
+      "name": "add-journal",
+      "title": "Add Journal Profile",
+      "description": "Add new journal profiles to the database. Extracts metadata from author guidelines and generates dual profiles (write-paper + find-journal) with quality gates.",
+      "features": ["Author guideline extraction", "Dual profile generation", "Batch mode for multiple journals"],
+      "isNew": true
+    },
+    {
+      "name": "deidentify",
+      "title": "De-identification",
+      "description": "De-identify clinical research data before LLM-assisted analysis. Standalone Python CLI with 10 country locale packs. No LLM involved.",
+      "features": ["PHI detection via regex + heuristics", "Interactive terminal review", "Date shifting & pseudonymization"],
       "isNew": true
     }
   ],

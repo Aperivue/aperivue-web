@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MedSci Skills 시작 가이드",
     description:
-      "코딩 경험 없는 의사도 10분이면 시작할 수 있습니다. Claude Code Desktop + 20개 연구 스킬.",
+      "코딩 경험 없는 의사도 10분이면 시작할 수 있습니다. Claude Code Desktop + 22개 연구 스킬.",
     url: "https://aperivue.com/skills/guide",
   },
 };

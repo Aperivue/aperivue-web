@@ -50,7 +50,7 @@ export default function GuideContentKo({ lang }: { lang: string }) {
           MedSci Skills 시작 가이드
         </h1>
         <p className="mt-4 text-foreground/60">
-          터미널을 몰라도 괜찮습니다. Claude Code Desktop 앱을 설치하고, 20개
+          터미널을 몰라도 괜찮습니다. Claude Code Desktop 앱을 설치하고, 22개
           연구 스킬을 복사하면 끝입니다.
           <br />
           총 15분이면 첫 논문 초고가 나옵니다.
