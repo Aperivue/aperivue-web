@@ -146,15 +146,18 @@
     }
   ],
   "pipelineSteps": [
-    { "label": "Literature\nReview", "skill": "search-lit" },
-    { "label": "Full-Text\nRetrieval", "skill": "fulltext-retrieval", "isNew": true },
+    { "label": "Orchestrate\n--e2e", "skill": "orchestrate" },
+    { "label": "Literature\nSearch", "skill": "search-lit" },
+    { "label": "Full-Text\nRetrieval", "skill": "fulltext-retrieval" },
     { "label": "Study\nDesign", "skill": "design-study" },
-    { "label": "Analysis", "skill": "analyze-stats" },
-    { "label": "Figures", "skill": "make-figures" },
-    { "label": "Writing", "skill": "write-paper", "isNew": true },
-    { "label": "Reporting", "skill": "check-reporting" },
-    { "label": "Self-Review", "skill": "self-review", "isNew": true },
-    { "label": "Revision", "skill": "revise", "isNew": true },
-    { "label": "Presenting", "skill": "present-paper" }
+    { "label": "De-identify\n& Clean", "skill": "deidentify" },
+    { "label": "Statistical\nAnalysis", "skill": "analyze-stats" },
+    { "label": "Publication\nFigures", "skill": "make-figures" },
+    { "label": "Manuscript\nWriting", "skill": "write-paper" },
+    { "label": "Reporting\nCompliance", "skill": "check-reporting" },
+    { "label": "Self-Review\n& Fix", "skill": "self-review" },
+    { "label": "Journal\nSelection", "skill": "find-journal" },
+    { "label": "Revision\nResponse", "skill": "revise" },
+    { "label": "Presentation", "skill": "present-paper" }
   ]
 }

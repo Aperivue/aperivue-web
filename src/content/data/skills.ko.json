@@ -146,15 +146,18 @@
     }
   ],
   "pipelineSteps": [
+    { "label": "오케스트레이터\n--e2e", "skill": "orchestrate" },
     { "label": "문헌\n검색", "skill": "search-lit" },
-    { "label": "전문\n다운로드", "skill": "fulltext-retrieval", "isNew": true },
+    { "label": "전문\n다운로드", "skill": "fulltext-retrieval" },
     { "label": "연구\n설계", "skill": "design-study" },
+    { "label": "비식별화\n& 정제", "skill": "deidentify" },
     { "label": "통계\n분석", "skill": "analyze-stats" },
     { "label": "Figure\n생성", "skill": "make-figures" },
-    { "label": "원고\n작성", "skill": "write-paper", "isNew": true },
+    { "label": "원고\n작성", "skill": "write-paper" },
     { "label": "보고\n가이드라인", "skill": "check-reporting" },
-    { "label": "자가\n리뷰", "skill": "self-review", "isNew": true },
-    { "label": "리비전\n대응", "skill": "revise", "isNew": true },
+    { "label": "자가리뷰\n& 수정", "skill": "self-review" },
+    { "label": "저널\n선택", "skill": "find-journal" },
+    { "label": "리비전\n대응", "skill": "revise" },
     { "label": "발표\n준비", "skill": "present-paper" }
   ]
 }
