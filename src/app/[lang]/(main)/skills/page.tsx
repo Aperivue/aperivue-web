@@ -100,12 +100,7 @@ export default async function SkillsPage({
         <div className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-2">
           {pipelineSteps.map((step, i) => (
             <div key={step.skill} className="flex items-center gap-2">
-              <div className="relative rounded-lg border border-border bg-surface px-4 py-2 text-center text-xs font-medium leading-tight whitespace-pre-line">
-                {"isNew" in step && step.isNew && (
-                  <span className="absolute -top-2 -right-2 rounded-full bg-primary px-1.5 py-0.5 text-[8px] font-bold text-white">
-                    NEW
-                  </span>
-                )}
+              <div className="rounded-lg border border-border bg-surface px-4 py-2 text-center text-xs font-medium leading-tight whitespace-pre-line">
                 {step.label}
                 <span className="mt-1 block text-[10px] text-accent">
                   {step.skill}
