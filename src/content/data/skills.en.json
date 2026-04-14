@@ -23,7 +23,7 @@
     {
       "name": "check-reporting",
       "title": "Reporting Guidelines",
-      "description": "Manuscript compliance audit against 22 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
+      "description": "Manuscript compliance audit against 33 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
       "features": ["STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM", "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS", "Results/Discussion boundary check"]
     },
     {

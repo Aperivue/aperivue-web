@@ -1,0 +1,176 @@
+---
+title: "MedSci Skills v2.2: Zero-Touch Manuscript Pipeline with /orchestrate --e2e"
+description: "MedSci Skills v2.2 introduces autonomous end-to-end manuscript generation — from raw data to submission-ready DOCX with no human gates. New Phase 7 QC chain, 33 reporting guidelines, structured JSON outputs, and post-skill validation."
+date: "2026-04-14"
+tags: ["medsci-skills", "claude-code", "research-automation", "manuscript-writing", "ai-pipeline", "open-source"]
+---
+
+# MedSci Skills v2.2: Zero-Touch Manuscript Pipeline
+
+MedSci Skills started as a set of Claude Code skills for medical research — individual tools for literature search, statistical analysis, manuscript writing, and reporting compliance. Version 2.2 connects them into a single autonomous pipeline. Feed it your dataset, walk away, come back to a submission-ready manuscript.
+
+Here is what changed and why it matters.
+
+## The Core Feature: `--e2e` and `--autonomous`
+
+Two new flags turn the existing multi-skill workflow into an unattended pipeline:
+
+```bash
+# Full pipeline: data → analysis → figures → manuscript → QC → DOCX
+/orchestrate --e2e --data ./study_data.csv --type diagnostic-accuracy
+
+# Or start from the manuscript phase with autonomous QC
+/write-paper --autonomous --project ./my-project/
+```
+
+**Without these flags**, everything works exactly as before — interactive, with user approval gates between phases. The flags are opt-in. Your existing workflows do not change.
+
+**With `--e2e`**, the orchestrator chains every skill in sequence: `analyze-stats` for your statistics, `make-figures` for publication-ready plots, `write-paper` for the IMRAD manuscript, `check-reporting` for guideline compliance, `self-review` for quality audit, and finally a DOCX build with embedded figures and formatted tables.
+
+No prompts. No approval gates. One command, one output.
+
+## How the Pipeline Flows
+
+Here is the full sequence when you run `/orchestrate --e2e`:
+
+```
+Raw Data (.csv / .xlsx)
+        |
+        v
+  analyze-stats
+  - Table 1, statistical tests, effect sizes
+  - Publication-ready tables (.md + .csv)
+        |
+        v
+  make-figures
+  - ROC, forest plot, flow diagram, etc.
+  - 300 DPI, colorblind-safe
+  - _figure_manifest.md (NEW — see below)
+        |
+        v
+  write-paper (Phases 1-6)
+  - Outline → Methods → Results → Full IMRAD
+  - Consumes figure manifest for placement
+        |
+        v
+  Phase 7: Strict QC Chain (NEW)
+  - AI pattern scan + removal
+  - check-reporting with auto-fix
+  - search-lit --verify-only (citation check)
+  - self-review --json --fix (up to 2 iterations)
+        |
+        v
+  DOCX Build
+  - Embedded figures + formatted tables
+  - Ready for journal submission portal
+```
+
+Each arrow represents an automated handoff. Each skill reads the previous skill's output files directly — no copy-pasting between sessions, no manual file management.
+
+## Phase 7: The QC Chain That Catches What You Miss
+
+Phase 7 is the most significant addition. Previously, quality checking was a separate manual step. Now it runs automatically as the final phase of `write-paper`, and it enforces a strict sequence:
+
+**Step 1 — AI Pattern Scan.** The `humanize` skill scans the manuscript for 18 known AI writing patterns (hedging phrases, filler transitions, over-qualification). Flagged passages get rewritten in place.
+
+**Step 2 — Reporting Compliance.** `check-reporting` audits the manuscript against the appropriate guideline (STARD for diagnostic accuracy, PRISMA for systematic reviews, STROBE for observational studies). Items marked MISSING get auto-fixed — the skill inserts the required text at the correct manuscript location.
+
+**Step 3 — Citation Verification.** `search-lit --verify-only` checks every reference against PubMed and Semantic Scholar. If a DOI does not resolve, the citation gets flagged. No hallucinated references survive this step.
+
+**Step 4 — Self-Review with Auto-Fix.** `self-review --json --fix` runs a 10-category quality audit and attempts to fix identified issues. If the first pass finds problems, it runs a second iteration. Two passes maximum — if issues persist after two rounds, they get flagged for human review rather than running indefinitely.
+
+## Structured JSON Outputs
+
+Skills now talk to each other through machine-readable JSON blocks. When `check-reporting` finishes an audit, it emits:
+
+```json
+{
+  "guideline": "STARD 2015",
+  "compliance_pct": 83,
+  "items_present": 25,
+  "items_missing": 5,
+  "fixable_by_ai": 4,
+  "action_items": [
+    {"item": "7", "label": "Sampling", "status": "MISSING", "fix": "..."}
+  ]
+}
+```
+
+The `orchestrate` skill reads `fixable_by_ai` to decide whether to attempt auto-repair or halt for human input. Same pattern for `self-review`: its JSON output includes severity scores and fix suggestions that feed directly into the next iteration.
+
+This matters because it turns quality checking from a report you read into a signal that drives automated decisions.
+
+## Figure Manifest: `_figure_manifest.md`
+
+When `make-figures` generates plots, it now writes a structured manifest file listing every figure with its path, type, tool used, and description:
+
+```markdown
+# Figure Manifest
+Generated: 2026-04-14
+Study type: diagnostic-accuracy
+
+| Figure | Path | Type | Tool | Description |
+|--------|------|------|------|-------------|
+| Figure 1 | figures/fig1_stard_flow.svg | flow-diagram | D2 | STARD flow |
+| Figure 2 | figures/fig2_roc.pdf | roc-curve | matplotlib | ROC curves |
+| Figure 3 | figures/fig3_calibration.pdf | calibration | matplotlib | Calibration plot |
+```
+
+`write-paper` reads this manifest to place figures correctly in the manuscript body. The DOCX builder uses it to embed images with proper captions. No more manually dragging figures into a Word document and re-typing legends.
+
+## 33 Reporting Guidelines
+
+`check-reporting` now covers 33 guidelines, up from 22 in v2.0. The additions fill gaps in systematic review methodology and risk-of-bias assessment:
+
+| Category | New Additions |
+|----------|--------------|
+| Systematic Reviews | PRISMA-P, SWiM, AMSTAR 2 |
+| Risk of Bias | QUADAS-C, ROBINS-E, ROBIS, ROB-ME, RoB NMA |
+| Prediction Models | PROBAST+AI |
+| Measurement | COSMIN |
+
+Each guideline includes the full item checklist with specific fix suggestions when items are missing. The AI-specific extensions (STARD-AI, TRIPOD+AI, PROBAST+AI, MI-CLEAR-LLM) make this particularly relevant for radiology and medical AI research.
+
+## Post-Skill Validation
+
+In `--e2e` mode, the orchestrator verifies expected outputs after every skill completes. If `analyze-stats` does not produce a Table 1 file, the pipeline halts immediately rather than letting `write-paper` proceed with placeholder data.
+
+This is a direct response to a real failure mode: in earlier versions, a skill could fail silently (e.g., a statistical model that did not converge), and downstream skills would fill in the gap with hallucinated content. Post-skill validation eliminates that class of errors.
+
+## Try It Now
+
+Install or update:
+
+```bash
+# Install all 22 skills
+git clone https://github.com/Aperivue/medsci-skills.git
+cp -r medsci-skills/skills/* ~/.claude/skills/
+
+# Run the full pipeline on your data
+/orchestrate --e2e
+
+# Or run autonomous manuscript writing on an existing project
+/write-paper --autonomous
+```
+
+If you already have MedSci Skills installed, pull the latest version and re-copy. All new flags default to off — your existing skill calls work exactly as before.
+
+The full skill list, documentation, and three end-to-end demos are on GitHub: [github.com/Aperivue/medsci-skills](https://github.com/Aperivue/medsci-skills)
+
+## What This Does Not Do
+
+A few things worth stating explicitly:
+
+- **It does not replace clinical judgment.** The pipeline generates manuscripts from data you provide. Study design, patient selection, clinical interpretation — those remain your responsibility.
+- **It does not guarantee acceptance.** The QC chain catches reporting gaps and AI writing patterns, but peer reviewers evaluate scientific merit, which no automation can substitute.
+- **It does not upload or submit.** The pipeline stops at DOCX. Journal submission portals, cover letters, and author agreements are manual steps by design.
+
+## Background
+
+MedSci Skills is an open-source bundle of 22 Claude Code skills for medical research, built by a radiology resident running multiple concurrent studies. The project started with a single PDF download script and grew into a full research pipeline. Previous posts cover the [origin story](/blog/doctor-built-research-skills-claude-code) and [three end-to-end demos](/blog/medsci-skills-three-demos).
+
+v2.2 is available now on [GitHub](https://github.com/Aperivue/medsci-skills). MIT licensed.
+
+---
+
+*MedSci Skills is developed by [Aperivue](https://aperivue.com). For questions or feature requests, open an issue on the [GitHub repository](https://github.com/Aperivue/medsci-skills).*

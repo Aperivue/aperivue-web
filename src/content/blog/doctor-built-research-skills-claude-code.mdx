@@ -1,5 +1,5 @@
 ---
-title: "How a Non-Programmer Doctor Built 16 Research Automation Skills with Claude Code"
+title: "How a Non-Programmer Doctor Built 22 Research Automation Skills with Claude Code"
 description: "A radiology resident with no coding background built an open-source toolkit that automates systematic reviews, manuscript writing, and statistical analysis — using nothing but Claude Code and domain expertise."
 date: "2026-04-07"
 tags: ["claude-code", "research-automation", "medical-ai", "open-source", "systematic-review"]
@@ -27,7 +27,7 @@ Claude Code wrote a Python script. It did not work perfectly on the first try �
 
 That script saved me an afternoon. More importantly, it planted an idea: what if I saved this as a reusable skill, so next time I start a meta-analysis, the PDF retrieval step is already solved?
 
-## From One Script to 15 Skills
+## From One Script to 22 Skills
 
 Claude Code has a feature called [skills](https://docs.anthropic.com/en/docs/claude-code/skills) — instruction files that teach it how to handle specific types of tasks. You write a SKILL.md file describing the workflow, the inputs, the outputs, and the constraints. Next time you ask Claude to do that task, it follows the skill instead of starting from scratch.
 
@@ -39,18 +39,18 @@ Over the following weeks, every time I caught myself repeating a research task a
 
 **Manuscript writing** became `write-paper` — an 8-phase pipeline from outline to submission-ready draft, with built-in checks for AI writing patterns (it flags and rewrites phrases like "it is worth noting" or "comprehensive analysis").
 
-**Reporting compliance** became `check-reporting` — audits a manuscript against 15 reporting guidelines including STROBE, STARD, TRIPOD+AI, PRISMA, and risk-of-bias tools like QUADAS-2 and RoB 2. Returns a checklist with PRESENT, PARTIAL, or MISSING for each item.
+**Reporting compliance** became `check-reporting` — audits a manuscript against 33 reporting guidelines including STROBE, STARD, TRIPOD+AI, PRISMA, and risk-of-bias tools like QUADAS-2 and RoB 2. Returns a checklist with PRESENT, PARTIAL, or MISSING for each item.
 
 **Figures** became `make-figures` — generates ROC curves, forest plots, PRISMA flow diagrams, Bland-Altman plots, and confusion matrices at 300 DPI, colorblind-safe, sized for journal submission.
 
-The full list reached 16 skills:
+The full list reached 22 skills:
 
 | Skill | What It Does |
 |-------|-------------|
 | `search-lit` | Literature search with citation verification |
 | `analyze-stats` | Statistical analysis code generation |
 | `write-paper` | Full IMRAD manuscript pipeline |
-| `check-reporting` | Compliance audit (15 guidelines) |
+| `check-reporting` | Compliance audit (22 guidelines) |
 | `make-figures` | Publication-ready figures |
 | `meta-analysis` | Systematic review pipeline (8 phases) |
 | `design-study` | Study design and validity review |
@@ -63,6 +63,12 @@ The full list reached 16 skills:
 | `publish-skill` | Skill packaging for distribution |
 | `fulltext-retrieval` | OA PDF batch download |
 | `orchestrate` | Single entry point — classifies and routes |
+| `calc-sample-size` | Interactive sample size calculator |
+| `clean-data` | Data profiling and cleaning |
+| `find-journal` | Journal recommendation engine |
+| `write-protocol` | IRB protocol and PROSPERO drafts |
+| `deidentify` | Clinical data de-identification CLI |
+| `add-journal` | Add journal profiles to database |
 
 Each skill was born from a real problem in a real project — not from a hypothetical "what if someone needed this" exercise.
 

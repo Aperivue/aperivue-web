@@ -9,7 +9,7 @@ const skillsData = { en: skillsEn, ko: skillsKo };
 export const metadata: Metadata = {
   title: "Medical Research Skills for Claude Code | Aperivue",
   description:
-    "22 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. End-to-end pipeline mode, anti-hallucination citations, 22 reporting guidelines, publication-ready figures.",
+    "22 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. End-to-end pipeline mode, anti-hallucination citations, 33 reporting guidelines, publication-ready figures.",
   keywords: [
     "claude code skills",
     "medical research",
@@ -203,7 +203,7 @@ export default async function SkillsPage({
           </div>
           <div>
             <h3 className="font-semibold text-primary">
-              15 Reporting Guidelines
+              33 Reporting Guidelines
             </h3>
             <p className="mt-2 text-sm text-foreground/60">
               STROBE, STARD, TRIPOD+AI, PRISMA, ARRIVE built-in. CONSORT,

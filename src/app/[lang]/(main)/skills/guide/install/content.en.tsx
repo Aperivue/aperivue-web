@@ -7,7 +7,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
     <div>
       <h1 className="text-2xl font-bold">Step 1. Installation</h1>
       <p className="mt-2 text-foreground/60">
-        Install the Claude Code Desktop app and copy all 20 MedSci Skills.
+        Install the Claude Code Desktop app and copy all 22 MedSci Skills.
         <br />
         No terminal or command line required.
       </p>
@@ -168,7 +168,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
 │   └── SKILL.md
 ├── write-paper/
 │   └── SKILL.md
-└── ... (20 folders total)`}
+└── ... (22 folders total)`}
                   </pre>
                 </div>
               </div>

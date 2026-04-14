@@ -7,7 +7,7 @@ import InstallContentEn from "./content.en";
 export const metadata: Metadata = {
   title: "Installation Guide — Claude Code Desktop + MedSci Skills",
   description:
-    "Step-by-step guide: install Claude Code Desktop and 20 MedSci Skills. No terminal needed.",
+    "Step-by-step guide: install Claude Code Desktop and 22 MedSci Skills. No terminal needed.",
 };
 
 export default async function InstallPage({
