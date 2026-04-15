@@ -143,6 +143,13 @@
       "description": "LLM 분석 전 임상 연구 데이터를 비식별화합니다. 10개국 로케일 팩을 지원하는 독립 Python CLI. LLM 미사용.",
       "features": ["정규식 + 휴리스틱 기반 PHI 탐지", "대화형 터미널 검토", "날짜 이동 & 가명처리"],
       "isNew": true
+    },
+    {
+      "name": "find-cohort-gap",
+      "title": "코호트 연구 Gap 탐색",
+      "description": "종단 코호트 데이터베이스에서 연구 공백을 탐색합니다. 6단계 파이프라인(코호트 접수 → PI 프로파일링 → 교차 매트릭스 → 문헌 포화도 스캔 → 6-Pattern 점수화 → 실현가능성 게이트)으로 순위별 연구 주제 제안서를 출력합니다.",
+      "features": ["NHIS, UK Biobank, 기관 EMR, 건강검진 레지스트리 등 모든 코호트 지원", "실현가능성 게이트 포함 6-Pattern Gap 점수화", "순위별 제안서 + One-pager 출력"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [

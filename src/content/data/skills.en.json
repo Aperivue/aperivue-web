@@ -143,6 +143,13 @@
       "description": "De-identify clinical research data before LLM-assisted analysis. Standalone Python CLI with 10 country locale packs. No LLM involved.",
       "features": ["PHI detection via regex + heuristics", "Interactive terminal review", "Date shifting & pseudonymization"],
       "isNew": true
+    },
+    {
+      "name": "find-cohort-gap",
+      "title": "Cohort Gap Finder",
+      "description": "Research gap finder for longitudinal cohort databases. 6-phase pipeline (cohort intake → PI profiling → intersection matrix → literature saturation scan → 6-Pattern scoring → feasibility gate) that outputs ranked topic proposals with comparison tables and one-pagers.",
+      "features": ["Works with any cohort: NHIS, UK Biobank, institutional EMR, health checkup registries", "6-Pattern gap scoring with feasibility gate", "Ranked proposals with one-pager output"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [
