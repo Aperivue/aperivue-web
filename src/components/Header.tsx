@@ -11,6 +11,7 @@ interface NavDict {
     skills: string;
     rads: string;
     blog: string;
+    lectures: string;
     about: string;
   };
 }
@@ -49,6 +50,7 @@ export default function Header({
     { href: `/${lang}/skills`, label: dict.nav.skills },
     { href: `/${lang}/rads`, label: dict.nav.rads },
     { href: `/${lang}/blog`, label: dict.nav.blog },
+    { href: `/${lang}/lectures`, label: dict.nav.lectures },
     { href: `/${lang}/about`, label: dict.nav.about },
   ];
 

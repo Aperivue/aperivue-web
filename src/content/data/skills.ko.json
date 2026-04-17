@@ -150,6 +150,27 @@
       "description": "종단 코호트 데이터베이스에서 연구 공백을 탐색합니다. 6단계 파이프라인(코호트 접수 → PI 프로파일링 → 교차 매트릭스 → 문헌 포화도 스캔 → 6-Pattern 점수화 → 실현가능성 게이트)으로 순위별 연구 주제 제안서를 출력합니다.",
       "features": ["NHIS, UK Biobank, 기관 EMR, 건강검진 레지스트리 등 모든 코호트 지원", "실현가능성 게이트 포함 6-Pattern Gap 점수화", "순위별 제안서 + One-pager 출력"],
       "isNew": true
+    },
+    {
+      "name": "replicate-study",
+      "title": "연구 복제",
+      "description": "기존 코호트 연구를 다른 데이터베이스에서 복제합니다. 원논문에서 방법론을 추출하고, 변수 매핑 테이블로 harmonization한 뒤, 분석 코드를 생성하고 차이 보고서를 출력합니다.",
+      "features": ["5단계 워크플로우: 원논문 분석 → 변수 매핑 → 코드 생성 → 차이 보고서 → 검증", "KNHANES/NHANES harmonization 테이블 내장", "Joo 2026 cross-national 복제로 검증 완료"],
+      "isNew": true
+    },
+    {
+      "name": "cross-national",
+      "title": "다국가 비교 연구",
+      "description": "병렬 조사 데이터를 활용한 다국가 비교 연구. 변수 harmonization, 국가별 가중치 분석(데이터 풀링 금지), 국가별 층화 비교표를 생성합니다.",
+      "features": ["KNHANES + NHANES + CHNS 변수 코딩 레퍼런스 내장", "국가별 survey design으로 데이터 풀링 없이 분석", "2국 및 3국 비교 설계 지원"],
+      "isNew": true
+    },
+    {
+      "name": "batch-cohort",
+      "title": "배치 코호트 분석",
+      "description": "검증된 템플릿 1개 × 다수 노출/결과 조합에서 N개의 분석 스크립트를 생성합니다. 동일 방법론으로 변수만 교체하는 '80명 팀' 패턴.",
+      "features": ["자기조정 방지 & EPV 체크", "Bonferroni 보정 & 요약 히트맵", "검증: KNHANES 18조합, 3국 45조합 성공"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [

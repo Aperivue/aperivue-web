@@ -2,7 +2,13 @@ import Link from "next/link";
 import AperivueLogo from "./AperivueLogo";
 
 interface FooterDict {
-  nav: { products: string; skills: string; blog: string; about: string };
+  nav: {
+    products: string;
+    skills: string;
+    blog: string;
+    lectures: string;
+    about: string;
+  };
   footer: { tagline: string; company: string };
   about: { contact: string };
 }
@@ -35,6 +41,7 @@ export default function Footer({
               <Link href={`/${lang}/about`} className="hover:text-primary">{dict.nav.about}</Link>
               <Link href={`/${lang}/products`} className="hover:text-primary">{dict.nav.products}</Link>
               <Link href={`/${lang}/blog`} className="hover:text-primary">{dict.nav.blog}</Link>
+              <Link href={`/${lang}/lectures`} className="hover:text-primary">{dict.nav.lectures}</Link>
               <Link href={`/${lang}/about#contact`} className="hover:text-primary">{dict.about.contact}</Link>
             </div>
             <div className="flex flex-col gap-2">

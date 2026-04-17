@@ -127,6 +127,31 @@ const categories = [
       },
     ],
   },
+  {
+    emoji: "7",
+    title: "다국가 비교 또는 배치 분석을 하고 싶어요",
+    description: "다른 DB에서 연구를 복제하거나, 노출 × 결과 매트릭스를 돌리는 단계",
+    skills: [
+      {
+        name: "replicate-study",
+        label: "연구 복제",
+        prompt: "/replicate-study Joo 2026 (우울→당뇨) 연구를 KNHANES 2018에서 복제해줘",
+        note: "원논문 방법론 추출 → 변수 매핑 → 분석 코드 생성 → 차이 보고서",
+      },
+      {
+        name: "cross-national",
+        label: "다국가 비교",
+        prompt: "/cross-national 한국(KNHANES)과 미국(NHANES)에서 우울→당뇨 비교해줘",
+        note: "데이터 풀링 없이 국가별 가중치 분석. 변수 코딩 레퍼런스 내장",
+      },
+      {
+        name: "batch-cohort",
+        label: "배치 코호트 분석",
+        prompt: "/batch-cohort KNHANES 2018에서 6개 노출 × 3개 결과 배치 실행해줘",
+        note: "검증된 템플릿 하나로 N개 조합. 자기조정 방지, EPV 체크, Bonferroni 보정",
+      },
+    ],
+  },
 ];
 
 export default function ContentKo({ lang }: { lang: string }) {

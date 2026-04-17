@@ -127,6 +127,31 @@ const categories = [
       },
     ],
   },
+  {
+    emoji: "7",
+    title: "I want to do cross-national or batch research",
+    description: "Replicate studies across databases or run exposure × outcome matrices",
+    skills: [
+      {
+        name: "replicate-study",
+        label: "Study Replication",
+        prompt: "/replicate-study Replicate Joo 2026 (depression→diabetes) on KNHANES 2018",
+        note: "Extracts methodology from source paper, maps variables, generates analysis code + difference report",
+      },
+      {
+        name: "cross-national",
+        label: "Cross-National Comparison",
+        prompt: "/cross-national Compare depression→diabetes between Korea (KNHANES) and US (NHANES)",
+        note: "Parallel survey analysis with no data pooling. Built-in variable coding references",
+      },
+      {
+        name: "batch-cohort",
+        label: "Batch Cohort Analysis",
+        prompt: "/batch-cohort Run 6 exposures × 3 outcomes on KNHANES 2018",
+        note: "One validated template, N combinations. Self-adjustment prevention, EPV checks, Bonferroni correction",
+      },
+    ],
+  },
 ];
 
 export default function ContentEn({ lang }: { lang: string }) {

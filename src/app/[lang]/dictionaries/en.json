@@ -4,6 +4,7 @@
     "skills": "Skills",
     "rads": "RADS",
     "blog": "Blog",
+    "lectures": "Lectures",
     "about": "About"
   },
   "home": {
@@ -71,6 +72,29 @@
   "products": {
     "title": "Our Products",
     "description": "Free, open-source tools built for radiologists and medical researchers."
+  },
+  "lectures": {
+    "title": "Lectures & Workshops",
+    "tagline": "AI Vibe Coding for Physicians",
+    "description": "Hands-on workshops that help physicians use AI in their own practice and research. Run by a radiologist who codes.",
+    "whatYouLearn": "What You'll Learn",
+    "learn1Title": "Build tools for your own workflow",
+    "learn1Desc": "From scheduling helpers to report templates — turn daily frustrations into working software in a few hours.",
+    "learn2Title": "Use AI for research end-to-end",
+    "learn2Desc": "Dataset → statistics → figures → manuscript draft → reporting checklist — one pipeline demonstrated with medsci-skills.",
+    "learn3Title": "Find research gaps in your own data",
+    "learn3Desc": "Feed your institution's data dictionary and let AI suggest research questions grounded in existing literature.",
+    "format": "Format",
+    "formatDesc": "2–3 hour hands-on. Each participant brings a laptop. Claude Pro + Claude Desktop required. Pre-survey and OS-specific install guide sent 1 week in advance to minimize setup friction.",
+    "pastLectures": "Past Lectures",
+    "upcomingLectures": "Upcoming",
+    "readRecap": "Read full recap",
+    "lectureDetails": "Details",
+    "proposeTitle": "Host a Lecture at Your Institution",
+    "proposeDesc": "Open to invitations from hospitals, academic societies, and departments. We've run lectures for radiology, surgery, and general clinical audiences.",
+    "proposeContact": "Propose a lecture",
+    "participants": "participants",
+    "testimonials": "Voices from the room"
   },
   "guide": {
     "nav": {

@@ -150,6 +150,27 @@
       "description": "Research gap finder for longitudinal cohort databases. 6-phase pipeline (cohort intake → PI profiling → intersection matrix → literature saturation scan → 6-Pattern scoring → feasibility gate) that outputs ranked topic proposals with comparison tables and one-pagers.",
       "features": ["Works with any cohort: NHIS, UK Biobank, institutional EMR, health checkup registries", "6-Pattern gap scoring with feasibility gate", "Ranked proposals with one-pager output"],
       "isNew": true
+    },
+    {
+      "name": "replicate-study",
+      "title": "Study Replication",
+      "description": "Replicate an existing cohort study on a different database. Extracts methodology from a source paper, maps variables via harmonization table, generates analysis code, and produces a replication difference report.",
+      "features": ["5-phase workflow: source analysis → variable mapping → code generation → difference report → verification", "Built-in KNHANES/NHANES harmonization table", "Validated on Joo 2026 cross-national replication"],
+      "isNew": true
+    },
+    {
+      "name": "cross-national",
+      "title": "Cross-National Comparison",
+      "description": "End-to-end cross-national comparison study using parallel survey data. Variable harmonization, parallel weighted analysis (no data pooling), and country-stratified comparison tables.",
+      "features": ["KNHANES + NHANES + CHNS variable coding references", "Country-specific survey design with no data pooling", "Supports 2-country and 3-country designs"],
+      "isNew": true
+    },
+    {
+      "name": "batch-cohort",
+      "title": "Batch Cohort Analysis",
+      "description": "Generate N analysis scripts from one validated template × multiple exposure/outcome combinations. The \"80-person team\" pattern: same method, swap variables only.",
+      "features": ["Self-adjustment prevention & EPV checks", "Bonferroni correction & summary heatmaps", "Validated: 18 combos on KNHANES, 45 combos across 3 countries"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [
