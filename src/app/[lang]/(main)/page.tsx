@@ -5,6 +5,15 @@ import { notFound } from "next/navigation";
 function HeroVisual() {
   return (
     <div className="relative flex items-center justify-center">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-70"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(8,145,178,0.18), rgba(30,64,175,0.08) 45%, transparent 75%)",
+          filter: "blur(12px)",
+        }}
+      />
       <div className="relative h-64 w-64 md:h-80 md:w-80">
         {[0, 1, 2, 3, 4].map((i) => (
           <div
@@ -18,8 +27,8 @@ function HeroVisual() {
           />
         ))}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent opacity-80 blur-sm" />
-          <div className="absolute h-4 w-4 rounded-full bg-gradient-to-br from-primary to-accent" />
+          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent opacity-80 blur-md" />
+          <div className="absolute h-4 w-4 rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_0_20px_rgba(8,145,178,0.6)]" />
         </div>
       </div>
     </div>
@@ -45,15 +54,23 @@ export default async function Home({
       `}</style>
 
       {/* Hero */}
-      <section className="px-6 py-24 md:py-32">
+      <section className="relative overflow-hidden px-6 py-24 md:py-32">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px]"
+          style={{
+            background:
+              "radial-gradient(80% 60% at 50% 0%, rgba(30,64,175,0.08), transparent 70%)",
+          }}
+        />
         <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-5">
           <div className="md:col-span-3">
-            <p className="text-xs font-medium uppercase tracking-widest text-accent">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
               {t.tagline}
             </p>
-            <h1 className="mt-4 text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl">
+            <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-7xl">
               {t.hero}{" "}
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text pb-1 text-transparent">
                 {t.heroHighlight}
               </span>
             </h1>
@@ -65,7 +82,7 @@ export default async function Home({
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href={`/${lang}/rads`}
-                className="rounded-full bg-gradient-to-r from-primary to-primary-dark px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                className="rounded-full bg-gradient-to-r from-primary to-accent px-7 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(30,64,175,0.6)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(8,145,178,0.55)]"
               >
                 {t.ctaRads}
               </Link>
@@ -73,7 +90,7 @@ export default async function Home({
                 href="https://youtube.com/@scrubcode"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-border px-7 py-3 text-sm font-semibold transition-colors hover:bg-muted"
+                className="rounded-full border border-border px-7 py-3 text-sm font-semibold transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-muted"
               >
                 {t.ctaYoutube} &#9654;
               </a>
