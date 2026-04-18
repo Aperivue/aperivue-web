@@ -171,6 +171,48 @@
       "description": "검증된 템플릿 1개 × 다수 노출/결과 조합에서 N개의 분석 스크립트를 생성합니다. 동일 방법론으로 변수만 교체하는 '80명 팀' 패턴.",
       "features": ["자기조정 방지 & EPV 체크", "Bonferroni 보정 & 요약 히트맵", "검증: KNHANES 18조합, 3국 45조합 성공"],
       "isNew": true
+    },
+    {
+      "name": "fill-protocol",
+      "title": "프로토콜 양식 자동 작성",
+      "description": "IRB 및 기관 Word 양식 템플릿(.doc/.docx)을 원본 레이아웃, 셀 구조, 서식을 보존하면서 자동으로 작성합니다. 프로토콜 초안에서 내용을 추출하여 레이블이 지정된 양식 셀에 매핑합니다.",
+      "features": ["원본 양식 구조 보존 — 레이아웃 깨짐 없음", "한국 IRB 양식 셀 레이블 매칭", "원본 백업 + LibreOffice 변환"],
+      "isNew": true
+    },
+    {
+      "name": "humanize",
+      "title": "AI 문체 제거",
+      "description": "학술 원고에서 AI 작문 패턴을 탐지하고 제거합니다. 18개 패턴(significance inflation, AI 어휘, copula 회피 등)을 스캔하여 기술적 정확성을 유지하면서 자연스러운 문체로 재작성합니다.",
+      "features": ["인스턴스별 플래깅으로 18패턴 탐지", "밀도 목표: 1,000단어당 AI 표현 2.0건 미만", "p값·임상 용어 등 모든 수치 보존 재작성"],
+      "isNew": true
+    },
+    {
+      "name": "author-strategy",
+      "title": "저자 전략 분석",
+      "description": "PubMed 저자 프로필 분석. E-utilities로 출판 이력을 가져와 연구 유형(GBD, SR/MA, NHIS, AI/ML 등)을 분류하고, 7개 시각화와 복제 기회 포함 전략 보고서를 생성합니다.",
+      "features": ["E-utilities 배치 fetch + 중복 제거", "연구 유형 분류기: GBD, SR/MA, NHIS, AI/ML, 다국가, 증례 시리즈", "공저자 gap 분석 포함 복제 기회 점수화"],
+      "isNew": true
+    },
+    {
+      "name": "peer-review",
+      "title": "동료 심사 초안",
+      "description": "의학영상 저널용 체계적 동료 심사 초안 작성. 저널별 포맷(RYAI, INSI, EURE, AJR, KJR), 간결성 목표(500~800단어), 제출 전 QC 체크리스트를 제공합니다.",
+      "features": ["근거 포함 Major/Minor/Reject 추천", "영상의학 5개 저널 포맷 프리셋", "제출 전 QC: 단어 수, 톤, 윤리 적신호"],
+      "isNew": true
+    },
+    {
+      "name": "ma-scout",
+      "title": "MA 주제 탐색",
+      "description": "메타분석 주제 발굴 및 실현가능성 평가. Professor-first(프로필 → 기둥 분석 → MA 공백) 또는 Topic-first(질문 → 현황 스캔 → 공저자 매칭) 두 가지 모드. 다중 소스 검증과 현실적 k 추정 제공.",
+      "features": ["Professor-first · Topic-first 이중 모드", "PubMed, PROSPERO, bioRxiv 다중 소스 검증", "등록 15~30% 할인 반영한 현실적 k 추정"],
+      "isNew": true
+    },
+    {
+      "name": "lit-sync",
+      "title": "문헌 동기화",
+      "description": ".bib 파일을 Zotero 라이브러리 + Obsidian 문헌 노트에 동기화합니다. 누적된 10개 이상의 노트에서 개념 추출 및 교차 주제 발견. /search-lit 이후 또는 독립 실행 모두 가능.",
+      "features": ["Better BibTeX 키 매칭으로 Zotero 가져오기", "위키링크 포함 Obsidian 문헌 노트 생성", "10개 이상 노트에서 교차 개념 자동 추출"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [

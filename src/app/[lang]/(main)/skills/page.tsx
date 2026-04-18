@@ -9,7 +9,7 @@ const skillsData = { en: skillsEn, ko: skillsKo };
 export const metadata: Metadata = {
   title: "Medical Research Skills for Claude Code | Aperivue",
   description:
-    "22 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. End-to-end pipeline mode, anti-hallucination citations, 33 reporting guidelines, publication-ready figures.",
+    "32 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. End-to-end pipeline mode, anti-hallucination citations, 33 reporting guidelines, publication-ready figures.",
   keywords: [
     "claude code skills",
     "medical research",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Medical Research Skills for Claude Code",
     description:
-      "22 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
+      "32 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
     url: "https://aperivue.com/skills",
   },
 };
@@ -114,7 +114,8 @@ export default async function SkillsPage({
         </div>
         <p className="mt-3 text-center text-xs text-foreground/40">
           + orchestrate &middot; meta-analysis &middot; grant-builder &middot;
-          intake-project &middot; manage-project &middot; publish-skill
+          intake-project &middot; manage-project &middot; humanize &middot;
+          ma-scout &middot; author-strategy &middot; peer-review &middot; lit-sync &middot; publish-skill
         </p>
       </section>
 

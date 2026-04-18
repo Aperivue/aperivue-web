@@ -171,6 +171,48 @@
       "description": "Generate N analysis scripts from one validated template × multiple exposure/outcome combinations. The \"80-person team\" pattern: same method, swap variables only.",
       "features": ["Self-adjustment prevention & EPV checks", "Bonferroni correction & summary heatmaps", "Validated: 18 combos on KNHANES, 45 combos across 3 countries"],
       "isNew": true
+    },
+    {
+      "name": "fill-protocol",
+      "title": "Protocol Form Filler",
+      "description": "Fill Korean IRB and institutional Word form templates (.doc/.docx) while preserving original layout, cell structure, and formatting. Extracts content from your protocol draft and maps it to labeled form cells.",
+      "features": ["Preserves original form structure — no layout breakage", "Cell label matching for Korean IRB forms", "LibreOffice conversion with original backup"],
+      "isNew": true
+    },
+    {
+      "name": "humanize",
+      "title": "AI Pattern Remover",
+      "description": "Detect and remove AI writing patterns from academic manuscripts. Scans for 18 common patterns — significance inflation, AI vocabulary, copula avoidance — and rewrites flagged passages while preserving technical accuracy.",
+      "features": ["18-pattern detection with per-instance flagging", "Density target: <2.0 AI instances per 1,000 words", "Rewrites preserve all numbers, p-values, and clinical terms"],
+      "isNew": true
+    },
+    {
+      "name": "author-strategy",
+      "title": "Author Strategy",
+      "description": "PubMed author profile analysis. Fetches publication history via E-utilities, classifies study types (GBD, SR/MA, NHIS, AI/ML, etc.), generates 7 visualizations, and produces a strategy report with replication opportunities.",
+      "features": ["E-utilities batch fetch with deduplication", "Study type classifier: GBD, SR/MA, NHIS, AI/ML, cross-national, case series", "Replication opportunity scoring with co-author gap analysis"],
+      "isNew": true
+    },
+    {
+      "name": "peer-review",
+      "title": "Peer Review Drafter",
+      "description": "Structured peer review drafting for medical imaging journals. Systematic manuscript analysis, journal-specific formatting (RYAI, INSI, EURE, AJR, KJR), conciseness targets (500–800 words), and pre-submission QC checklist.",
+      "features": ["Major / Minor / Reject recommendation with rationale", "Journal-specific format presets for 5 radiology journals", "Pre-submission QC: word count, tone, ethical red flags"],
+      "isNew": true
+    },
+    {
+      "name": "ma-scout",
+      "title": "MA Topic Scout",
+      "description": "Meta-analysis topic discovery and feasibility assessment. Two modes: Professor-first (profile → pillar analysis → MA gaps) or Topic-first (question → landscape scan → co-author matching). Multi-source validation with realistic k estimation.",
+      "features": ["Professor-first and Topic-first dual modes", "Multi-source validation: PubMed, PROSPERO, bioRxiv", "Realistic k estimation with 15–30% registration discount"],
+      "isNew": true
+    },
+    {
+      "name": "lit-sync",
+      "title": "Literature Sync",
+      "description": "Sync research references from .bib files to Zotero library + Obsidian literature notes. Concept extraction from 10+ accumulated notes with cross-cutting theme discovery. Works after /search-lit or standalone.",
+      "features": ["Zotero import via Better BibTeX key matching", "Obsidian literature note generation with wikilinks", "Cross-cutting concept extraction from 10+ notes"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [

@@ -1,0 +1,110 @@
+---
+title: "MedSci Skills v2.2.0: 32 Skills, Anti-Hallucination Everywhere, and validate_skills.sh"
+description: "MedSci Skills grows from 22 to 32 skills. Five new skills — humanize, author-strategy, peer-review, ma-scout, lit-sync — plus anti-hallucination citation verification now active across the full bundle, and a new CI validation script."
+date: "2026-04-18"
+tags: ["medsci-skills", "claude-code", "research-automation", "open-source", "anti-hallucination"]
+---
+
+# MedSci Skills v2.2.0: 32 Skills, Anti-Hallucination Everywhere, and validate_skills.sh
+
+MedSci Skills now ships 32 Claude Code skills for medical research — up from 22 in the last release. This update adds five new skills, extends anti-hallucination citation verification across the full bundle, and introduces `validate_skills.sh`, a CI-ready lint script that checks every skill for required structure before release.
+
+Here is what is new and why each addition matters.
+
+## Five New Skills
+
+### `/humanize` — AI Pattern Remover
+
+The single most-requested feature since the v2.2 pipeline launch. When `/write-paper --autonomous` runs without human review, the output reads like it was written by a language model — because it was. That is fine for a draft. It is not acceptable for a journal submission.
+
+`/humanize` scans for 18 known AI writing patterns: significance inflation ("notably," "importantly"), AI vocabulary ("delve," "leveraging," "underscore"), copula avoidance (passive constructions that hide the actor), over-hedging (triple qualifiers before every claim), and more. Every flagged passage gets a pattern label, a density score, and a rewrite that preserves all numbers, p-values, and clinical terminology.
+
+The density target is under 2.0 AI instances per 1,000 words. Above that threshold, the skill runs a second pass. The output is a tracked-changes view of every substitution so you can accept or reject each rewrite individually.
+
+This skill now runs automatically in Phase 7 of `/write-paper --autonomous`. It also runs standalone on any `.md` or `.docx` file.
+
+```
+/humanize --file ./manuscript.md
+```
+
+### `/author-strategy` — PubMed Profile Analysis
+
+Medical research output is not random. Prolific researchers follow recognizable patterns: they identify a strong dataset, develop a methodological template, and apply it systematically across exposure-outcome pairs. Understanding those patterns is useful whether you are looking for collaboration opportunities, identifying replication targets, or benchmarking your own portfolio.
+
+`/author-strategy` fetches an author's complete publication history via PubMed E-utilities, deduplicates records, and classifies each paper by study type: GBD contributor, SR/MA, national health data (NHIS, KNHANES, NHANES), AI/ML, cross-national comparison, case series, or other. It generates seven visualizations — publication timeline, study type breakdown, journal distribution, collaboration network, and more — and produces a strategy report that identifies the patterns most likely to replicate.
+
+The replication scoring surfaces papers where the methodology is well-defined, the dataset is publicly accessible, and no direct cross-national version exists yet.
+
+```
+/author-strategy --author "Yon DK" --max 200
+```
+
+### `/peer-review` — Structured Peer Review Drafter
+
+Reviewing a manuscript well takes 3–5 hours the first time. With practice and a structured approach, it takes 90 minutes. `/peer-review` provides the structure.
+
+The skill runs a systematic analysis of the submitted manuscript: research question clarity, methods adequacy, statistical analysis validity, results presentation, discussion scope, reporting guideline compliance, and ethical considerations. It drafts a review in the format required by your target journal — RYAI, INSI, EURE, AJR, or KJR — hitting the conciseness target for each (500–800 words for most radiology journals, longer for methods-heavy submissions).
+
+The recommendation — Accept, Minor Revision, Major Revision, or Reject — comes with a structured rationale. A pre-submission QC checklist catches common problems before you submit: tone calibration, ethical red flags, and word count verification.
+
+```
+/peer-review --manuscript ./submitted_paper.pdf --journal RYAI
+```
+
+### `/ma-scout` — MA Topic Discovery
+
+The hardest part of a meta-analysis is not running the statistics. It is finding a topic where a meta-analysis is both needed and feasible — where enough primary studies exist, no recent meta-analysis covers the question, and you can realistically assemble the data within your constraints.
+
+`/ma-scout` operates in two modes. **Professor-first mode** takes a researcher's name, builds their publication profile, identifies their methodological pillars, and surfaces MA gaps — questions in their research domain where primary studies accumulate but no synthesis exists yet. **Topic-first mode** takes a clinical question, scans PubMed, PROSPERO, and bioRxiv for existing and registered reviews, estimates the available k, and assesses feasibility.
+
+The k estimation applies a 15–30% discount to raw PubMed counts to account for duplicates, non-extractable data, and exclusions. This produces a more realistic number than the raw search hit count that tends to make every topic look feasible.
+
+```
+/ma-scout --mode professor-first --author "Rhim HC"
+/ma-scout --mode topic-first --question "RFA for HCC recurrence after resection"
+```
+
+### `/lit-sync` — Zotero + Obsidian Reference Sync
+
+Literature accumulates faster than notes get organized. `/lit-sync` closes the gap between your search results and your knowledge base.
+
+The skill reads `.bib` files produced by `/search-lit` or exported from any reference manager, imports entries into Zotero via Better BibTeX key matching, and generates Obsidian literature notes with wikilinks, frontmatter, and annotation stubs. When you have accumulated 10 or more literature notes on a topic, it runs a concept extraction pass that identifies cross-cutting themes and generates a synthesis note connecting them.
+
+The Obsidian notes follow the vault's existing conventions — folder placement, frontmatter schema, `## 관련 노트` section — so they integrate without manual cleanup.
+
+```
+/lit-sync --bib ./search_results.bib --project "RFA Meta"
+```
+
+## Anti-Hallucination Citations: Now Across the Full Bundle
+
+Anti-hallucination citation verification was already the core feature of `/search-lit`. In v2.2.0, it extends to every skill that outputs references.
+
+**What this means in practice:** When `/write-paper`, `/meta-analysis`, `/grant-builder`, or any other skill needs to cite a paper, it cannot generate the citation from memory. Every reference must pass through the verification pipeline — PubMed lookup by PMID, Semantic Scholar lookup by DOI, or CrossRef metadata check — before appearing in the output. If the lookup fails, the citation is flagged as `[UNVERIFIED — NEEDS MANUAL CHECK]` rather than silently included.
+
+This matters because language models hallucinate references confidently. The hallucinated paper often has a plausible title, a real-looking DOI, and authors who work in the right field. The only reliable way to catch fabricated citations is to check them against an external database at generation time, not at submission time.
+
+The verification overhead is small — PubMed and Semantic Scholar respond in under a second per query. CrossRef failures are batched silently so a single unresolvable DOI does not stall the pipeline.
+
+## `validate_skills.sh` — CI-Ready Skill Linter
+
+Every skill in MedSci Skills follows a required structure: `skill.md` with `name`, `description`, `triggers`, and `tools` fields; a `README.md`; and optional supporting files. Before v2.2.0, this was enforced by convention. From v2.2.0, it is enforced by `scripts/validate_skills.sh`.
+
+The script runs automatically before release and is safe to run locally at any time:
+
+```bash
+# From the repo root
+bash scripts/validate_skills.sh
+```
+
+It checks every skill directory for required files, validates that `skill.md` contains all mandatory frontmatter fields, checks that trigger lists are non-empty, and reports PASS / WARN / FAIL per skill with a summary count. Contributors can run it before submitting pull requests to catch structural issues before review.
+
+## What Is Next
+
+The next focus areas:
+
+- **`/fill-protocol`** — fill Korean IRB Word form templates (already in medsci-skills, landing page integration pending)
+- **Batch cohort cross-national demos** — adding a 3-country KNHANES/NHANES/CHNS demo to the public demo directory
+- **Journal profile expansion** — adding profiles for Nature Medicine, Lancet Digital Health, and NEJM AI to the `find-journal` database
+
+The full skill list is at [aperivue.com/skills](https://aperivue.com/skills). The repository is at [github.com/Aperivue/medsci-skills](https://github.com/Aperivue/medsci-skills).
