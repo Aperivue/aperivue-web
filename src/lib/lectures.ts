@@ -33,8 +33,18 @@ export interface Lecture extends LectureMeta {
   content: string;
 }
 
-function parseLectureFile(filename: string): LectureMeta {
-  const slug = filename.replace(/\.mdx$/, "");
+function resolveFilename(slug: string, lang: string): string | null {
+  const langFile = `${slug}.${lang}.mdx`;
+  const fallback = `${slug}.mdx`;
+  if (fs.existsSync(path.join(LECTURES_DIR, langFile))) return langFile;
+  if (fs.existsSync(path.join(LECTURES_DIR, fallback))) return fallback;
+  // fall back to "ko" if the requested lang file doesn't exist
+  const koFile = `${slug}.ko.mdx`;
+  if (fs.existsSync(path.join(LECTURES_DIR, koFile))) return koFile;
+  return null;
+}
+
+function parseLectureFile(filename: string, slug: string): LectureMeta {
   const raw = fs.readFileSync(path.join(LECTURES_DIR, filename), "utf-8");
   const { data } = matter(raw);
 
@@ -57,27 +67,42 @@ function parseLectureFile(filename: string): LectureMeta {
   };
 }
 
-export function getAllLectures(): LectureMeta[] {
+function uniqueSlugs(): string[] {
   if (!fs.existsSync(LECTURES_DIR)) return [];
-
   const files = fs.readdirSync(LECTURES_DIR).filter((f) => f.endsWith(".mdx"));
-  const lectures = files.map(parseLectureFile);
+  const slugs = new Set<string>();
+  for (const f of files) {
+    const slug = f.replace(/\.(ko|en)\.mdx$/, "").replace(/\.mdx$/, "");
+    slugs.add(slug);
+  }
+  return [...slugs];
+}
 
+export function getAllLectures(lang: string = "ko"): LectureMeta[] {
+  const lectures: LectureMeta[] = [];
+  for (const slug of uniqueSlugs()) {
+    const filename = resolveFilename(slug, lang);
+    if (filename) lectures.push(parseLectureFile(filename, slug));
+  }
   return lectures.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 }
 
-export function getLectureBySlug(slug: string): Lecture | null {
-  const filepath = path.join(LECTURES_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filepath)) return null;
+export function getLectureBySlug(
+  slug: string,
+  lang: string = "ko"
+): Lecture | null {
+  const filename = resolveFilename(slug, lang);
+  if (!filename) return null;
 
-  const raw = fs.readFileSync(filepath, "utf-8");
+  const raw = fs.readFileSync(path.join(LECTURES_DIR, filename), "utf-8");
   const { content } = matter(raw);
-  const meta = parseLectureFile(`${slug}.mdx`);
+  const meta = parseLectureFile(filename, slug);
 
-  return {
-    ...meta,
-    content,
-  };
+  return { ...meta, content };
+}
+
+export function getAllLectureSlugs(): string[] {
+  return uniqueSlugs();
 }

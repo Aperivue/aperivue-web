@@ -38,9 +38,9 @@ export default async function LecturesPage({ params }: Props) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const dict = await getDictionary(lang as Locale);
-  const all = getAllLectures();
-  const completed = all.filter((l) => l.status === "completed");
-  const upcoming = all.filter((l) => l.status === "upcoming");
+  const completed = getAllLectures(lang).filter(
+    (l) => l.status === "completed"
+  );
 
   const contactHref = `/${lang}/about#contact`;
 
@@ -54,7 +54,7 @@ export default async function LecturesPage({ params }: Props) {
         <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
           {dict.lectures.title}
         </h1>
-        <p className="mt-5 text-lg text-foreground/70">
+        <p className="mt-5 break-keep text-lg text-foreground/70">
           {dict.lectures.description}
         </p>
         <div className="mt-6">
@@ -163,45 +163,6 @@ export default async function LecturesPage({ params }: Props) {
                     className="text-sm font-medium text-primary hover:underline"
                   >
                     {dict.lectures.readRecap} →
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Upcoming */}
-      {upcoming.length > 0 && (
-        <section className="mt-20">
-          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
-            {dict.lectures.upcomingLectures}
-          </h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {upcoming.map((l) => (
-              <article
-                key={l.slug}
-                className="rounded-2xl border border-dashed border-border p-6"
-              >
-                <div className="flex flex-wrap items-center gap-3 text-xs text-foreground/50">
-                  <time>{formatDate(l.date, lang)}</time>
-                  <span>•</span>
-                  <span>{l.institution}</span>
-                </div>
-                <Link href={`/${lang}/lectures/${l.slug}`}>
-                  <h3 className="mt-3 text-lg font-semibold hover:text-primary">
-                    {l.title}
-                  </h3>
-                </Link>
-                <p className="mt-3 text-sm text-foreground/70">
-                  {l.description}
-                </p>
-                <div className="mt-4">
-                  <Link
-                    href={`/${lang}/lectures/${l.slug}`}
-                    className="text-sm font-medium text-primary hover:underline"
-                  >
-                    {dict.lectures.lectureDetails} →
                   </Link>
                 </div>
               </article>

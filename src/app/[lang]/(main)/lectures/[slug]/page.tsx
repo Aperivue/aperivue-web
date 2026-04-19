@@ -10,16 +10,17 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const lectures = getAllLectures();
-  return lectures.flatMap((l) => [
-    { lang: "en", slug: l.slug },
-    { lang: "ko", slug: l.slug },
+  const { getAllLectureSlugs } = await import("@/lib/lectures");
+  const slugs = getAllLectureSlugs();
+  return slugs.flatMap((slug) => [
+    { lang: "en", slug },
+    { lang: "ko", slug },
   ]);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params;
-  const lecture = getLectureBySlug(slug);
+  const lecture = getLectureBySlug(slug, lang);
   if (!lecture) return {};
   return {
     title: lecture.title,
@@ -54,7 +55,7 @@ function formatDate(date: string, lang: string) {
 export default async function LectureDetailPage({ params }: Props) {
   const { lang, slug } = await params;
   if (!hasLocale(lang)) notFound();
-  const lecture = getLectureBySlug(slug);
+  const lecture = getLectureBySlug(slug, lang);
   if (!lecture) notFound();
   const dict = await getDictionary(lang as Locale);
 
