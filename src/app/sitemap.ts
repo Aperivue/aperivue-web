@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
-import { getAllLectures } from "@/lib/lectures";
+import { getAllPostSlugs } from "@/lib/blog";
+import { getAllLectureSlugs } from "@/lib/lectures";
 
 const BASE_URL = "https://aperivue.com";
 const locales = ["en", "ko"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts();
-  const lectures = getAllLectures();
+  const postSlugs = getAllPostSlugs();
+  const lectureSlugs = getAllLectureSlugs();
 
   const staticPages = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
@@ -40,29 +40,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
 
-    for (const post of posts) {
+    for (const slug of postSlugs) {
       entries.push({
-        url: `${BASE_URL}/${locale}/blog/${post.slug}`,
-        lastModified: new Date(post.date),
+        url: `${BASE_URL}/${locale}/blog/${slug}`,
+        lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.7,
         alternates: {
           languages: Object.fromEntries(
-            locales.map((l) => [l, `${BASE_URL}/${l}/blog/${post.slug}`])
+            locales.map((l) => [l, `${BASE_URL}/${l}/blog/${slug}`])
           ),
         },
       });
     }
 
-    for (const lecture of lectures) {
+    for (const slug of lectureSlugs) {
       entries.push({
-        url: `${BASE_URL}/${locale}/lectures/${lecture.slug}`,
-        lastModified: new Date(lecture.date),
+        url: `${BASE_URL}/${locale}/lectures/${slug}`,
+        lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.6,
         alternates: {
           languages: Object.fromEntries(
-            locales.map((l) => [l, `${BASE_URL}/${l}/lectures/${lecture.slug}`])
+            locales.map((l) => [l, `${BASE_URL}/${l}/lectures/${slug}`])
           ),
         },
       });

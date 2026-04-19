@@ -1,20 +1,25 @@
 import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import Link from "next/link";
 import type { Metadata } from "next";
+import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
+import { hasLocale, type Locale } from "../../../dictionaries";
 import { MDXContent } from "@/components/MDXContent";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  const slugs = getAllPostSlugs();
+  return slugs.flatMap((slug) => [
+    { lang: "en", slug },
+    { lang: "ko", slug },
+  ]);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const { lang, slug } = await params;
+  const post = getPostBySlug(slug, lang);
   if (!post) return {};
   return {
     title: post.title,
@@ -27,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: new Date(post.date).toISOString(),
       tags: post.tags,
       siteName: "Aperivue",
-      url: `https://aperivue.com/blog/${slug}`,
+      url: `https://aperivue.com/${lang}/blog/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -37,9 +42,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function formatDate(date: string, lang: string) {
+  const d = new Date(date);
+  return d.toLocaleDateString(lang === "ko" ? "ko-KR" : "en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const { lang, slug } = await params;
+  if (!hasLocale(lang)) notFound();
+  const post = getPostBySlug(slug, lang);
   if (!post) notFound();
 
   const jsonLd = {
@@ -61,7 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://aperivue.com/blog/${slug}`,
+      "@id": `https://aperivue.com/${lang}/blog/${slug}`,
     },
     keywords: post.tags.join(", "),
   };
@@ -72,13 +87,21 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <div className="mb-6 text-sm">
+        <Link
+          href={`/${lang}/blog`}
+          className="text-foreground/60 hover:text-primary"
+        >
+          ← {lang === "ko" ? "블로그" : "Blog"}
+        </Link>
+      </div>
       <article>
         <header>
           <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
             {post.title}
           </h1>
           <div className="mt-3 flex gap-3 text-sm text-foreground/50">
-            <time>{post.date}</time>
+            <time>{formatDate(post.date, lang)}</time>
             <span>{post.readingTime}</span>
           </div>
           {post.tags.length > 0 && (
