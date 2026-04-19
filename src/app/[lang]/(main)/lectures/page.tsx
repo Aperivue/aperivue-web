@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getAllLectures } from "@/lib/lectures";
 import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
@@ -116,8 +117,22 @@ export default async function LecturesPage({ params }: Props) {
             {completed.map((l) => (
               <article
                 key={l.slug}
-                className="rounded-2xl border border-border p-6 transition-shadow hover:shadow-lg"
+                className="overflow-hidden rounded-2xl border border-border transition-shadow hover:shadow-lg"
               >
+                {l.cover && (
+                  <Link href={`/${lang}/lectures/${l.slug}`}>
+                    <div className="relative h-52 w-full overflow-hidden bg-muted md:h-64">
+                      <Image
+                        src={l.cover}
+                        alt={l.title}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 800px"
+                      />
+                    </div>
+                  </Link>
+                )}
+                <div className="p-6">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-foreground/50">
                   <time>{formatDate(l.date, lang)}</time>
                   <span>•</span>
@@ -164,6 +179,7 @@ export default async function LecturesPage({ params }: Props) {
                   >
                     {dict.lectures.readRecap} →
                   </Link>
+                </div>
                 </div>
               </article>
             ))}

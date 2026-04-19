@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getAllLectures, getLectureBySlug } from "@/lib/lectures";
 import { getDictionary, hasLocale, type Locale } from "../../../dictionaries";
@@ -142,9 +143,44 @@ export default async function LectureDetailPage({ params }: Props) {
           )}
         </header>
 
+        {lecture.cover && (
+          <div className="relative mt-8 h-64 w-full overflow-hidden rounded-2xl bg-muted md:h-80">
+            <Image
+              src={lecture.cover}
+              alt={lecture.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 768px"
+              priority
+            />
+          </div>
+        )}
+
         <div className="prose prose-zinc mt-10 max-w-none dark:prose-invert">
           <MDXContent source={lecture.content} />
         </div>
+
+        {lecture.photos && lecture.photos.length > 1 && (
+          <section className="mt-12">
+            <div className="grid grid-cols-2 gap-3">
+              {lecture.photos.slice(1).map((src, i) => (
+                <div
+                  key={i}
+                  className="relative overflow-hidden rounded-xl bg-muted"
+                  style={{ aspectRatio: "4/3" }}
+                >
+                  <Image
+                    src={src}
+                    alt={`${lecture.title} — photo ${i + 2}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 360px"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {lecture.testimonials && lecture.testimonials.length > 0 && (
           <section className="mt-14">
