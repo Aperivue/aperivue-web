@@ -1,0 +1,176 @@
+---
+title: "MedSci Skills v2.2: /orchestrate --e2e로 원고를 끝까지 자동 생성"
+description: "MedSci Skills v2.2는 원시 데이터에서 투고 가능한 DOCX까지 사람 개입 없이 돌아가는 End-to-End 원고 생성 파이프라인을 도입합니다. 새로운 Phase 7 QC 체인, 33개 보고 가이드라인, 구조화 JSON 출력, 스킬 후 검증 포함."
+date: "2026-04-14"
+tags: ["medsci-skills", "claude-code", "research-automation", "manuscript-writing", "ai-pipeline", "open-source"]
+---
+
+# MedSci Skills v2.2: Zero-Touch Manuscript Pipeline
+
+MedSci Skills는 의학 연구를 위한 Claude Code 스킬 모음으로 시작됐습니다 — 문헌 검색, 통계 분석, 원고 작성, 보고 기준 준수를 위한 개별 도구들. 버전 2.2는 그것들을 하나의 자율 파이프라인으로 연결합니다. 데이터셋을 넣고 자리를 비우면, 투고 가능한 원고가 완성되어 있습니다.
+
+변경된 내용과 그 이유를 정리합니다.
+
+## 핵심 기능: `--e2e`와 `--autonomous`
+
+두 개의 새 플래그가 기존 멀티스킬 워크플로우를 무인 파이프라인으로 바꿉니다:
+
+```bash
+# 전체 파이프라인: 데이터 → 분석 → Figure → 원고 → QC → DOCX
+/orchestrate --e2e --data ./study_data.csv --type diagnostic-accuracy
+
+# 또는 원고 단계부터 자율 QC 포함으로 시작
+/write-paper --autonomous --project ./my-project/
+```
+
+**플래그 없이 실행하면** 기존과 완전히 동일합니다 — 단계마다 사용자 승인이 필요한 인터랙티브 모드. 플래그는 옵트인 방식이라 기존 워크플로우에 영향을 주지 않습니다.
+
+**`--e2e` 플래그를 사용하면** 오케스트레이터가 모든 스킬을 순서대로 연결합니다: 통계를 위한 `analyze-stats`, 출판용 Figure를 위한 `make-figures`, IMRAD 원고를 위한 `write-paper`, 가이드라인 준수 감사를 위한 `check-reporting`, 품질 감사를 위한 `self-review`, 그리고 Figure가 삽입된 DOCX 빌드까지.
+
+프롬프트 없음. 승인 단계 없음. 명령어 하나, 결과물 하나.
+
+## 파이프라인 흐름
+
+`/orchestrate --e2e` 실행 시 전체 순서:
+
+```
+원시 데이터 (.csv / .xlsx)
+        |
+        v
+  analyze-stats
+  - Table 1, 통계 검정, 효과 크기
+  - 출판용 테이블 (.md + .csv)
+        |
+        v
+  make-figures
+  - ROC, Forest plot, Flow diagram 등
+  - 300 DPI, 색맹 안전 배색
+  - _figure_manifest.md (신규 — 아래 참조)
+        |
+        v
+  write-paper (Phase 1-6)
+  - 아웃라인 → Methods → Results → 전체 IMRAD
+  - Figure manifest로 배치 결정
+        |
+        v
+  Phase 7: Strict QC Chain (신규)
+  - AI 패턴 스캔 + 제거
+  - check-reporting with auto-fix
+  - search-lit --verify-only (참고문헌 검증)
+  - self-review --json --fix (최대 2회 반복)
+        |
+        v
+  DOCX 빌드
+  - Figure 삽입 + 테이블 서식 완성
+  - 저널 투고 포털 즉시 업로드 가능
+```
+
+각 화살표는 자동화된 핸드오프를 나타냅니다. 각 스킬은 이전 스킬이 만든 출력 파일을 직접 읽습니다 — 세션 간 복사-붙여넣기도, 수동 파일 관리도 필요 없습니다.
+
+## Phase 7: 놓치는 것을 잡아내는 QC 체인
+
+Phase 7이 가장 중요한 추가 사항입니다. 기존에는 품질 검토가 별도의 수동 단계였습니다. 이제 `write-paper`의 마지막 단계로 자동 실행되며, 엄격한 순서를 강제합니다:
+
+**1단계 — AI 패턴 스캔.** `humanize` 스킬이 원고에서 알려진 AI 작문 패턴 18가지(헤징 표현, 군더더기 연결어, 과도한 수식)를 스캔합니다. 플래그된 구절은 제자리에서 재작성됩니다.
+
+**2단계 — 보고 기준 준수.** `check-reporting`이 해당 가이드라인(진단 정확도는 STARD, 체계적 문헌고찰은 PRISMA, 관찰 연구는 STROBE)에 맞춰 원고를 감사합니다. MISSING으로 표시된 항목은 자동 수정됩니다 — 스킬이 필요한 내용을 원고의 정확한 위치에 삽입합니다.
+
+**3단계 — 참고문헌 검증.** `search-lit --verify-only`가 모든 참고문헌을 PubMed와 Semantic Scholar에서 대조합니다. DOI가 해결되지 않으면 해당 인용이 플래그됩니다. 이 단계를 통과하는 허구 참고문헌은 없습니다.
+
+**4단계 — 자기 검토 + 자동 수정.** `self-review --json --fix`가 10개 카테고리 품질 감사를 실행하고 발견된 문제를 수정합니다. 첫 번째 패스에서 문제가 발견되면 두 번째 반복을 실행합니다. 최대 2회 — 두 번 후에도 문제가 남으면 무한 반복 대신 사람이 검토하도록 플래그됩니다.
+
+## 구조화 JSON 출력
+
+스킬들은 이제 기계가 읽을 수 있는 JSON 블록으로 서로 소통합니다. `check-reporting`이 감사를 마치면 다음을 출력합니다:
+
+```json
+{
+  "guideline": "STARD 2015",
+  "compliance_pct": 83,
+  "items_present": 25,
+  "items_missing": 5,
+  "fixable_by_ai": 4,
+  "action_items": [
+    {"item": "7", "label": "Sampling", "status": "MISSING", "fix": "..."}
+  ]
+}
+```
+
+`orchestrate` 스킬은 `fixable_by_ai` 값을 읽어 자동 수정을 시도할지 사람 입력을 위해 멈출지 결정합니다. `self-review`도 같은 패턴입니다 — JSON 출력에 심각도 점수와 수정 제안이 포함되어 다음 반복에 직접 전달됩니다.
+
+이것이 중요한 이유는, 품질 검토가 '읽는 보고서'에서 '자동화된 결정을 이끄는 신호'로 바뀌기 때문입니다.
+
+## Figure Manifest: `_figure_manifest.md`
+
+`make-figures`가 Plot을 생성할 때, 이제 모든 Figure의 경로·유형·사용 도구·설명을 나열한 구조화 매니페스트 파일을 작성합니다:
+
+```markdown
+# Figure Manifest
+Generated: 2026-04-14
+Study type: diagnostic-accuracy
+
+| Figure | Path | Type | Tool | Description |
+|--------|------|------|------|-------------|
+| Figure 1 | figures/fig1_stard_flow.svg | flow-diagram | D2 | STARD flow |
+| Figure 2 | figures/fig2_roc.pdf | roc-curve | matplotlib | ROC curves |
+| Figure 3 | figures/fig3_calibration.pdf | calibration | matplotlib | Calibration plot |
+```
+
+`write-paper`는 이 매니페스트를 읽어 원고 본문에 Figure를 정확히 배치합니다. DOCX 빌더는 이것을 사용해 적절한 캡션과 함께 이미지를 삽입합니다. 더 이상 Figure를 Word 문서에 수동으로 끌어다 놓고 범례를 다시 타이핑할 필요가 없습니다.
+
+## 33개 보고 가이드라인
+
+`check-reporting`은 이제 v2.0의 22개에서 늘어난 33개 가이드라인을 지원합니다. 체계적 문헌고찰 방법론과 비뚤림 위험 평가의 공백을 채우는 항목들이 추가됐습니다:
+
+| 카테고리 | 신규 추가 |
+|----------|-----------|
+| 체계적 문헌고찰 | PRISMA-P, SWiM, AMSTAR 2 |
+| 비뚤림 위험 | QUADAS-C, ROBINS-E, ROBIS, ROB-ME, RoB NMA |
+| 예측 모델 | PROBAST+AI |
+| 측정 | COSMIN |
+
+각 가이드라인은 항목이 누락될 경우 구체적인 수정 제안과 함께 전체 체크리스트를 포함합니다. AI 특화 확장판(STARD-AI, TRIPOD+AI, PROBAST+AI, MI-CLEAR-LLM)은 영상의학 및 의료 AI 연구에 특히 유용합니다.
+
+## 스킬 후 검증
+
+`--e2e` 모드에서 오케스트레이터는 모든 스킬 완료 후 예상 출력을 검증합니다. `analyze-stats`가 Table 1 파일을 생성하지 않으면, `write-paper`가 플레이스홀더 데이터로 진행하는 대신 파이프라인이 즉시 멈춥니다.
+
+이것은 실제 오류 모드에 대한 직접적인 대응입니다. 이전 버전에서는 스킬이 조용히 실패할 수 있었고(예: 수렴하지 않은 통계 모델), 다운스트림 스킬이 그 공백을 환각 콘텐츠로 채웠습니다. 스킬 후 검증은 이런 종류의 오류를 원천 차단합니다.
+
+## 지금 시작하기
+
+설치 또는 업데이트:
+
+```bash
+# 전체 스킬 설치
+git clone https://github.com/Aperivue/medsci-skills.git
+cp -r medsci-skills/skills/* ~/.claude/skills/
+
+# 데이터로 전체 파이프라인 실행
+/orchestrate --e2e
+
+# 또는 기존 프로젝트에 자율 원고 작성 실행
+/write-paper --autonomous
+```
+
+이미 MedSci Skills가 설치되어 있다면 최신 버전을 pull하고 재복사하세요. 모든 새 플래그는 기본적으로 꺼져 있어 기존 스킬 호출은 그대로 동작합니다.
+
+전체 스킬 목록, 문서, 3개의 End-to-End 데모는 GitHub에서 확인하세요: [github.com/Aperivue/medsci-skills](https://github.com/Aperivue/medsci-skills)
+
+## 이것이 하지 않는 것
+
+명시적으로 짚어둘 사항들:
+
+- **임상적 판단을 대체하지 않습니다.** 파이프라인은 제공한 데이터로 원고를 생성합니다. 연구 설계, 환자 선택, 임상적 해석은 여전히 연구자의 책임입니다.
+- **저널 승인을 보장하지 않습니다.** QC 체인은 보고 공백과 AI 작문 패턴을 잡아내지만, 심사자는 과학적 가치를 평가합니다. 이것은 자동화로 대체할 수 없습니다.
+- **업로드하거나 투고하지 않습니다.** 파이프라인은 DOCX에서 멈춥니다. 저널 투고 포털, 커버레터, 저자 동의서는 의도적으로 수동 단계로 남겨져 있습니다.
+
+## 배경
+
+MedSci Skills는 여러 연구를 동시에 진행하는 영상의학과 전공의가 만든, 의학 연구를 위한 22개 Claude Code 스킬의 오픈소스 모음입니다. 단일 PDF 다운로드 스크립트로 시작해 완전한 연구 파이프라인으로 성장했습니다. 이전 포스트에서 [탄생 배경](/blog/doctor-built-research-skills-claude-code)과 [3개의 End-to-End 데모](/blog/medsci-skills-three-demos)를 다뤘습니다.
+
+v2.2는 지금 [GitHub](https://github.com/Aperivue/medsci-skills)에서 이용 가능합니다. MIT 라이선스.
+
+---
+
+*MedSci Skills는 [Aperivue](https://aperivue.com)가 개발합니다. 질문이나 기능 요청은 [GitHub 저장소](https://github.com/Aperivue/medsci-skills)에 이슈를 열어주세요.*
