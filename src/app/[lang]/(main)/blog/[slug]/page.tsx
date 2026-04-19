@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="mb-6 text-sm">
+      <div className="mb-10 text-sm">
         <Link
           href={`/${lang}/blog`}
           className="text-foreground/60 hover:text-primary"
@@ -96,16 +96,29 @@ export default async function BlogPostPage({ params }: Props) {
         </Link>
       </div>
       <article>
-        <header>
-          <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+        <header className="border-b border-border pb-10">
+          {post.tags.length > 0 && (
+            <p className="mb-4 text-xs font-medium tracking-widest text-accent uppercase">
+              {post.tags[0]}
+            </p>
+          )}
+          <h1 className="text-3xl font-bold tracking-tighter md:text-4xl lg:text-5xl">
             {post.title}
           </h1>
-          <div className="mt-3 flex gap-3 text-sm text-foreground/50">
+          {post.description && (
+            <p className="mt-4 text-lg text-foreground/60 leading-relaxed">
+              {post.description}
+            </p>
+          )}
+          <div className="mt-6 flex items-center gap-4 text-sm text-foreground/50">
             <time>{formatDate(post.date, lang)}</time>
+            <span aria-hidden>·</span>
             <span>{post.readingTime}</span>
+            <span aria-hidden>·</span>
+            <span>Yoojin Nam, M.D.</span>
           </div>
-          {post.tags.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-2">
+          {post.tags.length > 1 && (
+            <div className="mt-5 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
@@ -118,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
           )}
         </header>
 
-        <div className="prose prose-zinc mt-10 max-w-none dark:prose-invert">
+        <div className="prose prose-zinc mt-12 max-w-none dark:prose-invert">
           <MDXContent source={post.content} />
         </div>
       </article>
