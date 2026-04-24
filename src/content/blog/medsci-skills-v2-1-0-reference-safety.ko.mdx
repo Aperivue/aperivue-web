@@ -1,0 +1,88 @@
+---
+title: "MedSci Skills v2.1.0: Reference Safety Phase 1, 메타분석 실패모드 자동화, 교실용 배포 번들"
+description: "v2.1.0에서는 36개 스킬 규모로 확장되며, SSOT.yaml + verify-refs 훅 기반 Reference Safety Phase 1, 메타분석 실패모드 자동화 스크립트 4종, 비개발자용 교실 설치 번들을 도입합니다."
+date: "2026-04-24"
+tags: ["medsci-skills", "claude-code", "연구자동화", "오픈소스", "reference-safety", "meta-analysis"]
+---
+
+# MedSci Skills v2.1.0: Reference Safety + 메타분석 실패모드 자동화
+
+v2.1.0 릴리스의 핵심은 세 가지입니다. 첫째, **Reference Safety Phase 1** — `/verify-refs` 스킬과 PostToolUse 훅 기반의 인용 검증 계약이 프로젝트 단위로 선언 가능해졌습니다. 둘째, `/meta-analysis` 실패모드에 **자동화 스크립트 4종**을 부착했습니다. 셋째, 터미널 없이 쓸 수 있는 **교실 설치 번들**(macOS/Windows ZIP)을 GitHub Release로 공개했습니다.
+
+스킬 수는 32개에서 36개로 확장되었고, 신규 스킬은 `verify-refs`, `sync-submission`, `fill-icmje-coi`, `academic-aio` 네 개입니다.
+
+## Reference Safety Phase 1
+
+기존에는 `/search-lit`이 생성한 BibTeX만 검증 대상이었습니다. 공저자가 보낸 초안, 이전 세션에서 작성한 수동 인용, 수정 단계에서 새로 추가된 참고문헌은 감사 대상 밖이었습니다. v2.1.0의 `/verify-refs`는 이 구멍을 막습니다.
+
+### 프로젝트 선언: `SSOT.yaml`
+
+프로젝트 루트에 `SSOT.yaml`을 두고 원고 · BibTeX · 데이터 파일의 단일 진실 소스(SSOT) 경로를 선언합니다. `qc/migration_complete` 마커는 프로젝트가 레거시 구조에서 SSOT 구조로 마이그레이션을 완료했음을 알리는 플래그입니다. 두 파일이 모두 있으면 `/verify-refs`는 enforce 모드에서 동작하고, 없으면 warn-only로 작동합니다.
+
+마이그레이션 도구: `scripts/migrate_project_to_ssot.py`.
+
+### Hook 모드: auto / warn / enforce / off
+
+`MEDSCI_VERIFY_REFS_MODE` 환경변수로 검증 강도를 제어합니다.
+
+- `auto` (기본): `SSOT.yaml` + `qc/migration_complete` 둘 다 있으면 enforce, 아니면 warn.
+- `warn`: 경고만 출력, 저장은 허용.
+- `enforce`: FABRICATED/UNVERIFIED 발견 시 저장 차단.
+- `off`: 훅 비활성.
+
+`submission/*/manuscript/*.docx`, `revision/R*/*circulation*.docx` 경로 저장 시 PostToolUse 훅(`~/.claude/hooks/verify-refs-guard.sh`)이 자동으로 `/verify-refs`를 호출해 `qc/reference_audit.json`의 `submission_safe` 플래그를 확인합니다.
+
+긴급 우회는 `MEDSCI_VERIFY_REFS_BYPASS=1`이며, 모든 우회는 `~/.local/log/verify-refs-bypass.log`에 감사 로그로 기록됩니다.
+
+### 단일 라이터 규칙
+
+`qc/reference_audit.json`은 **오직 `/verify-refs`만** 쓰기 권한을 갖습니다. `/self-review`, `/write-paper`, `/revise` 등 다른 스킬은 이 파일을 **읽기만** 합니다. 회귀 방지용 게이트로 `tests/test_phase1a_gates.sh` 4개와 `tests/test_phase1c_hooks.sh` 12개를 릴리스에 포함했습니다.
+
+### BibTeX provenance 필드
+
+`/search-lit`이 출력하는 BibTeX는 이제 항목별로 `verified` / `verified_by` / `verified_on` 3개 필드를 추가합니다. 하류 스킬이 인용의 출처를 신뢰할 수 있고, 수동으로 추가한 인용은 `verified=false`로 표시되어 후속 검증 대상으로 분리됩니다.
+
+## 메타분석 실패모드 자동화
+
+`/meta-analysis`는 원래부터 실패모드 레퍼런스(DI, RO, SPD, PSR)를 스킬 내부에 동봉하고 있었지만, 실제 감지는 수동 체크에 의존했습니다. v2.1.0은 네 가지 자동화 스크립트를 붙입니다.
+
+- **`scripts/prisma_5way_consistency.py`** — PRISMA 플로우 다이어그램의 숫자(검색됨, 중복제거, 스크리닝, 풀텍스트, 포함)를 YAML SSOT에서 읽어와 원고 · 보충자료 · 그림의 5개 표면 간 정합성을 검증합니다. 각 표면별 `require` 키로 상충 감지.
+- **`scripts/extraction_consensus_log_init.py`** — 이중 추출 합의 로그(10열 스캐폴드: study_id, variable, extractor_1, extractor_2, consensus, 불일치 사유 등)를 자동 생성합니다. DI-1 실패모드(이중 추출 단일화 실패) 대응.
+- **`scripts/tag_cleanup_gate.sh`** — `[VERIFY-CSV]`, `[@NEW:]` 같은 placeholder 태그가 투고 직전 원고에 남아있지 않은지 ripgrep/grep으로 차단합니다. DI-8(placeholder 투고 사고) 대응.
+- **`scripts/verify_package_integrity.py`** — 투고 패키지의 SHA-256 매니페스트를 생성하고 저널 편집 허용 파일(예: 편집부가 다시 렌더링하는 `manuscript.docx`)을 예외 처리합니다. SPD(post-submission drift) 대응.
+
+기존 실패모드 레퍼런스는 `skills/meta-analysis/references/{data_integrity_checklist,review_orchestration,submission_package_drift,post_submission_release_ops}.md`에 있습니다.
+
+## 교실용 설치 번들
+
+비개발자를 위한 원클릭 설치 번들을 GitHub Release의 고정 URL로 배포합니다.
+
+```text
+https://github.com/Aperivue/medsci-skills/releases/latest/download/medsci-skills-classroom-macos.zip
+https://github.com/Aperivue/medsci-skills/releases/latest/download/medsci-skills-classroom-windows.zip
+```
+
+압축 해제 후 `installers/install-macos.command` (또는 Windows는 `install-windows.cmd`)를 더블클릭하면 스킬이 `~/.claude/skills/`에 설치됩니다. Codex Desktop / Cursor / Claude Code 데스크탑 앱 모두 같은 경로 규약을 따릅니다.
+
+상세 배포 가이드: `docs/classroom_distribution_plan.md`, `docs/classroom_materials.md`.
+
+## 신규 스킬 4개
+
+- **`/verify-refs`** — 위에서 설명. `.md`/`.docx`/`.bib`/`.tsv` 입력을 받아 CrossRef + PubMed로 DOI/PMID를 검증합니다.
+- **`/sync-submission`** — `submission/{journal}/` 디렉터리를 "파생 출력물"로 취급합니다. `.journal_meta.json`에 소스 해시를 기록하고, SSOT가 변경된 상태에서 패키지를 freeze하려 하면 차단합니다.
+- **`/fill-icmje-coi`** — 공저자별 ICMJE COI 공개 폼(.docx)을 seed 문서로부터 일괄 생성합니다. PII 제거된 합성 seed가 동봉되어 있어 바로 사용 가능합니다.
+- **`/academic-aio`** — 의학 AI 논문의 AI 검색 엔진(Perplexity, ChatGPT web, Elicit, Consensus, SciSpace) 노출 체크리스트. TRIPOD+AI/CLAIM/STARD-AI 앵커 + GEO 원칙 결합.
+
+## 기타 개선
+
+- `/manage-project init --zotero-collection NAME` — pyzotero로 Zotero 컬렉션을 자동 생성하고 프로젝트 계약의 `library_id`/`collection_key`를 채웁니다. 자격증명 없으면 graceful degrade.
+- `/lit-sync` Phase 2.5 precondition assertion 추가. `read-only.json`이 비었거나 대상 `refs.bib`가 없을 때 polling 없이 조기 종료하고 setup 안내를 제공합니다.
+- `/self-review` Phase 2.5c에 reference hallucination scan 추가. `/verify-refs` 출력을 소비하여 `FABRICATED`를 P0 이슈로 분류합니다.
+
+## 다운로드
+
+- GitHub: [Aperivue/medsci-skills v2.1.0](https://github.com/Aperivue/medsci-skills/releases/tag/v2.1.0)
+- 스킬 페이지: [aperivue.com/skills](/ko/skills)
+- 설치 가이드: [aperivue.com/skills/guide](/ko/skills/guide)
+
+v1 스킬 계약은 2026-07-24까지 warn-only로 유지됩니다. 그 전까지 v2로 업그레이드 권장.

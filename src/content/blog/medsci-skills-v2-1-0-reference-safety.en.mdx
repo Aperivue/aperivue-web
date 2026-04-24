@@ -1,0 +1,88 @@
+---
+title: "MedSci Skills v2.1.0: Reference Safety Phase 1, Meta-Analysis Failure-Mode Automation, Classroom Bundle"
+description: "v2.1.0 grows to 36 skills, introduces Reference Safety Phase 1 (SSOT.yaml + verify-refs hook modes), four meta-analysis failure-mode automation scripts, and a no-terminal classroom installer bundle."
+date: "2026-04-24"
+tags: ["medsci-skills", "claude-code", "research-automation", "open-source", "reference-safety", "meta-analysis"]
+---
+
+# MedSci Skills v2.1.0: Reference Safety + MA Failure-Mode Automation
+
+v2.1.0 centers on three shifts. First, **Reference Safety Phase 1** — the `/verify-refs` skill and a PostToolUse hook now act as a project-declared citation verification contract. Second, `/meta-analysis` ships **four automation scripts** wired into its documented failure modes. Third, a **no-terminal classroom installer bundle** (macOS/Windows ZIP) is published to GitHub Releases.
+
+Skill count grows from 32 to 36: the new skills are `verify-refs`, `sync-submission`, `fill-icmje-coi`, and `academic-aio`.
+
+## Reference Safety Phase 1
+
+Previously only `/search-lit`-generated BibTeX went through verification. Drafts received from coauthors, manual citations added in earlier sessions, and references newly inserted during revision were out of scope. `/verify-refs` closes this gap.
+
+### Project declaration: `SSOT.yaml`
+
+Projects declare manuscript / BibTeX / data file paths in a root-level `SSOT.yaml`. A `qc/migration_complete` marker flags that the project has completed migration from legacy layout to SSOT. When both are present, `/verify-refs` runs in enforce mode; otherwise it runs warn-only.
+
+Migration helper: `scripts/migrate_project_to_ssot.py`.
+
+### Hook modes: auto / warn / enforce / off
+
+The `MEDSCI_VERIFY_REFS_MODE` environment variable controls enforcement strength.
+
+- `auto` (default): enforce when both `SSOT.yaml` and `qc/migration_complete` exist, otherwise warn.
+- `warn`: warnings only; saves succeed.
+- `enforce`: block saves on FABRICATED / UNVERIFIED findings.
+- `off`: disable the hook.
+
+When `submission/*/manuscript/*.docx` or `revision/R*/*circulation*.docx` is saved, the PostToolUse hook (`~/.claude/hooks/verify-refs-guard.sh`) auto-invokes `/verify-refs` and checks the `submission_safe` flag in `qc/reference_audit.json`.
+
+Emergency bypass: `MEDSCI_VERIFY_REFS_BYPASS=1`. All bypasses are audit-logged to `~/.local/log/verify-refs-bypass.log`.
+
+### Sole-writer rule
+
+`qc/reference_audit.json` has **exactly one writer** — `/verify-refs`. Other skills (`/self-review`, `/write-paper`, `/revise`) may **only read** it. Regression gates: `tests/test_phase1a_gates.sh` (4 gates) and `tests/test_phase1c_hooks.sh` (12 gates) ship with the release.
+
+### BibTeX provenance fields
+
+`/search-lit` BibTeX output now carries per-entry `verified` / `verified_by` / `verified_on` fields. Downstream skills can trust citation provenance, and manually inserted citations are flagged `verified=false` for subsequent verification.
+
+## Meta-Analysis Failure-Mode Automation
+
+`/meta-analysis` has always shipped failure-mode references (DI, RO, SPD, PSR) inside the skill, but actual detection relied on manual checks. v2.1.0 attaches four automation hooks.
+
+- **`scripts/prisma_5way_consistency.py`** — reads PRISMA flow numbers (identified, duplicates removed, screened, full-text, included) from a YAML SSOT and checks consistency across five surfaces (manuscript, supplement, figure). Per-surface `require` keys surface conflicts.
+- **`scripts/extraction_consensus_log_init.py`** — scaffolds a 10-column dual-extraction consensus log (study_id, variable, extractor_1, extractor_2, consensus, disagreement reason, etc.). Addresses DI-1 (failure to reconcile dual extraction).
+- **`scripts/tag_cleanup_gate.sh`** — greps for residual placeholder tags like `[VERIFY-CSV]` or `[@NEW:]` and blocks submission-stage manuscripts that still contain them. Addresses DI-8 (placeholder leakage).
+- **`scripts/verify_package_integrity.py`** — writes a SHA-256 manifest of the submission package, excluding journal-editable files (e.g., `manuscript.docx` that editors re-render). Addresses SPD (post-submission package drift).
+
+The failure-mode references live in `skills/meta-analysis/references/{data_integrity_checklist,review_orchestration,submission_package_drift,post_submission_release_ops}.md`.
+
+## Classroom installer bundle
+
+For non-programmers, one-click installer bundles are published at stable GitHub Release URLs.
+
+```text
+https://github.com/Aperivue/medsci-skills/releases/latest/download/medsci-skills-classroom-macos.zip
+https://github.com/Aperivue/medsci-skills/releases/latest/download/medsci-skills-classroom-windows.zip
+```
+
+Unzip and double-click `installers/install-macos.command` (or `install-windows.cmd`) to install skills into `~/.claude/skills/`. The same path convention works for Codex Desktop, Cursor, and Claude Code Desktop.
+
+Distribution details: `docs/classroom_distribution_plan.md`, `docs/classroom_materials.md`.
+
+## Four new skills
+
+- **`/verify-refs`** — described above. Accepts `.md` / `.docx` / `.bib` / `.tsv` input and verifies DOI/PMID via CrossRef + PubMed.
+- **`/sync-submission`** — treats `submission/{journal}/` as derived output. Records source hashes in `.journal_meta.json` and blocks freezing drifted packages.
+- **`/fill-icmje-coi`** — batch-fills per-coauthor ICMJE COI disclosure forms (.docx) from a seed document. Ships with a PII-free synthetic seed ready for immediate use.
+- **`/academic-aio`** — visibility checklist for medical AI papers against AI search engines (Perplexity, ChatGPT web, Elicit, Consensus, SciSpace). Combines TRIPOD+AI / CLAIM / STARD-AI reporting anchors with generative-engine-optimization principles.
+
+## Other improvements
+
+- `/manage-project init --zotero-collection NAME` — pyzotero-backed auto-creation of a Zotero collection, wired into the project contract's `library_id` / `collection_key`. Graceful degrade when credentials are missing.
+- `/lit-sync` Phase 2.5 now asserts preconditions — an empty `read-only.json` or missing target `refs.bib` triggers early exit with setup guidance instead of silent polling.
+- `/self-review` Phase 2.5c adds a reference-hallucination scan. It consumes the `/verify-refs` output and classifies FABRICATED findings as P0 issues.
+
+## Links
+
+- GitHub: [Aperivue/medsci-skills v2.1.0](https://github.com/Aperivue/medsci-skills/releases/tag/v2.1.0)
+- Skills page: [aperivue.com/skills](/en/skills)
+- Install guide: [aperivue.com/skills/guide](/en/skills/guide)
+
+Legacy v1 skill contracts remain warn-only until 2026-07-24. Upgrade to v2 before that date.

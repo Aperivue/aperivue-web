@@ -11,7 +11,14 @@
       "name": "search-lit",
       "title": "Literature Search",
       "description": "PubMed + Semantic Scholar + bioRxiv search with anti-hallucination citation verification. Token-efficient error handling.",
-      "features": ["Every reference verified via API", "BibTeX export", "No fabricated citations"]
+      "features": ["Every reference verified via API", "BibTeX export with verified / verified_by / verified_on fields", "No fabricated citations"]
+    },
+    {
+      "name": "verify-refs",
+      "title": "Reference Audit",
+      "description": "Pre-submission reference audit for .md / .docx / .bib / .tsv inputs. Extracts references, verifies DOI/PMID via CrossRef + PubMed, and writes qc/reference_audit.json as the sole source of truth. Blocks fabricated references before submission.",
+      "features": ["DOI + PMID verification via CrossRef & PubMed", "Writes verified_references.tsv, library.bib, reference_audit.json", "PostToolUse hook auto-runs on manuscript saves (auto / warn / enforce modes)"],
+      "isNew": true
     },
     {
       "name": "fulltext-retrieval",
@@ -99,7 +106,14 @@
       "name": "manage-project",
       "title": "Project Management",
       "description": "Scaffold research projects, track writing progress, generate submission checklists and backwards timelines.",
-      "features": ["Project scaffolding (init)", "Phase progress tracking", "Pre-submission checklist"],
+      "features": ["Project scaffolding with --zotero-collection auto-create (pyzotero)", "Phase progress tracking", "Pre-submission checklist"],
+      "isNew": true
+    },
+    {
+      "name": "sync-submission",
+      "title": "Submission Sync",
+      "description": "SSOT-to-submission drift audit and journal package helper. Treats submission/{journal}/ as derived output, records source hashes in .journal_meta.json, and blocks freezing drifted packages.",
+      "features": ["SHA-256 source-hash drift detection", "Per-journal package freeze / unfreeze workflow", "Blocks submission when SSOT has diverged"],
       "isNew": true
     },
     {
@@ -180,6 +194,13 @@
       "isNew": true
     },
     {
+      "name": "fill-icmje-coi",
+      "title": "ICMJE COI Batch Fill",
+      "description": "Batch-fill ICMJE Conflict of Interest Disclosure forms (.docx) for co-authors from a pre-filled seed document. Replaces date, author name, and manuscript title while keeping the 13-item disclosure block and checkbox states intact.",
+      "features": ["Ships with a PII-free synthetic seed (safe to redistribute)", "Literal XML replacement inside Word Content Controls (SDTs)", "Post-run verification: 14 ☒, 13 \"None\", zero placeholder leakage"],
+      "isNew": true
+    },
+    {
       "name": "humanize",
       "title": "AI Pattern Remover",
       "description": "Detect and remove AI writing patterns from academic manuscripts. Scans for 18 common patterns — significance inflation, AI vocabulary, copula avoidance — and rewrites flagged passages while preserving technical accuracy.",
@@ -212,6 +233,13 @@
       "title": "Literature Sync",
       "description": "Sync research references from .bib files to Zotero library + Obsidian literature notes. Concept extraction from 10+ accumulated notes with cross-cutting theme discovery. Works after /search-lit or standalone.",
       "features": ["Zotero import via Better BibTeX key matching", "Obsidian literature note generation with wikilinks", "Cross-cutting concept extraction from 10+ notes"],
+      "isNew": true
+    },
+    {
+      "name": "academic-aio",
+      "title": "Academic AI Search Optimization",
+      "description": "Visibility checklist for medical AI papers against AI search engines (Perplexity, ChatGPT web, Elicit, Consensus, SciSpace) and RAG literature tools. Integrates TRIPOD+AI, CLAIM, STARD-AI, TRIPOD-LLM, DECIDE-AI with generative-engine-optimization (GEO) principles.",
+      "features": ["Covers title, abstract, Key Points, Plain-Language Summary, preprints, README, CITATION.cff, Zenodo, Hugging Face cards", "Defends against LLM citation fabrication (Agarwal 2025)", "Visible PASS / PARTIAL / FAIL checklist — never applies silent edits"],
       "isNew": true
     }
   ],

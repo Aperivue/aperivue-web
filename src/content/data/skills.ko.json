@@ -11,7 +11,14 @@
       "name": "search-lit",
       "title": "문헌 검색",
       "description": "PubMed + Semantic Scholar + bioRxiv 검색. 인용 조작 방지 기능으로 모든 레퍼런스를 API로 검증합니다.",
-      "features": ["모든 레퍼런스 API 검증", "BibTeX 내보내기", "가짜 인용 방지"]
+      "features": ["모든 레퍼런스 API 검증", "BibTeX 출력에 verified / verified_by / verified_on 필드", "가짜 인용 방지"]
+    },
+    {
+      "name": "verify-refs",
+      "title": "레퍼런스 검증",
+      "description": ".md / .docx / .bib / .tsv 원고의 투고 전 레퍼런스 감사. CrossRef + PubMed로 DOI/PMID를 검증하고 qc/reference_audit.json을 단일 진실 소스로 기록합니다. 가짜 레퍼런스가 투고되기 전에 차단합니다.",
+      "features": ["CrossRef & PubMed 기반 DOI + PMID 검증", "verified_references.tsv / library.bib / reference_audit.json 출력", "PostToolUse 훅이 원고 저장 시 자동 실행 (auto / warn / enforce 모드)"],
+      "isNew": true
     },
     {
       "name": "fulltext-retrieval",
@@ -99,7 +106,14 @@
       "name": "manage-project",
       "title": "프로젝트 관리",
       "description": "연구 프로젝트 스캐폴딩, 작성 진행 추적, 투고 체크리스트 및 역방향 타임라인 생성.",
-      "features": ["프로젝트 구조 생성 (init)", "단계별 진행 추적", "투고 전 체크리스트"],
+      "features": ["init --zotero-collection 옵션으로 Zotero 컬렉션 자동 생성 (pyzotero)", "단계별 진행 추적", "투고 전 체크리스트"],
+      "isNew": true
+    },
+    {
+      "name": "sync-submission",
+      "title": "투고 동기화",
+      "description": "SSOT ↔ submission 드리프트 감사 및 저널 패키지 도우미. submission/{journal}/를 파생 출력물로 취급하고 .journal_meta.json에 소스 해시를 기록하며, 드리프트가 발생한 패키지의 freeze를 차단합니다.",
+      "features": ["SHA-256 소스 해시 기반 드리프트 감지", "저널별 패키지 freeze / unfreeze 워크플로우", "SSOT 분기 시 투고 차단"],
       "isNew": true
     },
     {
@@ -180,6 +194,13 @@
       "isNew": true
     },
     {
+      "name": "fill-icmje-coi",
+      "title": "ICMJE COI 일괄 작성",
+      "description": "공저자별 ICMJE Conflict of Interest 공개 폼(.docx)을 사전 작성된 seed 문서로부터 일괄 생성합니다. 13개 공개 항목과 체크박스 상태는 그대로 두고 날짜, 저자명, 원고 제목만 치환합니다.",
+      "features": ["PII 제거된 합성 seed 포함 (재배포 안전)", "Word Content Control(SDT) 내부 XML 리터럴 치환", "실행 후 검증: ☒ 14개, \"None\" 13개, placeholder 유출 0"],
+      "isNew": true
+    },
+    {
       "name": "humanize",
       "title": "AI 문체 제거",
       "description": "학술 원고에서 AI 작문 패턴을 탐지하고 제거합니다. 18개 패턴(significance inflation, AI 어휘, copula 회피 등)을 스캔하여 기술적 정확성을 유지하면서 자연스러운 문체로 재작성합니다.",
@@ -212,6 +233,13 @@
       "title": "문헌 동기화",
       "description": ".bib 파일을 Zotero 라이브러리 + Obsidian 문헌 노트에 동기화합니다. 누적된 10개 이상의 노트에서 개념 추출 및 교차 주제 발견. /search-lit 이후 또는 독립 실행 모두 가능.",
       "features": ["Better BibTeX 키 매칭으로 Zotero 가져오기", "위키링크 포함 Obsidian 문헌 노트 생성", "10개 이상 노트에서 교차 개념 자동 추출"],
+      "isNew": true
+    },
+    {
+      "name": "academic-aio",
+      "title": "Academic AI Search 최적화",
+      "description": "의학 AI 논문의 AI 검색 엔진(Perplexity, ChatGPT web, Elicit, Consensus, SciSpace) 및 RAG 문헌 도구 대상 노출 체크리스트. TRIPOD+AI, CLAIM, STARD-AI, TRIPOD-LLM, DECIDE-AI 보고 앵커를 generative-engine-optimization(GEO) 원칙과 결합합니다.",
+      "features": ["Title, Abstract, Key Points, Plain-Language Summary, 프리프린트, README, CITATION.cff, Zenodo, Hugging Face 카드까지 커버", "LLM 인용 조작 방어 (Agarwal 2025, Nat Commun)", "가시적 PASS / PARTIAL / FAIL 체크리스트 — 은밀한 편집 금지"],
       "isNew": true
     }
   ],
