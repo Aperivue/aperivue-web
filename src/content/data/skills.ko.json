@@ -241,6 +241,27 @@
       "description": "의학 AI 논문의 AI 검색 엔진(Perplexity, ChatGPT web, Elicit, Consensus, SciSpace) 및 RAG 문헌 도구 대상 노출 체크리스트. TRIPOD+AI, CLAIM, STARD-AI, TRIPOD-LLM, DECIDE-AI 보고 앵커를 generative-engine-optimization(GEO) 원칙과 결합합니다.",
       "features": ["Title, Abstract, Key Points, Plain-Language Summary, 프리프린트, README, CITATION.cff, Zenodo, Hugging Face 카드까지 커버", "LLM 인용 조작 방어 (Agarwal 2025, Nat Commun)", "가시적 PASS / PARTIAL / FAIL 체크리스트 — 은밀한 편집 금지"],
       "isNew": true
+    },
+    {
+      "name": "manage-refs",
+      "title": "참고문헌 생애주기",
+      "description": "citekey ↔ .bib 검증, 저널 CSL pandoc 렌더링, 원고 ↔ 렌더된 DOCX 교차참조 QC, [N] ↔ [@key] 마커 변환, 그리고 공저자 Word 협업을 위한 Zotero CWYW 필드 코드 주입. manuscript_final.docx와 qc/xref_audit.json의 단독 writer. Hybrid 3-phase 전략 (pandoc 초안 → CWYW 전환 → 회람·revision·투고는 Zotero CWYW).",
+      "features": ["check_citation_keys.py + check_xref.py --strict 가 투고 게이트", "내장 저널 CSL: ER, Radiology, AJR, CVIR, KJR, Vancouver — cascade rejection 재렌더 수 초", "Native CSL-JSON CWYW 주입 (webpage / report / 비-저널 item type 정상 처리)"],
+      "isNew": true
+    },
+    {
+      "name": "render-pdf-doc",
+      "title": "한글 학술 PDF",
+      "description": "참고문헌 없는 학술 마크다운(연구계획서, 브리핑 핸드아웃, anchor doc, IRB cover, 비교표)을 pandoc + xelatex으로 출판 품질 PDF로 렌더링합니다. manage-refs와 정반대 — 참고문헌 X, 레이아웃 중심.",
+      "features": ["CJK 폰트 fallback: macOS Apple SD Gothic Neo, Linux Noto Sans CJK KR", "표 컬럼 폭 자동 추론 — 첫 열은 라벨에 맞춰 좁히고 데이터 열은 남은 폭을 content-proportional 분배", "회람용 PDF에서 변경이력·버전번호·PI attribution 제거하는 redact_internal 플래그"],
+      "isNew": true
+    },
+    {
+      "name": "define-variables",
+      "title": "변수 정의",
+      "description": "관찰연구의 문헌 기반 변수 운영화. 데이터 사전 + 연구 질문 → 노출 / 결과 / 보정변수 정의, 컷오프, DB 변수 매핑이 인용으로 뒷받침된 표. Tier 0 dictionary-first 룰로 reviewer reject을 부르는 ad-hoc phenotype 정의를 차단. /search-lit과 /write-protocol Methods를 잇는 다리.",
+      "features": ["Dictionary-first Tier 0 강제 (codebook entry verbatim 인용)", "/search-lit 출력을 /write-protocol Methods에 매끄럽게 연결", "변수별 인용 출처 (source / row / verbatim mapping) 명시"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [

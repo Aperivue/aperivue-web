@@ -241,6 +241,27 @@
       "description": "Visibility checklist for medical AI papers against AI search engines (Perplexity, ChatGPT web, Elicit, Consensus, SciSpace) and RAG literature tools. Integrates TRIPOD+AI, CLAIM, STARD-AI, TRIPOD-LLM, DECIDE-AI with generative-engine-optimization (GEO) principles.",
       "features": ["Covers title, abstract, Key Points, Plain-Language Summary, preprints, README, CITATION.cff, Zenodo, Hugging Face cards", "Defends against LLM citation fabrication (Agarwal 2025)", "Visible PASS / PARTIAL / FAIL checklist — never applies silent edits"],
       "isNew": true
+    },
+    {
+      "name": "manage-refs",
+      "title": "Reference Lifecycle",
+      "description": "Citekey ↔ .bib validation, journal-CSL pandoc rendering, manuscript ↔ rendered DOCX cross-reference QC, [N] ↔ [@key] marker conversion, and native Zotero CWYW field-code injection for co-author Word workflows. Sole writer of manuscript_final.docx and qc/xref_audit.json. Hybrid 3-phase strategy (pandoc draft → CWYW transition → Zotero CWYW for circulation/revision/submission).",
+      "features": ["check_citation_keys.py + check_xref.py --strict as the submission gate", "Bundled journal CSLs: ER, Radiology, AJR, CVIR, KJR, Vancouver — cascade-rejection re-render in seconds", "Native CSL-JSON CWYW injection (handles webpage / report / non-journal item types correctly)"],
+      "isNew": true
+    },
+    {
+      "name": "render-pdf-doc",
+      "title": "Korean Academic PDF",
+      "description": "Render non-bibliography academic markdown (proposal, briefing handout, anchor doc, IRB cover, reference table) to publication-quality PDF via pandoc + xelatex. Boundary opposite of manage-refs — non-bib, layout-focused.",
+      "features": ["CJK font fallback: Apple SD Gothic Neo (macOS), Noto Sans CJK KR (Linux)", "Content-proportional pipe-table column widths — first column shrinks to fit, data columns share the remainder", "Frontmatter redact_internal flag for circulation PDFs (no version numbers / changelog / PI attribution leakage)"],
+      "isNew": true
+    },
+    {
+      "name": "define-variables",
+      "title": "Variable Operationalization",
+      "description": "Literature-grounded variable operationalization for observational research. Turns a data dictionary plus research question into a citation-backed table of exposure / outcome / covariate definitions, cutoffs, and DB-variable mappings. Tier 0 dictionary-first rule prevents ad-hoc phenotype definitions that invite reviewer rejection.",
+      "features": ["Dictionary-first Tier 0 enforcement (verbatim citation of codebook entries)", "Bridges /search-lit output into /write-protocol Methods", "Per-variable citation provenance (source / row / verbatim mapping)"],
+      "isNew": true
     }
   ],
   "pipelineSteps": [
