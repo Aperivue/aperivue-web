@@ -8,6 +8,13 @@
       "isNew": true
     },
     {
+      "name": "setup-medsci",
+      "title": "Setup Diagnostics",
+      "description": "Read-only setup diagnostics for MedSci Skills. Checks local Python/R/Node/Claude Code and MCP availability, then points users to the right onboarding guide without installing or changing anything.",
+      "features": ["Read-only environment check", "Python/R/Node/Claude Code readiness report", "Links missing components to setup docs"],
+      "isNew": true
+    },
+    {
       "name": "search-lit",
       "title": "Literature Search",
       "description": "PubMed + Semantic Scholar + bioRxiv search with anti-hallucination citation verification. Token-efficient error handling.",
@@ -16,8 +23,8 @@
     {
       "name": "verify-refs",
       "title": "Reference Audit",
-      "description": "Pre-submission reference audit for .md / .docx / .bib / .tsv inputs. Extracts references, verifies DOI/PMID via CrossRef + PubMed, and writes qc/reference_audit.json as the sole source of truth. Blocks fabricated references before submission.",
-      "features": ["DOI + PMID verification via CrossRef & PubMed", "Writes verified_references.tsv, library.bib, reference_audit.json", "PostToolUse hook auto-runs on manuscript saves (auto / warn / enforce modes)"],
+      "description": "Pre-submission reference audit for .md / .docx / .bib / .tsv inputs. Extracts references, verifies DOI/PMID via CrossRef + PubMed, and writes qc/reference_audit.json as the sole source of truth. Blocks fabricated references before submission. Gate 5 PMID/DOI duplicate detection.",
+      "features": ["DOI + PMID verification via CrossRef & PubMed", "Writes verified_references.tsv, library.bib, reference_audit.json", "PostToolUse hook auto-runs on manuscript saves (auto / warn / enforce modes)", "Duplicate detection (PMID/DOI)"],
       "isNew": true
     },
     {
@@ -78,8 +85,8 @@
     {
       "name": "meta-analysis",
       "title": "Meta-Analysis",
-      "description": "Full 8-phase systematic review and meta-analysis pipeline. DTA (bivariate/HSROC) and intervention MA with PRISMA-DTA compliance.",
-      "features": ["Protocol to manuscript pipeline", "Bivariate & HSROC models", "PRISMA-DTA compliant"]
+      "description": "Full 8-phase systematic review and meta-analysis pipeline. DTA (bivariate/HSROC) and intervention MA with PRISMA-DTA compliance. Dual-extractor + cohort overlap detection.",
+      "features": ["Protocol to manuscript pipeline", "Bivariate & HSROC models", "PRISMA-DTA compliant", "Dual-extractor SR-MA", "Cohort overlap detection"]
     },
     {
       "name": "write-paper",
@@ -217,8 +224,8 @@
     {
       "name": "peer-review",
       "title": "Peer Review Drafter",
-      "description": "Structured peer review drafting for medical imaging journals. Systematic manuscript analysis, journal-specific formatting (RYAI, INSI, EURE, AJR, KJR), conciseness targets (500–800 words), and pre-submission QC checklist.",
-      "features": ["Major / Minor / Reject recommendation with rationale", "Journal-specific format presets for 5 radiology journals", "Pre-submission QC: word count, tone, ethical red flags"],
+      "description": "Structured peer review drafting for medical imaging journals. Systematic manuscript analysis, journal-specific formatting (RYAI, INSI, EURE, AJR, KJR), conciseness targets (500–800 words), and pre-submission QC checklist. Phase 2A SR-MA 8-probe extension.",
+      "features": ["Major / Minor / Reject recommendation with rationale", "Journal-specific format presets for 5 radiology journals", "Pre-submission QC: word count, tone, ethical red flags", "SR-MA Phase 2A (P1-P8)"],
       "isNew": true
     },
     {
