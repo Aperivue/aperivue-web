@@ -8,6 +8,13 @@
       "isNew": true
     },
     {
+      "name": "setup-medsci",
+      "title": "설치 진단",
+      "description": "MedSci Skills용 읽기 전용 설치 진단. 로컬 Python/R/Node/Claude Code 및 MCP 사용 가능 여부를 확인하고, 설치나 변경 없이 필요한 온보딩 문서로 안내합니다.",
+      "features": ["읽기 전용 환경 점검", "Python/R/Node/Claude Code 준비 상태 리포트", "누락 구성요소를 setup 문서로 연결"],
+      "isNew": true
+    },
+    {
       "name": "search-lit",
       "title": "문헌 검색",
       "description": "PubMed + Semantic Scholar + bioRxiv 검색. 인용 조작 방지 기능으로 모든 레퍼런스를 API로 검증합니다.",
@@ -16,8 +23,8 @@
     {
       "name": "verify-refs",
       "title": "레퍼런스 검증",
-      "description": ".md / .docx / .bib / .tsv 원고의 투고 전 레퍼런스 감사. CrossRef + PubMed로 DOI/PMID를 검증하고 qc/reference_audit.json을 단일 진실 소스로 기록합니다. 가짜 레퍼런스가 투고되기 전에 차단합니다.",
-      "features": ["CrossRef & PubMed 기반 DOI + PMID 검증", "verified_references.tsv / library.bib / reference_audit.json 출력", "PostToolUse 훅이 원고 저장 시 자동 실행 (auto / warn / enforce 모드)"],
+      "description": ".md / .docx / .bib / .tsv 원고의 투고 전 레퍼런스 감사. CrossRef + PubMed로 DOI/PMID를 검증하고 qc/reference_audit.json을 단일 진실 소스로 기록합니다. 가짜 레퍼런스가 투고되기 전에 차단합니다. Gate 5 PMID/DOI 중복 탐지 포함.",
+      "features": ["CrossRef & PubMed 기반 DOI + PMID 검증", "verified_references.tsv / library.bib / reference_audit.json 출력", "PostToolUse 훅이 원고 저장 시 자동 실행 (auto / warn / enforce 모드)", "PMID/DOI 중복 탐지"],
       "isNew": true
     },
     {
@@ -78,8 +85,8 @@
     {
       "name": "meta-analysis",
       "title": "메타분석",
-      "description": "8단계 체계적 문헌고찰 및 메타분석 파이프라인. DTA (bivariate/HSROC) 및 중재 MA를 PRISMA-DTA 기준으로.",
-      "features": ["프로토콜부터 원고까지 파이프라인", "Bivariate & HSROC 모델", "PRISMA-DTA 준수"]
+      "description": "8단계 체계적 문헌고찰 및 메타분석 파이프라인. DTA (bivariate/HSROC) 및 중재 MA를 PRISMA-DTA 기준으로. Dual-extractor + cohort overlap 탐지 포함.",
+      "features": ["프로토콜부터 원고까지 파이프라인", "Bivariate & HSROC 모델", "PRISMA-DTA 준수", "Dual-extractor SR-MA", "Cohort overlap 탐지"]
     },
     {
       "name": "write-paper",
@@ -217,8 +224,8 @@
     {
       "name": "peer-review",
       "title": "동료 심사 초안",
-      "description": "의학영상 저널용 체계적 동료 심사 초안 작성. 저널별 포맷(RYAI, INSI, EURE, AJR, KJR), 간결성 목표(500~800단어), 제출 전 QC 체크리스트를 제공합니다.",
-      "features": ["근거 포함 Major/Minor/Reject 추천", "영상의학 5개 저널 포맷 프리셋", "제출 전 QC: 단어 수, 톤, 윤리 적신호"],
+      "description": "의학영상 저널용 체계적 동료 심사 초안 작성. 저널별 포맷(RYAI, INSI, EURE, AJR, KJR), 간결성 목표(500~800단어), 제출 전 QC 체크리스트를 제공합니다. Phase 2A SR-MA 8-probe 확장 포함.",
+      "features": ["근거 포함 Major/Minor/Reject 추천", "영상의학 5개 저널 포맷 프리셋", "제출 전 QC: 단어 수, 톤, 윤리 적신호", "SR-MA Phase 2A (P1-P8)"],
       "isNew": true
     },
     {
