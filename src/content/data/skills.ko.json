@@ -37,7 +37,7 @@
     {
       "name": "check-reporting",
       "title": "보고 가이드라인",
-      "description": "33개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
+      "description": "32개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
       "features": ["STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM", "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS", "Results/Discussion 경계 확인"]
     },
     {

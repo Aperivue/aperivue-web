@@ -265,7 +265,7 @@ export default async function SkillsPage({
           </div>
           <div>
             <h3 className="font-semibold text-primary">
-              33 Reporting Guidelines
+              32 Reporting Guidelines
             </h3>
             <p className="mt-2 text-sm text-foreground/60">
               STROBE, STARD, TRIPOD+AI, PRISMA, ARRIVE built-in. CONSORT,
