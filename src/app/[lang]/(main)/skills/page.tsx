@@ -3,37 +3,51 @@ import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
 import { notFound } from "next/navigation";
 import skillsEn from "@/content/data/skills.en.json";
 import skillsKo from "@/content/data/skills.ko.json";
+import {
+  buildAlternates,
+  ogUrl,
+  DEFAULT_OG_IMAGES,
+  SKILL_COUNT,
+} from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
 
 const skillsData = { en: skillsEn, ko: skillsKo };
 
-export const metadata: Metadata = {
-  title: "Medical Research Skills for Claude Code | Aperivue",
-  description:
-    "39 open-source Claude Code skills covering the full medical research lifecycle — from literature search to manuscript revision. End-to-end pipeline mode, anti-hallucination citations, 33 reporting guidelines, publication-ready figures, full reference lifecycle (citekey QC, journal CSL render, Zotero CWYW).",
-  keywords: [
-    "claude code skills",
-    "medical research",
-    "STROBE",
-    "PRISMA",
-    "CONSORT",
-    "STARD",
-    "reporting guidelines",
-    "literature search",
-    "anti-hallucination",
-    "medical AI",
-    "biostatistics",
-    "publication figures",
-    "systematic review",
-    "meta-analysis",
-    "academic writing",
-  ],
-  openGraph: {
-    title: "Medical Research Skills for Claude Code",
-    description:
-      "39 open-source skills for the full medical research lifecycle. Built by physicians, battle-tested on real publications.",
-    url: "https://aperivue.com/skills",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Medical Research Skills for Claude Code", // bare; root template adds " | Aperivue"
+    description: `${SKILL_COUNT} open-source Claude Code skills for the medical research lifecycle — literature search, statistics, figures, and reporting guidelines.`,
+    keywords: [
+      "claude code skills",
+      "medical research",
+      "STROBE",
+      "PRISMA",
+      "CONSORT",
+      "STARD",
+      "reporting guidelines",
+      "literature search",
+      "anti-hallucination",
+      "medical AI",
+      "biostatistics",
+      "publication figures",
+      "systematic review",
+      "meta-analysis",
+      "academic writing",
+    ],
+    alternates: buildAlternates(lang, "/skills"),
+    openGraph: {
+      title: "Medical Research Skills for Claude Code",
+      description: `${SKILL_COUNT} open-source skills for the full medical research lifecycle. Built by physicians, tested on real publications.`,
+      url: ogUrl(lang, "/skills"),
+      images: DEFAULT_OG_IMAGES,
+    },
+  };
+}
 
 const GITHUB_URL =
   "https://github.com/Aperivue/medsci-skills";
@@ -52,8 +66,60 @@ export default async function SkillsPage({
   const data = skillsData[lang as Locale];
   const skills = data.skills;
   const pipelineSteps = data.pipelineSteps;
+
+  const softwareJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "MedSci Skills",
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Claude Code (macOS, Windows, Linux)",
+    description: `${SKILL_COUNT} open-source Claude Code skills for the full medical research lifecycle — literature search, statistics, figures, reporting guidelines, and manuscript writing.`,
+    url: ogUrl(lang, "/skills"),
+    license: "https://opensource.org/licenses/MIT",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    author: {
+      "@type": "Organization",
+      name: "Aperivue",
+      url: "https://aperivue.com",
+    },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What are MedSci Skills?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${SKILL_COUNT} open-source Claude Code skills covering the full medical research lifecycle, from literature search and statistics to figures, reporting-guideline audits, and manuscript writing.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do I need to know how to code?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. With the Claude Code Desktop app you copy the skills folder once and run pipelines in plain language. A step-by-step guide is provided for clinician researchers.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How many skills are included, and what does it cost?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${SKILL_COUNT} skills are included. They are open source under the MIT license and free to use.`,
+        },
+      },
+    ],
+  };
+
   return (
     <main className="mx-auto flex max-w-6xl flex-1 flex-col overflow-hidden px-6 py-16">
+      <JsonLd data={softwareJsonLd} />
+      <JsonLd data={faqJsonLd} />
       {/* Hero */}
       <section className="text-center">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">

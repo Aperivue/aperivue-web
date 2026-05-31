@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import { hasLocale, type Locale } from "../../dictionaries";
 import { notFound } from "next/navigation";
+import { buildAlternates } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: string }>;
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = isKo
     ? "의료 AI, 영상의학, 진단 도구 개발에 관한 인사이트."
     : "Aperivue blog — Medical AI, radiology, and technology insights.";
-  return { title, description };
+  return { title, description, alternates: buildAlternates(lang, "/blog") };
 }
 
 function formatDate(date: string, lang: string) {

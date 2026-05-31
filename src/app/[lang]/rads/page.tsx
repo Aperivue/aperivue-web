@@ -2,12 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { hasLocale } from "../dictionaries";
 import { notFound } from "next/navigation";
+import { buildAlternates, ogUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Aperivue RADS — Radiology Scoring & Structured Reporting",
-  description:
-    "Free structured radiology report generators for TI-RADS, Lung-RADS, BI-RADS, and LI-RADS. Evidence-based scoring calculators with PACS-ready output.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Aperivue RADS — Radiology Scoring & Structured Reporting",
+    description:
+      "Free structured radiology report generators for TI-RADS, Lung-RADS, BI-RADS, and LI-RADS. Evidence-based scoring calculators with PACS-ready output.",
+    alternates: buildAlternates(lang, "/rads"),
+  };
+}
 
 const modulesEn = [
   {
@@ -128,8 +138,61 @@ export default async function RadsLandingPage({
   const t = uiText[locale];
   const modules = locale === "ko" ? modulesKo : modulesEn;
 
+  const medicalWebPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: "Aperivue RADS — Radiology Scoring & Structured Reporting",
+    description: t.subtitle,
+    url: ogUrl(lang, "/rads"),
+    inLanguage: locale,
+    about: { "@type": "Thing", name: "Radiology reporting and data systems (RADS)" },
+  };
+
+  const faq =
+    locale === "ko"
+      ? [
+          {
+            q: "Aperivue RADS는 무료인가요?",
+            a: "예. 모든 계산기는 무료이며 브라우저에서 바로 사용할 수 있습니다.",
+          },
+          {
+            q: "어떤 RADS 시스템을 지원하나요?",
+            a: "TI-RADS, Lung-RADS, BI-RADS가 현재 운영 중이며 LI-RADS는 준비 중입니다.",
+          },
+          {
+            q: "의료기기인가요?",
+            a: "아닙니다. 교육 및 연구 목적의 도구이며, 임상 진단이나 치료 결정을 대체하지 않습니다.",
+          },
+        ]
+      : [
+          {
+            q: "Is Aperivue RADS free?",
+            a: "Yes. Every calculator is free and runs directly in your browser.",
+          },
+          {
+            q: "Which RADS systems are supported?",
+            a: "TI-RADS, Lung-RADS, and BI-RADS are live; LI-RADS is coming soon.",
+          },
+          {
+            q: "Is this a medical device?",
+            a: "No. It is an educational and research tool and does not replace clinical diagnosis or treatment decisions.",
+          },
+        ];
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
+      <JsonLd data={medicalWebPageJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <div className="text-center">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">
           {t.tagline}

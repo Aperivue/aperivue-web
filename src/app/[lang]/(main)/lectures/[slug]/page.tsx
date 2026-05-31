@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { getAllLectures, getLectureBySlug } from "@/lib/lectures";
 import { getDictionary, hasLocale, type Locale } from "../../../dictionaries";
 import { MDXContent } from "@/components/MDXContent";
+import { buildAlternates, DEFAULT_OG_IMAGES } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>;
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: lecture.title,
     description: lecture.description,
     keywords: lecture.tags,
+    alternates: buildAlternates(lang, `/lectures/${slug}`),
     openGraph: {
       title: lecture.title,
       description: lecture.description,
@@ -35,6 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       tags: lecture.tags,
       siteName: "Aperivue",
       url: `https://aperivue.com/${lang}/lectures/${slug}`,
+      images: DEFAULT_OG_IMAGES,
     },
     twitter: {
       card: "summary_large_image",

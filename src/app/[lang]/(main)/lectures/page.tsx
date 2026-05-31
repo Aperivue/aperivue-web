@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getAllLectures } from "@/lib/lectures";
 import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
 import { notFound } from "next/navigation";
+import { buildAlternates, DEFAULT_OG_IMAGES } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ lang: string }>;
@@ -16,12 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.lectures.title,
     description: dict.lectures.description,
+    alternates: buildAlternates(lang, "/lectures"),
     openGraph: {
       title: dict.lectures.title,
       description: dict.lectures.description,
       type: "website",
       url: `https://aperivue.com/${lang}/lectures`,
       siteName: "Aperivue",
+      images: DEFAULT_OG_IMAGES,
     },
   };
 }

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import StepCard from "@/components/guide/StepCard";
 import OsTab from "@/components/guide/OsTab";
+import { SKILL_COUNT } from "@/lib/seo";
 
 export default function InstallContentEn({ lang }: { lang: string }) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Step 1. Installation</h1>
       <p className="mt-2 text-foreground/60">
-        Install the Claude Code Desktop app and copy all 22 MedSci Skills.
+        Install the Claude Code Desktop app and copy all {SKILL_COUNT} MedSci Skills.
         <br />
         No terminal or command line required.
       </p>
@@ -168,7 +169,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
 │   └── SKILL.md
 ├── write-paper/
 │   └── SKILL.md
-└── ... (22 folders total)`}
+└── ... (${SKILL_COUNT} folders total)`}
                   </pre>
                 </div>
               </div>
@@ -212,7 +213,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
                 /orchestrate List all available skills
               </code>
             </div>
-            <p>3. If you see a list of 22 skills, the installation is complete.</p>
+            <p>3. If you see a list of {SKILL_COUNT} skills, the installation is complete.</p>
           </div>
           <img
             src="/images/guide/guide-orchestrate-result.png"
