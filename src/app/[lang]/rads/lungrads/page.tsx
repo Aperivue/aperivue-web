@@ -1,20 +1,85 @@
 import type { Metadata } from "next";
 import LungRadsReportGenerator from "./LungRadsReportGenerator";
+import { buildAlternates, ogUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Lung-RADS Calculator & Report Generator — v2022",
-  description:
-    "Free lung cancer screening CT structured report generator with Lung-RADS v2022 scoring. Supports solid, part-solid, and ground-glass nodules. Multi-nodule, S modifier, PACS-ready report.",
-  keywords: [
-    "Lung-RADS", "Lung-RADS v2022", "lung cancer screening",
-    "LDCT", "pulmonary nodule", "structured reporting",
-    "low-dose CT", "lung nodule calculator",
-  ],
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Lung-RADS Calculator & Report Generator — v2022",
+    description:
+      "Free lung cancer screening CT structured report generator with Lung-RADS v2022 scoring. Supports solid, part-solid, and ground-glass nodules. Multi-nodule, S modifier, PACS-ready report.",
+    keywords: [
+      "Lung-RADS", "Lung-RADS v2022", "lung cancer screening",
+      "LDCT", "pulmonary nodule", "structured reporting",
+      "low-dose CT", "lung nodule calculator",
+    ],
+    alternates: buildAlternates(lang, "/rads/lungrads"),
+  };
+}
 
-export default function LungRadsPage() {
+export default async function LungRadsPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
+  // English-only calculator body → inLanguage: "en"; only the url carries the locale.
+  const medicalWebPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: "Lung-RADS Calculator & Report Generator (v2022)",
+    description:
+      "Free lung cancer screening CT structured report generator with Lung-RADS v2022 scoring for solid, part-solid, and ground-glass nodules.",
+    url: ogUrl(lang, "/rads/lungrads"),
+    inLanguage: "en",
+    about: {
+      "@type": "MedicalTest",
+      name: "Low-dose CT lung cancer screening (Lung-RADS v2022)",
+    },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "en",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is Lung-RADS?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Lung-RADS (Lung CT Screening Reporting and Data System) is the ACR standard for classifying nodules on low-dose CT lung cancer screening and assigning management recommendations.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Which version does this calculator use?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Lung-RADS v2022, with support for solid, part-solid, and ground-glass nodules, multi-nodule scoring, and the S modifier.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is this a medical device?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. It is for educational and research purposes only, is not a regulatory-cleared medical device, and does not replace professional medical judgment.",
+        },
+      },
+    ],
+  };
+
   return (
     <main className="flex-1 px-4 py-10 md:px-6 md:py-16">
+      <JsonLd data={medicalWebPageJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-accent">

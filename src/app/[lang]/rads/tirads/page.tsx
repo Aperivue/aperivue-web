@@ -1,21 +1,87 @@
 import type { Metadata } from "next";
 import ThyroidReportGenerator from "./ThyroidReportGenerator";
+import { buildAlternates, ogUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
 
-export const metadata: Metadata = {
-  title: "TIRADS Calculator & Report Generator — ACR TI-RADS · K-TIRADS · EU-TIRADS",
-  description:
-    "Free thyroid ultrasound structured report generator with TIRADS scoring. Supports ACR TI-RADS (2017), 2021 K-TIRADS, EU-TIRADS. Multi-nodule, size-based FNA, lymph node assessment, PACS-ready report.",
-  keywords: [
-    "TIRADS", "TI-RADS", "K-TIRADS", "EU-TIRADS",
-    "thyroid nodule", "FNA", "radiology calculator",
-    "thyroid ultrasound report", "structured reporting",
-    "biopsy criteria", "PACS",
-  ],
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "TIRADS Calculator & Report Generator — ACR TI-RADS · K-TIRADS · EU-TIRADS",
+    description:
+      "Free thyroid ultrasound structured report generator with TIRADS scoring. Supports ACR TI-RADS (2017), 2021 K-TIRADS, EU-TIRADS. Multi-nodule, size-based FNA, lymph node assessment, PACS-ready report.",
+    keywords: [
+      "TIRADS", "TI-RADS", "K-TIRADS", "EU-TIRADS",
+      "thyroid nodule", "FNA", "radiology calculator",
+      "thyroid ultrasound report", "structured reporting",
+      "biopsy criteria", "PACS",
+    ],
+    alternates: buildAlternates(lang, "/rads/tirads"),
+  };
+}
 
-export default function TiradsPage() {
+export default async function TiradsPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+
+  // The calculator body is English-only, so structured data is tagged inLanguage: "en"
+  // regardless of the URL locale; only the url carries the /{lang} prefix.
+  const medicalWebPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: "TI-RADS Calculator & Report Generator",
+    description:
+      "Free thyroid ultrasound structured report generator with TIRADS scoring (ACR TI-RADS, K-TIRADS, EU-TIRADS).",
+    url: ogUrl(lang, "/rads/tirads"),
+    inLanguage: "en",
+    about: {
+      "@type": "MedicalTest",
+      name: "Thyroid ultrasound TI-RADS risk stratification",
+    },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "en",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is TI-RADS?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "TI-RADS (Thyroid Imaging Reporting and Data System) is a standardized scheme for risk-stratifying thyroid nodules on ultrasound and deciding whether fine-needle aspiration (FNA) is warranted.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Which TI-RADS systems does this calculator support?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "ACR TI-RADS (2017), 2021 K-TIRADS, and EU-TIRADS, with multi-nodule support and size-based FNA criteria.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is this a medical device?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. It is for educational and research purposes only, is not a regulatory-cleared medical device, and does not replace professional medical judgment.",
+        },
+      },
+    ],
+  };
+
   return (
     <main className="flex-1 px-4 py-10 md:px-6 md:py-16">
+      <JsonLd data={medicalWebPageJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-accent">

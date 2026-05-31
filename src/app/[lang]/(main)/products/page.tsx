@@ -2,11 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
 import { notFound } from "next/navigation";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Products",
-  description: "Aperivue products — Aperivue RADS for structured radiology reporting.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Products",
+    description: "Aperivue products — Aperivue RADS for structured radiology reporting.",
+    alternates: buildAlternates(lang, "/products"),
+  };
+}
 
 const productsEn = [
   {

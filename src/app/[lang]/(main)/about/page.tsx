@@ -2,11 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
 import { notFound } from "next/navigation";
+import { buildAlternates } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "About Aperivue and Yoojin Nam — Medical AI researcher and developer.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "About",
+    description: "About Aperivue and Yoojin Nam — Medical AI researcher and developer.",
+    alternates: buildAlternates(lang, "/about"),
+  };
+}
 
 export default async function AboutPage({
   params,

@@ -1,6 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getDictionary, hasLocale, type Locale } from "../dictionaries";
 import { notFound } from "next/navigation";
+import { buildAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  // title/description/openGraph inherit from the root layout; only canonical + hreflang here.
+  return { alternates: buildAlternates(lang, "") };
+}
 
 function HeroVisual() {
   return (

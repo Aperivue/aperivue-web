@@ -72,7 +72,7 @@ const categories = [
         name: "check-reporting",
         label: "Reporting Guideline Audit",
         prompt: "/check-reporting Audit manuscript.docx against STROBE",
-        note: "Supports 33 guidelines (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI, etc.)",
+        note: "Supports 32 guidelines (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI, etc.)",
       },
       {
         name: "self-review",
