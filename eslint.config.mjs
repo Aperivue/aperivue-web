@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Untracked scratch dirs — not part of the app, kept out of lint signal.
+    "design-system/**",
+    "docs/**",
   ]),
 ]);
 
