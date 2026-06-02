@@ -13,6 +13,7 @@ export default function RadsHeader() {
     { href: `/${lang}/rads/lungrads`, label: "Lung-RADS" },
     { href: `/${lang}/rads/birads`, label: "BI-RADS" },
     { href: `/${lang}/rads/lirads`, label: "LI-RADS" },
+    { href: `/${lang}/rads/pirads`, label: "PI-RADS" },
   ];
 
   return (
