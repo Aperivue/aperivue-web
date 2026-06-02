@@ -41,8 +41,8 @@ const modulesEn = [
   {
     name: "LI-RADS",
     description:
-      "Liver imaging reporting and data system for CT and MRI. HCC diagnostic algorithm with ancillary features.",
-    status: "coming" as const,
+      "Liver imaging reporting and data system for CT and MRI. LI-RADS v2018 diagnostic algorithm with LR-M, LR-TIV, and ancillary features.",
+    status: "live" as const,
   },
 ];
 
@@ -68,8 +68,8 @@ const modulesKo = [
   {
     name: "LI-RADS",
     description:
-      "CT 및 MRI 기반 간 영상 리포팅 시스템. 보조 소견을 포함한 HCC 진단 알고리즘.",
-    status: "coming" as const,
+      "CT 및 MRI 기반 간 영상 리포팅 시스템. LI-RADS v2018 진단 알고리즘과 LR-M, LR-TIV, 보조 소견 포함.",
+    status: "live" as const,
   },
 ];
 
@@ -117,7 +117,7 @@ const modulesMeta = [
     ),
   },
   {
-    href: "#",
+    href: "/rads/lirads",
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -157,7 +157,7 @@ export default async function RadsLandingPage({
           },
           {
             q: "어떤 RADS 시스템을 지원하나요?",
-            a: "TI-RADS, Lung-RADS, BI-RADS가 현재 운영 중이며 LI-RADS는 준비 중입니다.",
+            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS가 현재 운영 중입니다.",
           },
           {
             q: "의료기기인가요?",
@@ -171,7 +171,7 @@ export default async function RadsLandingPage({
           },
           {
             q: "Which RADS systems are supported?",
-            a: "TI-RADS, Lung-RADS, and BI-RADS are live; LI-RADS is coming soon.",
+            a: "TI-RADS, Lung-RADS, BI-RADS, and LI-RADS are live.",
           },
           {
             q: "Is this a medical device?",

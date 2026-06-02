@@ -11,6 +11,8 @@ export default function RadsHeader() {
   const radsTabs = [
     { href: `/${lang}/rads/tirads`, label: "TI-RADS" },
     { href: `/${lang}/rads/lungrads`, label: "Lung-RADS" },
+    { href: `/${lang}/rads/birads`, label: "BI-RADS" },
+    { href: `/${lang}/rads/lirads`, label: "LI-RADS" },
   ];
 
   return (
