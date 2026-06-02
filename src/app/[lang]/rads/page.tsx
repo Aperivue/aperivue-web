@@ -44,6 +44,12 @@ const modulesEn = [
       "Liver imaging reporting and data system for CT and MRI. LI-RADS v2018 diagnostic algorithm with LR-M, LR-TIV, and ancillary features.",
     status: "live" as const,
   },
+  {
+    name: "PI-RADS",
+    description:
+      "Prostate multiparametric MRI reporting with PI-RADS v2.1. Zone-aware scoring (PZ DWI-dominant, TZ T2W-dominant) with DCE resolution.",
+    status: "live" as const,
+  },
 ];
 
 const modulesKo = [
@@ -69,6 +75,12 @@ const modulesKo = [
     name: "LI-RADS",
     description:
       "CT 및 MRI 기반 간 영상 리포팅 시스템. LI-RADS v2018 진단 알고리즘과 LR-M, LR-TIV, 보조 소견 포함.",
+    status: "live" as const,
+  },
+  {
+    name: "PI-RADS",
+    description:
+      "PI-RADS v2.1 기반 전립선 다중매개변수 MRI 리포팅. 구역별 점수(PZ는 DWI, TZ는 T2W 주도)와 DCE 결정 포함.",
     status: "live" as const,
   },
 ];
@@ -124,6 +136,14 @@ const modulesMeta = [
       </svg>
     ),
   },
+  {
+    href: "/rads/pirads",
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+      </svg>
+    ),
+  },
 ];
 
 export default async function RadsLandingPage({
@@ -157,7 +177,7 @@ export default async function RadsLandingPage({
           },
           {
             q: "어떤 RADS 시스템을 지원하나요?",
-            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS가 현재 운영 중입니다.",
+            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS가 현재 운영 중입니다.",
           },
           {
             q: "의료기기인가요?",
@@ -171,7 +191,7 @@ export default async function RadsLandingPage({
           },
           {
             q: "Which RADS systems are supported?",
-            a: "TI-RADS, Lung-RADS, BI-RADS, and LI-RADS are live.",
+            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, and PI-RADS are live.",
           },
           {
             q: "Is this a medical device?",
