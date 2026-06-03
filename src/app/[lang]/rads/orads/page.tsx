@@ -79,7 +79,7 @@ const PAGE_TEXT = {
       categories: [
         { category: "O-RADS MRI 0", risk: "Incomplete", management: "Repeat or complete the MRI evaluation." },
         { category: "O-RADS MRI 1", risk: "Normal ovaries", management: "No adnexal lesion; no follow-up." },
-        { category: "O-RADS MRI 2", risk: "Almost certainly benign (PPV <0.5%)", management: "Usually none." },
+        { category: "O-RADS MRI 2", risk: "Almost certainly benign (PPV ≈0.5%)", management: "Usually none." },
         { category: "O-RADS MRI 3", risk: "Low risk (PPV ~5%)", management: "Management individualized by clinical context." },
         { category: "O-RADS MRI 4", risk: "Intermediate risk (PPV ~50%)", management: "Gynecologic specialist evaluation." },
         { category: "O-RADS MRI 5", risk: "High risk (PPV ~90%)", management: "Gynecologic oncology referral." },
@@ -149,7 +149,7 @@ const PAGE_TEXT = {
       categories: [
         { category: "O-RADS MRI 0", risk: "불완전", management: "MRI 평가를 재시행하거나 완료합니다." },
         { category: "O-RADS MRI 1", risk: "정상 난소", management: "부속기 병변 없음; 추적 불필요." },
-        { category: "O-RADS MRI 2", risk: "거의 확실히 양성 (PPV <0.5%)", management: "대개 불필요." },
+        { category: "O-RADS MRI 2", risk: "거의 확실히 양성 (PPV ≈0.5%)", management: "대개 불필요." },
         { category: "O-RADS MRI 3", risk: "저위험 (PPV 약 5%)", management: "임상 상황에 따라 개별화." },
         { category: "O-RADS MRI 4", risk: "중간 위험 (PPV 약 50%)", management: "부인과 전문의 평가." },
         { category: "O-RADS MRI 5", risk: "고위험 (PPV 약 90%)", management: "부인과 종양 전문의 의뢰." },
