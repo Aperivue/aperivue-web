@@ -14,7 +14,7 @@ export async function generateMetadata({
   return {
     title: "Aperivue RADS — Radiology Scoring & Structured Reporting",
     description:
-      "Free structured radiology report generators for TI-RADS, Lung-RADS, BI-RADS, and LI-RADS. Evidence-based scoring calculators with PACS-ready output.",
+      "Free structured radiology report generators for TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS, and O-RADS. Evidence-based scoring calculators with PACS-ready output.",
     alternates: buildAlternates(lang, "/rads"),
   };
 }
@@ -50,6 +50,12 @@ const modulesEn = [
       "Prostate multiparametric MRI reporting with PI-RADS v2.1. Zone-aware scoring (PZ DWI-dominant, TZ T2W-dominant) with DCE resolution.",
     status: "live" as const,
   },
+  {
+    name: "O-RADS",
+    description:
+      "Ovarian-adnexal reporting with O-RADS US v2022 and MRI 2022. Lexicon-based risk stratification with color score, time-intensity curve, and multi-lesion support.",
+    status: "live" as const,
+  },
 ];
 
 const modulesKo = [
@@ -81,6 +87,12 @@ const modulesKo = [
     name: "PI-RADS",
     description:
       "PI-RADS v2.1 기반 전립선 다중매개변수 MRI 리포팅. 구역별 점수(PZ는 DWI, TZ는 T2W 주도)와 DCE 결정 포함.",
+    status: "live" as const,
+  },
+  {
+    name: "O-RADS",
+    description:
+      "O-RADS US v2022 및 MRI 2022 기반 난소-부속기 리포팅. Lexicon 기반 위험도 분류, color score, 시간-신호강도 곡선(TIC), 다중 병변 지원.",
     status: "live" as const,
   },
 ];
@@ -144,6 +156,15 @@ const modulesMeta = [
       </svg>
     ),
   },
+  {
+    href: "/rads/orads",
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <circle cx="12" cy="12" r="8" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
+  },
 ];
 
 export default async function RadsLandingPage({
@@ -177,7 +198,7 @@ export default async function RadsLandingPage({
           },
           {
             q: "어떤 RADS 시스템을 지원하나요?",
-            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS가 현재 운영 중입니다.",
+            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS, O-RADS가 현재 운영 중입니다.",
           },
           {
             q: "의료기기인가요?",
@@ -191,7 +212,7 @@ export default async function RadsLandingPage({
           },
           {
             q: "Which RADS systems are supported?",
-            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, and PI-RADS are live.",
+            a: "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS, and O-RADS are live.",
           },
           {
             q: "Is this a medical device?",
