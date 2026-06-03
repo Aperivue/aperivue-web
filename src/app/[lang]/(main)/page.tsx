@@ -141,7 +141,7 @@ export default async function Home({
                 </div>
                 <p className="mt-4 max-w-2xl text-foreground/70">{t.radsDesc}</p>
                 <div className="mt-6 flex flex-wrap gap-3 text-xs text-foreground/50">
-                  {["TI-RADS", "BI-RADS", "Lung-RADS", "LI-RADS", "Structured Reports"].map((tag) => (
+                  {["TI-RADS", "Lung-RADS", "BI-RADS", "LI-RADS", "PI-RADS", "O-RADS", "Structured Reports"].map((tag) => (
                     <span key={tag} className="rounded-full border border-border px-3 py-1">{tag}</span>
                   ))}
                 </div>
