@@ -1,0 +1,86 @@
+---
+title: "How the Lung-RADS Calculator Works: A Guide to Lung Cancer Screening CT Reporting"
+description: "Learn how to apply ACR Lung-RADS v2022 to low-dose CT lung cancer screening. Free online calculator with structured reporting for solid, part-solid, and ground-glass nodules."
+date: "2026-06-03"
+tags: ["Lung-RADS", "lung-cancer-screening", "radiology", "calculator", "structured-reporting"]
+---
+
+## Why Structured Lung Screening Reports Matter
+
+Lung cancer screening is unusual among imaging practices in that it is repetitive by design. A high-risk patient does not have a single low-dose CT (LDCT) and move on. They return year after year, and each scan must be compared with the last to decide whether anything has changed. Across millions of screens, the same kinds of small pulmonary nodules turn up constantly, and the overwhelming majority of them are not cancer.
+
+That repetition is exactly what makes standardization essential. If every radiologist described nodules in free-form prose and chose follow-up intervals on instinct, screening programs would fracture into inconsistency. One reader might bring a 7 mm solid nodule back in three months; another might wait a year. The patient would have no way to know which recommendation reflected genuine risk and which reflected the reader's habits. Multiply that variability across a national screening program and the result is missed cancers in some patients and unnecessary scans, biopsies, and anxiety in others.
+
+Lung-RADS — the Lung CT Screening Reporting and Data System, developed by the American College of Radiology — was built to remove that ambiguity. It translates the appearance of pulmonary nodules on LDCT into a small set of ordered categories, each tied to an explicit management recommendation and a follow-up interval. The current version, Lung-RADS v2022, is what this guide and the Aperivue calculator implement. For a broader view of how Lung-RADS fits among the other reporting systems, see our [RADS systems guide](/blog/rads-reporting-systems-complete-guide).
+
+## The Lung-RADS v2022 Categories
+
+Lung-RADS sorts each screening scan into one of seven categories: 0, 1, 2, 3, 4A, 4B, and 4X. The categories are ordered by increasing concern, and each carries an estimated malignancy likelihood and a defined next step.
+
+Category 0 is the incomplete result. It is assigned when a prior CT is unavailable for comparison or when the lungs are not fully imaged, and it means additional imaging or comparison is needed before the scan can be scored. It is not a risk estimate; it is a request for more information.
+
+Categories 1 and 2 are the negative and benign-appearing results, both carrying a malignancy likelihood under 1%. Category 1 is a genuinely negative screen — no nodules, or only a completely calcified nodule or a fat-density (hamartoma) nodule, both of which are benign by appearance. Category 2 covers nodules whose features or stability make them benign-appearing. Both return the patient to routine annual screening, with the next LDCT in 12 months.
+
+Category 3 is probably benign, with a malignancy likelihood of roughly 1% to 2%. It shortens the surveillance interval to a 6-month LDCT rather than waiting a full year.
+
+Category 4A is suspicious, carrying a malignancy likelihood of approximately 5% to 15%. It prompts a 3-month LDCT, and PET/CT may be used as part of the evaluation.
+
+Categories 4B and 4X are the high-concern endpoints, both with a malignancy likelihood above 15%. Category 4B is very suspicious and moves toward tissue sampling, PET/CT, or both, with management as clinically indicated. Category 4X is reserved for findings with additional features that raise concern further; it calls for tissue sampling and/or PET/CT with additional workup as indicated. The clinical philosophy across 4A, 4B, and 4X is escalation — shorter intervals first, then functional imaging, then tissue.
+
+## The Decision Logic
+
+What makes Lung-RADS more involved than a simple size cutoff is that the threshold for each category depends on three things at once: the nodule type, the size, and how the nodule has behaved over time.
+
+### Nodule type is the first branch point
+
+Every assessment begins by classifying the nodule as solid (completely solid attenuation), part-solid (both ground-glass and solid components), or ground-glass (pure ground-glass attenuation). This matters because the same diameter means something very different depending on the type. A 7 mm solid nodule and a 7 mm pure ground-glass nodule are not equivalent risks, and Lung-RADS reflects that with separate size ladders.
+
+### Size thresholds for solid nodules
+
+For a solid nodule on a baseline or new scan, the size thresholds are clean. A nodule under 6 mm is category 1. From 6 to under 8 mm it is category 3. From 8 to under 15 mm it is category 4A. At 15 mm or larger it is category 4B. The jump from category 3 to 4A at 8 mm, and from 4A to 4B at 15 mm, is where the management shifts from short-interval surveillance to active workup.
+
+### Solid-component size for part-solid nodules
+
+Part-solid nodules carry the highest malignancy risk of the three types, and Lung-RADS recognizes this by scoring them on the size of the solid component, not the total nodule size. On a baseline or new scan, a solid component under 4 mm scores category 2 to 3; a solid component from 4 to under 6 mm scores category 4A; and a solid component of 6 mm or larger scores category 4B. A 20 mm part-solid nodule with a 2 mm solid component is treated very differently from a 12 mm part-solid nodule with a 6 mm solid component, even though the first is larger overall — because the solid component is what tends to harbor invasive disease.
+
+### Size thresholds for ground-glass nodules
+
+Pure ground-glass nodules are the most indolent. On a baseline scan, a ground-glass nodule under 30 mm is category 2; if it is new, the same nodule is category 3. At 30 mm or larger it is category 3. The 30 mm threshold is far higher than for solid nodules, reflecting how slowly these lesions tend to behave.
+
+### New, stable, or growing
+
+The same nodule can land in different categories depending on its history. A nodule that has been stable for 12 months or more is downgraded toward category 2, because durable stability is itself reassuring. A growing nodule is upgraded: a solid nodule that grows to 8 mm or larger becomes category 4B, and a part-solid nodule whose solid component grows to 4 mm or larger escalates accordingly. New nodules — those not seen on the prior LDCT — are generally scored one step more cautiously than stable ones, which is why a new ground-glass nodule under 30 mm is category 3 while the same nodule at baseline is category 2.
+
+### The S modifier
+
+Layered on top of the numeric category is the S modifier. It flags a clinically significant or potentially significant finding that is not itself a Lung-RADS screening nodule — spiculation, suspicious mediastinal or hilar lymphadenopathy, direct invasion of the chest wall or mediastinum, a new or increasing pleural effusion, or any other finding suggesting malignancy. When such a suspicious feature is present, the assessment is escalated to category 4X, the highest-concern designation, prompting tissue sampling and/or PET/CT with additional workup as indicated.
+
+### Category 0 and 1 special cases
+
+Two situations bypass the size ladders entirely. Category 0 is assigned when the study cannot be scored yet — a prior CT is unavailable for comparison, or the lungs were not fully imaged. Category 1 covers not only a negative scan with no nodules but also two specifically benign findings: a completely calcified nodule and a nodule with fat density, the latter characteristic of a hamartoma. Both are recognized as benign without needing further surveillance beyond routine annual screening.
+
+## Using the Aperivue Lung-RADS Calculator
+
+To make this branching logic easier to apply, we built a free online calculator at [aperivue.com/rads/lungrads](/rads/lungrads) that implements Lung-RADS v2022 in full.
+
+The tool walks through the same decision points a radiologist works through: the special-category check first, then nodule type, size, the solid-component size for part-solid nodules, and the new/stable/growing context. It also captures the S modifier features and supports scoring multiple nodules within a single scan, since real screening studies often show more than one finding and the overall assessment follows the most concerning one.
+
+Once the inputs are entered, the calculator assigns the category, states the malignancy likelihood band, and generates a structured report with the management recommendation and follow-up interval — for example, a 3-month LDCT for category 4A or a 12-month LDCT for category 2. The output is formatted to drop into a screening reporting workflow, which removes the bookkeeping of remembering whether an 8 mm solid nodule is category 3 or 4A while working through a busy list.
+
+One practical note: the calculator is a reference tool for medical professionals, not a diagnostic substitute. The output should always be interpreted alongside the complete clinical picture — the patient's smoking history, prior imaging, symptoms, and the full CT examination. A Lung-RADS category is one input into a screening decision, not the decision itself. Everything runs in the browser with no login and no data leaving the page.
+
+## Limitations of Lung-RADS
+
+Lung-RADS substantially improves the consistency of screening reports, but it has boundaries that users should keep in mind.
+
+First, Lung-RADS is a screening tool, designed for asymptomatic high-risk individuals undergoing LDCT for lung cancer screening. It is not intended for the workup of an incidentally detected nodule on a diagnostic CT, for symptomatic patients, or for staging known cancer. Applying its categories outside the screening context misrepresents what the risk estimates mean.
+
+Second, accurate categorization depends on accurate measurement, and nodule sizing carries real inter-observer variability. A nodule measured at 5.8 mm by one reader and 6.2 mm by another can cross the category 1 to category 3 boundary. The same is true of distinguishing a part-solid nodule from a ground-glass one, or of judging whether a solid component has truly grown. The system reduces variability but cannot eliminate the measurement judgment underneath it.
+
+Third, the size thresholds and follow-up intervals are derived from population-level risk-benefit analysis. They cannot account for every individual factor — a strong family history, a particular occupational exposure, or a patient's own preference about surveillance versus biopsy. The category sets a reasonable default; the clinician still weighs the rest.
+
+Finally, like every RADS, a Lung-RADS category communicates risk and directs the next step — it does not establish a diagnosis. The histological answer still requires tissue, and the category exists to indicate whether, and how soon, that step is warranted.
+
+## Disclaimer
+
+The information provided in this article and through the Aperivue Lung-RADS calculator is intended for educational purposes and as a reference for healthcare professionals. It does not constitute medical advice, diagnosis, or treatment recommendations. Decisions regarding lung cancer screening and pulmonary nodule management should be made by qualified physicians based on the complete clinical context. The calculator is a support tool — not a replacement for professional medical judgment, and not a regulatory-cleared medical device.
