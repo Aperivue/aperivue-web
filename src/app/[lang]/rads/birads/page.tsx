@@ -5,6 +5,7 @@ import BreastReportGenerator from "./BreastReportGenerator";
 import { buildAlternates, ogUrl, SITE_AUTHOR, buildBreadcrumb } from "@/lib/seo";
 import { RADS_BY_SLUG, radsBreadcrumbItems, LAST_REVIEWED, DATE_MODIFIED } from "@/lib/rads/registry";
 import { JsonLd } from "@/components/JsonLd";
+import CriteriaSection from "@/components/rads/CriteriaSection";
 
 export async function generateMetadata({
   params,
@@ -51,6 +52,31 @@ const PAGE_TEXT = {
     mwpName: "BI-RADS Calculator & Report Generator",
     mwpDescription:
       "Free breast imaging structured report generator with BI-RADS assessment for mammography, ultrasound, and MRI.",
+    criteria: {
+      heading: "BI-RADS — assessment categories",
+      caption:
+        "Malignancy risk and management by ACR BI-RADS Atlas 5th Edition category. The same values drive this calculator.",
+      columnLabels: { category: "Category", risk: "Malignancy risk", management: "Management" },
+      categories: [
+        { category: "BI-RADS 0", risk: "N/A", management: "Additional imaging evaluation needed and/or prior mammograms for comparison." },
+        { category: "BI-RADS 1", risk: "Essentially 0%", management: "Routine screening." },
+        { category: "BI-RADS 2", risk: "Essentially 0%", management: "Routine screening." },
+        { category: "BI-RADS 3", risk: ">0% but ≤2%", management: "Short-interval (6-month) follow-up." },
+        { category: "BI-RADS 4A", risk: ">2% to ≤10%", management: "Tissue sampling." },
+        { category: "BI-RADS 4B", risk: ">10% to ≤50%", management: "Tissue sampling." },
+        { category: "BI-RADS 4C", risk: ">50% to <95%", management: "Tissue sampling." },
+        { category: "BI-RADS 5", risk: "≥95%", management: "Tissue sampling." },
+        { category: "BI-RADS 6", risk: "N/A", management: "Surgical excision when clinically appropriate." },
+      ],
+      rulesHeading: "Key category rules",
+      rules: [
+        "BI-RADS assessment categories are shared across mammography, ultrasound, and MRI; the same 0–6 scale applies to every modality.",
+        "BI-RADS 0 is an incomplete assessment — additional imaging and/or prior studies for comparison are needed before a final category is assigned.",
+        "BI-RADS 3 (probably benign) implies a >0% to ≤2% malignancy risk and is managed with short-interval (typically 6-month) follow-up rather than immediate biopsy.",
+        "BI-RADS 4 is subdivided into 4A, 4B, and 4C by increasing suspicion (>2–≤10%, >10–≤50%, and >50–<95% respectively), all warranting tissue sampling.",
+        "BI-RADS 5 carries a ≥95% malignancy risk; BI-RADS 6 denotes biopsy-proven malignancy already established before imaging.",
+      ],
+    },
     faq: [
       {
         q: "What is BI-RADS?",
@@ -78,6 +104,31 @@ const PAGE_TEXT = {
     mwpName: "BI-RADS 계산기 및 리포트 생성기",
     mwpDescription:
       "유방촬영, 초음파, MRI를 위한 BI-RADS 평가 기반 무료 유방 영상 구조화 리포트 생성기.",
+    criteria: {
+      heading: "BI-RADS — 평가 카테고리",
+      caption:
+        "ACR BI-RADS Atlas 5th Edition 카테고리별 악성 위험도 및 관리. 동일한 값이 이 계산기를 구동합니다.",
+      columnLabels: { category: "카테고리", risk: "악성 위험도", management: "관리" },
+      categories: [
+        { category: "BI-RADS 0", risk: "N/A", management: "추가 영상 평가 및/또는 비교를 위한 이전 유방촬영이 필요합니다." },
+        { category: "BI-RADS 1", risk: "사실상 0%", management: "정기 선별검사." },
+        { category: "BI-RADS 2", risk: "사실상 0%", management: "정기 선별검사." },
+        { category: "BI-RADS 3", risk: ">0%–≤2%", management: "단기간(6개월) 추적 검사." },
+        { category: "BI-RADS 4A", risk: ">2%–≤10%", management: "조직 검사." },
+        { category: "BI-RADS 4B", risk: ">10%–≤50%", management: "조직 검사." },
+        { category: "BI-RADS 4C", risk: ">50%–<95%", management: "조직 검사." },
+        { category: "BI-RADS 5", risk: "≥95%", management: "조직 검사." },
+        { category: "BI-RADS 6", risk: "N/A", management: "임상적으로 적절한 경우 수술적 절제." },
+      ],
+      rulesHeading: "핵심 카테고리 규칙",
+      rules: [
+        "BI-RADS 평가 카테고리는 유방촬영, 초음파, MRI에서 공통으로 사용되며 동일한 0–6 척도가 모든 모달리티에 적용됩니다.",
+        "BI-RADS 0은 불완전한 평가로, 최종 카테고리를 부여하기 전에 추가 영상 및/또는 비교를 위한 이전 검사가 필요합니다.",
+        "BI-RADS 3(probably benign)은 >0%–≤2%의 악성 위험도를 의미하며, 즉시 조직 검사보다는 단기간(일반적으로 6개월) 추적 검사로 관리합니다.",
+        "BI-RADS 4는 의심도가 증가함에 따라 4A, 4B, 4C로 세분되며(각각 >2%–≤10%, >10%–≤50%, >50%–<95%), 모두 조직 검사가 필요합니다.",
+        "BI-RADS 5는 ≥95%의 악성 위험도를 가지며, BI-RADS 6는 영상 검사 이전에 이미 확인된 조직검사로 입증된 악성을 의미합니다.",
+      ],
+    },
     faq: [
       {
         q: "BI-RADS란 무엇인가요?",
@@ -153,6 +204,8 @@ export default async function BiRadsPage({
         </div>
 
         <BreastReportGenerator locale={locale} />
+
+        <CriteriaSection content={t.criteria} />
 
         <footer className="mt-10 space-y-2 rounded-xl border border-border bg-muted p-4 text-xs text-foreground/50 leading-relaxed">
           <p>

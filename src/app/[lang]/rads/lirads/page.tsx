@@ -5,6 +5,7 @@ import LiverReportGenerator from "./LiverReportGenerator";
 import { buildAlternates, ogUrl, SITE_AUTHOR, buildBreadcrumb } from "@/lib/seo";
 import { RADS_BY_SLUG, radsBreadcrumbItems, LAST_REVIEWED, DATE_MODIFIED } from "@/lib/rads/registry";
 import { JsonLd } from "@/components/JsonLd";
+import CriteriaSection from "@/components/rads/CriteriaSection";
 
 export async function generateMetadata({
   params,
@@ -46,6 +47,31 @@ const PAGE_TEXT = {
     mwpName: "LI-RADS Calculator & Report Generator",
     mwpDescription:
       "Free liver imaging structured report generator with LI-RADS CT/MRI v2018 scoring for HCC risk categorization.",
+    criteria: {
+      heading: "LI-RADS CT/MRI v2018 — diagnostic categories",
+      caption:
+        "HCC probability and management by ACR CT/MRI LI-RADS v2018 category. Mirrors the categories assigned by the calculator above.",
+      columnLabels: { category: "Category", risk: "HCC probability", management: "Typical management" },
+      categories: [
+        { category: "LR-1", risk: "Definitely benign", management: "Return to routine surveillance (e.g., 6-month imaging)." },
+        { category: "LR-2", risk: "Probably benign", management: "Surveillance imaging, generally in 6 months." },
+        { category: "LR-3", risk: "Intermediate probability of malignancy", management: "Repeat or alternative diagnostic imaging in 3–6 months." },
+        { category: "LR-4", risk: "Probably HCC", management: "Multidisciplinary discussion; consider biopsy or repeat/alternative imaging." },
+        { category: "LR-5", risk: "Definitely HCC", management: "Biopsy not required; multidisciplinary management." },
+        { category: "LR-M", risk: "Probably/definitely malignant, not HCC-specific", management: "Multidisciplinary discussion; biopsy usually required." },
+        { category: "LR-TIV", risk: "Definite tumor in vein", management: "Multidisciplinary discussion; treat as malignant." },
+        { category: "LR-NC", risk: "Cannot be categorized", management: "Repeat or alternative imaging, generally within 3 months." },
+      ],
+      rulesHeading: "Key decision rules (CT/MRI v2018)",
+      rules: [
+        "LI-RADS v2018 applies only to patients at high risk for HCC (cirrhosis, chronic HBV, or current/prior HCC); it is not used in the general population.",
+        "The diagnostic table combines the major features — nonrim APHE, nonperipheral washout, enhancing capsule, and threshold growth — with observation size to assign LR-3 through LR-5.",
+        "LR-M is assigned for targetoid or rim-APHE features that favor a malignancy other than HCC, and takes precedence over the diagnostic table.",
+        "LR-TIV indicates definite tumor in vein (enhancing soft tissue within a vessel).",
+        "LR-NC is assigned when the study cannot be categorized because of image omission or degradation.",
+        "Ancillary features can adjust the category by up to one step (up for malignancy, down for benignity) but cannot raise an observation to LR-5.",
+      ],
+    },
     faq: [
       {
         q: "What is LI-RADS?",
@@ -72,6 +98,31 @@ const PAGE_TEXT = {
     mwpName: "LI-RADS 계산기 및 리포트 생성기",
     mwpDescription:
       "LI-RADS CT/MRI v2018 기반 간세포암 위험 분류 무료 간 영상 구조화 리포트 생성기.",
+    criteria: {
+      heading: "LI-RADS CT/MRI v2018 — 진단 카테고리",
+      caption:
+        "ACR CT/MRI LI-RADS v2018 카테고리별 HCC 확률 및 관리. 위 계산기가 부여하는 카테고리와 동일합니다.",
+      columnLabels: { category: "카테고리", risk: "HCC 확률", management: "일반적 관리" },
+      categories: [
+        { category: "LR-1", risk: "명백한 양성", management: "정기 추적 감시로 복귀 (예: 6개월 영상)." },
+        { category: "LR-2", risk: "양성 가능성 높음", management: "추적 감시 영상, 대개 6개월." },
+        { category: "LR-3", risk: "악성 중간 확률", management: "3–6개월 내 재검 또는 대체 진단 영상." },
+        { category: "LR-4", risk: "HCC 가능성 높음", management: "다학제 논의; 조직검사 또는 재검/대체 영상 고려." },
+        { category: "LR-5", risk: "명백한 HCC", management: "조직검사 불필요; 다학제 관리." },
+        { category: "LR-M", risk: "악성 가능성 높음/명백, HCC 비특이적", management: "다학제 논의; 대개 조직검사 필요." },
+        { category: "LR-TIV", risk: "명백한 종양 정맥 침범", management: "다학제 논의; 악성에 준하여 치료." },
+        { category: "LR-NC", risk: "분류 불가", management: "재검 또는 대체 영상, 대개 3개월 이내." },
+      ],
+      rulesHeading: "핵심 결정 규칙 (CT/MRI v2018)",
+      rules: [
+        "LI-RADS v2018은 HCC 고위험군 환자(간경변, 만성 HBV, 현재/과거 HCC)에게만 적용되며, 일반 인구에는 사용하지 않습니다.",
+        "진단표는 major feature — nonrim APHE, nonperipheral washout, enhancing capsule, threshold growth — 와 병변 크기를 조합하여 LR-3에서 LR-5까지 부여합니다.",
+        "LR-M은 HCC 이외의 악성을 시사하는 targetoid 또는 rim-APHE 소견에 부여되며, 진단표보다 우선합니다.",
+        "LR-TIV는 명백한 종양 정맥 침범(혈관 내 조영증강 연부조직)을 의미합니다.",
+        "LR-NC는 영상 누락 또는 화질 저하로 인해 분류할 수 없을 때 부여합니다.",
+        "보조 소견(ancillary feature)은 카테고리를 한 단계까지 조정할 수 있으나(악성은 상향, 양성은 하향), LR-5로 올릴 수는 없습니다.",
+      ],
+    },
     faq: [
       {
         q: "LI-RADS란 무엇인가요?",
@@ -142,6 +193,8 @@ export default async function LiradsPage({
         </div>
 
         <LiverReportGenerator locale={locale} />
+
+        <CriteriaSection content={t.criteria} />
 
         <footer className="mt-10 space-y-2 rounded-xl border border-border bg-muted p-4 text-xs text-foreground/50 leading-relaxed">
           <p>
