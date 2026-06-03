@@ -1,6 +1,7 @@
 "use client";
 
 import { useLungReport } from "../report/ReportContext";
+import { LabeledTextarea } from "@/components/rads/LabeledField";
 import CollapsibleSection from "./CollapsibleSection";
 
 export default function MediastinumSection() {
@@ -27,32 +28,22 @@ export default function MediastinumSection() {
         </label>
 
         {m.lymphadenopathy && (
-          <div>
-            <label className="mb-1 block text-xs font-medium text-foreground/60">
-              Lymph node description
-            </label>
-            <textarea
-              rows={2}
-              placeholder="e.g. Station 7 subcarinal node, 14 mm short axis..."
-              value={m.lymphNodes}
-              onChange={(e) => set({ lymphNodes: e.target.value })}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-            />
-          </div>
+          <LabeledTextarea
+            label="Lymph node description"
+            rows={2}
+            placeholder="e.g. Station 7 subcarinal node, 14 mm short axis..."
+            value={m.lymphNodes}
+            onChange={(e) => set({ lymphNodes: e.target.value })}
+          />
         )}
 
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">
-            Other mediastinal findings
-          </label>
-          <textarea
-            rows={2}
-            placeholder="e.g. Coronary calcifications, pericardial effusion, thyroid abnormality..."
-            value={m.other}
-            onChange={(e) => set({ other: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-          />
-        </div>
+        <LabeledTextarea
+          label="Other mediastinal findings"
+          rows={2}
+          placeholder="e.g. Coronary calcifications, pericardial effusion, thyroid abnormality..."
+          value={m.other}
+          onChange={(e) => set({ other: e.target.value })}
+        />
       </div>
     </CollapsibleSection>
   );

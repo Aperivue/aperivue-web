@@ -16,6 +16,8 @@ export default function CollapsibleSection({
   return (
     <section className="rounded-xl border border-border">
       <button
+        type="button"
+        aria-expanded={open}
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-semibold transition-colors hover:bg-muted"
       >

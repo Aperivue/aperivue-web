@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { hasLocale } from "../dictionaries";
 import { notFound } from "next/navigation";
-import { buildAlternates, ogUrl } from "@/lib/seo";
+import { buildAlternates, ogUrl, SITE_AUTHOR, buildBreadcrumb } from "@/lib/seo";
+import { LAST_REVIEWED, DATE_MODIFIED } from "@/lib/rads/registry";
 import { JsonLd } from "@/components/JsonLd";
 
 export async function generateMetadata({
@@ -187,7 +188,16 @@ export default async function RadsLandingPage({
     url: ogUrl(lang, "/rads"),
     inLanguage: locale,
     about: { "@type": "Thing", name: "Radiology reporting and data systems (RADS)" },
+    author: SITE_AUTHOR,
+    reviewedBy: SITE_AUTHOR,
+    lastReviewed: LAST_REVIEWED,
+    dateModified: DATE_MODIFIED,
   };
+
+  const breadcrumbJsonLd = buildBreadcrumb(lang, [
+    { name: locale === "ko" ? "홈" : "Home", path: "" },
+    { name: "RADS", path: "/rads" },
+  ]);
 
   const faq =
     locale === "ko"
@@ -233,6 +243,7 @@ export default async function RadsLandingPage({
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
       <JsonLd data={medicalWebPageJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       <div className="text-center">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">

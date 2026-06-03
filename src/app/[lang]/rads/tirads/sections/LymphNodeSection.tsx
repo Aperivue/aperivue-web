@@ -2,6 +2,7 @@
 
 import { useReport } from "../report/ReportContext";
 import { LN_LEVELS, LN_FEATURES } from "../report/types";
+import { LabeledTextarea } from "@/components/rads/LabeledField";
 import CollapsibleSection from "./CollapsibleSection";
 
 export default function LymphNodeSection() {
@@ -35,8 +36,8 @@ export default function LymphNodeSection() {
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="text-xs text-foreground/50">Level</label>
-                    <select value={node.level}
+                    <label htmlFor={`ln-level-${node.id}`} className="text-xs text-foreground/50">Level</label>
+                    <select id={`ln-level-${node.id}`} value={node.level}
                       onChange={(e) => dispatch({ type: "UPDATE_ABNORMAL_LN", id: node.id, payload: { level: e.target.value } })}
                       className="w-full rounded border border-border bg-surface px-2 py-1 text-sm">
                       <option value="">--</option>
@@ -44,14 +45,14 @@ export default function LymphNodeSection() {
                     </select>
                   </div>
                   <div>
-                    <label className="text-xs text-foreground/50">Short diameter (mm)</label>
-                    <input type="number" step="1" min="0" value={node.size}
+                    <label htmlFor={`ln-size-${node.id}`} className="text-xs text-foreground/50">Short diameter (mm)</label>
+                    <input id={`ln-size-${node.id}`} type="number" step="1" min="0" value={node.size}
                       onChange={(e) => dispatch({ type: "UPDATE_ABNORMAL_LN", id: node.id, payload: { size: e.target.value } })}
                       className="w-full rounded border border-border bg-surface px-2 py-1 text-sm" />
                   </div>
                 </div>
                 <div className="mt-2">
-                  <label className="text-xs text-foreground/50">Features</label>
+                  <p className="text-xs text-foreground/50">Features</p>
                   <div className="mt-1 flex flex-wrap gap-2">
                     {LN_FEATURES.map((f) => {
                       const checked = node.features.includes(f.value);
@@ -73,6 +74,7 @@ export default function LymphNodeSection() {
                   </div>
                 </div>
                 <textarea rows={1} placeholder="Additional description..."
+                  aria-label="Abnormal node additional description"
                   value={node.description}
                   onChange={(e) => dispatch({ type: "UPDATE_ABNORMAL_LN", id: node.id, payload: { description: e.target.value } })}
                   className="mt-2 w-full rounded border border-border bg-surface px-2 py-1 text-sm" />
@@ -85,13 +87,10 @@ export default function LymphNodeSection() {
           </div>
         )}
 
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Additional LN description</label>
-          <textarea rows={2} placeholder="e.g. Bilateral benign-appearing reactive LNs in levels II-III..."
-            value={ln.additionalDescription}
-            onChange={(e) => dispatch({ type: "SET_LYMPH_DESCRIPTION", value: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
+        <LabeledTextarea label="Additional LN description" rows={2}
+          placeholder="e.g. Bilateral benign-appearing reactive LNs in levels II-III..."
+          value={ln.additionalDescription}
+          onChange={(e) => dispatch({ type: "SET_LYMPH_DESCRIPTION", value: e.target.value })} />
       </div>
     </CollapsibleSection>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLiradsReport } from "../report/ReportContext";
+import { LabeledInput, LabeledSelect } from "@/components/rads/LabeledField";
 import {
   LIRADS_SEGMENTS,
   DIAGNOSTIC_QUALITY_OPTIONS,
@@ -33,52 +34,37 @@ export default function ObservationDetailPanel() {
     <div className="flex-1 space-y-3">
       {/* Label + segment + size */}
       <div className="grid grid-cols-3 gap-3">
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Label</label>
-          <input type="text" value={o.label}
-            onChange={(e) => update({ label: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Segment</label>
-          <select value={o.segment}
-            onChange={(e) => update({ segment: e.target.value as LiradsSegment })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
-            {LIRADS_SEGMENTS.map((s) => (
-              <option key={s.value} value={s.value}>{s.label}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Size (mm)</label>
-          <input type="number" step="1" min="0" placeholder="e.g. 18"
-            value={o.sizeMm}
-            onChange={(e) => update({ sizeMm: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
+        <LabeledInput label="Label" type="text" value={o.label}
+          onChange={(e) => update({ label: e.target.value })} />
+        <LabeledSelect label="Segment" value={o.segment}
+          onChange={(e) => update({ segment: e.target.value as LiradsSegment })}>
+          {LIRADS_SEGMENTS.map((s) => (
+            <option key={s.value} value={s.value}>{s.label}</option>
+          ))}
+        </LabeledSelect>
+        <LabeledInput label="Size (mm)" type="number" step="1" min="0" placeholder="e.g. 18"
+          value={o.sizeMm}
+          onChange={(e) => update({ sizeMm: e.target.value })} />
       </div>
 
       {/* Diagnostic quality (LR-NC gate, per observation) */}
-      <div>
-        <label className="mb-1 block text-xs font-medium text-foreground/60">
-          Diagnostic quality (LR-NC gate)
-        </label>
-        <select value={o.diagnosticQuality}
-          onChange={(e) => update({ diagnosticQuality: e.target.value as DiagnosticQuality })}
-          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
-          {DIAGNOSTIC_QUALITY_OPTIONS.map((q) => (
-            <option key={q.value} value={q.value}>{q.label}</option>
-          ))}
-        </select>
-      </div>
+      <LabeledSelect
+        label="Diagnostic quality (LR-NC gate)"
+        value={o.diagnosticQuality}
+        onChange={(e) => update({ diagnosticQuality: e.target.value as DiagnosticQuality })}
+      >
+        {DIAGNOSTIC_QUALITY_OPTIONS.map((q) => (
+          <option key={q.value} value={q.value}>{q.label}</option>
+        ))}
+      </LabeledSelect>
 
       {/* Major features */}
       <fieldset className="rounded-xl border border-border bg-surface p-4">
         <legend className="px-2 text-sm font-semibold">Major Features</legend>
 
-        <label className="mb-1 block text-xs font-medium text-foreground/60">
+        <p className="mb-1 block text-xs font-medium text-foreground/60">
           Arterial phase hyperenhancement (APHE)
-        </label>
+        </p>
         <div className="mb-3 grid gap-1.5">
           {APHE_OPTIONS.map((opt) => (
             <label
@@ -98,15 +84,13 @@ export default function ObservationDetailPanel() {
           ))}
         </div>
 
-        <label className="mb-1 block text-xs font-medium text-foreground/60">Nonperipheral washout</label>
-        <select value={o.washout}
-          onChange={(e) => update({ washout: e.target.value as WashoutPhase })}
-          className="mb-3 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
+        <LabeledSelect label="Nonperipheral washout" wrapperClassName="mb-3" value={o.washout}
+          onChange={(e) => update({ washout: e.target.value as WashoutPhase })}>
           <option value="">Select washout...</option>
           {WASHOUT_OPTIONS.map((w) => (
             <option key={w.value} value={w.value}>{w.label}</option>
           ))}
-        </select>
+        </LabeledSelect>
 
         <div className="grid gap-1.5">
           <CheckRow label="Enhancing capsule" checked={o.enhancingCapsule}
@@ -123,14 +107,12 @@ export default function ObservationDetailPanel() {
           <CheckRow label="Definite tumor in vein (LR-TIV)" checked={o.tumorInVein}
             onChange={() => update({ tumorInVein: !o.tumorInVein })} />
         </div>
-        <label className="mb-1 mt-3 block text-xs font-medium text-foreground/60">Benign diagnosis</label>
-        <select value={o.benignity}
-          onChange={(e) => update({ benignity: e.target.value as LiradsBenignity })}
-          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
+        <LabeledSelect label="Benign diagnosis" wrapperClassName="mt-3" value={o.benignity}
+          onChange={(e) => update({ benignity: e.target.value as LiradsBenignity })}>
           <option value="">Not a definite/probable benign entity</option>
           <option value="definite">Definitely benign (LR-1)</option>
           <option value="probable">Probably benign (LR-2)</option>
-        </select>
+        </LabeledSelect>
         {o.benignity !== "" && (
           <p className="mt-1 text-xs text-foreground/40">
             A benign diagnosis is assigned before LR-M and the diagnostic table, so it overrides

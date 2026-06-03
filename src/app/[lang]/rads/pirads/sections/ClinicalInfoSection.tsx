@@ -2,6 +2,7 @@
 
 import { usePiradsReport } from "../report/ReportContext";
 import { PIRADS_INDICATIONS } from "../report/types";
+import { LabeledInput, LabeledSelect } from "@/components/rads/LabeledField";
 import CollapsibleSection from "./CollapsibleSection";
 
 export default function ClinicalInfoSection() {
@@ -19,20 +20,20 @@ export default function ClinicalInfoSection() {
     <CollapsibleSection title="Clinical Information" defaultOpen={true}>
       <div className="space-y-3">
         <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Indication</label>
-          <select
+          <LabeledSelect
+            label="Indication"
             value={indication}
             onChange={(e) => set({ indication: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
           >
             <option value="">Select indication...</option>
             {PIRADS_INDICATIONS.map((i) => (
               <option key={i.value} value={i.value}>{i.label}</option>
             ))}
-          </select>
+          </LabeledSelect>
           {indication === "other" && (
             <input
               type="text"
+              aria-label="Custom indication"
               placeholder="Specify indication..."
               value={customIndication}
               onChange={(e) => set({ customIndication: e.target.value })}
@@ -42,32 +43,20 @@ export default function ClinicalInfoSection() {
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="mb-1 block text-xs font-medium text-foreground/60">PSA (ng/mL)</label>
-            <input type="number" step="0.1" min="0" placeholder="e.g. 6.5"
-              value={psa}
-              onChange={(e) => set({ psa: e.target.value })}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-          </div>
-          <div>
-            <label className="mb-1 block text-xs font-medium text-foreground/60">Prostate volume (mL)</label>
-            <input type="number" step="1" min="0" placeholder="e.g. 45"
-              value={prostateVolumeMl}
-              onChange={(e) => set({ prostateVolumeMl: e.target.value })}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-          </div>
+          <LabeledInput label="PSA (ng/mL)" type="number" step="0.1" min="0" placeholder="e.g. 6.5"
+            value={psa}
+            onChange={(e) => set({ psa: e.target.value })} />
+          <LabeledInput label="Prostate volume (mL)" type="number" step="1" min="0" placeholder="e.g. 45"
+            value={prostateVolumeMl}
+            onChange={(e) => set({ prostateVolumeMl: e.target.value })} />
         </div>
         {density && (
           <p className="text-xs text-foreground/50">PSA density: <strong>{density}</strong> ng/mL²</p>
         )}
 
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Comparison</label>
-          <input type="text" placeholder="e.g. Prior mpMRI dated 2024-09-01"
-            value={comparison}
-            onChange={(e) => set({ comparison: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
+        <LabeledInput label="Comparison" type="text" placeholder="e.g. Prior mpMRI dated 2024-09-01"
+          value={comparison}
+          onChange={(e) => set({ comparison: e.target.value })} />
       </div>
     </CollapsibleSection>
   );

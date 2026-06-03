@@ -1,6 +1,8 @@
 "use client";
 
+import { useId } from "react";
 import { usePiradsReport } from "../report/ReportContext";
+import { LabeledInput, LabeledSelect } from "@/components/rads/LabeledField";
 import {
   PROSTATE_ZONES,
   PROSTATE_SIDES,
@@ -24,6 +26,7 @@ export default function LesionDetailPanel() {
   const update = (payload: Record<string, unknown>) =>
     dispatch({ type: "UPDATE_LESION", id: l.id, payload });
 
+  const dceId = useId();
   const result = activeScored.result;
   const t2wOptions = l.zone === "tz" ? T2W_TZ_SCORES : T2W_PZ_SCORES;
   const isPz = l.zone === "pz";
@@ -35,47 +38,27 @@ export default function LesionDetailPanel() {
     <div className="flex-1 space-y-3">
       {/* Label + location */}
       <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Label</label>
-          <input type="text" value={l.label}
-            onChange={(e) => update({ label: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Size (mm)</label>
-          <input type="number" step="1" min="0" placeholder="e.g. 12"
-            value={l.sizeMm}
-            onChange={(e) => update({ sizeMm: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
+        <LabeledInput label="Label" type="text" value={l.label}
+          onChange={(e) => update({ label: e.target.value })} />
+        <LabeledInput label="Size (mm)" type="number" step="1" min="0" placeholder="e.g. 12"
+          value={l.sizeMm}
+          onChange={(e) => update({ sizeMm: e.target.value })} />
       </div>
 
       <div className="grid grid-cols-3 gap-3">
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Side</label>
-          <select value={l.side}
-            onChange={(e) => update({ side: e.target.value as ProstateSide })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
-            {PROSTATE_SIDES.map((s) => (<option key={s.value} value={s.value}>{s.label}</option>))}
-          </select>
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Level</label>
-          <select value={l.level}
-            onChange={(e) => update({ level: e.target.value as ProstateLevel })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
-            {PROSTATE_LEVELS.map((lv) => (<option key={lv.value} value={lv.value}>{lv.label}</option>))}
-          </select>
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Zone</label>
-          <select value={l.zone}
-            onChange={(e) => update({ zone: e.target.value as ProstateZone })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
-            <option value="">Select zone...</option>
-            {PROSTATE_ZONES.map((z) => (<option key={z.value} value={z.value}>{z.label}</option>))}
-          </select>
-        </div>
+        <LabeledSelect label="Side" value={l.side}
+          onChange={(e) => update({ side: e.target.value as ProstateSide })}>
+          {PROSTATE_SIDES.map((s) => (<option key={s.value} value={s.value}>{s.label}</option>))}
+        </LabeledSelect>
+        <LabeledSelect label="Level" value={l.level}
+          onChange={(e) => update({ level: e.target.value as ProstateLevel })}>
+          {PROSTATE_LEVELS.map((lv) => (<option key={lv.value} value={lv.value}>{lv.label}</option>))}
+        </LabeledSelect>
+        <LabeledSelect label="Zone" value={l.zone}
+          onChange={(e) => update({ zone: e.target.value as ProstateZone })}>
+          <option value="">Select zone...</option>
+          {PROSTATE_ZONES.map((z) => (<option key={z.value} value={z.value}>{z.label}</option>))}
+        </LabeledSelect>
       </div>
 
       {l.zone === "" && (
@@ -119,10 +102,10 @@ export default function LesionDetailPanel() {
 
         {/* DCE — used to resolve PZ DWI 3 */}
         <div className="mt-1">
-          <label className="mb-1 block text-xs font-medium text-foreground/60">
+          <label htmlFor={dceId} className="mb-1 block text-xs font-medium text-foreground/60">
             DCE{showDce ? " — required (PZ, DWI 3)" : ""}
           </label>
-          <select value={l.dce}
+          <select id={dceId} value={l.dce}
             onChange={(e) => update({ dce: e.target.value as DceResult })}
             className={`w-full rounded-lg border bg-surface px-3 py-2 text-sm ${
               showDce && l.dce === "" ? "border-orange-300 dark:border-orange-700" : "border-border"
@@ -161,12 +144,13 @@ function SeqSelect({
   options: { value: number; label: string }[];
   emphasize?: boolean;
 }) {
+  const id = useId();
   return (
     <div className="mb-3">
-      <label className={`mb-1 block text-xs font-medium ${emphasize ? "text-primary" : "text-foreground/60"}`}>
+      <label htmlFor={id} className={`mb-1 block text-xs font-medium ${emphasize ? "text-primary" : "text-foreground/60"}`}>
         {label}
       </label>
-      <select value={value}
+      <select id={id} value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
         <option value="">Not scored</option>

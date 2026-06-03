@@ -1,6 +1,7 @@
 "use client";
 
 import { useLungReport, parseMm } from "../report/ReportContext";
+import { LabeledInput, LabeledSelect } from "@/components/rads/LabeledField";
 import {
   LUNG_NODULE_LOCATIONS,
   NODULE_TYPES,
@@ -27,22 +28,14 @@ export default function NoduleDetailPanel() {
     <div className="flex-1 space-y-3">
       {/* Label + Location */}
       <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Label</label>
-          <input type="text" value={n.label}
-            onChange={(e) => update({ label: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Location</label>
-          <select value={n.location}
-            onChange={(e) => update({ location: e.target.value as LungNoduleLocation })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
-            {LUNG_NODULE_LOCATIONS.map((loc) => (
-              <option key={loc.value} value={loc.value}>{loc.label}</option>
-            ))}
-          </select>
-        </div>
+        <LabeledInput label="Label" type="text" value={n.label}
+          onChange={(e) => update({ label: e.target.value })} />
+        <LabeledSelect label="Location" value={n.location}
+          onChange={(e) => update({ location: e.target.value as LungNoduleLocation })}>
+          {LUNG_NODULE_LOCATIONS.map((loc) => (
+            <option key={loc.value} value={loc.value}>{loc.label}</option>
+          ))}
+        </LabeledSelect>
       </div>
 
       {/* Nodule Type */}
@@ -109,52 +102,37 @@ export default function NoduleDetailPanel() {
       {/* Size inputs */}
       <div className="space-y-2">
         <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="mb-1 block text-xs font-medium text-foreground/60">
-              {n.noduleType === "ground_glass" ? "Nodule size (mm)" : "Longest diameter (mm)"}
-            </label>
-            <input
+          <LabeledInput
+            label={n.noduleType === "ground_glass" ? "Nodule size (mm)" : "Longest diameter (mm)"}
+            type="number"
+            step="1"
+            min="0"
+            placeholder="e.g. 12"
+            value={n.sizeMm}
+            onChange={(e) => update({ sizeMm: e.target.value })}
+          />
+          {showPriorSize && (
+            <LabeledInput
+              label="Prior size (mm)"
               type="number"
               step="1"
               min="0"
-              placeholder="e.g. 12"
-              value={n.sizeMm}
-              onChange={(e) => update({ sizeMm: e.target.value })}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+              placeholder="e.g. 8"
+              value={n.priorSizeMm}
+              onChange={(e) => update({ priorSizeMm: e.target.value })}
             />
-          </div>
-          {showPriorSize && (
-            <div>
-              <label className="mb-1 block text-xs font-medium text-foreground/60">
-                Prior size (mm)
-              </label>
-              <input
-                type="number"
-                step="1"
-                min="0"
-                placeholder="e.g. 8"
-                value={n.priorSizeMm}
-                onChange={(e) => update({ priorSizeMm: e.target.value })}
-                className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-              />
-            </div>
           )}
         </div>
         {showSolidComponent && (
-          <div>
-            <label className="mb-1 block text-xs font-medium text-foreground/60">
-              Solid component size (mm)
-            </label>
-            <input
-              type="number"
-              step="1"
-              min="0"
-              placeholder="e.g. 5"
-              value={n.solidComponentMm}
-              onChange={(e) => update({ solidComponentMm: e.target.value })}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-            />
-          </div>
+          <LabeledInput
+            label="Solid component size (mm)"
+            type="number"
+            step="1"
+            min="0"
+            placeholder="e.g. 5"
+            value={n.solidComponentMm}
+            onChange={(e) => update({ solidComponentMm: e.target.value })}
+          />
         )}
       </div>
 

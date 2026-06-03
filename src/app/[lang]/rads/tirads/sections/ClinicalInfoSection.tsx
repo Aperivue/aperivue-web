@@ -2,6 +2,7 @@
 
 import { useReport } from "../report/ReportContext";
 import { INDICATIONS } from "../report/types";
+import { LabeledInput, LabeledSelect } from "@/components/rads/LabeledField";
 import CollapsibleSection from "./CollapsibleSection";
 
 export default function ClinicalInfoSection() {
@@ -15,20 +16,20 @@ export default function ClinicalInfoSection() {
     <CollapsibleSection title="Clinical Information" defaultOpen={false}>
       <div className="space-y-3">
         <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Indication</label>
-          <select
+          <LabeledSelect
+            label="Indication"
             value={indication}
             onChange={(e) => set({ indication: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
           >
             <option value="">Select indication...</option>
             {INDICATIONS.map((i) => (
               <option key={i.value} value={i.value}>{i.label}</option>
             ))}
-          </select>
+          </LabeledSelect>
           {indication === "other" && (
             <input
               type="text"
+              aria-label="Custom indication"
               placeholder="Specify indication..."
               value={customIndication}
               onChange={(e) => set({ customIndication: e.target.value })}
@@ -36,16 +37,13 @@ export default function ClinicalInfoSection() {
             />
           )}
         </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Comparison</label>
-          <input
-            type="text"
-            placeholder="e.g. Prior thyroid US dated 2024-01-15"
-            value={comparison}
-            onChange={(e) => set({ comparison: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm"
-          />
-        </div>
+        <LabeledInput
+          label="Comparison"
+          type="text"
+          placeholder="e.g. Prior thyroid US dated 2024-01-15"
+          value={comparison}
+          onChange={(e) => set({ comparison: e.target.value })}
+        />
       </div>
     </CollapsibleSection>
   );

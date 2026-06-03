@@ -27,6 +27,7 @@ export default function ReportPreview() {
       </pre>
       <div className="mt-3 flex justify-end">
         <button
+          type="button"
           onClick={handleCopy}
           className={`rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors ${
             copied ? "bg-green-600 text-white" : "bg-primary text-white hover:bg-primary-dark"

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale } from "../../dictionaries";
 import BreastReportGenerator from "./BreastReportGenerator";
-import { buildAlternates, ogUrl } from "@/lib/seo";
+import { buildAlternates, ogUrl, SITE_AUTHOR, buildBreadcrumb } from "@/lib/seo";
+import { RADS_BY_SLUG, radsBreadcrumbItems, LAST_REVIEWED, DATE_MODIFIED } from "@/lib/rads/registry";
 import { JsonLd } from "@/components/JsonLd";
 
 export async function generateMetadata({
@@ -114,7 +115,15 @@ export default async function BiRadsPage({
     url: ogUrl(lang, "/rads/birads"),
     inLanguage: locale,
     about: { "@type": "MedicalTest", name: "Breast imaging BI-RADS assessment" },
+    author: SITE_AUTHOR,
+    reviewedBy: SITE_AUTHOR,
+    lastReviewed: LAST_REVIEWED,
+    datePublished: RADS_BY_SLUG["birads"].datePublished,
+    dateModified: DATE_MODIFIED,
+    citation: RADS_BY_SLUG["birads"].citation,
   };
+
+  const breadcrumbJsonLd = buildBreadcrumb(lang, radsBreadcrumbItems(lang, "birads"));
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -130,6 +139,7 @@ export default async function BiRadsPage({
   return (
     <main className="flex-1 px-4 py-10 md:px-6 md:py-16">
       <JsonLd data={medicalWebPageJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 text-center">

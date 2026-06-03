@@ -9,6 +9,7 @@ export default function OtherFindingsSection() {
   return (
     <CollapsibleSection title="Other Findings" defaultOpen={false}>
       <textarea
+        aria-label="Other findings"
         rows={3}
         placeholder="e.g. Uterus, free fluid, lymphadenopathy, other pelvic findings..."
         value={state.otherFindings}
