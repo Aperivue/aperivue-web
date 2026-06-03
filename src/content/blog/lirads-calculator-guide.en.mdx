@@ -1,0 +1,80 @@
+---
+title: "How the LI-RADS Calculator Works: A Guide to HCC Risk Categorization on CT and MRI"
+description: "Learn how ACR LI-RADS CT/MRI v2018 categorizes liver observations in patients at high risk for hepatocellular carcinoma. Free online calculator with structured reporting."
+date: "2026-06-03"
+tags: ["LI-RADS", "liver", "HCC", "radiology", "calculator", "structured-reporting"]
+---
+
+## A Different Kind of RADS Problem
+
+Most reporting and data systems answer one question for the whole population: given this finding, how worried should we be? LI-RADS does something narrower and, in a way, more demanding. It applies only to patients who are already known to be at high risk for hepatocellular carcinoma — those with cirrhosis, chronic hepatitis B virus infection, or a current or prior HCC — and it tries to do something most imaging systems avoid: assign a category that can establish a cancer diagnosis without a biopsy.
+
+That scope restriction is not a footnote. It is the first and most important rule of the entire system. LI-RADS is not a general-purpose liver lesion classifier. A focal liver lesion in a 35-year-old with no liver disease — a hemangioma, a focal nodular hyperplasia, a metastasis — is outside its domain entirely. Applying LI-RADS to the general population inflates the pretest probability the algorithm assumes and produces categories that mean nothing. The system was calibrated on a population in whom HCC is genuinely common, and its category-to-risk mapping only holds in that population.
+
+Within that high-risk population, LI-RADS replaces narrative description with a defined vocabulary, an ordered set of categories, and a management recommendation attached to each one. The Liver Imaging Reporting and Data System, maintained by the American College of Radiology, reached its current CT/MRI form with the v2018 release. This guide walks through how the v2018 algorithm assigns categories and how the [Aperivue LI-RADS calculator](/rads/lirads) encodes that logic. It is a companion to our broader [RADS systems guide](/blog/rads-reporting-systems-complete-guide).
+
+## The Category Ladder
+
+LI-RADS v2018 sorts each liver observation into one of eight categories. Five of them form a numbered ladder of increasing HCC probability, and three sit outside it for specific situations.
+
+LR-1 is definitely benign. The observation has an imaging diagnosis that is unequivocally benign — a typical cyst, a typical hemangioma — and the management is simply a return to routine surveillance, usually 6-month imaging. LR-2 is probably benign, again managed with surveillance imaging in roughly 6 months.
+
+LR-3 carries an intermediate probability of malignancy. This is the genuinely uncertain category, and its management reflects that: repeat or alternative diagnostic imaging in 3 to 6 months rather than immediate intervention. LR-4 means probably HCC, and it crosses into active workup — multidisciplinary discussion, with biopsy or repeat/alternative imaging considered. LR-5 means definitely HCC.
+
+The LR-5 category is what makes LI-RADS distinctive. When an observation meets LR-5 criteria in an at-risk patient, the diagnosis of HCC can be made noninvasively. Biopsy is not required; management proceeds through a multidisciplinary team. Few imaging systems carry this weight — a category alone establishing a cancer diagnosis — and it explains why the criteria for reaching LR-5 are deliberately strict.
+
+Three categories sit off the numbered ladder. LR-M is for observations that are probably or definitely malignant but not specific for HCC — most often intrahepatic cholangiocarcinoma or a combined tumor. The management differs from LR-5 in a critical way: because the lesion is not HCC-specific, a biopsy is usually required to establish the diagnosis. LR-TIV denotes definite tumor in vein, meaning enhancing soft tissue within a vessel; it is treated as malignant and prompts multidisciplinary discussion. LR-NC is non-categorizable — assigned when image omission or degradation prevents meaningful categorization, with management being repeat or alternative imaging, generally within 3 months.
+
+## The Major Features and the Diagnostic Table
+
+The numbered categories LR-3 through LR-5 are assigned by combining four major features with the size of the observation. The four major features are nonrim arterial phase hyperenhancement, nonperipheral washout, an enhancing capsule, and threshold growth.
+
+Nonrim arterial phase hyperenhancement (APHE) is the entry feature. It means the observation enhances more than the surrounding liver in the arterial phase, in a non-rim pattern. The "nonrim" qualifier matters intensely, because rim arterial hyperenhancement points away from HCC and toward LR-M, as described below. The remaining three are the additional features that, layered on top of APHE, push an observation up the ladder: nonperipheral washout (the observation becoming hypoenhancing relative to liver on a later phase), an enhancing capsule, and threshold growth (a defined increase in size over time).
+
+The v2018 diagnostic table works by counting how many of those three additional features are present, against the observation's size. The calculator implements the published table directly. When there is no nonrim APHE, an observation with none of the additional features is LR-3, and one with any additional feature is LR-4 — independent of size in v2018. When nonrim APHE is present, size becomes decisive. Below 10 mm, the observation cannot reach LR-5 through the table: it is LR-3 with no additional features and LR-4 with one or more. In the 10-to-19 mm range, no additional feature gives LR-3, two or more give LR-5, and exactly one additional feature splits — an enhancing capsule alone yields LR-4, while a single washout or threshold growth reaches LR-5. At 20 mm or larger with nonrim APHE, no additional feature gives LR-4 and any additional feature gives LR-5.
+
+That 10-to-19 mm split is the most subtle part of the algorithm, and it is exactly where a calculator earns its place. Scoring it by memory during a busy reading list is where errors creep in.
+
+## LR-M Takes Precedence
+
+Before the diagnostic table is ever reached, the algorithm checks for features that suggest a malignancy other than HCC. If they are present, the observation is LR-M, and the major-feature table is not applied.
+
+The clearest of these is rim APHE — arterial enhancement in a peripheral, targetoid pattern rather than the diffuse nonrim pattern of HCC. Other LR-M features include peripheral washout, delayed central enhancement, targetoid diffusion restriction, a targetoid appearance on the transitional or hepatobiliary phase, an infiltrative appearance, marked diffusion restriction, and necrosis or severe ischemia. Any one of these targetoid or nontargetoid features routes the observation to LR-M.
+
+The reason LR-M takes precedence is clinical. Calling something LR-5 would assert HCC and permit treatment without tissue. If the imaging instead suggests cholangiocarcinoma or another non-HCC malignancy, that noninvasive shortcut is no longer safe — the treatment pathways diverge, and tissue confirmation usually matters. The calculator handles this by consuming rim APHE into the LR-M branch before the diagnostic table runs, so a rim-enhancing observation can never be miscounted as nonrim APHE feeding an LR-5.
+
+## Ancillary Features Can Adjust, but Not to LR-5
+
+Beyond the major features, LI-RADS recognizes a long list of ancillary features — findings that favor malignancy or favor benignity without being definitive. Restricted diffusion, mild-to-moderate T2 hyperintensity, corona enhancement, and several others favor malignancy. Size stability over two or more years, size reduction, and parallel blood-pool enhancement, among others, favor benignity.
+
+Ancillary features adjust a table-derived category by at most one step: up by one if features favor malignancy, down by one (with a floor of LR-1) if they favor benignity. When features favor both directions, no adjustment is made. The single most important constraint is that ancillary features can never raise an observation to LR-5. An LR-4 observation with malignancy-favoring ancillary features stays LR-4. The LR-5 diagnosis, and the noninvasive cancer pathway it unlocks, is reserved for observations that satisfy the major-feature criteria. The calculator enforces this cap explicitly.
+
+## Contrast Agents: ECA Versus HBA
+
+LI-RADS CT/MRI applies to studies performed with two classes of MRI contrast agent, and the distinction changes how one of the major features is read. Extracellular agents (ECA) distribute through the blood pool and interstitium. Hepatobiliary agents (HBA), such as gadoxetate, are partly taken up by functioning hepatocytes and excreted into bile, adding a hepatobiliary phase to the examination.
+
+The difference matters for washout. With an extracellular agent, nonperipheral washout counts as a major feature whether it is seen in the portal venous phase or the delayed phase. With a hepatobiliary agent, only portal-venous-phase washout qualifies as a major feature; the later transitional-phase appearance is not counted as major washout, and hepatobiliary-phase hypointensity is treated as an ancillary feature favoring malignancy rather than as washout. The Aperivue engine asks which agent was used and applies the correct washout rule automatically, so a transitional-phase finding on an HBA study is not mistakenly scored as a major feature.
+
+## Using the Aperivue LI-RADS Calculator
+
+We built a free online calculator at [aperivue.com/rads/lirads](/rads/lirads) that encodes the CT/MRI v2018 algorithm — the precedence rules, the major-feature diagnostic table, the LR-M branch, the ancillary-feature adjustment with its LR-5 cap, and the ECA-versus-HBA washout distinction.
+
+In use, you select the contrast agent, indicate diagnostic quality, and then record the observation's size and features: arterial phase enhancement (none, rim, or nonrim), washout and the phase in which it appears, an enhancing capsule, threshold growth, any LR-M features, and any ancillary features. The tool applies the published precedence — nondiagnostic quality to LR-NC, tumor in vein to LR-TIV, a benign imaging diagnosis to LR-1 or LR-2, targetoid features to LR-M, and otherwise the diagnostic table followed by ancillary adjustment — and returns the category with a written rationale and the corresponding management recommendation.
+
+The output is a structured report built for a liver imaging workflow. It supports multiple observations, ranks them so the highest-concern finding leads the impression, and produces text you can copy into your reporting system. The point is not to make the diagnosis for you. It is to apply the algorithm's bookkeeping faithfully — the size-by-feature table, the precedence order, the LR-5 cap — so the category you document matches the criteria you intended, every time.
+
+## Limitations
+
+LI-RADS has well-defined boundaries that users should keep in mind.
+
+The scope restriction is the first. LI-RADS is valid only in the high-risk population it was built for. Used outside that population — in patients without cirrhosis, chronic HBV, or prior HCC — the categories lose their calibrated meaning. The calculator categorizes the features you enter; it cannot verify that the patient belongs in LI-RADS at all. That judgment is yours.
+
+Second, several major features involve reader judgment that no algorithm removes. Whether arterial enhancement is truly nonrim, whether washout is genuinely present, whether a capsule is enhancing — these are perceptual calls, and inter-reader agreement for them is good but imperfect. The calculator computes a category from the features you select; it does not adjudicate whether you selected them correctly.
+
+Third, v2018 is a CT/MRI algorithm. Contrast-enhanced ultrasound LI-RADS and the CT/MRI treatment-response algorithm for post-locoregional-therapy assessment are separate systems with their own criteria, not covered here.
+
+Finally, a LI-RADS category is a risk-stratification and communication tool, not a substitute for the full clinical picture. Even LR-5, which permits a noninvasive HCC diagnosis, is acted on within a multidisciplinary context that weighs liver function, lesion location, and the patient's overall situation.
+
+## Disclaimer
+
+The information provided in this article and through the Aperivue LI-RADS calculator is intended for educational purposes and as a reference for healthcare professionals. It does not constitute medical advice, diagnosis, or treatment recommendations. LI-RADS applies only to patients at high risk for hepatocellular carcinoma, and clinical decisions regarding liver observations should be made by qualified physicians based on the complete clinical context. The calculator is a support tool — not a replacement for professional medical judgment, and not a regulatory-cleared medical device.
