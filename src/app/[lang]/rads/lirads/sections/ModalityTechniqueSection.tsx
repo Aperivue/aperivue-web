@@ -43,7 +43,7 @@ export default function ModalityTechniqueSection() {
 
       {/* Contrast agent */}
       <div>
-        <label className="mb-1 block text-xs font-medium text-foreground/60">Contrast agent</label>
+        <p className="mb-1 block text-xs font-medium text-foreground/60">Contrast agent</p>
         <div className="grid gap-1.5">
           {CONTRAST_AGENTS.map((agent) => (
             <label

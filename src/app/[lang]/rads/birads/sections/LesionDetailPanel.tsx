@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { useBiRadsReport } from "../report/ReportContext";
 import type { BiRadsLesion } from "../report/types";
 import type { BiRadsCategory } from "@/lib/rads/birads";
@@ -44,25 +45,29 @@ import {
 
 // ── Sub-components ────────────────────────────────────────────────────────
 
-function FieldLabel({ children }: { children: React.ReactNode }) {
+function FieldLabel({ htmlFor, children }: { htmlFor?: string; children: React.ReactNode }) {
   return (
-    <label className="mb-1 block text-xs font-medium text-foreground/70">
+    <label htmlFor={htmlFor} className="mb-1 block text-xs font-medium text-foreground/70">
       {children}
     </label>
   );
 }
 
 function SelectField<T extends string>({
+  label,
   value,
   onChange,
   options,
 }: {
+  label?: React.ReactNode;
   value: T;
   onChange: (v: T) => void;
   options: { value: T; label: string }[];
 }) {
-  return (
+  const id = useId();
+  const select = (
     <select
+      id={label ? id : undefined}
       value={value}
       onChange={(e) => onChange(e.target.value as T)}
       className="w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm text-foreground focus:border-primary focus:outline-none"
@@ -74,19 +79,31 @@ function SelectField<T extends string>({
       ))}
     </select>
   );
+  return label ? (
+    <div>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      {select}
+    </div>
+  ) : (
+    select
+  );
 }
 
 function TextInput({
+  label,
   value,
   onChange,
   placeholder,
 }: {
+  label?: React.ReactNode;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
 }) {
-  return (
+  const id = useId();
+  const input = (
     <input
+      id={label ? id : undefined}
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
@@ -94,19 +111,31 @@ function TextInput({
       className="w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-primary focus:outline-none"
     />
   );
+  return label ? (
+    <div>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      {input}
+    </div>
+  ) : (
+    input
+  );
 }
 
 function NumberInput({
+  label,
   value,
   onChange,
   placeholder,
 }: {
+  label?: React.ReactNode;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
 }) {
-  return (
+  const id = useId();
+  const input = (
     <input
+      id={label ? id : undefined}
       type="number"
       min={0}
       step={0.1}
@@ -115,6 +144,14 @@ function NumberInput({
       placeholder={placeholder}
       className="w-full rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-primary focus:outline-none"
     />
+  );
+  return label ? (
+    <div>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      {input}
+    </div>
+  ) : (
+    input
   );
 }
 
@@ -137,30 +174,24 @@ function MammoMassPanel({
 }) {
   return (
     <div className="space-y-3">
-      <div>
-        <FieldLabel>Shape</FieldLabel>
-        <SelectField
-          value={lesion.mammoMassShape}
-          onChange={(v) => update({ mammoMassShape: v })}
-          options={MAMMO_MASS_SHAPES.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Margin</FieldLabel>
-        <SelectField
-          value={lesion.mammoMassMargin}
-          onChange={(v) => update({ mammoMassMargin: v })}
-          options={MAMMO_MASS_MARGINS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Density</FieldLabel>
-        <SelectField
-          value={lesion.mammoMassDensity}
-          onChange={(v) => update({ mammoMassDensity: v })}
-          options={MAMMO_MASS_DENSITIES.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
+      <SelectField
+        label="Shape"
+        value={lesion.mammoMassShape}
+        onChange={(v) => update({ mammoMassShape: v })}
+        options={MAMMO_MASS_SHAPES.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Margin"
+        value={lesion.mammoMassMargin}
+        onChange={(v) => update({ mammoMassMargin: v })}
+        options={MAMMO_MASS_MARGINS.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Density"
+        value={lesion.mammoMassDensity}
+        onChange={(v) => update({ mammoMassDensity: v })}
+        options={MAMMO_MASS_DENSITIES.map((o) => ({ value: o.value, label: o.label }))}
+      />
     </div>
   );
 }
@@ -174,22 +205,18 @@ function MammoCalcPanel({
 }) {
   return (
     <div className="space-y-3">
-      <div>
-        <FieldLabel>Morphology</FieldLabel>
-        <SelectField
-          value={lesion.calcMorphology}
-          onChange={(v) => update({ calcMorphology: v })}
-          options={CALC_MORPHOLOGIES.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Distribution</FieldLabel>
-        <SelectField
-          value={lesion.calcDistribution}
-          onChange={(v) => update({ calcDistribution: v })}
-          options={CALC_DISTRIBUTIONS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
+      <SelectField
+        label="Morphology"
+        value={lesion.calcMorphology}
+        onChange={(v) => update({ calcMorphology: v })}
+        options={CALC_MORPHOLOGIES.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Distribution"
+        value={lesion.calcDistribution}
+        onChange={(v) => update({ calcDistribution: v })}
+        options={CALC_DISTRIBUTIONS.map((o) => ({ value: o.value, label: o.label }))}
+      />
     </div>
   );
 }
@@ -236,46 +263,36 @@ function UsMassPanel({
 }) {
   return (
     <div className="space-y-3">
-      <div>
-        <FieldLabel>Shape</FieldLabel>
-        <SelectField
-          value={lesion.usMassShape}
-          onChange={(v) => update({ usMassShape: v })}
-          options={US_MASS_SHAPES.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Orientation</FieldLabel>
-        <SelectField
-          value={lesion.usMassOrientation}
-          onChange={(v) => update({ usMassOrientation: v })}
-          options={US_MASS_ORIENTATIONS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Margin</FieldLabel>
-        <SelectField
-          value={lesion.usMassMargin}
-          onChange={(v) => update({ usMassMargin: v })}
-          options={US_MASS_MARGINS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Echo Pattern</FieldLabel>
-        <SelectField
-          value={lesion.usEchoPattern}
-          onChange={(v) => update({ usEchoPattern: v })}
-          options={US_ECHO_PATTERNS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Posterior Features</FieldLabel>
-        <SelectField
-          value={lesion.usPosteriorFeatures}
-          onChange={(v) => update({ usPosteriorFeatures: v })}
-          options={US_POSTERIOR_FEATURES.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
+      <SelectField
+        label="Shape"
+        value={lesion.usMassShape}
+        onChange={(v) => update({ usMassShape: v })}
+        options={US_MASS_SHAPES.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Orientation"
+        value={lesion.usMassOrientation}
+        onChange={(v) => update({ usMassOrientation: v })}
+        options={US_MASS_ORIENTATIONS.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Margin"
+        value={lesion.usMassMargin}
+        onChange={(v) => update({ usMassMargin: v })}
+        options={US_MASS_MARGINS.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Echo Pattern"
+        value={lesion.usEchoPattern}
+        onChange={(v) => update({ usEchoPattern: v })}
+        options={US_ECHO_PATTERNS.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Posterior Features"
+        value={lesion.usPosteriorFeatures}
+        onChange={(v) => update({ usPosteriorFeatures: v })}
+        options={US_POSTERIOR_FEATURES.map((o) => ({ value: o.value, label: o.label }))}
+      />
     </div>
   );
 }
@@ -322,38 +339,30 @@ function MriMassPanel({
 }) {
   return (
     <div className="space-y-3">
-      <div>
-        <FieldLabel>Shape</FieldLabel>
-        <SelectField
-          value={lesion.mriMassShape}
-          onChange={(v) => update({ mriMassShape: v })}
-          options={MRI_MASS_SHAPES.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Margin</FieldLabel>
-        <SelectField
-          value={lesion.mriMassMargin}
-          onChange={(v) => update({ mriMassMargin: v })}
-          options={MRI_MASS_MARGINS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Internal Enhancement Pattern</FieldLabel>
-        <SelectField
-          value={lesion.mriMassEnhancement}
-          onChange={(v) => update({ mriMassEnhancement: v })}
-          options={MRI_MASS_ENHANCEMENTS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>T2 Signal</FieldLabel>
-        <SelectField
-          value={lesion.mriT2Signal}
-          onChange={(v) => update({ mriT2Signal: v })}
-          options={MRI_T2_SIGNALS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
+      <SelectField
+        label="Shape"
+        value={lesion.mriMassShape}
+        onChange={(v) => update({ mriMassShape: v })}
+        options={MRI_MASS_SHAPES.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Margin"
+        value={lesion.mriMassMargin}
+        onChange={(v) => update({ mriMassMargin: v })}
+        options={MRI_MASS_MARGINS.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Internal Enhancement Pattern"
+        value={lesion.mriMassEnhancement}
+        onChange={(v) => update({ mriMassEnhancement: v })}
+        options={MRI_MASS_ENHANCEMENTS.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="T2 Signal"
+        value={lesion.mriT2Signal}
+        onChange={(v) => update({ mriT2Signal: v })}
+        options={MRI_T2_SIGNALS.map((o) => ({ value: o.value, label: o.label }))}
+      />
     </div>
   );
 }
@@ -367,22 +376,18 @@ function MriNmePanel({
 }) {
   return (
     <div className="space-y-3">
-      <div>
-        <FieldLabel>Distribution</FieldLabel>
-        <SelectField
-          value={lesion.mriNmeDistribution}
-          onChange={(v) => update({ mriNmeDistribution: v })}
-          options={MRI_NME_DISTRIBUTIONS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Internal Enhancement Pattern</FieldLabel>
-        <SelectField
-          value={lesion.mriNmePattern}
-          onChange={(v) => update({ mriNmePattern: v })}
-          options={MRI_NME_PATTERNS.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
+      <SelectField
+        label="Distribution"
+        value={lesion.mriNmeDistribution}
+        onChange={(v) => update({ mriNmeDistribution: v })}
+        options={MRI_NME_DISTRIBUTIONS.map((o) => ({ value: o.value, label: o.label }))}
+      />
+      <SelectField
+        label="Internal Enhancement Pattern"
+        value={lesion.mriNmePattern}
+        onChange={(v) => update({ mriNmePattern: v })}
+        options={MRI_NME_PATTERNS.map((o) => ({ value: o.value, label: o.label }))}
+      />
     </div>
   );
 }
@@ -396,17 +401,15 @@ function MriKineticPanel({
 }) {
   return (
     <div className="space-y-3">
+      <SelectField
+        label="Initial Phase Enhancement"
+        value={lesion.mriKineticInitial}
+        onChange={(v) => update({ mriKineticInitial: v })}
+        options={MRI_KINETIC_INITIAL.map((o) => ({ value: o.value, label: o.label }))}
+      />
       <div>
-        <FieldLabel>Initial Phase Enhancement</FieldLabel>
         <SelectField
-          value={lesion.mriKineticInitial}
-          onChange={(v) => update({ mriKineticInitial: v })}
-          options={MRI_KINETIC_INITIAL.map((o) => ({ value: o.value, label: o.label }))}
-        />
-      </div>
-      <div>
-        <FieldLabel>Delayed Phase (Kinetic Curve)</FieldLabel>
-        <SelectField
+          label="Delayed Phase (Kinetic Curve)"
           value={lesion.mriKineticDelayed}
           onChange={(v) => update({ mriKineticDelayed: v })}
           options={MRI_KINETIC_DELAYED.map((o) => ({ value: o.value, label: o.label }))}
@@ -513,68 +516,58 @@ export default function LesionDetailPanel() {
   }
 
   const sizeUnit = mod === "us" ? "mm" : "cm";
+  const notesId = useId();
 
   return (
     <div className="flex-1 space-y-4 min-w-0">
       {/* Finding label */}
-      <div>
-        <FieldLabel>Finding label</FieldLabel>
-        <TextInput
-          value={activeLesion.label}
-          onChange={(v) => update({ label: v })}
-          placeholder="e.g. Finding 1, Right breast mass"
-        />
-      </div>
+      <TextInput
+        label="Finding label"
+        value={activeLesion.label}
+        onChange={(v) => update({ label: v })}
+        placeholder="e.g. Finding 1, Right breast mass"
+      />
 
       {/* Location */}
       <SectionDivider title="Location" />
       <div className="grid grid-cols-2 gap-3">
-        <div>
-          <FieldLabel>Laterality</FieldLabel>
-          <SelectField
-            value={activeLesion.laterality}
-            onChange={(v) => update({ laterality: v })}
-            options={LATERALITY_OPTIONS}
-          />
-        </div>
-        <div>
-          <FieldLabel>Clock position</FieldLabel>
-          <SelectField
-            value={activeLesion.clockPosition}
-            onChange={(v) => update({ clockPosition: v })}
-            options={CLOCK_POSITIONS}
-          />
-        </div>
-        <div>
-          <FieldLabel>Depth</FieldLabel>
-          <SelectField
-            value={activeLesion.depth}
-            onChange={(v) => update({ depth: v })}
-            options={DEPTHS}
-          />
-        </div>
-        <div>
-          <FieldLabel>Distance from nipple (mm)</FieldLabel>
-          <NumberInput
-            value={activeLesion.distanceFromNippleMm}
-            onChange={(v) => update({ distanceFromNippleMm: v })}
-            placeholder="e.g. 30"
-          />
-        </div>
+        <SelectField
+          label="Laterality"
+          value={activeLesion.laterality}
+          onChange={(v) => update({ laterality: v })}
+          options={LATERALITY_OPTIONS}
+        />
+        <SelectField
+          label="Clock position"
+          value={activeLesion.clockPosition}
+          onChange={(v) => update({ clockPosition: v })}
+          options={CLOCK_POSITIONS}
+        />
+        <SelectField
+          label="Depth"
+          value={activeLesion.depth}
+          onChange={(v) => update({ depth: v })}
+          options={DEPTHS}
+        />
+        <NumberInput
+          label="Distance from nipple (mm)"
+          value={activeLesion.distanceFromNippleMm}
+          onChange={(v) => update({ distanceFromNippleMm: v })}
+          placeholder="e.g. 30"
+        />
       </div>
 
       {/* Size */}
       <SectionDivider title={`Size (${sizeUnit})`} />
       <div className="grid grid-cols-3 gap-2">
         {(["sizeA", "sizeB", "sizeC"] as const).map((key, i) => (
-          <div key={key}>
-            <FieldLabel>{["L", "W", "H"][i]}</FieldLabel>
-            <NumberInput
-              value={activeLesion[key]}
-              onChange={(v) => update({ [key]: v })}
-              placeholder="—"
-            />
-          </div>
+          <NumberInput
+            key={key}
+            label={["L", "W", "H"][i]}
+            value={activeLesion[key]}
+            onChange={(v) => update({ [key]: v })}
+            placeholder="—"
+          />
         ))}
       </div>
 
@@ -584,14 +577,12 @@ export default function LesionDetailPanel() {
       {mod === "mammo" ? (
         /* Mammography branch */
         <div className="space-y-3">
-          <div>
-            <FieldLabel>Finding type</FieldLabel>
-            <SelectField
-              value={activeLesion.mammoFindingType}
-              onChange={(v) => update({ mammoFindingType: v })}
-              options={MAMMO_FINDING_TYPES}
-            />
-          </div>
+          <SelectField
+            label="Finding type"
+            value={activeLesion.mammoFindingType}
+            onChange={(v) => update({ mammoFindingType: v })}
+            options={MAMMO_FINDING_TYPES}
+          />
 
           {activeLesion.mammoFindingType === "mass" && (
             <MammoMassPanel lesion={activeLesion} update={update} />
@@ -600,14 +591,12 @@ export default function LesionDetailPanel() {
             <MammoCalcPanel lesion={activeLesion} update={update} />
           )}
           {activeLesion.mammoFindingType === "asymmetry" && (
-            <div>
-              <FieldLabel>Asymmetry type</FieldLabel>
-              <SelectField
-                value={activeLesion.asymmetryType}
-                onChange={(v) => update({ asymmetryType: v })}
-                options={ASYMMETRY_TYPES.map((o) => ({ value: o.value, label: o.label }))}
-              />
-            </div>
+            <SelectField
+              label="Asymmetry type"
+              value={activeLesion.asymmetryType}
+              onChange={(v) => update({ asymmetryType: v })}
+              options={ASYMMETRY_TYPES.map((o) => ({ value: o.value, label: o.label }))}
+            />
           )}
 
           {activeLesion.mammoFindingType &&
@@ -622,27 +611,23 @@ export default function LesionDetailPanel() {
       ) : mod === "us" ? (
         /* Ultrasound branch */
         <div className="space-y-3">
-          <div>
-            <FieldLabel>Finding type</FieldLabel>
-            <SelectField
-              value={activeLesion.usFindingType}
-              onChange={(v) => update({ usFindingType: v })}
-              options={US_FINDING_TYPES}
-            />
-          </div>
+          <SelectField
+            label="Finding type"
+            value={activeLesion.usFindingType}
+            onChange={(v) => update({ usFindingType: v })}
+            options={US_FINDING_TYPES}
+          />
 
           {activeLesion.usFindingType === "mass" && (
             <UsMassPanel lesion={activeLesion} update={update} />
           )}
           {activeLesion.usFindingType === "special_case" && (
-            <div>
-              <FieldLabel>Special case</FieldLabel>
-              <SelectField
-                value={activeLesion.usSpecialCase}
-                onChange={(v) => update({ usSpecialCase: v })}
-                options={US_SPECIAL_CASES.map((o) => ({ value: o.value, label: o.label }))}
-              />
-            </div>
+            <SelectField
+              label="Special case"
+              value={activeLesion.usSpecialCase}
+              onChange={(v) => update({ usSpecialCase: v })}
+              options={US_SPECIAL_CASES.map((o) => ({ value: o.value, label: o.label }))}
+            />
           )}
 
           {activeLesion.usFindingType === "mass" && (
@@ -656,8 +641,8 @@ export default function LesionDetailPanel() {
         /* MRI branch */
         <div className="space-y-3">
           <div>
-            <FieldLabel>Finding type</FieldLabel>
             <SelectField
+              label="Finding type"
               value={activeLesion.mriFindingType}
               onChange={(v) => update({ mriFindingType: v })}
               options={MRI_FINDING_TYPES.map((o) => ({ value: o.value, label: o.label }))}
@@ -686,14 +671,12 @@ export default function LesionDetailPanel() {
           )}
 
           {activeLesion.mriFindingType === "non_enhancing_finding" && (
-            <div>
-              <FieldLabel>Non-enhancing finding type</FieldLabel>
-              <SelectField
-                value={activeLesion.mriNonEnhancingType}
-                onChange={(v) => update({ mriNonEnhancingType: v })}
-                options={MRI_NON_ENHANCING_TYPES.map((o) => ({ value: o.value, label: o.label }))}
-              />
-            </div>
+            <SelectField
+              label="Non-enhancing finding type"
+              value={activeLesion.mriNonEnhancingType}
+              onChange={(v) => update({ mriNonEnhancingType: v })}
+              options={MRI_NON_ENHANCING_TYPES.map((o) => ({ value: o.value, label: o.label }))}
+            />
           )}
 
           {activeLesion.mriFindingType &&
@@ -716,8 +699,9 @@ export default function LesionDetailPanel() {
 
       {/* Notes */}
       <div>
-        <FieldLabel>Notes (optional)</FieldLabel>
+        <FieldLabel htmlFor={notesId}>Notes (optional)</FieldLabel>
         <textarea
+          id={notesId}
           value={activeLesion.notes}
           onChange={(e) => update({ notes: e.target.value })}
           rows={2}

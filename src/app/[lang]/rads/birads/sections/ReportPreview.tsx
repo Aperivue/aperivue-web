@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useBiRadsReport } from "../report/ReportContext";
 import {
   generateBiRadsReportText,
@@ -11,6 +11,7 @@ export default function BiRadsReportPreview() {
   const { state, dispatch } = useBiRadsReport();
   const [copied, setCopied] = useState(false);
   const [impressionCopied, setImpressionCopied] = useState(false);
+  const impressionId = useId();
 
   const reportText = generateBiRadsReportText(state);
   const impression = state.impressionOverride ?? generateAutoImpression(state);
@@ -35,12 +36,14 @@ export default function BiRadsReportPreview() {
         <h3 className="text-sm font-semibold">Report Preview</h3>
         <div className="flex gap-2">
           <button
+            type="button"
             onClick={copyImpression}
             className="rounded-md border border-border px-2.5 py-1 text-xs text-foreground/60 transition-colors hover:border-primary/40 hover:text-primary"
           >
             {impressionCopied ? "Copied!" : "Copy Impression"}
           </button>
           <button
+            type="button"
             onClick={copyReport}
             className="rounded-md bg-primary px-3 py-1 text-xs font-medium text-white transition-opacity hover:opacity-90"
           >
@@ -51,10 +54,11 @@ export default function BiRadsReportPreview() {
 
       {/* Impression edit */}
       <div className="mb-3">
-        <label className="mb-1 block text-xs font-medium text-foreground/60">
+        <label htmlFor={impressionId} className="mb-1 block text-xs font-medium text-foreground/60">
           Impression (editable — clear to auto-generate)
         </label>
         <textarea
+          id={impressionId}
           value={state.impressionOverride ?? impression}
           onChange={(e) => {
             const val = e.target.value;

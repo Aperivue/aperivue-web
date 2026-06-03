@@ -1,6 +1,8 @@
 "use client";
 
+import { useId } from "react";
 import { useOradsReport } from "../report/ReportContext";
+import { LabeledInput, LabeledSelect } from "@/components/rads/LabeledField";
 import { ORADS_LATERALITY, type UsLesionFields, type MriLesionFields } from "../report/types";
 import {
   US_LESION_TYPES,
@@ -71,27 +73,15 @@ export default function LesionDetailPanel() {
     <div className="flex-1 space-y-3">
       {/* Label + laterality + size */}
       <div className="grid grid-cols-3 gap-3">
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Label</label>
-          <input type="text" value={l.label}
-            onChange={(e) => update({ label: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Laterality</label>
-          <select value={l.laterality}
-            onChange={(e) => update({ laterality: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
-            {ORADS_LATERALITY.map((x) => (<option key={x.value} value={x.value}>{x.label}</option>))}
-          </select>
-        </div>
-        <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Size (cm)</label>
-          <input type="number" step="0.1" min="0" placeholder="largest diameter"
-            value={l.sizeCm}
-            onChange={(e) => update({ sizeCm: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
-        </div>
+        <LabeledInput label="Label" type="text" value={l.label}
+          onChange={(e) => update({ label: e.target.value })} />
+        <LabeledSelect label="Laterality" value={l.laterality}
+          onChange={(e) => update({ laterality: e.target.value })}>
+          {ORADS_LATERALITY.map((x) => (<option key={x.value} value={x.value}>{x.label}</option>))}
+        </LabeledSelect>
+        <LabeledInput label="Size (cm)" type="number" step="0.1" min="0" placeholder="largest diameter"
+          value={l.sizeCm}
+          onChange={(e) => update({ sizeCm: e.target.value })} />
       </div>
 
       {isUs ? (
@@ -149,11 +139,9 @@ function UsFields({ l, updateUs }: { l: { us: UsLesionFields }; updateUs: (p: Pa
 
       {u.lesionType === "unilocular" && u.solidComponent === "present" && (
         <div>
-          <label className="mb-1 block text-xs font-medium text-foreground/60">Papillary projections (count)</label>
-          <input type="number" step="1" min="0" placeholder="e.g. 2"
+          <LabeledInput label="Papillary projections (count)" type="number" step="1" min="0" placeholder="e.g. 2"
             value={u.papillaryProjections}
-            onChange={(e) => updateUs({ papillaryProjections: e.target.value })}
-            className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm" />
+            onChange={(e) => updateUs({ papillaryProjections: e.target.value })} />
           <p className="mt-1 text-xs text-foreground/40">≥ 4 papillary projections → O-RADS 5; fewer (or a non-pp solid component) → O-RADS 4.</p>
         </div>
       )}
@@ -280,10 +268,11 @@ function Select({
   options: { value: string; label: string }[];
   onChange: (v: string) => void;
 }) {
+  const id = useId();
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium text-foreground/60">{label}</label>
-      <select value={value}
+      <label htmlFor={id} className="mb-1 block text-xs font-medium text-foreground/60">{label}</label>
+      <select id={id} value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm">
         <option value="">{placeholder}</option>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { BiRadsReportProvider, useBiRadsReport } from "./report/ReportContext";
 import type { BiRadsModality } from "@/lib/rads/birads";
 import { BREAST_COMPOSITIONS, MRI_BPE_OPTIONS } from "@/lib/rads/birads";
@@ -46,6 +47,8 @@ const UI_TEXT = {
 function ReportContent({ locale }: { locale: "en" | "ko" }) {
   const { state, dispatch } = useBiRadsReport();
   const t = UI_TEXT[locale];
+  const indicationId = useId();
+  const comparisonId = useId();
 
   return (
     <div className="space-y-4">
@@ -72,10 +75,11 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
         <h3 className="mb-3 text-sm font-semibold">{t.indication}</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-xs font-medium text-foreground/70">
+            <label htmlFor={indicationId} className="mb-1 block text-xs font-medium text-foreground/70">
               {t.indication}
             </label>
             <select
+              id={indicationId}
               value={state.clinicalInfo.indication}
               onChange={(e) =>
                 dispatch({
@@ -95,6 +99,7 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
             {state.clinicalInfo.indication === "other" && (
               <input
                 type="text"
+                aria-label="Custom indication"
                 value={state.clinicalInfo.customIndication}
                 onChange={(e) =>
                   dispatch({
@@ -108,10 +113,11 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
             )}
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-foreground/70">
+            <label htmlFor={comparisonId} className="mb-1 block text-xs font-medium text-foreground/70">
               {t.comparison}
             </label>
             <input
+              id={comparisonId}
               type="text"
               value={state.clinicalInfo.comparison}
               onChange={(e) =>
@@ -197,6 +203,7 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
       <section className="rounded-xl border border-border p-4">
         <h3 className="mb-2 text-sm font-semibold">{t.otherFindings}</h3>
         <textarea
+          aria-label={t.otherFindings}
           value={state.otherFindings}
           onChange={(e) =>
             dispatch({ type: "SET_OTHER_FINDINGS", value: e.target.value })

@@ -25,6 +25,7 @@ export default function ImpressionSection() {
           </p>
           {isOverridden && (
             <button
+              type="button"
               onClick={() => dispatch({ type: "SET_IMPRESSION_OVERRIDE", value: null })}
               className="text-xs text-primary hover:underline"
             >
@@ -33,6 +34,7 @@ export default function ImpressionSection() {
           )}
         </div>
         <textarea
+          aria-label="Impression"
           rows={5}
           value={displayText}
           onChange={(e) => dispatch({ type: "SET_IMPRESSION_OVERRIDE", value: e.target.value })}
