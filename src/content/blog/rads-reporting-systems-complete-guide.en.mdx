@@ -1,0 +1,108 @@
+---
+title: "RADS Systems Explained: A Guide to Structured Radiology Reporting"
+description: "An overview of the six ACR RADS systems — TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS, and O-RADS — with a free structured report calculator for each."
+date: "2026-06-03"
+tags: ["RADS", "radiology", "structured-reporting", "TI-RADS", "Lung-RADS", "BI-RADS", "LI-RADS", "PI-RADS", "O-RADS"]
+---
+
+## What "RADS" Actually Means
+
+Open any modern radiology report for a thyroid nodule, a screening chest CT, or a prostate MRI and you will likely encounter a label like "TI-RADS 4" or "PI-RADS 3." These come from a family of classification systems known collectively as RADS — Reporting and Data Systems — developed largely under the American College of Radiology.
+
+The idea behind every RADS is the same. Imaging generates findings that vary in how worrying they are, and radiologists historically described those findings in free-form prose. A narrative report describing a "somewhat irregular, mildly hypoechoic lesion" leaves the referring clinician guessing about what to do next. A RADS replaces that ambiguity with a defined vocabulary, a small set of ordered risk categories, and an explicit management recommendation attached to each category. The result is a report that communicates risk consistently, reduces unnecessary procedures, and can be audited later.
+
+Each organ system has its own RADS because the relevant imaging features, reference standards, and management decisions differ. What they share is the underlying logic: describe the finding with standardized descriptors, map those descriptors to a numbered category, and let the category drive the recommendation. This guide walks through the six systems most widely used in practice, each of which now has a free calculator in the [Aperivue RADS](/rads) suite.
+
+## The Six Systems at a Glance
+
+| System | Organ and use | Imaging | Current version | Category scale |
+| --- | --- | --- | --- | --- |
+| TI-RADS | Thyroid nodules | Ultrasound | ACR 2017, K-TIRADS 2021, EU-TIRADS 2017 | TR1–TR5 (1–5) |
+| Lung-RADS | Lung cancer screening | Low-dose CT | v2022 | 0, 1, 2, 3, 4A, 4B, 4X |
+| BI-RADS | Breast | Mammography, US, MRI | ACR Atlas 5th ed. (2013) | 0–6 (incl. 4A/4B/4C) |
+| LI-RADS | Liver (HCC high-risk) | CT, MRI | v2018 | LR-1 to LR-5, LR-M, LR-TIV |
+| PI-RADS | Prostate | Multiparametric MRI | v2.1 (2019) | 1–5 |
+| O-RADS | Ovarian-adnexal | US, MRI | US v2022, MRI 2022 | 0–5 |
+
+## TI-RADS — Thyroid Nodules
+
+TI-RADS (Thyroid Imaging Reporting and Data System) stratifies the malignancy risk of thyroid nodules seen on ultrasound. It is unusual among RADS systems in that three major versions coexist: ACR TI-RADS (2017), which assigns numerical points across composition, echogenicity, shape, margin, and echogenic foci to reach levels TR1 through TR5; the 2021 Korean K-TIRADS, which classifies nodules by overall pattern; and the European EU-TIRADS, which uses a simplified feature set. All three end in a category that, combined with nodule size, sets the threshold for fine-needle aspiration.
+
+Thyroid nodules are extraordinarily common and overwhelmingly benign — only roughly 5% to 15% prove malignant — so the entire purpose of TI-RADS is to decide which nodules justify biopsy and which can be watched. Because the three systems diverge in their thresholds, a calculator that supports all three is useful for direct comparison.
+
+Try the free [TI-RADS calculator](/rads/tirads), and for a deeper walkthrough of the three systems see our [step-by-step TI-RADS guide](/blog/tirads-calculator-guide).
+
+## Lung-RADS — Lung Cancer Screening
+
+Lung-RADS standardizes the interpretation of low-dose CT performed for lung cancer screening. The current version, v2022, sorts each scan into categories 0, 1, 2, 3, 4A, 4B, and 4X. Category 0 means the study is incomplete or a prior comparison is needed; categories 1 and 2 carry a malignancy likelihood under roughly 1% and return the patient to annual screening; category 3 (about 1% to 2%) shortens the interval to a 6-month LDCT; category 4A (roughly 5% to 15%) prompts a 3-month LDCT or PET/CT; and categories 4B and 4X (above 15%) move toward tissue sampling and definitive workup.
+
+The branching logic depends on nodule type. Solid, part-solid, and ground-glass nodules each have their own size thresholds, and for part-solid nodules it is the solid-component size — not the total size — that drives the category. Whether a nodule is new, stable, or growing shifts the threshold further, and an "S" modifier flags clinically significant findings unrelated to the screening nodule itself.
+
+Try the free [Lung-RADS calculator](/rads/lungrads), which mirrors this branching logic and produces a screening-ready report.
+
+## BI-RADS — Breast Imaging
+
+BI-RADS (Breast Imaging Reporting and Data System), now in its fifth edition, is the oldest and most established RADS, applied across mammography, ultrasound, and breast MRI with a single shared assessment scale. The categories run from 0 (incomplete — additional imaging or prior studies needed) through 1 and 2 (essentially 0% malignancy, routine screening), 3 (greater than 0% but no more than 2%, short-interval follow-up), and the 4 subcategories — 4A (more than 2% to 10%), 4B (more than 10% to 50%), and 4C (more than 50% to under 95%) — all of which warrant tissue sampling. Category 5 carries a 95% or higher malignancy risk, and category 6 denotes biopsy-proven cancer.
+
+Unlike the point-based ACR TI-RADS, BI-RADS is fundamentally a lexicon paired with an assessment framework: the radiologist selects standardized descriptors and then assigns an integrated category. Its precise probability bands are what make breast imaging follow-up so reproducible across institutions.
+
+Try the free [BI-RADS calculator](/rads/birads), and for the full lexicon walkthrough see our [BI-RADS complete guide](/blog/birads-calculator-guide).
+
+## LI-RADS — Liver Observations in High-Risk Patients
+
+LI-RADS (Liver Imaging Reporting and Data System) applies specifically to patients at high risk for hepatocellular carcinoma — those with cirrhosis, chronic hepatitis B, or a current or prior HCC — and should not be used in the general population. The CT/MRI v2018 algorithm assigns categories from LR-1 (definitely benign) and LR-2 (probably benign) through LR-3 (intermediate probability of malignancy), LR-4 (probably HCC), and LR-5 (definitely HCC). Two special categories sit outside the numeric ladder: LR-M, for observations that are probably or definitely malignant but not specific for HCC, and LR-TIV, for tumor in vein.
+
+The diagnostic algorithm combines major features — nonrim arterial phase hyperenhancement, nonperipheral washout, an enhancing capsule, and threshold growth — with observation size. Ancillary features can nudge a category up or down by one step, but they cannot raise an observation to LR-5. When image quality prevents categorization, the observation is labeled LR-NC (non-categorizable).
+
+Try the free [LI-RADS calculator](/rads/lirads), which encodes the v2018 precedence rules and major-feature table.
+
+## PI-RADS — Prostate Multiparametric MRI
+
+PI-RADS (Prostate Imaging Reporting and Data System), version 2.1, scores the likelihood of clinically significant prostate cancer on multiparametric MRI, from PI-RADS 1 (clinically significant cancer highly unlikely) to PI-RADS 5 (highly likely). Its defining feature is that it is zone-aware: in the peripheral zone, diffusion-weighted imaging is the dominant sequence, while in the transition zone, T2-weighted imaging dominates.
+
+Dynamic contrast enhancement plays a narrow but specific role — it upgrades a peripheral-zone DWI score of 3 to PI-RADS 4 only when positive; when DCE is negative or unavailable, that lesion stays PI-RADS 3. In the transition zone, a T2W score of 3 with a DWI of 5 upgrades to PI-RADS 4. PI-RADS deliberately does not prescribe management; biopsy decisions are made clinically, informed by PSA density and local protocol.
+
+Try the free [PI-RADS calculator](/rads/pirads), which follows the v2.1 zone-aware decision rules including the DCE upgrade logic.
+
+## O-RADS — Ovarian and Adnexal Lesions
+
+O-RADS (Ovarian-Adnexal Reporting and Data System) is the newest of the six and, like TI-RADS, comes in two flavors that share a 0-to-5 scale but rest on different evidence. O-RADS US v2022 scores lesions from their sonographic lexicon — lesion type, solid components, papillary projections, and a color score for vascularity — with malignancy risk rising from essentially 0% at category 1, under 1% at category 2, 1% to under 10% at category 3, 10% to under 50% at category 4, and 50% or higher at category 5. O-RADS MRI 2022 instead centers on enhancing solid tissue and its dynamic contrast-enhanced time-intensity curve, with approximate positive predictive values of about 0.5% at score 2, 5% at score 3, 50% at score 4, and 90% at score 5.
+
+Because the two systems answer different clinical questions — ultrasound for initial characterization, MRI for problem-solving indeterminate lesions — a calculator that handles both is particularly useful.
+
+Try the free [O-RADS calculator](/rads/orads), which supports both the US v2022 and MRI 2022 systems.
+
+## What the Six Systems Share
+
+Despite covering different organs, all six RADS systems are built on the same three-part scaffold: a standardized lexicon of descriptors, an ordered set of risk categories, and a management recommendation tied to each category. Three principles follow from this design.
+
+First, a RADS category is a communication tool, not a diagnosis. "PI-RADS 4" tells the urologist how suspicious the lesion is and what step is reasonable next; it does not establish cancer. Second, consistency matters more than the choice of system. Studies repeatedly show that the variability introduced by applying a system inconsistently exceeds the performance differences between competing systems. Third, the category drives but does not dictate management. Size thresholds, follow-up intervals, and biopsy recommendations are built on population-level risk-benefit analysis and must still be weighed against the individual patient's history and preferences.
+
+These shared principles are also why a structured report generator helps. Applying the precise criteria of any one system during a busy reading list is error-prone; a tool that encodes the rules reduces the bookkeeping burden and standardizes the documentation of a judgment the radiologist has already made.
+
+## The Aperivue RADS Suite
+
+[Aperivue RADS](/rads) provides a free calculator and structured report generator for each of the six systems described here:
+
+- [TI-RADS](/rads/tirads) — thyroid (ACR, K-TIRADS, EU-TIRADS)
+- [Lung-RADS](/rads/lungrads) — lung cancer screening (v2022)
+- [BI-RADS](/rads/birads) — breast (ACR Atlas 5th edition)
+- [LI-RADS](/rads/lirads) — liver, CT/MRI (v2018)
+- [PI-RADS](/rads/pirads) — prostate mpMRI (v2.1)
+- [O-RADS](/rads/orads) — ovarian-adnexal (US v2022 and MRI 2022)
+
+Every calculator runs directly in the browser, requires no login, and produces a report you can copy into your reporting workflow. Each page also shows the assessment criteria — categories, risk, and key decision rules — transcribed directly from the same scoring logic the calculator uses, so what you read matches what the tool computes.
+
+## Frequently Asked Questions
+
+**How many RADS systems are there?** More than six. This guide covers the six used most often in routine practice, but others exist for specific contexts — for example C-RADS for CT colonography, NI-RADS for head and neck post-treatment surveillance, and CAD-RADS for coronary CT angiography.
+
+**Is a higher RADS number always worse?** Within a single system, yes — the categories are ordered by increasing risk. But the numbers are not comparable across systems. An O-RADS 4 and a PI-RADS 4 describe different organs, different risk magnitudes, and different next steps.
+
+**Do RADS categories replace biopsy?** No. A RADS category stratifies risk and indicates whether, and how soon, biopsy or follow-up is appropriate. The histological diagnosis still requires tissue or, in some settings such as LR-5 in LI-RADS, a noninvasive diagnostic pathway defined by the system itself.
+
+**Are the Aperivue calculators free?** Yes. All six run directly in the browser, require no login, and generate a report you can copy into your workflow.
+
+## Disclaimer
+
+The information provided in this article and through the Aperivue RADS calculators is intended for educational purposes and as a reference for healthcare professionals. It does not constitute medical advice, diagnosis, or treatment recommendations. RADS categories are risk-stratification tools; clinical decisions should be made by qualified physicians based on the complete clinical context. These calculators are support tools — not a replacement for professional medical judgment, and not regulatory-cleared medical devices.
