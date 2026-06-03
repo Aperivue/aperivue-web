@@ -5,6 +5,7 @@ import ProstateReportGenerator from "./ProstateReportGenerator";
 import { buildAlternates, ogUrl, SITE_AUTHOR, buildBreadcrumb } from "@/lib/seo";
 import { RADS_BY_SLUG, radsBreadcrumbItems, LAST_REVIEWED, DATE_MODIFIED } from "@/lib/rads/registry";
 import { JsonLd } from "@/components/JsonLd";
+import CriteriaSection from "@/components/rads/CriteriaSection";
 
 export async function generateMetadata({
   params,
@@ -46,6 +47,27 @@ const PAGE_TEXT = {
     mwpName: "PI-RADS Calculator & Report Generator",
     mwpDescription:
       "Free prostate multiparametric MRI structured report generator with PI-RADS v2.1 scoring.",
+    criteria: {
+      heading: "PI-RADS v2.1 — assessment categories",
+      caption:
+        "Likelihood of clinically significant prostate cancer by PI-RADS v2.1 category, mirroring the calculator.",
+      columnLabels: { category: "Category", risk: "Likelihood of clinically significant cancer", management: "Clinical note" },
+      categories: [
+        { category: "PI-RADS 1", risk: "Clinically significant cancer is highly unlikely.", management: "PI-RADS is a risk category; manage per clinical risk factors and local protocol." },
+        { category: "PI-RADS 2", risk: "Clinically significant cancer is unlikely.", management: "PI-RADS is a risk category; manage per clinical risk factors and local protocol." },
+        { category: "PI-RADS 3", risk: "The presence of clinically significant cancer is equivocal (intermediate).", management: "Equivocal; correlate with PSA density and clinical risk factors per local protocol." },
+        { category: "PI-RADS 4", risk: "Clinically significant cancer is likely.", management: "Correlate with PSA density and clinical risk factors; targeted biopsy may be considered per local protocol." },
+        { category: "PI-RADS 5", risk: "Clinically significant cancer is highly likely.", management: "Correlate with PSA density and clinical risk factors; targeted biopsy may be considered per local protocol." },
+      ],
+      rulesHeading: "Key decision rules (v2.1)",
+      rules: [
+        "PI-RADS v2.1 is zone-aware: DWI is the dominant sequence in the peripheral zone (PZ) and T2W is the dominant sequence in the transition zone (TZ).",
+        "In the PZ, the DWI score sets the category directly, except for DWI 3 which DCE resolves: a positive DCE upgrades DWI 3 to PI-RADS 4.",
+        "When DCE is negative, unavailable, or inadequate, a PZ DWI 3 stays PI-RADS 3 (the DWI category is final).",
+        "In the TZ, the T2W score sets the category; a T2W 2 with DWI ≥4 is upgraded to PI-RADS 3, and a T2W 3 with DWI 5 is upgraded to PI-RADS 4.",
+        "PI-RADS is a risk category, not a management prescription; biopsy decisions are made clinically per risk factors and local protocol.",
+      ],
+    },
     faq: [
       {
         q: "What is PI-RADS?",
@@ -72,6 +94,27 @@ const PAGE_TEXT = {
     mwpName: "PI-RADS 계산기 및 리포트 생성기",
     mwpDescription:
       "PI-RADS v2.1 기반 전립선 다중매개변수 MRI 구조화 리포트 생성기.",
+    criteria: {
+      heading: "PI-RADS v2.1 — 평가 카테고리",
+      caption:
+        "PI-RADS v2.1 카테고리별 임상적으로 유의한 전립선암(clinically significant cancer)의 가능성으로, 계산기와 동일하게 구성됩니다.",
+      columnLabels: { category: "카테고리", risk: "임상적으로 유의한 암의 가능성", management: "임상 참고" },
+      categories: [
+        { category: "PI-RADS 1", risk: "임상적으로 유의한 암 가능성 매우 낮음.", management: "PI-RADS는 위험도 분류입니다; 임상 위험 인자와 기관 프로토콜에 따라 관리합니다." },
+        { category: "PI-RADS 2", risk: "임상적으로 유의한 암 가능성 낮음.", management: "PI-RADS는 위험도 분류입니다; 임상 위험 인자와 기관 프로토콜에 따라 관리합니다." },
+        { category: "PI-RADS 3", risk: "임상적으로 유의한 암의 존재가 불확실함(중간).", management: "불확실; PSA density 및 임상 위험 인자와 함께 기관 프로토콜에 따라 판단합니다." },
+        { category: "PI-RADS 4", risk: "임상적으로 유의한 암 가능성 높음.", management: "PSA density 및 임상 위험 인자와 함께 판단하며, 기관 프로토콜에 따라 표적 생검(targeted biopsy)을 고려할 수 있습니다." },
+        { category: "PI-RADS 5", risk: "임상적으로 유의한 암 가능성 매우 높음.", management: "PSA density 및 임상 위험 인자와 함께 판단하며, 기관 프로토콜에 따라 표적 생검(targeted biopsy)을 고려할 수 있습니다." },
+      ],
+      rulesHeading: "핵심 결정 규칙 (v2.1)",
+      rules: [
+        "PI-RADS v2.1은 구역(zone)을 고려합니다: 말초대(PZ)에서는 DWI가 주 시퀀스이고, 이행대(TZ)에서는 T2W가 주 시퀀스입니다.",
+        "PZ에서는 DWI 점수가 카테고리를 직접 결정하나, DWI 3점은 DCE로 결정됩니다: DCE 양성이면 DWI 3을 PI-RADS 4로 상향합니다.",
+        "DCE가 음성, 미시행, 또는 부적절한 경우 PZ DWI 3은 PI-RADS 3으로 유지됩니다(DWI 카테고리가 최종).",
+        "TZ에서는 T2W 점수가 카테고리를 결정하며, T2W 2점은 DWI가 ≥4이면 PI-RADS 3으로, T2W 3점은 DWI가 5이면 PI-RADS 4로 상향됩니다.",
+        "PI-RADS는 관리 처방이 아닌 위험도 분류이며, 생검 결정은 위험 인자와 기관 프로토콜에 따라 임상적으로 이루어집니다.",
+      ],
+    },
     faq: [
       {
         q: "PI-RADS란 무엇인가요?",
@@ -142,6 +185,8 @@ export default async function PiradsPage({
         </div>
 
         <ProstateReportGenerator locale={locale} />
+
+        <CriteriaSection content={t.criteria} />
 
         <footer className="mt-10 space-y-2 rounded-xl border border-border bg-muted p-4 text-xs text-foreground/50 leading-relaxed">
           <p>
