@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { usePiradsReport } from "../report/ReportContext";
 import { generatePiradsReportText } from "../report/reportTextGenerator";
+import { trackRadsReportCopied } from "@/lib/analytics";
 import CollapsibleSection from "./CollapsibleSection";
 
 export default function ReportPreview() {
@@ -16,6 +17,7 @@ export default function ReportPreview() {
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(reportText);
+    trackRadsReportCopied("pirads");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
