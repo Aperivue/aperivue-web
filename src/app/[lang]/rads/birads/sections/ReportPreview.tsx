@@ -6,6 +6,7 @@ import {
   generateBiRadsReportText,
   generateAutoImpression,
 } from "../report/reportTextGenerator";
+import { trackRadsReportCopied } from "@/lib/analytics";
 
 export default function BiRadsReportPreview() {
   const { state, dispatch } = useBiRadsReport();
@@ -18,6 +19,7 @@ export default function BiRadsReportPreview() {
 
   function copyReport() {
     navigator.clipboard.writeText(reportText).then(() => {
+      trackRadsReportCopied("birads");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -25,6 +27,7 @@ export default function BiRadsReportPreview() {
 
   function copyImpression() {
     navigator.clipboard.writeText(impression).then(() => {
+      trackRadsReportCopied("birads", "impression");
       setImpressionCopied(true);
       setTimeout(() => setImpressionCopied(false), 2000);
     });
