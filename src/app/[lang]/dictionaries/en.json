@@ -47,7 +47,7 @@
   "skills": {
     "badge": "Open Source",
     "title": "Medical Research Skills for Claude Code",
-    "description": "40 skills covering the full research lifecycle — from literature search to manuscript revision. Built by physicians, battle-tested on real publications. MIT licensed.",
+    "description": "{count} skills covering the full research lifecycle — from literature search to manuscript revision. Built by physicians, battle-tested on real publications. MIT licensed.",
     "viewGithub": "View on GitHub",
     "installNow": "Install Now",
     "koGuide": "Guide",
@@ -67,7 +67,31 @@
     "requires": "Requires Claude Code Desktop or CLI. Python 3.9+ for statistical analysis and figure generation.",
     "readyToStreamline": "Ready to streamline your research?",
     "starGithub": "Star on GitHub",
-    "readDocs": "Read the Docs"
+    "readDocs": "Read the Docs",
+    "searchPlaceholder": "Search skills…",
+    "filterAll": "All",
+    "resultsNone": "No skills match your search.",
+    "categoryLabels": {
+      "literature_references": "Literature & References",
+      "data_study_design": "Data & Study Design",
+      "analysis_figures": "Analysis & Figures",
+      "writing_manuscript": "Writing & Manuscript",
+      "review_compliance": "Review & Compliance",
+      "submission_journals": "Submission & Journals",
+      "project_workflow": "Project & Workflow",
+      "presentation_tooling": "Presentation & Tooling"
+    },
+    "impactTitle": "Open source, in the open",
+    "impactSubtitle": "Stars, forks, and citable DOI-pinned releases — adoption is tracked publicly on GitHub and Zenodo.",
+    "impactCitations": "Used in research? Tell us",
+    "detailBack": "All skills",
+    "detailWhatItDoes": "What it does",
+    "detailHighlights": "Highlights",
+    "detailInstall": "Install this skill",
+    "detailDocs": "Full documentation",
+    "detailViewSource": "View source on GitHub",
+    "detailCategory": "Category",
+    "detailRelated": "Related skills"
   },
   "products": {
     "title": "Our Products",

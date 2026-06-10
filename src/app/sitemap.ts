@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPostSlugs } from "@/lib/blog";
 import { getAllLectureSlugs } from "@/lib/lectures";
+import skillsEn from "@/content/data/skills.en.json";
 
 const BASE_URL = "https://aperivue.com";
 const locales = ["en", "ko"];
@@ -66,6 +67,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: {
           languages: Object.fromEntries(
             locales.map((l) => [l, `${BASE_URL}/${l}/lectures/${slug}`])
+          ),
+        },
+      });
+    }
+
+    for (const skill of skillsEn.skills) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/skills/${skill.name}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.6,
+        alternates: {
+          languages: Object.fromEntries(
+            locales.map((l) => [l, `${BASE_URL}/${l}/skills/${skill.name}`])
           ),
         },
       });

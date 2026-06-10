@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/check-skills-catalog-sync.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "skills:refresh": "node scripts/refresh-skills-catalog.mjs"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.2",

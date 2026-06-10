@@ -3,287 +3,566 @@
     {
       "name": "orchestrate",
       "title": "오케스트레이터",
+      "category": "project_workflow",
       "description": "전체 스킬 번들의 단일 진입점. 요청을 분류하여 적합한 스킬로 라우팅하거나, Full Pipeline Mode로 여러 스킬을 자동으로 체이닝합니다.",
-      "features": ["자동 의도 분류", "End-to-end 파이프라인: 스킬 자동 연결", "프로젝트 컨텍스트 감지"],
+      "features": [
+        "자동 의도 분류",
+        "End-to-end 파이프라인: 스킬 자동 연결",
+        "프로젝트 컨텍스트 감지"
+      ],
       "isNew": true
     },
     {
       "name": "setup-medsci",
       "title": "설치 진단",
+      "category": "presentation_tooling",
       "description": "MedSci Skills용 읽기 전용 설치 진단. 로컬 Python/R/Node/Claude Code 및 MCP 사용 가능 여부를 확인하고, 설치나 변경 없이 필요한 온보딩 문서로 안내합니다.",
-      "features": ["읽기 전용 환경 점검", "Python/R/Node/Claude Code 준비 상태 리포트", "누락 구성요소를 setup 문서로 연결"],
+      "features": [
+        "읽기 전용 환경 점검",
+        "Python/R/Node/Claude Code 준비 상태 리포트",
+        "누락 구성요소를 setup 문서로 연결"
+      ],
       "isNew": true
     },
     {
       "name": "search-lit",
       "title": "문헌 검색",
+      "category": "literature_references",
       "description": "PubMed + Semantic Scholar + bioRxiv 검색. 인용 조작 방지 기능으로 모든 레퍼런스를 API로 검증합니다.",
-      "features": ["모든 레퍼런스 API 검증", "BibTeX 출력에 verified / verified_by / verified_on 필드", "가짜 인용 방지"]
+      "features": [
+        "모든 레퍼런스 API 검증",
+        "BibTeX 출력에 verified / verified_by / verified_on 필드",
+        "가짜 인용 방지"
+      ]
     },
     {
       "name": "verify-refs",
       "title": "레퍼런스 검증",
+      "category": "literature_references",
       "description": ".md / .docx / .bib / .tsv 원고의 투고 전 레퍼런스 감사. CrossRef + PubMed로 DOI/PMID를 검증하고 qc/reference_audit.json을 단일 진실 소스로 기록합니다. 가짜 레퍼런스가 투고되기 전에 차단합니다. Gate 5 PMID/DOI 중복 탐지 포함.",
-      "features": ["CrossRef & PubMed 기반 DOI + PMID 검증", "verified_references.tsv / library.bib / reference_audit.json 출력", "PostToolUse 훅이 원고 저장 시 자동 실행 (auto / warn / enforce 모드)", "PMID/DOI 중복 탐지"],
+      "features": [
+        "CrossRef & PubMed 기반 DOI + PMID 검증",
+        "verified_references.tsv / library.bib / reference_audit.json 출력",
+        "PostToolUse 훅이 원고 저장 시 자동 실행 (auto / warn / enforce 모드)",
+        "PMID/DOI 중복 탐지"
+      ],
       "isNew": true
     },
     {
       "name": "fulltext-retrieval",
       "title": "전문 다운로드",
+      "category": "literature_references",
       "description": "오픈 액세스 PDF 일괄 다운로드. Unpaywall → PMC → OpenAlex → CrossRef 순서로 탐색합니다.",
-      "features": ["DOI 목록 또는 TSV 입력", "PDF 유효성 자동 검증", "유료 논문 수동 확인 목록 생성"],
+      "features": [
+        "DOI 목록 또는 TSV 입력",
+        "PDF 유효성 자동 검증",
+        "유료 논문 수동 확인 목록 생성"
+      ],
       "isNew": true
     },
     {
       "name": "check-reporting",
       "title": "보고 가이드라인",
+      "category": "review_compliance",
       "description": "32개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
-      "features": ["STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM", "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS", "Results/Discussion 경계 확인"]
+      "features": [
+        "STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM",
+        "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
+        "Results/Discussion 경계 확인"
+      ]
     },
     {
       "name": "design-study",
       "title": "연구 설계",
+      "category": "data_study_design",
       "description": "분석 단위, 코호트 논리, 데이터 누출 위험, 검증 전략을 식별합니다.",
-      "features": ["데이터 누출 위험 감지", "비교군 설계 검토", "보고 가이드라인 매칭"]
+      "features": [
+        "데이터 누출 위험 감지",
+        "비교군 설계 검토",
+        "보고 가이드라인 매칭"
+      ]
     },
     {
       "name": "analyze-stats",
       "title": "통계 분석",
+      "category": "analysis_figures",
       "description": "회귀분석, propensity score, 반복측정 등 13개 분석 유형을 위한 재현 가능한 Python/R 코드. 예측 모델에는 calibration 필수.",
-      "features": ["회귀(로지스틱/선형), propensity score (PSM/IPTW), 반복측정 (GEE/혼합모형)", "DTA, 생존분석, 인구통계, 일치도", "저널별 테이블 포맷팅"]
+      "features": [
+        "회귀(로지스틱/선형), propensity score (PSM/IPTW), 반복측정 (GEE/혼합모형)",
+        "DTA, 생존분석, 인구통계, 일치도",
+        "저널별 테이블 포맷팅"
+      ]
     },
     {
       "name": "make-figures",
       "title": "논문용 Figure",
+      "category": "analysis_figures",
       "description": "저널 규격 Figure 및 visual abstract: ROC curve, forest plot, flow diagram, Kaplan-Meier 등.",
-      "features": ["300 DPI, 색각이상 안전 팔레트", "PRISMA / CONSORT / STARD 흐름도", "Visual/graphical abstract (python-pptx 템플릿)"]
+      "features": [
+        "300 DPI, 색각이상 안전 팔레트",
+        "PRISMA / CONSORT / STARD 흐름도",
+        "Visual/graphical abstract (python-pptx 템플릿)"
+      ]
     },
     {
       "name": "grant-builder",
       "title": "연구비 신청서",
+      "category": "submission_journals",
       "description": "연구의 중요성, 혁신성, 접근법, 마일스톤, 컨소시엄 역할을 구조화합니다.",
-      "features": ["NIH / 한국연구재단 형식 지원", "Specific Aims 페이지", "예산 정당화"]
+      "features": [
+        "NIH / 한국연구재단 형식 지원",
+        "Specific Aims 페이지",
+        "예산 정당화"
+      ]
     },
     {
       "name": "intake-project",
       "title": "프로젝트 접수",
+      "category": "project_workflow",
       "description": "새 연구 프로젝트를 분류하고, 현재 상태를 요약하며, 다음 단계를 제안합니다.",
-      "features": ["프로젝트 유형 분류", "누락 입력 감지", "경량 스캐폴딩"]
+      "features": [
+        "프로젝트 유형 분류",
+        "누락 입력 감지",
+        "경량 스캐폴딩"
+      ]
     },
     {
       "name": "present-paper",
       "title": "논문 발표 준비",
+      "category": "presentation_tooling",
       "description": "학술 발표 준비: 논문 분석, 발표 스크립트, 슬라이드 노트 삽입, Q&A 대비.",
-      "features": ["청중 맞춤 스크립트", "PPTX 노트 자동 삽입", "다관점 Q&A 준비"]
+      "features": [
+        "청중 맞춤 스크립트",
+        "PPTX 노트 자동 삽입",
+        "다관점 Q&A 준비"
+      ]
     },
     {
       "name": "publish-skill",
       "title": "스킬 배포",
+      "category": "presentation_tooling",
       "description": "개인 Claude Code 스킬을 배포 가능한 오픈소스 패키지로 변환합니다.",
-      "features": ["자동 개인정보 감사", "라이선스 호환성 검사", "범용화 파이프라인"]
+      "features": [
+        "자동 개인정보 감사",
+        "라이선스 호환성 검사",
+        "범용화 파이프라인"
+      ]
     },
     {
       "name": "meta-analysis",
       "title": "메타분석",
+      "category": "analysis_figures",
       "description": "8단계 체계적 문헌고찰 및 메타분석 파이프라인. DTA (bivariate/HSROC) 및 중재 MA를 PRISMA-DTA 기준으로. Dual-extractor + cohort overlap 탐지 포함.",
-      "features": ["프로토콜부터 원고까지 파이프라인", "Bivariate & HSROC 모델", "PRISMA-DTA 준수", "Dual-extractor SR-MA", "Cohort overlap 탐지"]
+      "features": [
+        "프로토콜부터 원고까지 파이프라인",
+        "Bivariate & HSROC 모델",
+        "PRISMA-DTA 준수",
+        "Dual-extractor SR-MA",
+        "Cohort overlap 탐지"
+      ]
     },
     {
       "name": "write-paper",
       "title": "원고 작성",
+      "category": "writing_manuscript",
       "description": "개요부터 투고 가능 원고까지 8단계 IMRAD 파이프라인. Critic-Fixer 루프와 섹션 경계 제어 내장.",
-      "features": ["Results 섹션 해석 방지 가드레일", "앵커 논문 기반 Discussion", "AI 작문 패턴 감지"],
+      "features": [
+        "Results 섹션 해석 방지 가드레일",
+        "앵커 논문 기반 Discussion",
+        "AI 작문 패턴 감지"
+      ],
       "isNew": true
     },
     {
       "name": "self-review",
       "title": "자가 리뷰",
+      "category": "review_compliance",
       "description": "투고 전 10개 카테고리 점검. 연구 유형별 분기 지원 (AI, 관찰, 교육, 메타분석, 증례, 외과).",
-      "features": ["Major / Minor 심각도 분류", "예측 모델 calibration 필수 확인", "R0 넘버링 (/revise 연계)"],
+      "features": [
+        "Major / Minor 심각도 분류",
+        "예측 모델 calibration 필수 확인",
+        "R0 넘버링 (/revise 연계)"
+      ],
       "isNew": true
     },
     {
       "name": "revise",
       "title": "리비전 대응",
+      "category": "writing_manuscript",
       "description": "심사 결과 레터를 파싱하여 MAJOR/MINOR/REBUTTAL로 분류하고, 항목별 응답을 생성합니다.",
-      "features": ["구조화된 응답 템플릿", "페이지/라인 참조 변경 이력", "커버 레터 생성"],
+      "features": [
+        "구조화된 응답 템플릿",
+        "페이지/라인 참조 변경 이력",
+        "커버 레터 생성"
+      ],
       "isNew": true
     },
     {
       "name": "manage-project",
       "title": "프로젝트 관리",
+      "category": "project_workflow",
       "description": "연구 프로젝트 스캐폴딩, 작성 진행 추적, 투고 체크리스트 및 역방향 타임라인 생성.",
-      "features": ["init --zotero-collection 옵션으로 Zotero 컬렉션 자동 생성 (pyzotero)", "단계별 진행 추적", "투고 전 체크리스트"],
+      "features": [
+        "init --zotero-collection 옵션으로 Zotero 컬렉션 자동 생성 (pyzotero)",
+        "단계별 진행 추적",
+        "투고 전 체크리스트"
+      ],
       "isNew": true
     },
     {
       "name": "sync-submission",
       "title": "투고 동기화",
+      "category": "submission_journals",
       "description": "SSOT ↔ submission 드리프트 감사 및 저널 패키지 도우미. submission/{journal}/를 파생 출력물로 취급하고 .journal_meta.json에 소스 해시를 기록하며, 드리프트가 발생한 패키지의 freeze를 차단합니다.",
-      "features": ["SHA-256 소스 해시 기반 드리프트 감지", "저널별 패키지 freeze / unfreeze 워크플로우", "SSOT 분기 시 투고 차단"],
+      "features": [
+        "SHA-256 소스 해시 기반 드리프트 감지",
+        "저널별 패키지 freeze / unfreeze 워크플로우",
+        "SSOT 분기 시 투고 차단"
+      ],
       "isNew": true
     },
     {
       "name": "calc-sample-size",
       "title": "표본 크기 계산",
+      "category": "data_study_design",
       "description": "결정 트리 기반 검정 선택으로 11개 설계를 지원하는 대화형 표본 크기 계산기. Cox regression EPV 포함.",
-      "features": ["DTA, t-test, ANOVA, chi-square, McNemar, 생존분석", "로지스틱 회귀 & Cox EPV (Peduzzi 규칙)", "IRB 제출용 정당화 텍스트"],
+      "features": [
+        "DTA, t-test, ANOVA, chi-square, McNemar, 생존분석",
+        "로지스틱 회귀 & Cox EPV (Peduzzi 규칙)",
+        "IRB 제출용 정당화 텍스트"
+      ],
       "isNew": true
     },
     {
       "name": "clean-data",
       "title": "데이터 정제",
+      "category": "data_study_design",
       "description": "연구 데이터셋 표준화, 유효성 검증, 변환. 결측치, 이상치 감지, 변수 리코딩을 처리합니다.",
-      "features": ["결측치 요약 및 대체", "이상치 감지 (IQR, Z-score)", "코드북 생성"],
+      "features": [
+        "결측치 요약 및 대체",
+        "이상치 감지 (IQR, Z-score)",
+        "코드북 생성"
+      ],
       "isNew": true
     },
     {
       "name": "find-journal",
       "title": "저널 추천",
+      "category": "submission_journals",
       "description": "스코프, Impact Factor, 심사 기간, OA 정책을 기반으로 투고 저널을 매칭합니다.",
-      "features": ["스코프 & 독자층 매칭", "Impact Factor / CiteScore 조회", "OA 비용 & 심사 기간 추정"],
+      "features": [
+        "스코프 & 독자층 매칭",
+        "Impact Factor / CiteScore 조회",
+        "OA 비용 & 심사 기간 추정"
+      ],
       "isNew": true
     },
     {
       "name": "write-protocol",
       "title": "프로토콜 작성",
+      "category": "writing_manuscript",
       "description": "SPIRIT 기준 연구 프로토콜과 체계적 문헌고찰용 PROSPERO 등록 초안을 생성합니다.",
-      "features": ["SPIRIT 체크리스트 통합", "PROSPERO 등록 초안", "윤리위원회 제출 보일러플레이트"],
+      "features": [
+        "SPIRIT 체크리스트 통합",
+        "PROSPERO 등록 초안",
+        "윤리위원회 제출 보일러플레이트"
+      ],
       "isNew": true
     },
     {
       "name": "add-journal",
       "title": "저널 프로필 추가",
+      "category": "submission_journals",
       "description": "저널 프로필을 데이터베이스에 추가합니다. 저자 가이드라인에서 메타데이터를 추출하여 이중 프로필(write-paper + find-journal)을 품질 게이트와 함께 생성합니다.",
-      "features": ["저자 가이드라인 자동 추출", "이중 프로필 생성", "일괄 추가 모드"],
+      "features": [
+        "저자 가이드라인 자동 추출",
+        "이중 프로필 생성",
+        "일괄 추가 모드"
+      ],
       "isNew": true
     },
     {
       "name": "deidentify",
       "title": "비식별화",
+      "category": "data_study_design",
       "description": "LLM 분석 전 임상 연구 데이터를 비식별화합니다. 10개국 로케일 팩을 지원하는 독립 Python CLI. LLM 미사용.",
-      "features": ["정규식 + 휴리스틱 기반 PHI 탐지", "대화형 터미널 검토", "날짜 이동 & 가명처리"],
+      "features": [
+        "정규식 + 휴리스틱 기반 PHI 탐지",
+        "대화형 터미널 검토",
+        "날짜 이동 & 가명처리"
+      ],
       "isNew": true
     },
     {
       "name": "find-cohort-gap",
       "title": "코호트 연구 Gap 탐색",
+      "category": "project_workflow",
       "description": "종단 코호트 데이터베이스에서 연구 공백을 탐색합니다. 6단계 파이프라인(코호트 접수 → PI 프로파일링 → 교차 매트릭스 → 문헌 포화도 스캔 → 6-Pattern 점수화 → 실현가능성 게이트)으로 순위별 연구 주제 제안서를 출력합니다.",
-      "features": ["NHIS, UK Biobank, 기관 EMR, 건강검진 레지스트리 등 모든 코호트 지원", "실현가능성 게이트 포함 6-Pattern Gap 점수화", "순위별 제안서 + One-pager 출력"],
+      "features": [
+        "NHIS, UK Biobank, 기관 EMR, 건강검진 레지스트리 등 모든 코호트 지원",
+        "실현가능성 게이트 포함 6-Pattern Gap 점수화",
+        "순위별 제안서 + One-pager 출력"
+      ],
       "isNew": true
     },
     {
       "name": "replicate-study",
       "title": "연구 복제",
+      "category": "analysis_figures",
       "description": "기존 코호트 연구를 다른 데이터베이스에서 복제합니다. 원논문에서 방법론을 추출하고, 변수 매핑 테이블로 harmonization한 뒤, 분석 코드를 생성하고 차이 보고서를 출력합니다.",
-      "features": ["5단계 워크플로우: 원논문 분석 → 변수 매핑 → 코드 생성 → 차이 보고서 → 검증", "KNHANES/NHANES harmonization 테이블 내장", "Joo 2026 cross-national 복제로 검증 완료"],
+      "features": [
+        "5단계 워크플로우: 원논문 분석 → 변수 매핑 → 코드 생성 → 차이 보고서 → 검증",
+        "KNHANES/NHANES harmonization 테이블 내장",
+        "Joo 2026 cross-national 복제로 검증 완료"
+      ],
       "isNew": true
     },
     {
       "name": "cross-national",
       "title": "다국가 비교 연구",
+      "category": "analysis_figures",
       "description": "병렬 조사 데이터를 활용한 다국가 비교 연구. 변수 harmonization, 국가별 가중치 분석(데이터 풀링 금지), 국가별 층화 비교표를 생성합니다.",
-      "features": ["KNHANES + NHANES + CHNS 변수 코딩 레퍼런스 내장", "국가별 survey design으로 데이터 풀링 없이 분석", "2국 및 3국 비교 설계 지원"],
+      "features": [
+        "KNHANES + NHANES + CHNS 변수 코딩 레퍼런스 내장",
+        "국가별 survey design으로 데이터 풀링 없이 분석",
+        "2국 및 3국 비교 설계 지원"
+      ],
       "isNew": true
     },
     {
       "name": "batch-cohort",
       "title": "배치 코호트 분석",
+      "category": "analysis_figures",
       "description": "검증된 템플릿 1개 × 다수 노출/결과 조합에서 N개의 분석 스크립트를 생성합니다. 동일 방법론으로 변수만 교체하는 '80명 팀' 패턴.",
-      "features": ["자기조정 방지 & EPV 체크", "Bonferroni 보정 & 요약 히트맵", "검증: KNHANES 18조합, 3국 45조합 성공"],
+      "features": [
+        "자기조정 방지 & EPV 체크",
+        "Bonferroni 보정 & 요약 히트맵",
+        "검증: KNHANES 18조합, 3국 45조합 성공"
+      ],
       "isNew": true
     },
     {
       "name": "fill-protocol",
       "title": "프로토콜 양식 자동 작성",
+      "category": "submission_journals",
       "description": "IRB 및 기관 Word 양식 템플릿(.doc/.docx)을 원본 레이아웃, 셀 구조, 서식을 보존하면서 자동으로 작성합니다. 프로토콜 초안에서 내용을 추출하여 레이블이 지정된 양식 셀에 매핑합니다.",
-      "features": ["원본 양식 구조 보존 — 레이아웃 깨짐 없음", "한국 IRB 양식 셀 레이블 매칭", "원본 백업 + LibreOffice 변환"],
+      "features": [
+        "원본 양식 구조 보존 — 레이아웃 깨짐 없음",
+        "한국 IRB 양식 셀 레이블 매칭",
+        "원본 백업 + LibreOffice 변환"
+      ],
       "isNew": true
     },
     {
       "name": "fill-icmje-coi",
       "title": "ICMJE COI 일괄 작성",
+      "category": "submission_journals",
       "description": "공저자별 ICMJE Conflict of Interest 공개 폼(.docx)을 사전 작성된 seed 문서로부터 일괄 생성합니다. 13개 공개 항목과 체크박스 상태는 그대로 두고 날짜, 저자명, 원고 제목만 치환합니다.",
-      "features": ["PII 제거된 합성 seed 포함 (재배포 안전)", "Word Content Control(SDT) 내부 XML 리터럴 치환", "실행 후 검증: ☒ 14개, \"None\" 13개, placeholder 유출 0"],
+      "features": [
+        "PII 제거된 합성 seed 포함 (재배포 안전)",
+        "Word Content Control(SDT) 내부 XML 리터럴 치환",
+        "실행 후 검증: ☒ 14개, \"None\" 13개, placeholder 유출 0"
+      ],
       "isNew": true
     },
     {
       "name": "humanize",
       "title": "AI 문체 제거",
+      "category": "writing_manuscript",
       "description": "학술 원고에서 AI 작문 패턴을 탐지하고 제거합니다. 18개 패턴(significance inflation, AI 어휘, copula 회피 등)을 스캔하여 기술적 정확성을 유지하면서 자연스러운 문체로 재작성합니다.",
-      "features": ["인스턴스별 플래깅으로 18패턴 탐지", "밀도 목표: 1,000단어당 AI 표현 2.0건 미만", "p값·임상 용어 등 모든 수치 보존 재작성"],
+      "features": [
+        "인스턴스별 플래깅으로 18패턴 탐지",
+        "밀도 목표: 1,000단어당 AI 표현 2.0건 미만",
+        "p값·임상 용어 등 모든 수치 보존 재작성"
+      ],
       "isNew": true
     },
     {
       "name": "author-strategy",
       "title": "저자 전략 분석",
+      "category": "project_workflow",
       "description": "PubMed 저자 프로필 분석. E-utilities로 출판 이력을 가져와 연구 유형(GBD, SR/MA, NHIS, AI/ML 등)을 분류하고, 7개 시각화와 복제 기회 포함 전략 보고서를 생성합니다.",
-      "features": ["E-utilities 배치 fetch + 중복 제거", "연구 유형 분류기: GBD, SR/MA, NHIS, AI/ML, 다국가, 증례 시리즈", "공저자 gap 분석 포함 복제 기회 점수화"],
+      "features": [
+        "E-utilities 배치 fetch + 중복 제거",
+        "연구 유형 분류기: GBD, SR/MA, NHIS, AI/ML, 다국가, 증례 시리즈",
+        "공저자 gap 분석 포함 복제 기회 점수화"
+      ],
       "isNew": true
     },
     {
       "name": "peer-review",
       "title": "동료 심사 초안",
+      "category": "review_compliance",
       "description": "의학영상 저널용 체계적 동료 심사 초안 작성. 저널별 포맷(RYAI, INSI, EURE, AJR, KJR), 간결성 목표(500~800단어), 제출 전 QC 체크리스트를 제공합니다. Phase 2A SR-MA 8-probe 확장 포함.",
-      "features": ["근거 포함 Major/Minor/Reject 추천", "영상의학 5개 저널 포맷 프리셋", "제출 전 QC: 단어 수, 톤, 윤리 적신호", "SR-MA Phase 2A (P1-P8)"],
+      "features": [
+        "근거 포함 Major/Minor/Reject 추천",
+        "영상의학 5개 저널 포맷 프리셋",
+        "제출 전 QC: 단어 수, 톤, 윤리 적신호",
+        "SR-MA Phase 2A (P1-P8)"
+      ],
       "isNew": true
     },
     {
       "name": "ma-scout",
       "title": "MA 주제 탐색",
+      "category": "project_workflow",
       "description": "메타분석 주제 발굴 및 실현가능성 평가. Professor-first(프로필 → 기둥 분석 → MA 공백) 또는 Topic-first(질문 → 현황 스캔 → 공저자 매칭) 두 가지 모드. 다중 소스 검증과 현실적 k 추정 제공.",
-      "features": ["Professor-first · Topic-first 이중 모드", "PubMed, PROSPERO, bioRxiv 다중 소스 검증", "등록 15~30% 할인 반영한 현실적 k 추정"],
+      "features": [
+        "Professor-first · Topic-first 이중 모드",
+        "PubMed, PROSPERO, bioRxiv 다중 소스 검증",
+        "등록 15~30% 할인 반영한 현실적 k 추정"
+      ],
       "isNew": true
     },
     {
       "name": "lit-sync",
       "title": "문헌 동기화",
+      "category": "literature_references",
       "description": ".bib 파일을 Zotero 라이브러리 + Obsidian 문헌 노트에 동기화합니다. 누적된 10개 이상의 노트에서 개념 추출 및 교차 주제 발견. /search-lit 이후 또는 독립 실행 모두 가능.",
-      "features": ["Better BibTeX 키 매칭으로 Zotero 가져오기", "위키링크 포함 Obsidian 문헌 노트 생성", "10개 이상 노트에서 교차 개념 자동 추출"],
+      "features": [
+        "Better BibTeX 키 매칭으로 Zotero 가져오기",
+        "위키링크 포함 Obsidian 문헌 노트 생성",
+        "10개 이상 노트에서 교차 개념 자동 추출"
+      ],
       "isNew": true
     },
     {
       "name": "academic-aio",
       "title": "Academic AI Search 최적화",
+      "category": "writing_manuscript",
       "description": "의학 AI 논문의 AI 검색 엔진(Perplexity, ChatGPT web, Elicit, Consensus, SciSpace) 및 RAG 문헌 도구 대상 노출 체크리스트. TRIPOD+AI, CLAIM, STARD-AI, TRIPOD-LLM, DECIDE-AI 보고 앵커를 generative-engine-optimization(GEO) 원칙과 결합합니다.",
-      "features": ["Title, Abstract, Key Points, Plain-Language Summary, 프리프린트, README, CITATION.cff, Zenodo, Hugging Face 카드까지 커버", "LLM 인용 조작 방어 (Agarwal 2025, Nat Commun)", "가시적 PASS / PARTIAL / FAIL 체크리스트 — 은밀한 편집 금지"],
+      "features": [
+        "Title, Abstract, Key Points, Plain-Language Summary, 프리프린트, README, CITATION.cff, Zenodo, Hugging Face 카드까지 커버",
+        "LLM 인용 조작 방어 (Agarwal 2025, Nat Commun)",
+        "가시적 PASS / PARTIAL / FAIL 체크리스트 — 은밀한 편집 금지"
+      ],
       "isNew": true
     },
     {
       "name": "manage-refs",
       "title": "참고문헌 생애주기",
+      "category": "literature_references",
       "description": "citekey ↔ .bib 검증, 저널 CSL pandoc 렌더링, 원고 ↔ 렌더된 DOCX 교차참조 QC, [N] ↔ [@key] 마커 변환, 그리고 공저자 Word 협업을 위한 Zotero CWYW 필드 코드 주입. manuscript_final.docx와 qc/xref_audit.json의 단독 writer. Hybrid 3-phase 전략 (pandoc 초안 → CWYW 전환 → 회람·revision·투고는 Zotero CWYW).",
-      "features": ["check_citation_keys.py + check_xref.py --strict 가 투고 게이트", "내장 저널 CSL: ER, Radiology, AJR, CVIR, KJR, Vancouver — cascade rejection 재렌더 수 초", "Native CSL-JSON CWYW 주입 (webpage / report / 비-저널 item type 정상 처리)"],
+      "features": [
+        "check_citation_keys.py + check_xref.py --strict 가 투고 게이트",
+        "내장 저널 CSL: ER, Radiology, AJR, CVIR, KJR, Vancouver — cascade rejection 재렌더 수 초",
+        "Native CSL-JSON CWYW 주입 (webpage / report / 비-저널 item type 정상 처리)"
+      ],
       "isNew": true
     },
     {
       "name": "render-pdf-doc",
       "title": "한글 학술 PDF",
+      "category": "presentation_tooling",
       "description": "참고문헌 없는 학술 마크다운(연구계획서, 브리핑 핸드아웃, anchor doc, IRB cover, 비교표)을 pandoc + xelatex으로 출판 품질 PDF로 렌더링합니다. manage-refs와 정반대 — 참고문헌 X, 레이아웃 중심.",
-      "features": ["CJK 폰트 fallback: macOS Apple SD Gothic Neo, Linux Noto Sans CJK KR", "표 컬럼 폭 자동 추론 — 첫 열은 라벨에 맞춰 좁히고 데이터 열은 남은 폭을 content-proportional 분배", "회람용 PDF에서 변경이력·버전번호·PI attribution 제거하는 redact_internal 플래그"],
+      "features": [
+        "CJK 폰트 fallback: macOS Apple SD Gothic Neo, Linux Noto Sans CJK KR",
+        "표 컬럼 폭 자동 추론 — 첫 열은 라벨에 맞춰 좁히고 데이터 열은 남은 폭을 content-proportional 분배",
+        "회람용 PDF에서 변경이력·버전번호·PI attribution 제거하는 redact_internal 플래그"
+      ],
       "isNew": true
     },
     {
       "name": "define-variables",
       "title": "변수 정의",
+      "category": "data_study_design",
       "description": "관찰연구의 문헌 기반 변수 운영화. 데이터 사전 + 연구 질문 → 노출 / 결과 / 보정변수 정의, 컷오프, DB 변수 매핑이 인용으로 뒷받침된 표. Tier 0 dictionary-first 룰로 reviewer reject을 부르는 ad-hoc phenotype 정의를 차단. /search-lit과 /write-protocol Methods를 잇는 다리.",
-      "features": ["Dictionary-first Tier 0 강제 (codebook entry verbatim 인용)", "/search-lit 출력을 /write-protocol Methods에 매끄럽게 연결", "변수별 인용 출처 (source / row / verbatim mapping) 명시"],
+      "features": [
+        "Dictionary-first Tier 0 강제 (codebook entry verbatim 인용)",
+        "/search-lit 출력을 /write-protocol Methods에 매끄럽게 연결",
+        "변수별 인용 출처 (source / row / verbatim mapping) 명시"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "design-ai-benchmarking",
+      "title": "AI 벤치마크 설계",
+      "category": "data_study_design",
+      "description": "AI 시스템을 인간 전문가 패널과 비교 평가하는 연구의 설계·타당도 검토. arm 정의, 보정 프로브가 포함된 다차원 루브릭, 평가자 패널, 평가자 간 신뢰도 목표, LLM-as-judge 대 인간 판정을 다룹니다.",
+      "features": [
+        "AI 대 전문가 평가 설계",
+        "보정 프로브 · 평가자 간 신뢰도 목표",
+        "LLM-as-judge 대 인간 판정"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "generate-codebook",
+      "title": "코드북 생성기",
+      "category": "data_study_design",
+      "description": "표 형식 데이터셋(CSV·Excel·Parquet·Stata·SAS)에서 인용 가능한 데이터 사전/코드북 생성. 변수별 역할·유형·범주 빈도·범위·결측을 프로파일링하고, 의미가 불명확한 코드 변수는 추측 대신 [NEEDS DICTIONARY]로 표시합니다.",
+      "features": [
+        "변수별 프로파일링 → codebook.md + .json",
+        "불명확한 코드는 추측 없이 표시",
+        "/define-variables(dictionary-first) 연계"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "version-dataset",
+      "title": "데이터셋 버전 관리",
+      "category": "data_study_design",
+      "description": "재현성을 위한 데이터셋 버전 관리. 결정론적 content-hash 매니페스트(파일 SHA-256 + 스키마 + 컬럼별 값 해시)를 만들고, 이후 복사본을 검증해 드리프트를 탐지하며, 두 매니페스트를 비교합니다 — 의도한 데이터로 분석했음을 증명합니다.",
+      "features": [
+        "content-hash 매니페스트(SHA-256 + 스키마)",
+        "드리프트 탐지: 스키마 / 행 / 값",
+        "데이터셋·데모 재현성 락"
+      ],
       "isNew": true
     }
   ],
   "pipelineSteps": [
-    { "label": "오케스트레이터\n--e2e", "skill": "orchestrate" },
-    { "label": "문헌\n검색", "skill": "search-lit" },
-    { "label": "전문\n다운로드", "skill": "fulltext-retrieval" },
-    { "label": "연구\n설계", "skill": "design-study" },
-    { "label": "비식별화\n& 정제", "skill": "deidentify" },
-    { "label": "통계\n분석", "skill": "analyze-stats" },
-    { "label": "Figure\n생성", "skill": "make-figures" },
-    { "label": "원고\n작성", "skill": "write-paper" },
-    { "label": "보고\n가이드라인", "skill": "check-reporting" },
-    { "label": "자가리뷰\n& 수정", "skill": "self-review" },
-    { "label": "저널\n선택", "skill": "find-journal" },
-    { "label": "리비전\n대응", "skill": "revise" },
-    { "label": "발표\n준비", "skill": "present-paper" }
+    {
+      "label": "오케스트레이터\n--e2e",
+      "skill": "orchestrate"
+    },
+    {
+      "label": "문헌\n검색",
+      "skill": "search-lit"
+    },
+    {
+      "label": "전문\n다운로드",
+      "skill": "fulltext-retrieval"
+    },
+    {
+      "label": "연구\n설계",
+      "skill": "design-study"
+    },
+    {
+      "label": "비식별화\n& 정제",
+      "skill": "deidentify"
+    },
+    {
+      "label": "통계\n분석",
+      "skill": "analyze-stats"
+    },
+    {
+      "label": "Figure\n생성",
+      "skill": "make-figures"
+    },
+    {
+      "label": "원고\n작성",
+      "skill": "write-paper"
+    },
+    {
+      "label": "보고\n가이드라인",
+      "skill": "check-reporting"
+    },
+    {
+      "label": "자가리뷰\n& 수정",
+      "skill": "self-review"
+    },
+    {
+      "label": "저널\n선택",
+      "skill": "find-journal"
+    },
+    {
+      "label": "리비전\n대응",
+      "skill": "revise"
+    },
+    {
+      "label": "발표\n준비",
+      "skill": "present-paper"
+    }
   ]
 }
