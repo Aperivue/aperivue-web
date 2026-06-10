@@ -10,6 +10,7 @@ import {
   SKILL_COUNT,
 } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
+import { SkillsExplorer } from "./SkillsExplorer";
 
 const skillsData = { en: skillsEn, ko: skillsKo };
 
@@ -129,7 +130,7 @@ export default async function SkillsPage({
           {t.title}
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
-          {t.description}
+          {t.description.replace("{count}", String(SKILL_COUNT))}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <a
@@ -179,9 +180,8 @@ export default async function SkillsPage({
           ))}
         </div>
         <p className="mt-3 text-center text-xs text-foreground/40">
-          + orchestrate &middot; meta-analysis &middot; grant-builder &middot;
-          intake-project &middot; manage-project &middot; humanize &middot;
-          ma-scout &middot; author-strategy &middot; peer-review &middot; lit-sync &middot; publish-skill
+          + {SKILL_COUNT - pipelineSteps.length} more skills across the full
+          lifecycle &mdash; browse them all below.
         </p>
       </section>
 
@@ -211,42 +211,68 @@ export default async function SkillsPage({
         </div>
       </section>
 
-      {/* Skills Grid */}
+      {/* Skills Grid (searchable + filterable) */}
       <section className="mt-16">
         <h2 className="text-xl font-bold">{t.allSkills}</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {skills.map((skill) => (
-            <div
-              key={skill.name}
-              className="flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-8 transition-shadow hover:shadow-lg"
-            >
-              <div className="flex items-center gap-3">
-                <h3 className="text-lg font-semibold">{skill.title}</h3>
-                <span className="rounded-full bg-accent/10 px-3 py-0.5 text-[10px] font-mono text-accent">
-                  {skill.name}
-                </span>
-                {"isNew" in skill && skill.isNew && (
-                  <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
-                    NEW
-                  </span>
-                )}
-              </div>
-              <p className="mt-3 flex-1 break-words text-sm leading-relaxed text-foreground/70">
-                {skill.description}
-              </p>
-              <ul className="mt-4 space-y-1.5">
-                {skill.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-2 text-sm text-foreground/60"
-                  >
-                    <span className="mt-0.5 text-primary">&#x2713;</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <SkillsExplorer
+          lang={lang}
+          skills={skills}
+          labels={{
+            searchPlaceholder: t.searchPlaceholder,
+            filterAll: t.filterAll,
+            resultsNone: t.resultsNone,
+            categoryLabels: t.categoryLabels,
+          }}
+        />
+      </section>
+
+      {/* Impact / adoption (open-source evidence) */}
+      <section className="mt-16 rounded-2xl border border-border bg-surface p-8 text-center">
+        <h2 className="text-lg font-bold">{t.impactTitle}</h2>
+        <p className="mx-auto mt-2 max-w-2xl text-sm text-foreground/60">
+          {t.impactSubtitle}
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://img.shields.io/github/stars/Aperivue/medsci-skills?style=flat&logo=github&label=Stars&color=2563eb"
+            alt="GitHub stars"
+            height={24}
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://img.shields.io/github/forks/Aperivue/medsci-skills?style=flat&logo=github&label=Forks&color=2563eb"
+            alt="GitHub forks"
+            height={24}
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://img.shields.io/github/v/release/Aperivue/medsci-skills?style=flat&label=Release&color=16a34a"
+            alt="Latest release"
+            height={24}
+          />
+          <a
+            href="https://doi.org/10.5281/zenodo.20155321"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20155321-1f7a8c?style=flat"
+              alt="Zenodo DOI"
+              height={24}
+            />
+          </a>
+        </div>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-4 text-sm">
+          <a
+            href={`${GITHUB_URL}/blob/main/IMPACT.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-primary hover:underline"
+          >
+            {t.impactCitations} &rarr;
+          </a>
         </div>
       </section>
 

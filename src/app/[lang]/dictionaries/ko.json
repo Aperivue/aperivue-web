@@ -47,7 +47,7 @@
   "skills": {
     "badge": "오픈소스",
     "title": "Claude Code용 의학 연구 스킬",
-    "description": "문헌 검색부터 원고 수정까지 연구 전체 과정을 다루는 40개 스킬. 의사가 직접 개발하고, 실제 논문에서 검증. MIT 라이선스.",
+    "description": "문헌 검색부터 원고 수정까지 연구 전체 과정을 다루는 {count}개 스킬. 의사가 직접 개발하고, 실제 논문에서 검증. MIT 라이선스.",
     "viewGithub": "GitHub에서 보기",
     "installNow": "지금 설치",
     "koGuide": "가이드",
@@ -67,7 +67,31 @@
     "requires": "Claude Code Desktop 또는 CLI 필요. 통계 분석 및 Figure 생성에는 Python 3.9+ 필요.",
     "readyToStreamline": "연구를 효율화할 준비가 되셨나요?",
     "starGithub": "GitHub에서 Star",
-    "readDocs": "문서 읽기"
+    "readDocs": "문서 읽기",
+    "searchPlaceholder": "스킬 검색…",
+    "filterAll": "전체",
+    "resultsNone": "검색과 일치하는 스킬이 없습니다.",
+    "categoryLabels": {
+      "literature_references": "문헌 · 레퍼런스",
+      "data_study_design": "데이터 · 연구 설계",
+      "analysis_figures": "분석 · 그림",
+      "writing_manuscript": "작성 · 원고",
+      "review_compliance": "검토 · 준수",
+      "submission_journals": "제출 · 저널",
+      "project_workflow": "프로젝트 · 워크플로우",
+      "presentation_tooling": "발표 · 도구"
+    },
+    "impactTitle": "오픈소스, 공개적으로",
+    "impactSubtitle": "Star, fork, DOI로 고정된 인용 가능 릴리스 — 채택 현황은 GitHub과 Zenodo에서 공개 추적됩니다.",
+    "impactCitations": "연구에 사용하셨나요? 알려주세요",
+    "detailBack": "모든 스킬",
+    "detailWhatItDoes": "기능 설명",
+    "detailHighlights": "주요 기능",
+    "detailInstall": "이 스킬 설치",
+    "detailDocs": "전체 문서",
+    "detailViewSource": "GitHub 소스 보기",
+    "detailCategory": "카테고리",
+    "detailRelated": "관련 스킬"
   },
   "products": {
     "title": "제품 소개",
