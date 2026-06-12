@@ -46,6 +46,27 @@ export default function InstallContentKo({ lang }: { lang: string }) {
           슬래시 명령어를 외울 필요 없습니다. 하고 싶은 일을 평소 말하듯 설명하면,
           Claude가 알맞은 스킬을 자동으로 선택합니다.
         </p>
+
+        <div className="mt-4 rounded-xl border border-border bg-surface p-4">
+          <p className="text-xs font-medium text-foreground/40">터미널이 편하다면? 한 줄이면 끝 (Node 18+)</p>
+          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install</code></pre>
+          <p className="mt-2 text-xs text-foreground/60">
+            모든 스킬을{" "}
+            <a
+              href="https://www.npmjs.com/package/medsci-skills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary underline"
+            >
+              npm
+            </a>
+            에서 한 번에 설치합니다 — 클론 불필요. 이 외에{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills list</code>
+            ,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">doctor</code>
+            도 됩니다.
+          </p>
+        </div>
       </section>
 
       <div className="mt-6 flex items-center gap-3">
