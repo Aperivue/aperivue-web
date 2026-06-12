@@ -46,6 +46,26 @@ export default function InstallContentEn({ lang }: { lang: string }) {
           No slash commands required. Just describe what you need in plain English.
           Claude will pick the right skill automatically.
         </p>
+
+        <div className="mt-4 rounded-xl border border-border bg-surface p-4">
+          <p className="text-xs font-medium text-foreground/40">Prefer a terminal? One command (Node 18+)</p>
+          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install</code></pre>
+          <p className="mt-2 text-xs text-foreground/60">
+            Installs every skill from{" "}
+            <a
+              href="https://www.npmjs.com/package/medsci-skills"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary underline"
+            >
+              npm
+            </a>
+            {" "}— nothing to clone. Also{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills list</code>
+            {" "}and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">doctor</code>.
+          </p>
+        </div>
       </section>
 
       <div className="mt-6 flex items-center gap-3">
