@@ -509,6 +509,30 @@
         "Reproducibility-lock datasets & demos"
       ],
       "isNew": true
+    },
+    {
+      "category": "writing_manuscript",
+      "description": "Scaffold and draft a literature review — narrative (SANRA), scoping (PRISMA-ScR + JBI), or systematic (PRISMA 2020). Builds a 7-part skeleton with a required scope and non-overlap block, then hands off to self-review, check-reporting, and verify-refs.",
+      "features": [
+        "Narrative / scoping / systematic modes",
+        "Required scope and non-overlap framing",
+        "Never invents citations — verify-refs handoff"
+      ],
+      "isNew": true,
+      "name": "review-paper",
+      "title": "Literature Review Scaffold"
+    },
+    {
+      "category": "writing_manuscript",
+      "description": "Academic English consistency linting plus non-native (ESL) clarity polish. A deterministic linter flags abbreviation, US/UK spelling, en-dash range, P/p case, hyphenation, and unit-spacing issues; a gated pass then fixes wording without touching numbers, citations, or scientific meaning.",
+      "features": [
+        "7-family deterministic consistency report",
+        "Style-only — never alters numbers or citations",
+        "Distinct from humanize (AI-tell removal)"
+      ],
+      "isNew": true,
+      "name": "polish-language",
+      "title": "Consistency Linter & ESL Polish"
     }
   ],
   "pipelineSteps": [
