@@ -509,6 +509,30 @@
         "데이터셋·데모 재현성 락"
       ],
       "isNew": true
+    },
+    {
+      "category": "writing_manuscript",
+      "description": "문헌고찰을 설계·작성합니다 — 내러티브(SANRA), 스코핑(PRISMA-ScR + JBI), 체계적(PRISMA 2020). 범위·비중복 블록을 갖춘 7부 골격을 만들고 self-review·check-reporting·verify-refs로 연결합니다.",
+      "features": [
+        "내러티브 / 스코핑 / 체계적 모드",
+        "필수 범위·비중복 블록",
+        "인용 환각 없음 — verify-refs 연계"
+      ],
+      "isNew": true,
+      "name": "review-paper",
+      "title": "문헌고찰 스캐폴드"
+    },
+    {
+      "category": "writing_manuscript",
+      "description": "학술 영어 일관성 린팅과 비원어민(ESL) 명료화 교정. 결정론적 린터가 약어·US/UK 철자·en-dash 범위·P/p 표기·하이픈·단위 간격 문제를 표시하고, 게이트형 교정이 수치·인용·과학적 의미를 건드리지 않고 문장만 다듬습니다.",
+      "features": [
+        "7종 결정론적 일관성 리포트",
+        "문체만 교정 — 수치·인용 불변",
+        "humanize(AI 문체 제거)와 구분"
+      ],
+      "isNew": true,
+      "name": "polish-language",
+      "title": "일관성 린터 & ESL 교정"
     }
   ],
   "pipelineSteps": [
