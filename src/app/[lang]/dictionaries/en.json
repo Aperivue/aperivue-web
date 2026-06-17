@@ -32,8 +32,8 @@
   "about": {
     "title": "The Team Behind Aperivue",
     "founderTitle": "Founder & Medical AI Researcher",
-    "bio1": "Radiology resident at Samsung Changwon Hospital, Sungkyunkwan University School of Medicine. Research focus on diagnostic accuracy studies, medical image analysis with deep learning, and AI validation in clinical workflows.",
-    "bio2": "KAIST (B.S. in Biological Sciences), Yonsei University College of Medicine (M.D.), and MI2RL (Medical Imaging & Intelligent Reality Lab) at Asan Medical Center. Contributor to MeducAI — a multi-agent system for automated manuscript quality assurance.",
+    "bio1": "Neuroradiology Fellow at Asan Medical Center, University of Ulsan College of Medicine. Research focus on diagnostic accuracy studies, medical image analysis with deep learning, and AI validation in clinical workflows.",
+    "bio2": "KAIST (B.S. in Biological Sciences), Yonsei University College of Medicine (M.D.), and MI2RL (Medical Imaging & Intelligent Reality Lab) at Asan Medical Center. Creator of MedSci Skills — an open-source toolkit (MIT, github.com/Aperivue/medsci-skills) that automates medical manuscript writing and quality assurance.",
     "mission": "Mission",
     "missionText": "Aperivue aims to make radiology smarter and more accessible. We build practical tools that help radiologists work more efficiently — from structured RADS scoring calculators to AI-assisted diagnostic pipelines. Our content bridges the gap between cutting-edge AI research and everyday clinical practice.",
     "timeline": "Timeline",

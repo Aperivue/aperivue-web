@@ -75,6 +75,7 @@ export default async function AboutPage({
             { year: "2021", text: "Samsung Changwon Hospital — Radiology Resident" },
             { year: "2024", text: "MI2RL, Asan Medical Center — Medical AI Research" },
             { year: "2026", text: "Aperivue founded" },
+            { year: "2026", text: "Asan Medical Center — Neuroradiology Fellow" },
           ].map((item) => (
             <div key={item.year + item.text} className="relative">
               <div className="absolute -left-[1.65rem] top-1 h-3 w-3 rounded-full bg-primary" />
