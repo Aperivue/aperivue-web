@@ -11,6 +11,7 @@ import {
 } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { SkillsExplorer } from "./SkillsExplorer";
+import { IntroVideo } from "./IntroVideo";
 
 const skillsData = { en: skillsEn, ko: skillsKo };
 
@@ -167,19 +168,7 @@ export default async function SkillsPage({
         <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-foreground/50">
           {t.introVideoSubtitle}
         </p>
-        <div className="mx-auto mt-6 max-w-3xl overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
-          <div className="relative h-0 w-full pb-[56.25%]">
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src="https://www.youtube-nocookie.com/embed/MclQ_RIofpE"
-              title="MedSci Skills — 2-minute intro"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
-        </div>
+        <IntroVideo location="skills" />
       </section>
 
       {/* Pipeline */}
