@@ -51,6 +51,8 @@
     "viewGithub": "View on GitHub",
     "installNow": "Install Now",
     "koGuide": "Guide",
+    "introVideoTitle": "Watch the 2-minute intro",
+    "introVideoSubtitle": "From idea to submission — what MedSci Skills does, in two minutes.",
     "pipeline": "Research Pipeline",
     "demoTitle": "3 Demos, 3 Study Types",
     "demoDesc": "3 end-to-end demos across 3 study types — diagnostic accuracy (Wisconsin BC), meta-analysis (BCG vaccine, 13 RCTs), and epidemiology (NHANES 2017-18). Each produces a complete manuscript, 300 dpi figures, reporting compliance audit (STARD / PRISMA / STROBE), and a presentation — from public data only.",
