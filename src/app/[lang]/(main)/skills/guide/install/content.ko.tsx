@@ -48,8 +48,8 @@ export default function InstallContentKo({ lang }: { lang: string }) {
         </p>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">터미널이 편하다면? 한 줄이면 끝 (Node 18+)</p>
-          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install</code></pre>
+          <p className="text-xs font-medium text-foreground/40">터미널이 편하다면? 한 줄이면 끝 (Node 18+) — 업데이트 알림 포함</p>
+          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install --enable-update-notify</code></pre>
           <p className="mt-2 text-xs text-foreground/60">
             모든 스킬을{" "}
             <a

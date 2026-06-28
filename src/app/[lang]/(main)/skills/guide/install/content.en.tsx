@@ -48,8 +48,8 @@ export default function InstallContentEn({ lang }: { lang: string }) {
         </p>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">Prefer a terminal? One command (Node 18+)</p>
-          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install</code></pre>
+          <p className="text-xs font-medium text-foreground/40">Prefer a terminal? One command (Node 18+) — with update reminders</p>
+          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install --enable-update-notify</code></pre>
           <p className="mt-2 text-xs text-foreground/60">
             Installs every skill from{" "}
             <a
