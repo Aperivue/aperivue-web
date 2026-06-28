@@ -533,6 +533,78 @@
       "isNew": true,
       "name": "polish-language",
       "title": "Consistency Linter & ESL Polish"
+    },
+    {
+      "name": "architecture-zoo",
+      "title": "Architecture Zoo",
+      "category": "model_engineering",
+      "description": "\"Which architecture for which research question\" decision tool: maps task, modality, data scale, and class imbalance to a paper-grounded architecture shortlist — each with the source paper, when-to-use, medical-imaging use, reference implementation, and the matching scaffold template.",
+      "features": [
+        "Task → architecture decision tree",
+        "Paper-grounded archetypes (CNN, ViT, U-Net, SAM/MedSAM, SSL)",
+        "Hands the choice to model-scaffold"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-scaffold",
+      "title": "Model Scaffold",
+      "category": "model_engineering",
+      "description": "Generate a reproducible, runnable PyTorch training repo for a medical-imaging task — segmentation, classification, detection, synthesis, or self-supervised pretraining — with a patient-level seed-locked split, train/evaluate scripts, and a Methods stub. Integrates MONAI / nnU-Net, never reimplements them.",
+      "features": [
+        "Five task templates, leakage-safe by construction",
+        "Auditable patient-level seed-locked split",
+        "Training-hygiene AST gate + network-free build test"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-validation",
+      "title": "Model Validation",
+      "category": "model_engineering",
+      "description": "Design or audit the clinical-validation study for an engineer-built medical-imaging model: patient-level split disjointness, the data-leakage taxonomy, internal vs external validation, comparator design, and task-correct metric selection — with a deterministic split-leakage gate.",
+      "features": [
+        "Split-leakage gate proves patient disjointness",
+        "Leakage taxonomy + tuning-on-test checks",
+        "CLAIM 2024 / TRIPOD+AI / STARD-AI reporting fit"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-card",
+      "title": "Model Card & Datasheet",
+      "category": "model_engineering",
+      "description": "Generate the documentation an engineer-built model must carry — a Model Card (Mitchell et al. 2019), a Datasheet for its dataset (Gebru et al. 2021), and a METRIC data-quality pass — filled only from user-supplied facts, then verify every required section is present with a completeness gate.",
+      "features": [
+        "Model Card + Datasheet templates",
+        "Facts in, never fabricated; gate checks completeness",
+        "METRIC-informed data-quality pass"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-evaluation",
+      "title": "Model Evaluation",
+      "category": "model_engineering",
+      "description": "Compute and report task-correct held-out metrics for a trained model — Dice + HD95/NSD, AUROC/AUPRC with bootstrap CIs, FROC/mAP, calibration, and subgroup slices — emitting a per-case table for analyze-stats. Numbers come only from executed code.",
+      "features": [
+        "Task-correct metrics with bootstrap CIs",
+        "Calibration + subgroup performance",
+        "Metrics Reloaded / CLAIM 2024 gate"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "mllm-eval",
+      "title": "LLM/MLLM Evaluation",
+      "category": "model_engineering",
+      "description": "Model-agnostic evaluation harness for an LLM or MLLM on a clinical task — report generation, visual question answering, clinical text extraction — covering the adjudicated reference, clinical-efficacy metrics (RadGraph-F1 / CheXbert-F1), faithfulness, contamination, prompt sensitivity, and a reader study.",
+      "features": [
+        "Clinical-efficacy metrics beyond BLEU/ROUGE",
+        "Contamination + prompt-sensitivity checks",
+        "Reader study + MLLM reviewer probe"
+      ],
+      "isNew": true
     }
   ],
   "pipelineSteps": [

@@ -7,6 +7,7 @@
 export const CATEGORY_ORDER = [
   "literature_references",
   "data_study_design",
+  "model_engineering",
   "analysis_figures",
   "writing_manuscript",
   "review_compliance",

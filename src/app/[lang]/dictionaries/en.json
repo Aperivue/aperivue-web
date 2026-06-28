@@ -76,6 +76,7 @@
     "categoryLabels": {
       "literature_references": "Literature & References",
       "data_study_design": "Data & Study Design",
+      "model_engineering": "Model Engineering & Validation",
       "analysis_figures": "Analysis & Figures",
       "writing_manuscript": "Writing & Manuscript",
       "review_compliance": "Review & Compliance",
