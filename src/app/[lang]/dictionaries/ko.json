@@ -76,6 +76,7 @@
     "categoryLabels": {
       "literature_references": "문헌 · 레퍼런스",
       "data_study_design": "데이터 · 연구 설계",
+      "model_engineering": "모델 엔지니어링 · 검증",
       "analysis_figures": "분석 · 그림",
       "writing_manuscript": "작성 · 원고",
       "review_compliance": "검토 · 준수",

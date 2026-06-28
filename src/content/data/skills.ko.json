@@ -533,6 +533,78 @@
       "isNew": true,
       "name": "polish-language",
       "title": "일관성 린터 & ESL 교정"
+    },
+    {
+      "name": "architecture-zoo",
+      "title": "아키텍처 가이드",
+      "category": "model_engineering",
+      "description": "\"어떤 연구 질문에 어떤 아키텍처\"를 정하는 의사결정 도구. task·modality·데이터 규모·class imbalance를 근거로 논문에 기반한 아키텍처 후보를 좁혀 주며, 각 후보에 원논문·사용 시점·의료영상 활용·reference 구현·대응 scaffold 템플릿을 함께 제시합니다.",
+      "features": [
+        "Task → 아키텍처 의사결정 트리",
+        "논문 기반 아키타입 (CNN, ViT, U-Net, SAM/MedSAM, SSL)",
+        "선택을 model-scaffold로 인계"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-scaffold",
+      "title": "Model Scaffold",
+      "category": "model_engineering",
+      "description": "의료영상 task(segmentation, classification, detection, synthesis, self-supervised pretraining)를 위한 재현 가능하고 바로 실행되는 PyTorch 학습 레포를 생성합니다. 환자 단위 seed-locked split, train/evaluate 스크립트, Methods stub을 함께 제공하며, MONAI / nnU-Net을 통합할 뿐 재구현하지 않습니다.",
+      "features": [
+        "5개 task 템플릿, 구조적으로 leakage-safe",
+        "감사 가능한 환자 단위 seed-locked split",
+        "Training-hygiene AST 게이트 + 네트워크 불필요 빌드 테스트"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-validation",
+      "title": "Model Validation",
+      "category": "model_engineering",
+      "description": "엔지니어가 만든 의료영상 모델의 임상 검증 설계를 점검하거나 설계합니다. 환자 단위 split disjointness, data-leakage taxonomy, internal vs external validation, comparator 설계, task에 맞는 metric 선택을 다루며, 결정론적 split-leakage 게이트를 제공합니다.",
+      "features": [
+        "Split-leakage 게이트로 환자 disjointness 증명",
+        "Leakage taxonomy + tuning-on-test 점검",
+        "CLAIM 2024 / TRIPOD+AI / STARD-AI 보고 적합성"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-card",
+      "title": "Model Card & Datasheet",
+      "category": "model_engineering",
+      "description": "엔지니어가 만든 모델이 갖춰야 할 문서를 생성합니다. Model Card(Mitchell et al. 2019), 데이터셋 Datasheet(Gebru et al. 2021), METRIC 데이터 품질 점검을 사용자가 제공한 사실만으로 채운 뒤, 필수 항목이 모두 채워졌는지 completeness 게이트로 검증합니다.",
+      "features": [
+        "Model Card + Datasheet 템플릿",
+        "사실 입력만, 환각 없음 · 게이트가 완성도 점검",
+        "METRIC 기반 데이터 품질 점검"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-evaluation",
+      "title": "Model Evaluation",
+      "category": "model_engineering",
+      "description": "학습된 모델의 held-out 성능을 task에 맞게 산출·보고합니다. Dice + HD95/NSD, bootstrap CI를 포함한 AUROC/AUPRC, FROC/mAP, calibration, subgroup 분석을 수행하고, analyze-stats용 case 단위 표를 생성합니다. 모든 수치는 실행된 코드에서만 나옵니다.",
+      "features": [
+        "Task에 맞는 metric + bootstrap CI",
+        "Calibration + subgroup 성능",
+        "Metrics Reloaded / CLAIM 2024 게이트"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "mllm-eval",
+      "title": "LLM/MLLM Evaluation",
+      "category": "model_engineering",
+      "description": "임상 task(보고서 생성, visual question answering, 임상 텍스트 추출)에 대해 LLM 또는 MLLM을 모델 무관하게 평가하는 하네스입니다. adjudicated reference, 임상 효용 metric(RadGraph-F1 / CheXbert-F1), faithfulness, contamination, prompt sensitivity, reader study를 다룹니다.",
+      "features": [
+        "BLEU/ROUGE를 넘어선 임상 효용 metric",
+        "Contamination + prompt-sensitivity 점검",
+        "Reader study + MLLM reviewer probe"
+      ],
+      "isNew": true
     }
   ],
   "pipelineSteps": [
