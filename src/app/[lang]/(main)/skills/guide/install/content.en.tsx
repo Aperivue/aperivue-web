@@ -15,43 +15,44 @@ export default function InstallContentEn({ lang }: { lang: string }) {
 
       {/* Quick Start */}
       <section className="mt-8 rounded-2xl border-2 border-primary/30 bg-primary/5 p-6">
-        <h2 className="text-lg font-bold text-primary">Quick Start — Just ask Claude</h2>
+        <h2 className="text-lg font-bold text-primary">Quick Start (recommended)</h2>
         <p className="mt-2 text-sm text-foreground/70">
-          Already have Claude Code installed? You don&apos;t need to download anything manually.
-          Just paste this into Claude Code:
+          The recommended setup also turns on <strong>update reminders</strong>, so Claude Code tells
+          you when a new version ships — without it you stay on the version you installed and are never
+          told. Pick whichever is easier; both do the same thing.
         </p>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">Copy &amp; paste into Claude Code</p>
+          <p className="text-xs font-medium text-foreground/40">Option A — Already using Claude Code? Paste this in:</p>
           <p className="mt-2 text-sm text-foreground/80">
-            &quot;Install MedSci Skills from https://github.com/Aperivue/medsci-skills — clone the repo and copy all skill folders into ~/.claude/skills/&quot;
+            &quot;Install MedSci Skills by running{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills install --enable-update-notify</code>{" "}
+            in the terminal, then tell me when it&apos;s done and remind me to restart Claude Code.&quot;
+          </p>
+          <p className="mt-2 text-xs text-foreground/60">
+            Claude runs the installer for you and confirms when it&apos;s finished.
           </p>
         </div>
 
-        <p className="mt-4 text-sm text-foreground/70">
-          Claude will handle the rest — cloning the repository, copying the files, and confirming the installation.
-          That&apos;s it. You can start using the skills right away.
-        </p>
-
-        <div className="mt-4 rounded-xl border border-border bg-muted p-4">
-          <p className="text-xs font-medium text-foreground/40">Try a skill in natural language</p>
-          <div className="mt-2 space-y-2 text-sm text-foreground/80">
-            <p>&quot;Search PubMed for recent studies on AI-assisted lung nodule detection and give me the top 10 results&quot;</p>
-            <p>&quot;Check my manuscript against STARD 2015 guidelines&quot;</p>
-            <p>&quot;Analyze this CSV and generate a demographics table with appropriate statistics&quot;</p>
-          </div>
-        </div>
-
-        <p className="mt-4 text-xs text-foreground/40">
-          No slash commands required. Just describe what you need in plain English.
-          Claude will pick the right skill automatically.
-        </p>
-
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">Prefer a terminal? One command (Node 18+)</p>
-          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install</code></pre>
+          <p className="text-xs font-medium text-foreground/40">Option B — One terminal command (Node 18+)</p>
+          <div className="mt-2 space-y-1.5 text-sm text-foreground/80">
+            <p>
+              <strong>1.</strong> Open the Terminal app — macOS: press{" "}
+              <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-xs">Cmd + Space</kbd>, type
+              &quot;Terminal&quot;, Enter. Windows: Start menu &rarr; &quot;Terminal&quot; (or &quot;Command Prompt&quot;).
+            </p>
+            <p><strong>2.</strong> Paste this one line and press Enter:</p>
+          </div>
+          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install --enable-update-notify --desktop-launcher</code></pre>
+          <p className="mt-2 text-sm text-foreground/80">
+            <strong>3.</strong> When it finishes, fully quit and reopen Claude Code. Done.
+          </p>
           <p className="mt-2 text-xs text-foreground/60">
-            Installs every skill from{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--enable-update-notify</code> shows a one-line
+            &quot;update available&quot; notice in Claude Code;{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--desktop-launcher</code> adds an
+            &quot;Update MedSci Skills&quot; icon to your Desktop for one-click updates. Installs from{" "}
             <a
               href="https://www.npmjs.com/package/medsci-skills"
               target="_blank"
@@ -59,13 +60,30 @@ export default function InstallContentEn({ lang }: { lang: string }) {
               className="font-semibold text-primary underline"
             >
               npm
-            </a>
-            {" "}— nothing to clone. Also{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills list</code>
-            {" "}and{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">doctor</code>.
+            </a>{" "}
+            (needs{" "}
+            <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer" className="text-primary underline">Node 18+</a>;
+            check with <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills doctor</code>).
           </p>
         </div>
+
+        <div className="mt-4 rounded-xl border border-border bg-muted p-4">
+          <p className="text-xs font-medium text-foreground/40">Then try a skill in plain English</p>
+          <div className="mt-2 space-y-2 text-sm text-foreground/80">
+            <p>&quot;Search PubMed for recent studies on AI-assisted lung nodule detection and give me the top 10 results&quot;</p>
+            <p>&quot;Check my manuscript against STARD 2015 guidelines&quot;</p>
+            <p>&quot;Analyze this CSV and generate a demographics table with appropriate statistics&quot;</p>
+          </div>
+          <p className="mt-3 text-xs text-foreground/40">
+            No slash commands required — just describe what you need; Claude picks the right skill.
+          </p>
+        </div>
+
+        <p className="mt-4 text-xs text-foreground/50">
+          <strong>No terminal at all?</strong> Follow the manual download-and-copy steps below. Note the manual
+          copy does <strong>not</strong> set up automatic update reminders, so re-run Option A or B (or re-download)
+          when a new version is announced.
+        </p>
       </section>
 
       <div className="mt-6 flex items-center gap-3">

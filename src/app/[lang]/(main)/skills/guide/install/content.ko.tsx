@@ -15,43 +15,40 @@ export default function InstallContentKo({ lang }: { lang: string }) {
 
       {/* Quick Start */}
       <section className="mt-8 rounded-2xl border-2 border-primary/30 bg-primary/5 p-6">
-        <h2 className="text-lg font-bold text-primary">빠른 설치 — Claude에게 시키세요</h2>
+        <h2 className="text-lg font-bold text-primary">빠른 설치 (권장)</h2>
         <p className="mt-2 text-sm text-foreground/70">
-          Claude Code가 이미 설치되어 있다면, 직접 다운로드할 필요 없습니다.
-          아래 문장을 Claude Code에 그대로 붙여넣기 하세요:
+          권장 설치는 <strong>업데이트 알림</strong>도 함께 켭니다 — 새 버전이 나오면 Claude Code가 알려줍니다.
+          이 옵션 없이 설치하면 처음 깐 버전에 그대로 머물고 안내를 못 받습니다. 둘 중 편한 방법을 고르세요. 결과는 같습니다.
         </p>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">Claude Code에 복사 &amp; 붙여넣기</p>
+          <p className="text-xs font-medium text-foreground/40">방법 A — 이미 Claude Code를 쓰신다면, 아래를 붙여넣기:</p>
           <p className="mt-2 text-sm text-foreground/80">
-            &quot;https://github.com/Aperivue/medsci-skills 에서 MedSci Skills를 설치해줘. 레포를 클론해서 스킬 폴더들을 ~/.claude/skills/에 복사해줘.&quot;
+            &quot;터미널에서{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills install --enable-update-notify</code>{" "}
+            를 실행해서 MedSci Skills를 설치해줘. 끝나면 알려주고 Claude Code를 재시작하라고 안내해줘.&quot;
+          </p>
+          <p className="mt-2 text-xs text-foreground/60">
+            Claude가 대신 설치 명령을 실행하고, 끝나면 확인해줍니다.
           </p>
         </div>
 
-        <p className="mt-4 text-sm text-foreground/70">
-          Claude가 알아서 레포지토리를 다운로드하고, 파일을 복사하고, 설치를 확인해줍니다.
-          이게 끝입니다. 바로 스킬을 사용할 수 있습니다.
-        </p>
-
-        <div className="mt-4 rounded-xl border border-border bg-muted p-4">
-          <p className="text-xs font-medium text-foreground/40">자연어로 바로 사용해보세요</p>
-          <div className="mt-2 space-y-2 text-sm text-foreground/80">
-            <p>&quot;폐결절 AI 진단 관련 최신 논문 10편 찾아줘&quot;</p>
-            <p>&quot;내 논문 원고를 STARD 2015 가이드라인으로 검사해줘&quot;</p>
-            <p>&quot;이 CSV 파일로 인구통계학적 표를 만들어줘&quot;</p>
-          </div>
-        </div>
-
-        <p className="mt-4 text-xs text-foreground/40">
-          슬래시 명령어를 외울 필요 없습니다. 하고 싶은 일을 평소 말하듯 설명하면,
-          Claude가 알맞은 스킬을 자동으로 선택합니다.
-        </p>
-
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">터미널이 편하다면? 한 줄이면 끝 (Node 18+)</p>
-          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install</code></pre>
+          <p className="text-xs font-medium text-foreground/40">방법 B — 터미널 한 줄 (Node 18+)</p>
+          <div className="mt-2 space-y-1.5 text-sm text-foreground/80">
+            <p>
+              <strong>1.</strong> 터미널 앱을 엽니다 — Mac: <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-xs">Cmd + Space</kbd> 누르고
+              &quot;터미널&quot; 입력 후 Enter. Windows: 시작 메뉴 &rarr; &quot;Terminal&quot;(또는 &quot;명령 프롬프트&quot;).
+            </p>
+            <p><strong>2.</strong> 아래 한 줄을 붙여넣고 Enter:</p>
+          </div>
+          <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>npx medsci-skills install --enable-update-notify --desktop-launcher</code></pre>
+          <p className="mt-2 text-sm text-foreground/80">
+            <strong>3.</strong> 끝나면 Claude Code를 완전히 종료했다가 다시 켜면 끝입니다.
+          </p>
           <p className="mt-2 text-xs text-foreground/60">
-            모든 스킬을{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--enable-update-notify</code> 는 새 버전이 나올 때 Claude Code에 한 줄 알림을 띄우고,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--desktop-launcher</code> 는 바탕화면에 &quot;Update MedSci Skills&quot; 아이콘을 만들어 더블클릭 업데이트를 가능하게 합니다.{" "}
             <a
               href="https://www.npmjs.com/package/medsci-skills"
               target="_blank"
@@ -59,14 +56,29 @@ export default function InstallContentKo({ lang }: { lang: string }) {
               className="font-semibold text-primary underline"
             >
               npm
-            </a>
-            에서 한 번에 설치합니다 — 클론 불필요. 이 외에{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills list</code>
-            ,{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">doctor</code>
-            도 됩니다.
+            </a>{" "}
+            에서 설치됩니다 (
+            <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer" className="text-primary underline">Node 18+</a>{" "}
+            필요; <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills doctor</code> 로 점검).
           </p>
         </div>
+
+        <div className="mt-4 rounded-xl border border-border bg-muted p-4">
+          <p className="text-xs font-medium text-foreground/40">설치 후 자연어로 바로 사용해보세요</p>
+          <div className="mt-2 space-y-2 text-sm text-foreground/80">
+            <p>&quot;폐결절 AI 진단 관련 최신 논문 10편 찾아줘&quot;</p>
+            <p>&quot;내 논문 원고를 STARD 2015 가이드라인으로 검사해줘&quot;</p>
+            <p>&quot;이 CSV 파일로 인구통계학적 표를 만들어줘&quot;</p>
+          </div>
+          <p className="mt-3 text-xs text-foreground/40">
+            슬래시 명령어를 외울 필요 없습니다 — 하고 싶은 일을 말하면 Claude가 알맞은 스킬을 고릅니다.
+          </p>
+        </div>
+
+        <p className="mt-4 text-xs text-foreground/50">
+          <strong>터미널이 전혀 부담스럽다면?</strong> 아래 수동 다운로드·복사 단계를 따라 하세요. 단, 수동 복사는
+          <strong> 자동 업데이트 알림이 설정되지 않으므로</strong>, 새 버전이 공지되면 방법 A·B를 다시 실행(또는 재다운로드)하세요.
+        </p>
       </section>
 
       <div className="mt-6 flex items-center gap-3">
