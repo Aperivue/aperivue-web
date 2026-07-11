@@ -10,7 +10,13 @@ export default function InstallContentEn({ lang }: { lang: string }) {
       <p className="mt-2 text-foreground/60">
         Install the Claude Code Desktop app and copy all {SKILL_COUNT} MedSci Skills.
         <br />
-        No terminal or command line required.
+        No terminal or command line required.{" "}
+        <span className="text-foreground/50">
+          Also works with Codex, Cursor, and GitHub Copilot — pass{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target codex</code>,{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target cursor</code>, or{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target all</code>.
+        </span>
       </p>
 
       {/* Quick Start */}
