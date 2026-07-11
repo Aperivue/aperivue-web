@@ -64,7 +64,7 @@
       "name": "check-reporting",
       "title": "Reporting Guidelines",
       "category": "review_compliance",
-      "description": "Manuscript compliance audit against 32 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
+      "description": "Manuscript compliance audit against 46 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
       "features": [
         "STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM",
         "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
@@ -603,6 +603,54 @@
         "Clinical-efficacy metrics beyond BLEU/ROUGE",
         "Contamination + prompt-sensitivity checks",
         "Reader study + MLLM reviewer probe"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "preprocess-imaging",
+      "title": "Preprocess Imaging",
+      "category": "model_engineering",
+      "description": "Design or audit DICOM/NIfTI intake, resampling, intensity normalisation, and augmentation so the pipeline is leakage-safe before training.",
+      "features": [
+        "Declarative preprocessing manifest",
+        "Data-stage leakage gate (normaliser fit on train only)",
+        "Integrates MONAI / TorchIO transforms"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "radiomics-ml",
+      "title": "Radiomics ML",
+      "category": "model_engineering",
+      "description": "Produce or audit a radiomics / tabular clinical-ML study — features to a classical learner to a clinical outcome — with a nested-CV, feature-stability, and calibration gate. No GPU.",
+      "features": [
+        "Nested cross-validation (tuning never on reported folds)",
+        "Feature-stability (ICC) filtering + calibration",
+        "LASSO / SVM / random forest / XGBoost, learner-agnostic"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "explainability",
+      "title": "Explainability",
+      "category": "model_engineering",
+      "description": "Produce or audit Grad-CAM / saliency interpretability held to the reviewer bar — sanity checks, quantitative localisation vs ground truth, and attribution-not-validation framing.",
+      "features": [
+        "Adebayo model/data-randomisation sanity checks",
+        "Quantitative localisation (IoU / pointing game) vs ground truth",
+        "Cohort-level attribution, not cherry-picked cases"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "uncertainty-imaging",
+      "title": "Uncertainty & OOD",
+      "category": "model_engineering",
+      "description": "Design or audit the uncertainty-quantification, out-of-distribution detection, and selective-prediction layer of a deployment-framed imaging model.",
+      "features": [
+        "Calibrated per-case uncertainty (MC-dropout / ensemble / conformal)",
+        "OOD guard validated on a held-out set",
+        "Abstention at a pre-specified operating point"
       ],
       "isNew": true
     }
