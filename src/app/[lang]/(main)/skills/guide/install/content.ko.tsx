@@ -10,7 +10,13 @@ export default function InstallContentKo({ lang }: { lang: string }) {
       <p className="mt-2 text-foreground/60">
         Claude Code Desktop 앱을 설치하고, MedSci Skills {SKILL_COUNT}개를 복사합니다.
         <br />
-        터미널(명령어 입력 창)은 사용하지 않습니다.
+        터미널(명령어 입력 창)은 사용하지 않습니다.{" "}
+        <span className="text-foreground/50">
+          Codex, Cursor, GitHub Copilot에서도 동작합니다 —{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target codex</code>,{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target cursor</code>, 또는{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target all</code> 사용.
+        </span>
       </p>
 
       {/* Quick Start */}

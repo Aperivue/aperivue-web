@@ -205,11 +205,13 @@ export default async function SkillsPage({
               {t.demoTitle}
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-foreground/70">
-              3 end-to-end demos across 3 study types — diagnostic accuracy
-              (Wisconsin BC), meta-analysis (BCG vaccine, 13 RCTs), and
-              epidemiology (NHANES 2017-18). Each produces a complete
-              manuscript, 300 dpi figures, reporting compliance audit (STARD /
-              PRISMA / STROBE), and a presentation — from public data only.
+              4 end-to-end demos — three clinical study types (diagnostic
+              accuracy (Wisconsin BC), meta-analysis (BCG vaccine, 13 RCTs), and
+              epidemiology (NHANES 2017-18)), each producing a complete
+              manuscript, 300 dpi figures, reporting-compliance audit (STARD /
+              PRISMA / STROBE), and a presentation; plus a medical-AI model demo
+              (PneumoniaMNIST CNN — training, evaluation, calibration, and
+              Grad-CAM). All from public data only.
             </p>
           </div>
           <a
@@ -303,7 +305,7 @@ export default async function SkillsPage({
           </div>
           <div>
             <h3 className="font-semibold text-primary">
-              32 Reporting Guidelines
+              46 Reporting Guidelines
             </h3>
             <p className="mt-2 text-sm text-foreground/60">
               STROBE, STARD, TRIPOD+AI, PRISMA, ARRIVE built-in. CONSORT,

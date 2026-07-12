@@ -64,7 +64,7 @@
       "name": "check-reporting",
       "title": "보고 가이드라인",
       "category": "review_compliance",
-      "description": "32개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
+      "description": "46개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
       "features": [
         "STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM",
         "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
@@ -603,6 +603,54 @@
         "BLEU/ROUGE를 넘어선 임상 효용 metric",
         "Contamination + prompt-sensitivity 점검",
         "Reader study + MLLM reviewer probe"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "preprocess-imaging",
+      "title": "영상 전처리",
+      "category": "model_engineering",
+      "description": "DICOM/NIfTI 로딩, resampling, intensity normalization, augmentation를 설계·감사하여 학습 전에 leakage-safe한 전처리 파이프라인을 만듭니다.",
+      "features": [
+        "선언적 preprocessing manifest",
+        "data-stage leakage 게이트 (normalizer는 train에서만 fit)",
+        "MONAI / TorchIO transform 통합"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "radiomics-ml",
+      "title": "Radiomics ML",
+      "category": "model_engineering",
+      "description": "radiomics·tabular 특징 → classical learner → 임상 결과의 clinical-ML 연구를 nested-CV·feature-stability·calibration 게이트와 함께 생성·감사합니다. GPU 불필요.",
+      "features": [
+        "nested cross-validation (보고 fold에서 튜닝 금지)",
+        "feature-stability (ICC) 필터링 + calibration",
+        "LASSO / SVM / random forest / XGBoost, learner-무관"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "explainability",
+      "title": "설명가능성 (Explainability)",
+      "category": "model_engineering",
+      "description": "Grad-CAM / saliency 해석을 reviewer 기준으로 생성·감사합니다 — sanity check, ground truth 대비 정량적 localization, attribution(정답 증명 아님) framing.",
+      "features": [
+        "Adebayo model/data-randomization sanity check",
+        "ground truth 대비 정량 localization (IoU / pointing game)",
+        "cherry-pick이 아닌 cohort 단위 attribution"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "uncertainty-imaging",
+      "title": "Uncertainty & OOD",
+      "category": "model_engineering",
+      "description": "배포를 전제한 imaging model의 uncertainty quantification, out-of-distribution 탐지, selective prediction 계층을 설계·감사합니다.",
+      "features": [
+        "case별 calibrated uncertainty (MC-dropout / ensemble / conformal)",
+        "held-out set에서 검증된 OOD 가드",
+        "사전 지정 operating point에서 abstention"
       ],
       "isNew": true
     }
