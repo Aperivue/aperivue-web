@@ -415,6 +415,56 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
         <p className="mt-4 text-xs text-foreground/40">{t.requires}</p>
       </section>
 
+      {/* Contribute — the open asks are DOMAIN gaps, and this page is where the domain
+          experts actually are. They were only ever visible on the GitHub issue tab, i.e.
+          to developers, who are the people least able to fill them. */}
+      <section className="mt-16 rounded-2xl border border-primary/20 bg-primary/5 p-8">
+        <h2 className="text-lg font-bold">{t.contribTitle}</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground/70">
+          {t.contribDesc}
+        </p>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+          {(t.contribItems as { title: string; body: string; issue: string }[]).map(
+            (item) => (
+              <li key={item.issue}>
+                <a
+                  href={`https://github.com/Aperivue/medsci-skills/issues/${item.issue}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block h-full rounded-xl border border-border bg-background p-4 transition-colors hover:border-primary"
+                >
+                  <span className="text-sm font-semibold group-hover:text-primary">
+                    {item.title} &rarr;
+                  </span>
+                  <span className="mt-1 block text-xs leading-relaxed text-foreground/60">
+                    {item.body}
+                  </span>
+                </a>
+              </li>
+            ),
+          )}
+        </ul>
+        <p className="mt-6 text-xs text-foreground/50">
+          {t.contribFooter}{" "}
+          <a
+            href="https://github.com/Aperivue/medsci-skills/blob/main/CONTRIBUTING.md#quickstart-your-first-pr-5-minutes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-primary"
+          >
+            CONTRIBUTING.md
+          </a>
+        </p>
+        <a
+          href="https://github.com/Aperivue/medsci-skills/contribute"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-flex items-center gap-2 rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+        >
+          {t.contribCta} &rarr;
+        </a>
+      </section>
+
       {/* CTA */}
       <section className="mt-16 text-center">
         <h2 className="text-lg font-semibold">{t.readyToStreamline}</h2>
