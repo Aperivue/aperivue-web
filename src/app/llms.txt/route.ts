@@ -22,7 +22,7 @@ ${radsLines}
 ## Sections
 - [RADS portal](${BASE}/en/rads): Index of all radiology reporting and data system (RADS) calculators.
 - [Blog](${BASE}/en/blog): Articles on medical AI and radiology.
-- [Skills](${BASE}/en/skills): Open-source MedSci Skills for Claude Code.
+- [Skills](${BASE}/en/skills): MedSci Skills — open-source medical-research skills with a deterministic verification layer (stdlib-only integrity detectors that recompute what a manuscript asserts). Runs in Claude Code, Codex, Cursor, and GitHub Copilot.
 - [About](${BASE}/en/about): Yoojin Nam, M.D. — radiologist and medical-AI researcher.
 - [Lectures](${BASE}/en/lectures): Talks and teaching material.
 

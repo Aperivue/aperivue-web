@@ -46,7 +46,7 @@
   },
   "skills": {
     "badge": "Open Source",
-    "title": "Medical Research Skills for Claude Code",
+    "title": "Medical Research Skills for Claude Code, Codex, Cursor, and Copilot",
     "description": "{count} skills covering the full research lifecycle — from literature search to manuscript revision. Built by physicians, battle-tested on real publications. MIT licensed.",
     "viewGithub": "View on GitHub",
     "installNow": "Install Now",
@@ -60,13 +60,13 @@
     "allSkills": "All Skills",
     "keyFeatures": "Key Features",
     "installation": "Installation",
-    "installDesc": "Copy skills to your Claude Code skills directory. That's it.",
+    "installDesc": "One installer, four hosts — Claude Code, Codex, Cursor, and GitHub Copilot. Copy the skills in and start.",
     "desktopNew": "Claude Code Desktop (No terminal needed)",
     "desktopDesc": "No programming experience? Use the Desktop app instead of the CLI. Download ZIP from GitHub, copy the skills folder — done.",
     "stepByStep": "Step-by-step guide",
     "cliAll": "CLI — Install all skills",
     "cliSingle": "CLI — Install a single skill",
-    "requires": "Requires Claude Code Desktop or CLI. Python 3.9+ for statistical analysis and figure generation.",
+    "requires": "Works with Claude Code (Desktop or CLI), Codex, Cursor, and GitHub Copilot. Python 3.9+ for statistical analysis and figure generation.",
     "readyToStreamline": "Ready to streamline your research?",
     "starGithub": "Star on GitHub",
     "readDocs": "Read the Docs",
@@ -94,7 +94,19 @@
     "detailDocs": "Full documentation",
     "detailViewSource": "View source on GitHub",
     "detailCategory": "Category",
-    "detailRelated": "Related skills"
+    "detailRelated": "Related skills",
+    "auditTitle": "MedSci-Audit — the deterministic verification layer",
+    "auditDesc": "{detectors} stdlib-only detectors that recompute what a manuscript already asserts, rather than asking a language model to judge it. A model asked to check its own work inherits the blind spots that produced the error; a script that recomputes the number does not. Every detector ships a synthetic challenge card — a positive case and a negative control — that runs in continuous integration, so a clean result means something and a flagged defect is reproducible.",
+    "auditExamples": [
+      "A reported P value is recomputed from the 2×2 counts it was derived from — in pure stdlib.",
+      "Every reference is re-resolved against PubMed and CrossRef; a fabricated author is caught, not guessed at.",
+      "A printed percentage is checked against its own column denominator.",
+      "A predictor that perfectly predicts the outcome is caught before the logistic model is fitted — glm does not error, it returns an AUC.",
+      "The tracked-changes manuscript is proved by a round trip: accept-all must reproduce the revised paper, reject-all the original.",
+      "Reporting compliance is audited against {guidelines} vendored checklists (STROBE, PRISMA, STARD, CONSORT, TRIPOD+AI…)."
+    ],
+    "auditFooter": "The approach is cited in the literature on self-improving AI as the response to a known failure: self-critique inherits the blind spots that produce confident fabrication.",
+    "auditLink": "Read the detector registry"
   },
   "products": {
     "title": "Our Products",

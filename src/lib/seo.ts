@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import skillsEn from "@/content/data/skills.en.json";
+import catalogCounts from "@/content/data/catalog_counts.snapshot.json";
 
 // NOTE: dictionaries.ts carries `import "server-only"`, so importing the locale
 // list from there would make this module transitively server-only and break any
@@ -58,3 +59,13 @@ export function buildBreadcrumb(
 
 /** Single source of truth for the skill count — never hardcode, always import this. */
 export const SKILL_COUNT = skillsEn.skills.length;
+
+/**
+ * Counts vendored from the repo's own SSOT (medsci-skills `metadata/catalog_counts.json`,
+ * refreshed by `npm run skills:refresh`). The site once said "Claude Code only" and never
+ * mentioned the detectors at all — the one thing that actually distinguishes the toolkit —
+ * because these numbers lived in prose. They are placeholders now, and a test forbids a
+ * hardcoded digit from creeping back into the copy.
+ */
+export const DETECTOR_COUNT = catalogCounts.integrity_detectors;
+export const GUIDELINE_COUNT = catalogCounts.reporting_guidelines;

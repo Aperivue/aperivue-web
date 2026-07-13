@@ -46,7 +46,7 @@
   },
   "skills": {
     "badge": "오픈소스",
-    "title": "Claude Code용 의학 연구 스킬",
+    "title": "Claude Code · Codex · Cursor · Copilot을 위한 의학연구 스킬",
     "description": "문헌 검색부터 원고 수정까지 연구 전체 과정을 다루는 {count}개 스킬. 의사가 직접 개발하고, 실제 논문에서 검증. MIT 라이선스.",
     "viewGithub": "GitHub에서 보기",
     "installNow": "지금 설치",
@@ -60,13 +60,13 @@
     "allSkills": "모든 스킬",
     "keyFeatures": "주요 기능",
     "installation": "설치",
-    "installDesc": "Claude Code 스킬 디렉토리에 복사하면 끝.",
+    "installDesc": "설치 프로그램 하나로 네 개 호스트 — Claude Code, Codex, Cursor, GitHub Copilot.",
     "desktopNew": "Claude Code Desktop (터미널 불필요)",
     "desktopDesc": "프로그래밍 경험이 없으신가요? CLI 대신 Desktop 앱을 사용하세요. GitHub에서 ZIP 다운로드 후 스킬 폴더 복사 — 끝.",
     "stepByStep": "단계별 가이드",
     "cliAll": "CLI — 전체 스킬 설치",
     "cliSingle": "CLI — 단일 스킬 설치",
-    "requires": "Claude Code Desktop 또는 CLI 필요. 통계 분석 및 Figure 생성에는 Python 3.9+ 필요.",
+    "requires": "Claude Code(데스크톱·CLI), Codex, Cursor, GitHub Copilot에서 동작합니다. 통계 분석과 그림 생성에는 Python 3.9+ 필요.",
     "readyToStreamline": "연구를 효율화할 준비가 되셨나요?",
     "starGithub": "GitHub에서 Star",
     "readDocs": "문서 읽기",
@@ -94,7 +94,19 @@
     "detailDocs": "전체 문서",
     "detailViewSource": "GitHub 소스 보기",
     "detailCategory": "카테고리",
-    "detailRelated": "관련 스킬"
+    "detailRelated": "관련 스킬",
+    "auditTitle": "MedSci-Audit — 결정론적 검증 레이어",
+    "auditDesc": "원고가 이미 주장하고 있는 값을 다시 계산하는 표준 라이브러리 전용 detector {detectors}개. 언어모델에게 판단을 맡기지 않습니다. 자기 작업을 검토하라고 시킨 모델은 그 오류를 만든 맹점을 그대로 물려받지만, 숫자를 다시 계산하는 스크립트는 그렇지 않습니다. 모든 detector는 합성 challenge card(양성 사례 + 음성 대조)를 함께 배포하고 CI에서 실행되므로, 통과는 의미가 있고 적발된 결함은 재현 가능합니다.",
+    "auditExamples": [
+      "보고된 P 값을 그 근거인 2×2 빈도에서 다시 계산합니다 — 순수 표준 라이브러리로.",
+      "모든 참고문헌을 PubMed·CrossRef로 재확인합니다. 날조된 저자는 추측이 아니라 적발됩니다.",
+      "인쇄된 백분율을 해당 열의 분모와 대조합니다.",
+      "결과를 완벽하게 예측하는 변수를 로지스틱 모델 적합 전에 잡아냅니다 — glm은 에러 대신 AUC를 돌려줍니다.",
+      "변경내용 추적 원고를 왕복으로 증명합니다: 전부 수락 = 수정본, 전부 거부 = 원본과 일치해야 합니다.",
+      "보고 지침 준수를 {guidelines}개 체크리스트로 감사합니다 (STROBE, PRISMA, STARD, CONSORT, TRIPOD+AI…)."
+    ],
+    "auditFooter": "이 접근은 자기개선 AI 문헌에서 알려진 실패에 대한 해법으로 인용되고 있습니다 — 자기비평은 자신만만한 날조를 낳는 바로 그 맹점을 물려받는다는 문제입니다.",
+    "auditLink": "Detector 레지스트리 보기"
   },
   "products": {
     "title": "제품 소개",
