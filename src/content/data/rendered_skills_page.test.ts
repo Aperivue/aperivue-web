@@ -51,5 +51,20 @@ describe.skipIf(built.length === 0)("rendered skills page (built HTML)", () => {
         String(counts.integrity_detectors),
       );
     });
+
+    it(`${lang}: asks for the contributions only a domain expert can make`, () => {
+      // The open asks are journal profiles, citation styles, de-identification locales —
+      // domain gaps, not code gaps. They lived only on the GitHub issue tab, i.e. in front
+      // of developers, who are the people least able to fill them. This page is where the
+      // clinicians are; if the ask disappears from it, the mismatch is back.
+      const html = readFileSync(path, "utf8");
+      const linked = new Set(
+        [...html.matchAll(/medsci-skills\/issues\/(\d+)/g)].map((m) => m[1]),
+      );
+      for (const issue of ["115", "116", "117", "118", "120"]) {
+        expect(linked, `${lang}: no link to the open ask #${issue}`).toContain(issue);
+      }
+      expect(html).toContain("CONTRIBUTING.md");
+    });
   }
 });

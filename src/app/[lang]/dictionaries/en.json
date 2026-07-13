@@ -106,7 +106,38 @@
       "Reporting compliance is audited against {guidelines} vendored checklists (STROBE, PRISMA, STARD, CONSORT, TRIPOD+AI…)."
     ],
     "auditFooter": "The approach is cited in the literature on self-improving AI as the response to a known failure: self-critique inherits the blind spots that produce confident fabrication.",
-    "auditLink": "Read the detector registry"
+    "auditLink": "Read the detector registry",
+    "contribTitle": "Your journal is probably missing",
+    "contribDesc": "The gaps in this toolkit are not code gaps — they are domain gaps, and a researcher can close one in an evening without writing a line of Python. If your journal has no profile, the manuscript builder cannot apply its word limits or its AI policy. If your specialty's figure convention is not covered, the figure skill cannot follow it. These are the open asks; each one is a single self-contained file, with a template that walks you through it.",
+    "contribItems": [
+      {
+        "title": "Add your journal's profile",
+        "body": "Word limits, abstract structure, reference style, AI policy — taken from the journal's public author guidelines. No code.",
+        "issue": "115"
+      },
+      {
+        "title": "Add a citation style (CSL) for a journal that lacks one",
+        "body": "Download the official style from the Zotero repository and drop it in. No code.",
+        "issue": "117"
+      },
+      {
+        "title": "Add a de-identification locale pack for your country",
+        "body": "The identifier formats a de-identifier must recognise where you work. Domain knowledge, not engineering.",
+        "issue": "116"
+      },
+      {
+        "title": "Add a figure convention we do not cover",
+        "body": "A plot type your specialty expects, and what a reviewer looks for in it.",
+        "issue": "118"
+      },
+      {
+        "title": "Add a peer-review exemplar for a finding type",
+        "body": "A worked example of how a reviewer should phrase a class of finding.",
+        "issue": "120"
+      }
+    ],
+    "contribFooter": "New to GitHub? The contributing guide has a 5-minute first-pull-request walkthrough.",
+    "contribCta": "See the open issues"
   },
   "products": {
     "title": "Our Products",
