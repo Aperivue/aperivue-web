@@ -24,7 +24,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   return {
-    title: "Medical Research Skills for Claude Code", // bare; root template adds " | Aperivue"
+    title: "Medical Research Skills for Claude Code, Codex, Cursor & Copilot", // bare; root template adds " | Aperivue"
     description: `${SKILL_COUNT} open-source skills for the medical research lifecycle, with ${DETECTOR_COUNT} deterministic integrity detectors. Runs in Claude Code, Codex, Cursor, and GitHub Copilot.`,
     keywords: [
       "claude code skills",
@@ -45,7 +45,7 @@ export async function generateMetadata({
     ],
     alternates: buildAlternates(lang, "/skills"),
     openGraph: {
-      title: "Medical Research Skills for Claude Code",
+      title: "Medical Research Skills for Claude Code, Codex, Cursor & Copilot",
       description: `${SKILL_COUNT} open-source skills for the full medical research lifecycle. Built by physicians, tested on real publications.`,
       url: ogUrl(lang, "/skills"),
       images: DEFAULT_OG_IMAGES,
@@ -409,18 +409,10 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
             </pre>
           </div>
         </div>
-        <p className="mt-4 text-xs text-foreground/40">
-          Requires{" "}
-          <a
-            href="https://claude.ai/download"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-primary"
-          >
-            Claude Code Desktop
-          </a>{" "}
-          or CLI. Python 3.9+ for statistical analysis and figure generation.
-        </p>
+        {/* Read from the dictionary — this line was hardcoded, so it went on saying
+            "Requires Claude Code Desktop or CLI" long after the installer gained
+            three more hosts, and no gate could see it. */}
+        <p className="mt-4 text-xs text-foreground/40">{t.requires}</p>
       </section>
 
       {/* CTA */}
