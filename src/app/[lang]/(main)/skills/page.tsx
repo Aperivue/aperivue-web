@@ -8,6 +8,8 @@ import {
   ogUrl,
   DEFAULT_OG_IMAGES,
   SKILL_COUNT,
+  DETECTOR_COUNT,
+  GUIDELINE_COUNT,
 } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { SkillsExplorer } from "./SkillsExplorer";
@@ -23,7 +25,7 @@ export async function generateMetadata({
   const { lang } = await params;
   return {
     title: "Medical Research Skills for Claude Code", // bare; root template adds " | Aperivue"
-    description: `${SKILL_COUNT} open-source Claude Code skills for the medical research lifecycle — literature search, statistics, figures, and reporting guidelines.`,
+    description: `${SKILL_COUNT} open-source skills for the medical research lifecycle, with ${DETECTOR_COUNT} deterministic integrity detectors. Runs in Claude Code, Codex, Cursor, and GitHub Copilot.`,
     keywords: [
       "claude code skills",
       "medical research",
@@ -195,6 +197,38 @@ export default async function SkillsPage({
           + {SKILL_COUNT - pipelineSteps.length} more skills across the full
           lifecycle &mdash; browse them all below.
         </p>
+      </section>
+
+      {/* MedSci-Audit — the deterministic verification layer (the differentiator) */}
+      <section className="mt-12 rounded-2xl border border-foreground/15 bg-foreground/[0.03] p-8">
+        <h2 className="text-lg font-bold">{t.auditTitle}</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground/70">
+          {t.auditDesc
+            .replace("{detectors}", String(DETECTOR_COUNT))
+            .replace("{guidelines}", String(GUIDELINE_COUNT))}
+        </p>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          {(t.auditExamples as string[]).map((line) => (
+            <li
+              key={line}
+              className="flex gap-2 text-sm leading-relaxed text-foreground/75"
+            >
+              <span aria-hidden className="mt-[0.35rem] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-5 max-w-3xl text-sm leading-relaxed text-foreground/60">
+          {t.auditFooter}
+        </p>
+        <a
+          href="https://github.com/Aperivue/medsci-skills/blob/main/MEDSCI_AUDIT.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-flex items-center gap-2 rounded-full border border-foreground/25 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-foreground hover:text-background"
+        >
+          {t.auditLink} &rarr;
+        </a>
       </section>
 
       {/* End-to-End Demo */}

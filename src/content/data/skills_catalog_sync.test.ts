@@ -44,3 +44,56 @@ describe("skills catalog sync (storefront ↔ repo SSOT)", () => {
     }
   });
 });
+
+/**
+ * Catalog COUNTS gate.
+ *
+ * The site once said "Requires Claude Code Desktop or CLI" while the installer targeted four
+ * hosts, and never mentioned the integrity detectors at all — the one thing that actually
+ * distinguishes the toolkit — because those facts lived in hand-written prose. Counts are
+ * placeholders now, resolved from the vendored SSOT at render time. These tests keep it that way:
+ * a hardcoded digit in the copy is a drift waiting to happen.
+ */
+import counts from "./catalog_counts.snapshot.json";
+import en from "../../app/[lang]/dictionaries/en.json";
+import ko from "../../app/[lang]/dictionaries/ko.json";
+
+describe("catalog counts (storefront ↔ repo SSOT)", () => {
+  it("the vendored counts snapshot is well formed", () => {
+    expect(counts.skills).toBeGreaterThan(0);
+    expect(counts.integrity_detectors).toBeGreaterThan(0);
+    expect(counts.reporting_guidelines).toBeGreaterThan(0);
+  });
+
+  it("the skill count agrees with the skills catalog", () => {
+    expect(counts.skills).toBe(snapshot.skills.length);
+  });
+
+  it("the copy uses placeholders, never a hardcoded count", () => {
+    for (const [lang, dict] of [
+      ["en", en],
+      ["ko", ko],
+    ] as const) {
+      const audit = dict.skills.auditDesc;
+      expect(audit, `${lang}: auditDesc must interpolate {detectors}`).toContain("{detectors}");
+      // the resolved numbers must not be baked into the source strings
+      for (const n of [counts.skills, counts.integrity_detectors, counts.reporting_guidelines]) {
+        expect(audit, `${lang}: auditDesc hardcodes ${n}`).not.toContain(String(n));
+      }
+      expect(dict.skills.description, `${lang}: description must interpolate {count}`).toContain(
+        "{count}",
+      );
+    }
+  });
+
+  it("the copy does not claim Claude Code is the only host", () => {
+    for (const [lang, dict] of [
+      ["en", en],
+      ["ko", ko],
+    ] as const) {
+      for (const host of ["Codex", "Cursor", "Copilot"]) {
+        expect(dict.skills.requires, `${lang}: 'requires' omits ${host}`).toContain(host);
+      }
+    }
+  });
+});

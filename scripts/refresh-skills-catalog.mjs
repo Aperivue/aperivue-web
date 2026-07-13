@@ -21,6 +21,7 @@ import { dirname, resolve } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = resolve(__dirname, "../src/content/data/skills_catalog.snapshot.json");
+const COUNTS_OUT = resolve(__dirname, "../src/content/data/catalog_counts.snapshot.json");
 
 const args = process.argv.slice(2);
 const getOpt = (name) => {
@@ -57,6 +58,30 @@ async function main() {
   // Normalize to 2-space JSON + trailing newline so the diff is clean.
   writeFileSync(OUT, JSON.stringify(c, null, 2) + "\n");
   console.log(`Wrote snapshot: ${c.skill_count} skills, ${c.categories?.length ?? "?"} categories.`);
+
+  // The counts SSOT (skills / detectors / guidelines). The site interpolates these rather than
+  // printing them in prose, so a repo release cannot leave the storefront quietly wrong.
+  let countsRaw;
+  if (fromPath) {
+    const local = resolve(process.cwd(), fromPath, "..", "catalog_counts.json");
+    countsRaw = readFileSync(local, "utf8");
+    console.log(`Read local ${local}`);
+  } else {
+    const url = `https://raw.githubusercontent.com/Aperivue/medsci-skills/${ref}/metadata/catalog_counts.json`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`GET ${url} -> ${res.status} ${res.statusText}`);
+    countsRaw = await res.text();
+    console.log(`Fetched ${url}`);
+  }
+  const counts = JSON.parse(countsRaw);
+  for (const k of ["skills", "reporting_guidelines", "integrity_detectors"]) {
+    if (typeof counts[k] !== "number") throw new Error(`catalog_counts.json: missing ${k}`);
+  }
+  writeFileSync(COUNTS_OUT, JSON.stringify(counts, null, 2) + "\n");
+  console.log(
+    `Wrote counts: ${counts.skills} skills, ${counts.integrity_detectors} detectors, ${counts.reporting_guidelines} guidelines.`,
+  );
+
   console.log("Next: update src/content/data/skills.{en,ko}.json then run `npm test`.");
 }
 
