@@ -52,6 +52,21 @@ describe.skipIf(built.length === 0)("rendered skills page (built HTML)", () => {
       );
     });
 
+    it(`${lang}: interpolates every count placeholder`, () => {
+      // `{guidelines}` reached production as literal text: the replace was applied to
+      // auditDesc while the placeholder lived in auditExamples, and the dictionary gate
+      // could not see the difference because the dictionary was correct. Assert on the
+      // rendered page that no placeholder survives, in either locale.
+      for (const token of ["{guidelines}", "{detectors}", "{count}"]) {
+        expect(text, `${lang}: un-interpolated ${token} is visible to readers`).not.toContain(
+          token,
+        );
+      }
+      expect(text, `${lang}: rendered page omits the guideline count`).toContain(
+        String(counts.reporting_guidelines),
+      );
+    });
+
     it(`${lang}: asks for the contributions only a domain expert can make`, () => {
       // The open asks are journal profiles, citation styles, de-identification locales —
       // domain gaps, not code gaps. They lived only on the GitHub issue tab, i.e. in front

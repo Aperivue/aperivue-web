@@ -72,7 +72,7 @@ const categories = [
         name: "check-reporting",
         label: "보고 가이드라인 감사",
         prompt: "/check-reporting manuscript.docx를 STROBE로 감사해줘",
-        note: "32개 가이드라인 지원 (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI 등)",
+        note: "48개 가이드라인 지원 (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI 등)",
       },
       {
         name: "self-review",

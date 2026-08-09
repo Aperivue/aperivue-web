@@ -64,7 +64,7 @@
       "name": "check-reporting",
       "title": "보고 가이드라인",
       "category": "review_compliance",
-      "description": "46개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
+      "description": "48개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
       "features": [
         "STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM",
         "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
@@ -463,6 +463,18 @@
       "isNew": true
     },
     {
+      "name": "contribute",
+      "title": "기여하기",
+      "category": "presentation_tooling",
+      "description": "직접 고친 것(추가한 저널 프로필, 수정한 체크리스트 항목, 과에 맞게 바꾼 스킬)을 git 명령 한 줄 없이 pull request 또는 issue로 프로젝트에 되돌려 보냅니다.",
+      "features": [
+        "설치된 버전과 내 사본을 비교",
+        "환자 데이터·식별자를 사전 스캔",
+        "모든 변경 줄을 보여주고, 확인 전에는 아무것도 보내지 않음"
+      ],
+      "isNew": true
+    },
+    {
       "name": "define-variables",
       "title": "변수 정의",
       "category": "data_study_design",
@@ -651,6 +663,30 @@
         "case별 calibrated uncertainty (MC-dropout / ensemble / conformal)",
         "held-out set에서 검증된 OOD 가드",
         "사전 지정 operating point에서 abstention"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "profile-imaging",
+      "title": "Imaging Data Profiling",
+      "category": "model_engineering",
+      "description": "모델링 결정을 내리기 전에 의료영상 데이터셋을 프로파일링합니다. acquisition grid, voxel spacing과 orientation 분포, intensity domain, 실제로 존재하는 label 값, target이 차지하는 부피 비율을 측정한 뒤, 선언한 계획과 대조해 게이트를 겁니다.",
+      "features": [
+        "ground truth가 없는 \"test set\"을 탐지",
+        "label과 image의 grid 불일치·미등록 label index 적발",
+        "stdlib만으로 재검증 가능한 dataset-profile JSON 산출"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-sourcing",
+      "title": "Model Sourcing",
+      "category": "model_engineering",
+      "description": "연구가 올라탈 third-party 모델을 architecture family가 아니라 구체적 대상(이 repository, 이 revision, 이 checkpoint)으로 검증합니다. model dossier를 기록하고 결정론적으로 게이트합니다.",
+      "features": [
+        "모델 개발에 쓰인 benchmark 위에 올라간 evaluation arm 적발",
+        "licence·intended use·pretrained weight provenance 기록",
+        "revision 고정 강제. artifact를 검증할 뿐 내려받거나 실행하지 않음"
       ],
       "isNew": true
     }

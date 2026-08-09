@@ -17,6 +17,20 @@ import { IntroVideo } from "./IntroVideo";
 
 const skillsData = { en: skillsEn, ko: skillsKo };
 
+/**
+ * Interpolate the catalog counts into a dictionary string.
+ *
+ * Every piece of copy that carries a {count} placeholder must go through this — the
+ * `{guidelines}` token shipped to production as literal text because the replace was
+ * applied to `auditDesc` while the placeholder actually lived in `auditExamples`.
+ * One helper, applied at every call site, so a placeholder cannot reach a reader again.
+ */
+const fillCounts = (s: string) =>
+  s
+    .replace("{detectors}", String(DETECTOR_COUNT))
+    .replace("{guidelines}", String(GUIDELINE_COUNT))
+    .replace("{count}", String(SKILL_COUNT));
+
 export async function generateMetadata({
   params,
 }: {
@@ -203,9 +217,7 @@ export default async function SkillsPage({
       <section className="mt-12 rounded-2xl border border-foreground/15 bg-foreground/[0.03] p-8">
         <h2 className="text-lg font-bold">{t.auditTitle}</h2>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground/70">
-          {t.auditDesc
-            .replace("{detectors}", String(DETECTOR_COUNT))
-            .replace("{guidelines}", String(GUIDELINE_COUNT))}
+          {fillCounts(t.auditDesc)}
         </p>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2">
           {(t.auditExamples as string[]).map((line) => (
@@ -214,7 +226,7 @@ export default async function SkillsPage({
               className="flex gap-2 text-sm leading-relaxed text-foreground/75"
             >
               <span aria-hidden className="mt-[0.35rem] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-              <span>{line}</span>
+              <span>{fillCounts(line)}</span>
             </li>
           ))}
         </ul>

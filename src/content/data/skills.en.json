@@ -64,7 +64,7 @@
       "name": "check-reporting",
       "title": "Reporting Guidelines",
       "category": "review_compliance",
-      "description": "Manuscript compliance audit against 46 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
+      "description": "Manuscript compliance audit against 48 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
       "features": [
         "STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM",
         "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
@@ -463,6 +463,18 @@
       "isNew": true
     },
     {
+      "name": "contribute",
+      "title": "Contribute Back",
+      "category": "presentation_tooling",
+      "description": "Offer your local changes back to the project — a journal profile you added, a checklist item you fixed, a skill you adapted to your department — as a pull request or an issue, without ever typing a git command.",
+      "features": [
+        "Diffs your copy against the installed version",
+        "Scans for patient data and identifiers before anything leaves",
+        "Shows you every line and sends nothing until you confirm"
+      ],
+      "isNew": true
+    },
+    {
       "name": "define-variables",
       "title": "Variable Operationalization",
       "category": "data_study_design",
@@ -651,6 +663,30 @@
         "Calibrated per-case uncertainty (MC-dropout / ensemble / conformal)",
         "OOD guard validated on a held-out set",
         "Abstention at a pre-specified operating point"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "profile-imaging",
+      "title": "Imaging Data Profiling",
+      "category": "model_engineering",
+      "description": "Profile a medical-imaging dataset before any modelling decision is made — acquisition grid, voxel spacing and orientation spread, intensity domain, which label values are actually present, and how much of the volume the target occupies — then gate that profile against the plan you declared.",
+      "features": [
+        "Catches a \"test set\" that carries no ground truth",
+        "Flags label/image grid mismatch and stray label indices",
+        "Emits a dataset-profile JSON a stdlib-only gate can re-read"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "model-sourcing",
+      "title": "Model Sourcing",
+      "category": "model_engineering",
+      "description": "Vet the concrete third-party model a study will be built on — this repository, this revision, this checkpoint — not the architecture family. Records a model dossier and gates it deterministically.",
+      "features": [
+        "Catches an evaluation arm sitting on the model's own development benchmark",
+        "Licence, intended use, and pretrained-weight provenance on the record",
+        "Version pin enforced; it vets an artifact, never downloads or runs one"
       ],
       "isNew": true
     }
