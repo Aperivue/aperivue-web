@@ -65,7 +65,7 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
             }`}
           >
             {mod.label}
-            <span className="ml-1 text-[10px] text-foreground/40">{mod.desc}</span>
+            <span className="ml-1 text-[10px] text-foreground/60">{mod.desc}</span>
           </button>
         ))}
       </div>
@@ -154,7 +154,7 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
                 }`}
               >
                 <div className="font-semibold">{comp.label.split(" — ")[0]}</div>
-                <div className="mt-0.5 text-[10px] text-foreground/40 leading-tight">{comp.desc}</div>
+                <div className="mt-0.5 text-[10px] text-foreground/60 leading-tight">{comp.desc}</div>
               </button>
             ))}
           </div>
@@ -182,7 +182,7 @@ function ReportContent({ locale }: { locale: "en" | "ko" }) {
                 }`}
               >
                 <div className="font-semibold">{bpe.label.split(" (")[0]}</div>
-                <div className="mt-0.5 text-[10px] text-foreground/40 leading-tight">{bpe.desc}</div>
+                <div className="mt-0.5 text-[10px] text-foreground/60 leading-tight">{bpe.desc}</div>
               </button>
             ))}
           </div>

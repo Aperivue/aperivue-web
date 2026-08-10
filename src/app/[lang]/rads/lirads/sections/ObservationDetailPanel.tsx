@@ -78,7 +78,7 @@ export default function ObservationDetailPanel() {
                 className="mt-0.5 accent-primary" />
               <div>
                 <span>{opt.label}</span>
-                <p className="text-xs text-foreground/40">{opt.desc}</p>
+                <p className="text-xs text-foreground/60">{opt.desc}</p>
               </div>
             </label>
           ))}
@@ -114,7 +114,7 @@ export default function ObservationDetailPanel() {
           <option value="probable">Probably benign (LR-2)</option>
         </LabeledSelect>
         {o.benignity !== "" && (
-          <p className="mt-1 text-xs text-foreground/40">
+          <p className="mt-1 text-xs text-foreground/60">
             A benign diagnosis is assigned before LR-M and the diagnostic table, so it overrides
             APHE, washout, and LR-M features.
           </p>
@@ -124,7 +124,7 @@ export default function ObservationDetailPanel() {
       {/* LR-M features */}
       <fieldset className="rounded-xl border border-border bg-surface p-4">
         <legend className="px-2 text-sm font-semibold">LR-M Features (probably/definitely malignant, not HCC-specific)</legend>
-        <p className="mb-2 text-xs text-foreground/40">
+        <p className="mb-2 text-xs text-foreground/60">
           Rim APHE is selected above. Any feature here assigns LR-M.
         </p>
         <div className="grid gap-1.5">
@@ -139,7 +139,7 @@ export default function ObservationDetailPanel() {
       {/* Ancillary features */}
       <fieldset className="rounded-xl border border-border bg-surface p-4">
         <legend className="px-2 text-sm font-semibold">Ancillary Features</legend>
-        <p className="mb-2 text-xs text-foreground/40">
+        <p className="mb-2 text-xs text-foreground/60">
           Favoring malignancy can upgrade by one category (never to LR-5); favoring benignity can
           downgrade. Both present → no adjustment.
         </p>
@@ -171,7 +171,7 @@ export default function ObservationDetailPanel() {
       {result ? (
         <ResultBanner result={result} />
       ) : (
-        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/40">
+        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/60">
           {isOverride
             ? "Complete the inputs to categorize."
             : "Select APHE and enter observation size to see the LI-RADS category."}
@@ -205,7 +205,7 @@ function CheckRow({
       <input type="checkbox" checked={checked} onChange={onChange} className="mt-0.5 accent-primary" />
       <div>
         <span>{label}</span>
-        {desc && <p className="text-xs text-foreground/40">{desc}</p>}
+        {desc && <p className="text-xs text-foreground/60">{desc}</p>}
       </div>
     </label>
   );

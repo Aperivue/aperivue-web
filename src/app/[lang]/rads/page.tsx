@@ -246,7 +246,7 @@ export default async function RadsLandingPage({
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       <div className="text-center">
-        <p className="text-xs font-medium uppercase tracking-widest text-accent">
+        <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
           {t.tagline}
         </p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
@@ -282,8 +282,8 @@ export default async function RadsLandingPage({
                 <span
                   className={`rounded-full px-3 py-0.5 text-xs font-medium ${
                     isLive
-                      ? "bg-green-500/10 text-green-600 dark:text-green-400"
-                      : "bg-foreground/5 text-foreground/40"
+                      ? "bg-green-500/10 text-green-700 dark:text-green-400"
+                      : "bg-foreground/5 text-foreground/60"
                   }`}
                 >
                   {isLive ? t.live : t.coming}

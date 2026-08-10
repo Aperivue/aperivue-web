@@ -7,6 +7,10 @@
   --primary: #1e40af;
   --primary-dark: #1e3a8a;
   --accent: #0891b2;
+  /* cyan-700. The accent carries decoration; anything that carries WORDS uses
+   * this. cyan-600 on the page is 3.52:1, cyan-700 is 5.12:1. It is also where
+   * a gradient must stop when white text sits on it (5.36:1 vs 3.68:1). */
+  --accent-text: #0e7490;
   --muted: #f1f5f9;
   --border: #cbd5e1;
   --surface: #ffffff;
@@ -18,6 +22,7 @@
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-surface: var(--surface);
@@ -32,6 +37,7 @@
     --primary: #3b82f6;
     --primary-dark: #2563eb;
     --accent: #22d3ee;
+    --accent-text: #22d3ee;   /* 9.88:1 on the dark page — no darker step needed */
     --muted: #1e293b;
     --border: #334155;
     --surface: #1e293b;

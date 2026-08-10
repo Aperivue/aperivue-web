@@ -49,9 +49,9 @@ function RadioGroup<T extends string>({
           />
           <div className="flex-1">
             <span>{opt.label}</span>
-            {opt.desc && <p className="text-xs text-foreground/40">{opt.desc}</p>}
+            {opt.desc && <p className="text-xs text-foreground/60">{opt.desc}</p>}
           </div>
-          {opt.extra && <span className="text-xs text-foreground/40">{opt.extra}</span>}
+          {opt.extra && <span className="text-xs text-foreground/60">{opt.extra}</span>}
         </label>
       ))}
     </div>
@@ -86,7 +86,7 @@ function CheckGroup({
           />
           <div>
             <span>{opt.label}</span>
-            {opt.desc && <p className="text-xs text-foreground/40">{opt.desc}</p>}
+            {opt.desc && <p className="text-xs text-foreground/60">{opt.desc}</p>}
           </div>
         </label>
       ))}
@@ -98,7 +98,7 @@ function Fieldset({ legend, desc, children }: { legend: string; desc?: string; c
   return (
     <fieldset className="rounded-xl border border-border bg-surface p-4">
       <legend className="px-2 text-sm font-semibold">{legend}</legend>
-      {desc && <p className="mb-2 text-xs text-foreground/40">{desc}</p>}
+      {desc && <p className="mb-2 text-xs text-foreground/60">{desc}</p>}
       {children}
     </fieldset>
   );
@@ -213,7 +213,7 @@ export function KtiradsCalculatorControlled({
           <input type="checkbox" checked={entirelyCalcified} onChange={() => onEntirelyCalcifiedChange(!entirelyCalcified)} className="accent-primary" />
           <div>
             <span className="font-medium">Entirely calcified nodule</span>
-            <p className="text-xs text-foreground/40">Complete posterior acoustic shadowing, no soft tissue</p>
+            <p className="text-xs text-foreground/60">Complete posterior acoustic shadowing, no soft tissue</p>
           </div>
         </label>
       )}
@@ -330,7 +330,7 @@ function ResultBanner({
 
 function Placeholder({ text }: { text: string }) {
   return (
-    <div className="rounded-xl border border-dashed border-border p-4 text-center text-sm text-foreground/40">
+    <div className="rounded-xl border border-dashed border-border p-4 text-center text-sm text-foreground/60">
       {text}
     </div>
   );

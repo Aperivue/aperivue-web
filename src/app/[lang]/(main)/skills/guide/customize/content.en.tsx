@@ -16,25 +16,25 @@ export default function ContentEn({ lang }: { lang: string }) {
         </p>
         <div className="mt-4 space-y-3">
           <div className="rounded-xl border border-border bg-surface p-4">
-            <p className="text-xs font-medium text-foreground/40">Modify an existing skill</p>
+            <p className="text-xs font-medium text-foreground/60">Modify an existing skill</p>
             <p className="mt-2 text-sm text-foreground/80">
               &quot;Change check-reporting so it always outputs results in Korean&quot;
             </p>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4">
-            <p className="text-xs font-medium text-foreground/40">Create a new skill</p>
+            <p className="text-xs font-medium text-foreground/60">Create a new skill</p>
             <p className="mt-2 text-sm text-foreground/80">
               &quot;Create a new skill called radiology-report that generates structured radiology reports following ACR guidelines&quot;
             </p>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4">
-            <p className="text-xs font-medium text-foreground/40">Update to the latest version</p>
+            <p className="text-xs font-medium text-foreground/60">Update to the latest version</p>
             <p className="mt-2 text-sm text-foreground/80">
               &quot;Update MedSci Skills from https://github.com/Aperivue/medsci-skills to the latest version&quot;
             </p>
           </div>
         </div>
-        <p className="mt-4 text-xs text-foreground/40">
+        <p className="mt-4 text-xs text-foreground/60">
           Claude will edit the SKILL.md files, create folders, and handle everything for you.
           Below is a reference for what happens behind the scenes.
         </p>
@@ -169,7 +169,7 @@ tools:
             2. Overwrite the existing <code className="rounded bg-muted px-1.5 py-0.5 text-xs">~/.claude/skills/</code> with
             the <code className="rounded bg-muted px-1.5 py-0.5 text-xs">skills/</code> folder from the new ZIP.
           </p>
-          <p className="text-xs text-foreground/40">
+          <p className="text-xs text-foreground/60">
             If you have customized any skills, back them up before overwriting.
           </p>
         </div>

@@ -32,7 +32,7 @@ export default function LymphNodeSection() {
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-medium text-foreground/60">Abnormal Node</span>
                   <button onClick={() => dispatch({ type: "REMOVE_ABNORMAL_LN", id: node.id })}
-                    className="text-xs text-red-500 hover:underline">Remove</button>
+                    className="text-xs text-red-700 hover:underline">Remove</button>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
@@ -81,7 +81,7 @@ export default function LymphNodeSection() {
               </div>
             ))}
             <button onClick={() => dispatch({ type: "ADD_ABNORMAL_LN" })}
-              className="rounded-lg border border-dashed border-border px-3 py-1.5 text-xs text-foreground/40 hover:bg-muted">
+              className="rounded-lg border border-dashed border-border px-3 py-1.5 text-xs text-foreground/60 hover:bg-muted">
               + Add Abnormal Node
             </button>
           </div>

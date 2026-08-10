@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: Props) {
       <article>
         <header className="border-b border-border pb-10">
           {post.tags.length > 0 && (
-            <p className="mb-4 text-xs font-medium tracking-widest text-accent uppercase">
+            <p className="mb-4 text-xs font-medium tracking-widest text-accent-text uppercase">
               {post.tags[0]}
             </p>
           )}

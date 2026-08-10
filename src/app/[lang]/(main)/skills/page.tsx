@@ -140,7 +140,7 @@ export default async function SkillsPage({
       <JsonLd data={faqJsonLd} />
       {/* Hero */}
       <section className="text-center">
-        <p className="text-xs font-medium uppercase tracking-widest text-accent">
+        <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
           {t.badge}
         </p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
@@ -197,7 +197,7 @@ export default async function SkillsPage({
             <div key={step.skill} className="flex items-center gap-2">
               <div className="rounded-lg border border-border bg-surface px-4 py-2 text-center text-xs font-medium leading-tight whitespace-pre-line">
                 {step.label}
-                <span className="mt-1 block text-[10px] text-accent">
+                <span className="mt-1 block text-[10px] text-accent-text">
                   {step.skill}
                 </span>
               </div>
@@ -207,7 +207,7 @@ export default async function SkillsPage({
             </div>
           ))}
         </div>
-        <p className="mt-3 text-center text-xs text-foreground/40">
+        <p className="mt-3 text-center text-xs text-foreground/60">
           + {SKILL_COUNT - pipelineSteps.length} more skills across the full
           lifecycle &mdash; browse them all below.
         </p>
@@ -424,7 +424,7 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
         {/* Read from the dictionary — this line was hardcoded, so it went on saying
             "Requires Claude Code Desktop or CLI" long after the installer gained
             three more hosts, and no gate could see it. */}
-        <p className="mt-4 text-xs text-foreground/40">{t.requires}</p>
+        <p className="mt-4 text-xs text-foreground/60">{t.requires}</p>
       </section>
 
       {/* Contribute — the open asks are DOMAIN gaps, and this page is where the domain
@@ -501,7 +501,7 @@ cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
             {t.readDocs}
           </a>
         </div>
-        <p className="mt-6 text-xs text-foreground/40">
+        <p className="mt-6 text-xs text-foreground/60">
           MIT License &middot; Built by{" "}
           <a href={`/${lang}/about`} className="underline hover:text-primary">
             Aperivue

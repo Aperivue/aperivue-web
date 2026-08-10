@@ -8,7 +8,7 @@ export default function ObservationSidebar() {
 
   return (
     <div className="flex flex-col gap-1.5 md:min-w-[180px]">
-      <p className="px-1 text-xs font-medium uppercase tracking-wider text-foreground/40">
+      <p className="px-1 text-xs font-medium uppercase tracking-wider text-foreground/60">
         Observations
       </p>
 
@@ -48,7 +48,7 @@ export default function ObservationSidebar() {
                   type="button"
                   aria-label={`Remove observation ${sn.observation.label}`}
                   onClick={() => dispatch({ type: "REMOVE_OBSERVATION", id: sn.observation.id })}
-                  className="absolute right-1 top-1 rounded px-1 text-base leading-none text-foreground/30 hover:text-red-500"
+                  className="absolute right-1 top-1 rounded px-1 text-base leading-none text-foreground/30 hover:text-red-700"
                 >
                   &times;
                 </button>
@@ -61,7 +61,7 @@ export default function ObservationSidebar() {
       <button
         type="button"
         onClick={() => dispatch({ type: "ADD_OBSERVATION" })}
-        className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/40 hover:bg-muted hover:text-foreground/60"
+        className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/60 hover:bg-muted hover:text-foreground/60"
       >
         + Add Observation
       </button>

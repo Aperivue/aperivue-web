@@ -103,7 +103,7 @@ export function SkillsExplorer({
                 <h3 className="text-lg font-semibold group-hover:text-primary">
                   {skill.title}
                 </h3>
-                <span className="rounded-full bg-accent/10 px-3 py-0.5 text-[10px] font-mono text-accent">
+                <span className="rounded-full bg-accent/10 px-3 py-0.5 text-[10px] font-mono text-accent-text">
                   {skill.name}
                 </span>
                 {skill.isNew && (

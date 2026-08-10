@@ -9,7 +9,7 @@ export default function SpecialCategorySection() {
   return (
     <section className="rounded-xl border border-border p-4">
       <h3 className="mb-1 text-sm font-semibold">Pre-assessment</h3>
-      <p className="mb-3 text-xs text-foreground/40">
+      <p className="mb-3 text-xs text-foreground/60">
         Select if the study is incomplete (Cat 0) or if there are no nodules / only benign findings (Cat 1).
         Otherwise, leave as &quot;None&quot; to proceed to nodule assessment.
       </p>

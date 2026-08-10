@@ -103,9 +103,9 @@ const productsData = { en: productsEn, ko: productsKo };
 
 function statusBadge(status: string) {
   if (status === "Active" || status === "운영 중")
-    return "bg-green-500/10 text-green-600 dark:text-green-400";
+    return "bg-green-500/10 text-green-700 dark:text-green-400";
   if (status === "In Development" || status === "개발 중")
-    return "bg-accent/10 text-accent";
+    return "bg-accent/10 text-accent-text";
   return "bg-foreground/5 text-foreground/50";
 }
 
@@ -121,7 +121,7 @@ export default async function ProductsPage({
 
   return (
     <main className="mx-auto flex max-w-6xl flex-1 flex-col px-6 py-16">
-      <p className="text-xs font-medium uppercase tracking-widest text-accent">
+      <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
         {t.title}
       </p>
       <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">

@@ -29,7 +29,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
         </p>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">Option A — Already using Claude Code? Paste this in:</p>
+          <p className="text-xs font-medium text-foreground/60">Option A — Already using Claude Code? Paste this in:</p>
           <p className="mt-2 text-sm text-foreground/80">
             &quot;Install MedSci Skills by running{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills install --enable-update-notify</code>{" "}
@@ -41,7 +41,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
         </div>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">Option B — One terminal command (Node 18+)</p>
+          <p className="text-xs font-medium text-foreground/60">Option B — One terminal command (Node 18+)</p>
           <div className="mt-2 space-y-1.5 text-sm text-foreground/80">
             <p>
               <strong>1.</strong> Open the Terminal app — macOS: press{" "}
@@ -74,13 +74,13 @@ export default function InstallContentEn({ lang }: { lang: string }) {
         </div>
 
         <div className="mt-4 rounded-xl border border-border bg-muted p-4">
-          <p className="text-xs font-medium text-foreground/40">Then try a skill in plain English</p>
+          <p className="text-xs font-medium text-foreground/60">Then try a skill in plain English</p>
           <div className="mt-2 space-y-2 text-sm text-foreground/80">
             <p>&quot;Search PubMed for recent studies on AI-assisted lung nodule detection and give me the top 10 results&quot;</p>
             <p>&quot;Check my manuscript against STARD 2015 guidelines&quot;</p>
             <p>&quot;Analyze this CSV and generate a demographics table with appropriate statistics&quot;</p>
           </div>
-          <p className="mt-3 text-xs text-foreground/40">
+          <p className="mt-3 text-xs text-foreground/60">
             No slash commands required — just describe what you need; Claude picks the right skill.
           </p>
         </div>
@@ -338,7 +338,7 @@ export default function InstallContentEn({ lang }: { lang: string }) {
             </dd>
           </div>
         </dl>
-        <p className="mt-4 text-xs text-foreground/40">
+        <p className="mt-4 text-xs text-foreground/60">
           More questions? Check the{" "}
           <Link href={`/${lang}/skills/guide/faq`} className="text-primary underline">FAQ page</Link>.
         </p>

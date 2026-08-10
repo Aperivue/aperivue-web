@@ -157,7 +157,7 @@ function NumberInput({
 
 function SectionDivider({ title }: { title: string }) {
   return (
-    <p className="mt-4 mb-2 text-[11px] font-semibold uppercase tracking-wider text-foreground/40">
+    <p className="mt-4 mb-2 text-[11px] font-semibold uppercase tracking-wider text-foreground/60">
       {title}
     </p>
   );
@@ -420,7 +420,7 @@ function MriKineticPanel({
           </p>
         )}
         {lesion.mriKineticDelayed === "persistent" && (
-          <p className="mt-1 text-[11px] text-green-600 dark:text-green-400">
+          <p className="mt-1 text-[11px] text-green-700 dark:text-green-400">
             Type I (Persistent) — favors benign etiology
           </p>
         )}

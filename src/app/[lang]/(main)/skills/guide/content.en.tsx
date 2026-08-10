@@ -42,7 +42,7 @@ export default function GuideContentEn({ lang }: { lang: string }) {
     <div>
       {/* Hero */}
       <section>
-        <p className="text-xs font-medium uppercase tracking-widest text-accent">
+        <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
           Getting Started Guide
         </p>
         <h1 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
@@ -108,7 +108,7 @@ export default function GuideContentEn({ lang }: { lang: string }) {
                   <h3 className="font-semibold group-hover:text-primary">
                     {step.title}
                   </h3>
-                  <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-foreground/40">
+                  <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-foreground/60">
                     {step.time}
                   </span>
                 </div>
