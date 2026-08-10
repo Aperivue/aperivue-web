@@ -52,7 +52,7 @@ export default function FirstPipelineContentEn({ lang }: { lang: string }) {
               {`/orchestrate Run an end-to-end diagnostic accuracy study using sklearn's load_breast_cancer data. Include analysis, figures, manuscript draft, STARD audit, and presentation slides.`}
             </code>
           </div>
-          <p className="mt-3 text-xs text-foreground/40">
+          <p className="mt-3 text-xs text-foreground/60">
             You can also type in Korean — Claude understands both languages.
           </p>
         </StepCard>
@@ -99,7 +99,7 @@ export default function FirstPipelineContentEn({ lang }: { lang: string }) {
               </span>
             </li>
           </ol>
-          <p className="mt-3 text-xs text-foreground/40">
+          <p className="mt-3 text-xs text-foreground/60">
             Total time: approximately 5 minutes (varies with network speed)
           </p>
         </StepCard>

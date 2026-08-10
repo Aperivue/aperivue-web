@@ -2,7 +2,7 @@ export default function RadsFooter() {
   return (
     <footer className="mt-auto border-t border-border">
       {/* YouTube CTA Banner */}
-      <div className="bg-gradient-to-r from-primary to-accent px-6 py-6 text-center text-white">
+      <div className="bg-gradient-to-r from-primary to-accent-text px-6 py-6 text-center text-white">
         <p className="text-sm font-semibold">
           Learn radiology with evidence-based video content
         </p>
@@ -43,7 +43,7 @@ export default function RadsFooter() {
               </a>
               . All rights reserved.
             </p>
-            <p className="text-foreground/40">
+            <p className="text-foreground/60">
               Powered by{" "}
               <a
                 href="https://aperivue.com"

@@ -100,7 +100,7 @@ cp -r medsci-skills/skills/${skill.name} ~/.claude/skills/`;
       <header className="mt-6">
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-3xl font-bold tracking-tight">{skill.title}</h1>
-          <span className="rounded-full bg-accent/10 px-3 py-0.5 text-xs font-mono text-accent">
+          <span className="rounded-full bg-accent/10 px-3 py-0.5 text-xs font-mono text-accent-text">
             /{skill.name}
           </span>
           {skill.isNew && (
@@ -111,7 +111,7 @@ cp -r medsci-skills/skills/${skill.name} ~/.claude/skills/`;
         </div>
         <Link
           href={`/${lang}/skills`}
-          className="mt-3 inline-block text-xs font-medium uppercase tracking-widest text-accent hover:underline"
+          className="mt-3 inline-block text-xs font-medium uppercase tracking-widest text-accent-text hover:underline"
         >
           {catLabel}
         </Link>
@@ -188,7 +188,7 @@ cp -r medsci-skills/skills/${skill.name} ~/.claude/skills/`;
                 className="rounded-xl border border-border bg-surface p-4 transition-shadow hover:shadow-md"
               >
                 <span className="font-semibold">{r.title}</span>
-                <span className="ml-2 font-mono text-xs text-accent">
+                <span className="ml-2 font-mono text-xs text-accent-text">
                   /{r.name}
                 </span>
                 <p className="mt-1 line-clamp-2 text-xs text-foreground/60">

@@ -60,7 +60,7 @@ export default function NoduleDetailPanel() {
               />
               <div>
                 <span>{opt.label}</span>
-                <p className="text-xs text-foreground/40">{opt.desc}</p>
+                <p className="text-xs text-foreground/60">{opt.desc}</p>
               </div>
             </label>
           ))}
@@ -70,7 +70,7 @@ export default function NoduleDetailPanel() {
       {/* Scan context */}
       <fieldset className="rounded-xl border border-border bg-surface p-4">
         <legend className="px-2 text-sm font-semibold">Scan Context</legend>
-        <p className="mb-2 text-xs text-foreground/40">
+        <p className="mb-2 text-xs text-foreground/60">
           Is this nodule seen on a baseline scan, a new finding, stable, or growing?
         </p>
         <div className="grid gap-1.5">
@@ -92,7 +92,7 @@ export default function NoduleDetailPanel() {
               />
               <div>
                 <span>{opt.label}</span>
-                <p className="text-xs text-foreground/40">{opt.desc}</p>
+                <p className="text-xs text-foreground/60">{opt.desc}</p>
               </div>
             </label>
           ))}
@@ -139,7 +139,7 @@ export default function NoduleDetailPanel() {
       {/* S Modifier */}
       <fieldset className="rounded-xl border border-border bg-surface p-4">
         <legend className="px-2 text-sm font-semibold">S Modifier — Additional Suspicious Features</legend>
-        <p className="mb-2 text-xs text-foreground/40">
+        <p className="mb-2 text-xs text-foreground/60">
           Select any additional features that warrant upgrading to a category with the S modifier or 4X.
         </p>
         <div className="grid gap-1.5">
@@ -162,7 +162,7 @@ export default function NoduleDetailPanel() {
               />
               <div>
                 <span>{feat.label}</span>
-                <p className="text-xs text-foreground/40">{feat.desc}</p>
+                <p className="text-xs text-foreground/60">{feat.desc}</p>
               </div>
             </label>
           ))}
@@ -173,7 +173,7 @@ export default function NoduleDetailPanel() {
       {result ? (
         <ResultBanner result={result} />
       ) : (
-        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/40">
+        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/60">
           {n.noduleType ? "Enter nodule size to see results." : "Select nodule type to begin."}
         </div>
       )}

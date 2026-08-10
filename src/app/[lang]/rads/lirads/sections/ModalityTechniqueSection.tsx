@@ -18,7 +18,7 @@ export default function ModalityTechniqueSection() {
   return (
     <section className="rounded-xl border border-border p-4">
       <h3 className="mb-1 text-sm font-semibold">Technique</h3>
-      <p className="mb-3 text-xs text-foreground/40">
+      <p className="mb-3 text-xs text-foreground/60">
         Set the modality and contrast agent for the whole study. Diagnostic adequacy (the LR-NC gate)
         is assessed per observation below.
       </p>
@@ -36,7 +36,7 @@ export default function ModalityTechniqueSection() {
             }`}
           >
             {mod.label}
-            <span className="ml-1 text-[10px] text-foreground/40">{mod.desc}</span>
+            <span className="ml-1 text-[10px] text-foreground/60">{mod.desc}</span>
           </button>
         ))}
       </div>
@@ -63,7 +63,7 @@ export default function ModalityTechniqueSection() {
               />
               <div>
                 <span>{agent.label}</span>
-                <p className="text-xs text-foreground/40">{agent.desc}</p>
+                <p className="text-xs text-foreground/60">{agent.desc}</p>
               </div>
             </label>
           ))}

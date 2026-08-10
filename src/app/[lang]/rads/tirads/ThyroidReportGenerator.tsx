@@ -35,7 +35,7 @@ function ReportContent() {
             }`}
           >
             {s.label}
-            <span className="ml-1 text-[10px] text-foreground/40">{s.year}</span>
+            <span className="ml-1 text-[10px] text-foreground/60">{s.year}</span>
           </button>
         ))}
       </div>

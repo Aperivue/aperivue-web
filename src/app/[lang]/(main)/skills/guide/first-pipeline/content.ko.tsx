@@ -51,7 +51,7 @@ export default function FirstPipelineContentKo({ lang }: { lang: string }) {
               {`/orchestrate sklearn의 load_breast_cancer 데이터로 진단 정확도 연구를 end-to-end로 실행해줘. 분석, Figure, 논문 초고, STARD 감사, 발표 슬라이드까지 전부.`}
             </code>
           </div>
-          <p className="mt-3 text-xs text-foreground/40">
+          <p className="mt-3 text-xs text-foreground/60">
             한국어로 입력해도 됩니다. Claude가 자동으로 이해합니다.
           </p>
         </StepCard>
@@ -97,7 +97,7 @@ export default function FirstPipelineContentKo({ lang }: { lang: string }) {
               </span>
             </li>
           </ol>
-          <p className="mt-3 text-xs text-foreground/40">
+          <p className="mt-3 text-xs text-foreground/60">
             전체 소요 시간: 약 5분 (네트워크 속도에 따라 다름)
           </p>
         </StepCard>

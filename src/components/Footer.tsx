@@ -35,7 +35,7 @@ export default function Footer({
           {/* Links */}
           <div className="flex gap-16 text-sm text-foreground/60">
             <div className="flex flex-col gap-2">
-              <span className="text-xs font-medium uppercase tracking-wider text-foreground/40">
+              <span className="text-xs font-medium uppercase tracking-wider text-foreground/60">
                 {dict.footer.company}
               </span>
               <Link href={`/${lang}/about`} className="hover:text-primary">{dict.nav.about}</Link>
@@ -45,7 +45,7 @@ export default function Footer({
               <Link href={`/${lang}/about#contact`} className="hover:text-primary">{dict.about.contact}</Link>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-xs font-medium uppercase tracking-wider text-foreground/40">
+              <span className="text-xs font-medium uppercase tracking-wider text-foreground/60">
                 Social
               </span>
               <a href="https://github.com/aperivue" target="_blank" rel="noopener noreferrer" className="hover:text-primary">GitHub</a>
@@ -58,7 +58,7 @@ export default function Footer({
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 border-t border-border pt-6 text-xs text-foreground/40">
+        <div className="mt-10 border-t border-border pt-6 text-xs text-foreground/60">
           <p>&copy; {new Date().getFullYear()} Aperivue. All rights reserved.</p>
         </div>
       </div>

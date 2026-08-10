@@ -37,7 +37,7 @@ export default function LesionSidebar() {
 
       <button
         onClick={() => dispatch({ type: "ADD_LESION" })}
-        className="flex items-center gap-1 rounded-lg border border-dashed border-border px-3 py-2 text-sm text-foreground/40 transition-colors hover:border-primary/40 hover:text-primary/70"
+        className="flex items-center gap-1 rounded-lg border border-dashed border-border px-3 py-2 text-sm text-foreground/60 transition-colors hover:border-primary/40 hover:text-primary/70"
       >
         <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -48,7 +48,7 @@ export default function LesionSidebar() {
       {state.lesions.length > 1 && (
         <button
           onClick={() => dispatch({ type: "REMOVE_LESION", id: activeLesion.id })}
-          className="rounded-lg border border-dashed border-red-200 px-3 py-2 text-sm text-red-400 transition-colors hover:border-red-400 hover:text-red-500 dark:border-red-800 dark:text-red-500"
+          className="rounded-lg border border-dashed border-red-200 px-3 py-2 text-sm text-red-700 transition-colors hover:border-red-400 hover:text-red-700 dark:border-red-800 dark:text-red-500"
         >
           Remove active
         </button>

@@ -93,7 +93,7 @@ export default function LesionDetailPanel() {
       {result ? (
         <ResultBanner result={result} />
       ) : (
-        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/40">
+        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/60">
           Select the lesion type and the required descriptors to assign an O-RADS score.
         </div>
       )}
@@ -142,7 +142,7 @@ function UsFields({ l, updateUs }: { l: { us: UsLesionFields }; updateUs: (p: Pa
           <LabeledInput label="Papillary projections (count)" type="number" step="1" min="0" placeholder="e.g. 2"
             value={u.papillaryProjections}
             onChange={(e) => updateUs({ papillaryProjections: e.target.value })} />
-          <p className="mt-1 text-xs text-foreground/40">≥ 4 papillary projections → O-RADS 5; fewer (or a non-pp solid component) → O-RADS 4.</p>
+          <p className="mt-1 text-xs text-foreground/60">≥ 4 papillary projections → O-RADS 5; fewer (or a non-pp solid component) → O-RADS 4.</p>
         </div>
       )}
 
@@ -198,7 +198,7 @@ function MriFields({ l, updateMri }: { l: { mri: MriLesionFields }; updateMri: (
         onChange={(v) => updateMri({ lesionType: v as MriLesionFields["lesionType"] })} />
 
       {m.lesionType === "physiologic" && (
-        <p className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/40">
+        <p className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/60">
           Applies to a premenopausal follicle, corpus luteum, or hemorrhagic cyst ≤ 3 cm → O-RADS MRI 1. Set the menopausal status above (premenopausal). A normal postmenopausal ovary should be scored as &quot;No adnexal lesion&quot;.
         </p>
       )}

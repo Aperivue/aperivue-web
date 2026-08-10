@@ -77,7 +77,7 @@ export default async function Home({
         />
         <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-5">
           <div className="md:col-span-3">
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-accent-text">
               {t.tagline}
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-7xl">
@@ -94,7 +94,7 @@ export default async function Home({
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href={`/${lang}/rads`}
-                className="rounded-full bg-gradient-to-r from-primary to-accent px-7 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(30,64,175,0.6)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(8,145,178,0.55)]"
+                className="rounded-full bg-gradient-to-r from-primary to-accent-text px-7 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgba(30,64,175,0.6)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(8,145,178,0.55)]"
               >
                 {t.ctaRads}
               </Link>
@@ -107,7 +107,7 @@ export default async function Home({
                 {t.ctaYoutube} &#9654;
               </a>
             </div>
-            <p className="mt-8 text-xs text-foreground/40">
+            <p className="mt-8 text-xs text-foreground/60">
               {t.credibility} &middot; 10+ {t.peerReviewed}
             </p>
           </div>
@@ -135,7 +135,7 @@ export default async function Home({
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold">Aperivue RADS</h3>
-                  <span className="rounded-full bg-accent/10 px-3 py-0.5 text-xs font-medium text-accent">
+                  <span className="rounded-full bg-accent/10 px-3 py-0.5 text-xs font-medium text-accent-text">
                     In Development
                   </span>
                 </div>
@@ -158,7 +158,7 @@ export default async function Home({
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold">ScrubCode</h3>
-                <span className="rounded-full bg-green-500/10 px-3 py-0.5 text-xs font-medium text-green-600 dark:text-green-400">
+                <span className="rounded-full bg-green-500/10 px-3 py-0.5 text-xs font-medium text-green-700 dark:text-green-400">
                   Active
                 </span>
               </div>

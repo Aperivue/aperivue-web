@@ -235,7 +235,7 @@ export default async function TiradsPage({
       <JsonLd data={faqJsonLd} />
       <div className="mx-auto max-w-4xl">
         <div className="mb-8 text-center">
-          <p className="text-xs font-medium uppercase tracking-widest text-accent">
+          <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
             Aperivue RADS
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">

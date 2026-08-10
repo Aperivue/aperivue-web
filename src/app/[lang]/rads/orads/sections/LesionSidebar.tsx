@@ -9,7 +9,7 @@ export default function LesionSidebar() {
 
   return (
     <div className="flex flex-col gap-1.5 md:min-w-[170px]">
-      <p className="px-1 text-xs font-medium uppercase tracking-wider text-foreground/40">Lesions</p>
+      <p className="px-1 text-xs font-medium uppercase tracking-wider text-foreground/60">Lesions</p>
 
       <div className="flex gap-1.5 overflow-x-auto md:flex-col">
         {scoredLesions.map((sn) => {
@@ -46,7 +46,7 @@ export default function LesionSidebar() {
                   type="button"
                   aria-label={`Remove lesion ${sn.lesion.label}`}
                   onClick={() => dispatch({ type: "REMOVE_LESION", id: sn.lesion.id })}
-                  className="absolute right-1 top-1 rounded px-1 text-base leading-none text-foreground/30 hover:text-red-500"
+                  className="absolute right-1 top-1 rounded px-1 text-base leading-none text-foreground/30 hover:text-red-700"
                 >
                   &times;
                 </button>
@@ -59,7 +59,7 @@ export default function LesionSidebar() {
       <button
         type="button"
         onClick={() => dispatch({ type: "ADD_LESION" })}
-        className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/40 hover:bg-muted hover:text-foreground/60"
+        className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/60 hover:bg-muted hover:text-foreground/60"
       >
         + Add Lesion
       </button>

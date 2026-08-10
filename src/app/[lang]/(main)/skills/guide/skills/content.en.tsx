@@ -189,7 +189,7 @@ export default function ContentEn({ lang }: { lang: string }) {
                 >
                   <div className="flex items-center gap-2">
                     <h3 className="font-medium">{skill.label}</h3>
-                    <span className="rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-mono text-accent">
+                    <span className="rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-mono text-accent-text">
                       {skill.name}
                     </span>
                   </div>
@@ -197,7 +197,7 @@ export default function ContentEn({ lang }: { lang: string }) {
                     {skill.note}
                   </p>
                   <div className="mt-3 rounded-lg border border-border bg-muted p-3">
-                    <p className="text-xs text-foreground/40">Example prompt</p>
+                    <p className="text-xs text-foreground/60">Example prompt</p>
                     <code className="mt-1 block break-all text-sm text-foreground/70">
                       {skill.prompt}
                     </code>

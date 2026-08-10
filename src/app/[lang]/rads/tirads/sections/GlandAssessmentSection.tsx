@@ -21,15 +21,15 @@ function DimensionInput({
         <input type="number" step="0.1" min="0" placeholder="L" aria-label={`${label} length (cm)`} value={value.l}
           onChange={(e) => onChange({ ...value, l: e.target.value })}
           className="w-20 rounded-lg border border-border bg-surface px-2 py-1.5 text-sm text-center" />
-        <span className="text-xs text-foreground/40">&times;</span>
+        <span className="text-xs text-foreground/60">&times;</span>
         <input type="number" step="0.1" min="0" placeholder="W" aria-label={`${label} width (cm)`} value={value.w}
           onChange={(e) => onChange({ ...value, w: e.target.value })}
           className="w-20 rounded-lg border border-border bg-surface px-2 py-1.5 text-sm text-center" />
-        <span className="text-xs text-foreground/40">&times;</span>
+        <span className="text-xs text-foreground/60">&times;</span>
         <input type="number" step="0.1" min="0" placeholder="H" aria-label={`${label} height (cm)`} value={value.h}
           onChange={(e) => onChange({ ...value, h: e.target.value })}
           className="w-20 rounded-lg border border-border bg-surface px-2 py-1.5 text-sm text-center" />
-        <span className="text-xs text-foreground/40">cm</span>
+        <span className="text-xs text-foreground/60">cm</span>
       </div>
     </div>
   );

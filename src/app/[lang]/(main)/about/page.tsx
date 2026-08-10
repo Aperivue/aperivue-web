@@ -28,7 +28,7 @@ export default async function AboutPage({
 
   return (
     <main className="mx-auto flex max-w-4xl flex-1 flex-col px-6 py-16">
-      <p className="text-xs font-medium uppercase tracking-widest text-accent">
+      <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
         About
       </p>
       <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
@@ -102,7 +102,7 @@ export default async function AboutPage({
             { label: "X (Twitter)", href: "https://x.com/aperivue", text: "@aperivue", external: true },
           ].map((item) => (
             <div key={item.label} className="rounded-2xl border border-border bg-surface p-6">
-              <h3 className="text-xs font-medium uppercase tracking-wider text-foreground/40">
+              <h3 className="text-xs font-medium uppercase tracking-wider text-foreground/60">
                 {item.label}
               </h3>
               <a

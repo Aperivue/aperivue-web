@@ -23,7 +23,7 @@ export default function MediastinumSection() {
           />
           <div>
             <span className="font-medium">Mediastinal / hilar lymphadenopathy</span>
-            <p className="text-xs text-foreground/40">Short-axis diameter &gt; 10 mm</p>
+            <p className="text-xs text-foreground/60">Short-axis diameter &gt; 10 mm</p>
           </div>
         </label>
 

@@ -34,21 +34,21 @@ export default function NoduleDetailPanel() {
       {/* 3D Size */}
       <div>
         <p className="mb-1 block text-xs font-medium text-foreground/60">
-          Size (cm) {md !== null && <span className="text-foreground/40">— max diameter: {md} cm</span>}
+          Size (cm) {md !== null && <span className="text-foreground/60">— max diameter: {md} cm</span>}
         </p>
         <div className="flex items-center gap-1">
           <input type="number" step="0.1" min="0" placeholder="L" aria-label="Length (cm)" value={n.sizeL}
             onChange={(e) => update({ sizeL: e.target.value })}
             className="w-20 rounded-lg border border-border bg-surface px-2 py-1.5 text-sm text-center" />
-          <span className="text-xs text-foreground/40">&times;</span>
+          <span className="text-xs text-foreground/60">&times;</span>
           <input type="number" step="0.1" min="0" placeholder="W" aria-label="Width (cm)" value={n.sizeW}
             onChange={(e) => update({ sizeW: e.target.value })}
             className="w-20 rounded-lg border border-border bg-surface px-2 py-1.5 text-sm text-center" />
-          <span className="text-xs text-foreground/40">&times;</span>
+          <span className="text-xs text-foreground/60">&times;</span>
           <input type="number" step="0.1" min="0" placeholder="H" aria-label="Height (cm)" value={n.sizeH}
             onChange={(e) => update({ sizeH: e.target.value })}
             className="w-20 rounded-lg border border-border bg-surface px-2 py-1.5 text-sm text-center" />
-          <span className="text-xs text-foreground/40">cm</span>
+          <span className="text-xs text-foreground/60">cm</span>
         </div>
       </div>
 

@@ -28,7 +28,7 @@ export default function InstallContentKo({ lang }: { lang: string }) {
         </p>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">방법 A — 이미 Claude Code를 쓰신다면, 아래를 붙여넣기:</p>
+          <p className="text-xs font-medium text-foreground/60">방법 A — 이미 Claude Code를 쓰신다면, 아래를 붙여넣기:</p>
           <p className="mt-2 text-sm text-foreground/80">
             &quot;터미널에서{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills install --enable-update-notify</code>{" "}
@@ -40,7 +40,7 @@ export default function InstallContentKo({ lang }: { lang: string }) {
         </div>
 
         <div className="mt-4 rounded-xl border border-border bg-surface p-4">
-          <p className="text-xs font-medium text-foreground/40">방법 B — 터미널 한 줄 (Node 18+)</p>
+          <p className="text-xs font-medium text-foreground/60">방법 B — 터미널 한 줄 (Node 18+)</p>
           <div className="mt-2 space-y-1.5 text-sm text-foreground/80">
             <p>
               <strong>1.</strong> 터미널 앱을 엽니다 — Mac: <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 text-xs">Cmd + Space</kbd> 누르고
@@ -70,13 +70,13 @@ export default function InstallContentKo({ lang }: { lang: string }) {
         </div>
 
         <div className="mt-4 rounded-xl border border-border bg-muted p-4">
-          <p className="text-xs font-medium text-foreground/40">설치 후 자연어로 바로 사용해보세요</p>
+          <p className="text-xs font-medium text-foreground/60">설치 후 자연어로 바로 사용해보세요</p>
           <div className="mt-2 space-y-2 text-sm text-foreground/80">
             <p>&quot;폐결절 AI 진단 관련 최신 논문 10편 찾아줘&quot;</p>
             <p>&quot;내 논문 원고를 STARD 2015 가이드라인으로 검사해줘&quot;</p>
             <p>&quot;이 CSV 파일로 인구통계학적 표를 만들어줘&quot;</p>
           </div>
-          <p className="mt-3 text-xs text-foreground/40">
+          <p className="mt-3 text-xs text-foreground/60">
             슬래시 명령어를 외울 필요 없습니다 — 하고 싶은 일을 말하면 Claude가 알맞은 스킬을 고릅니다.
           </p>
         </div>
@@ -330,7 +330,7 @@ export default function InstallContentKo({ lang }: { lang: string }) {
             </dd>
           </div>
         </dl>
-        <p className="mt-4 text-xs text-foreground/40">
+        <p className="mt-4 text-xs text-foreground/60">
           더 많은 질문은{" "}
           <Link href={`/${lang}/skills/guide/faq`} className="text-primary underline">FAQ 페이지</Link>를 참고하세요.
         </p>

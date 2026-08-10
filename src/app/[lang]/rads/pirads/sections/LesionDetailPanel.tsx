@@ -62,7 +62,7 @@ export default function LesionDetailPanel() {
       </div>
 
       {l.zone === "" && (
-        <p className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/40">
+        <p className="rounded-lg border border-dashed border-border px-3 py-2 text-xs text-foreground/60">
           Select a zone — DWI is the dominant sequence in the peripheral zone, T2W in the transition zone.
         </p>
       )}
@@ -93,7 +93,7 @@ export default function LesionDetailPanel() {
           emphasize={isPz}
         />
         {showDwiResolver && (
-          <p className="mb-2 text-xs text-foreground/40">
+          <p className="mb-2 text-xs text-foreground/60">
             {l.t2w === "2"
               ? "T2W is 2 in the transition zone — DWI ≥4 upgrades to PI-RADS 3."
               : "T2W is 3 in the transition zone — DWI 5 upgrades to PI-RADS 4, otherwise PI-RADS 3."}
@@ -113,7 +113,7 @@ export default function LesionDetailPanel() {
             <option value="">Select DCE...</option>
             {DCE_OPTIONS.map((d) => (<option key={d.value} value={d.value}>{d.label}</option>))}
           </select>
-          <p className="mt-1 text-xs text-foreground/40">
+          <p className="mt-1 text-xs text-foreground/60">
             DCE only changes the category for a peripheral-zone DWI score of 3 (positive → 4, negative → 3).
           </p>
         </div>
@@ -123,7 +123,7 @@ export default function LesionDetailPanel() {
       {result ? (
         <ResultBanner result={result} />
       ) : (
-        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/40">
+        <div className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-foreground/60">
           {l.zone === "" ? "Select a zone to begin." : "Enter the dominant-sequence score (and DCE if PZ DWI 3) to see the category."}
         </div>
       )}

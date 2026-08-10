@@ -16,25 +16,25 @@ export default function ContentKo({ lang }: { lang: string }) {
         </p>
         <div className="mt-4 space-y-3">
           <div className="rounded-xl border border-border bg-surface p-4">
-            <p className="text-xs font-medium text-foreground/40">기존 스킬 수정</p>
+            <p className="text-xs font-medium text-foreground/60">기존 스킬 수정</p>
             <p className="mt-2 text-sm text-foreground/80">
               &quot;check-reporting 스킬이 결과를 항상 한국어로 출력하도록 바꿔줘&quot;
             </p>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4">
-            <p className="text-xs font-medium text-foreground/40">새 스킬 만들기</p>
+            <p className="text-xs font-medium text-foreground/60">새 스킬 만들기</p>
             <p className="mt-2 text-sm text-foreground/80">
               &quot;radiology-report라는 새 스킬을 만들어줘. ACR 가이드라인에 맞는 구조화 판독문을 생성하는 스킬이야&quot;
             </p>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4">
-            <p className="text-xs font-medium text-foreground/40">최신 버전으로 업데이트</p>
+            <p className="text-xs font-medium text-foreground/60">최신 버전으로 업데이트</p>
             <p className="mt-2 text-sm text-foreground/80">
               &quot;https://github.com/Aperivue/medsci-skills 에서 MedSci Skills를 최신 버전으로 업데이트해줘&quot;
             </p>
           </div>
         </div>
-        <p className="mt-4 text-xs text-foreground/40">
+        <p className="mt-4 text-xs text-foreground/60">
           Claude가 SKILL.md 파일을 수정하고, 폴더를 만들고, 모든 걸 알아서 처리합니다.
           아래는 내부에서 어떤 일이 일어나는지 참고용으로 정리한 것입니다.
         </p>
@@ -169,7 +169,7 @@ tools:
             2. 새 ZIP의 <code className="rounded bg-muted px-1.5 py-0.5 text-xs">skills/</code> 폴더를
             기존 <code className="rounded bg-muted px-1.5 py-0.5 text-xs">~/.claude/skills/</code>에 덮어쓰기합니다.
           </p>
-          <p className="text-xs text-foreground/40">
+          <p className="text-xs text-foreground/60">
             직접 수정한 스킬이 있다면 덮어쓰기 전에 백업하세요.
           </p>
         </div>
