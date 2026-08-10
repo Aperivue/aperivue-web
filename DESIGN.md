@@ -292,27 +292,16 @@ width 1.5 on landing pages and 2 in buttons and nav. There is no icon font and n
 
 ## Notes — not represented in the spec's token groups
 
-### This file is prescriptive; the deployed site has not caught up
+### The deployed site matches this file
 
-A clean validator run means **the system as specified is accessible**. It does not mean
-`aperivue.com` is. The tokens above were changed after measurement; the production components were
-not. As of 2026-08-10 the following still ship the pre-fix values, because they live in Tailwind
-utility classes inside JSX rather than in a token file:
+The remediation this section used to track landed in #27 and #28 — 53 components moved to the
+accessible tokens, verified in the built CSS rather than the source. Nothing is outstanding.
 
-| Where | Current | Measured | Should use |
-|---|---|---|---|
-| `.ap-meta` / `text-foreground/40` captions | `fg-4` | 2.53:1 | `fg-3` |
-| `.ap-eyebrow` — above *every* hero | `accent` | 3.52:1 | `accent-text` |
-| White label on the brand gradient's cyan end | `accent` | 3.68:1 | `gradient-text-safe-end` |
-| Status pills — success / warning / danger | plain tokens | 2.91 / 2.75 / 3.97:1 | `-text` variants |
-| Dark meta on page / on card | 40 % step | 3.32 / 3.14:1 | 60 % step |
-| Dark link on a card | `#3b82f6` | 3.98:1 | `#4c8df7` |
-
-`design-system/colors_and_type.css` has been updated, so anything built on the design system picks
-the corrected values up already. `src/app/globals.css` and the component JSX are fixed on the
-companion branch **`a11y/wcag-aa-contrast`** — 53 files, verified in the built CSS rather than the
-source. **Delete the table above when that branch lands**; until it does, do not read a green gate
-here as a cleared site.
+That table also taught something worth keeping: **naming a utility class in this file regenerates
+it.** Tailwind scans the repository for class-like strings, so the backlog listing
+`text-foreground/`+`40` as prose put the rule back into the production stylesheet — dead CSS nobody
+referenced, but enough to spoil the very check that proved the fix held. Refer to tokens and
+percentages here, not to utility class names.
 
 ### Other
 
