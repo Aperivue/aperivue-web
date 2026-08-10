@@ -4,7 +4,8 @@ version: alpha
 description: >
   Clinical, calm, bilingual (Korean + English). Slate neutrals carry ~90 % of every surface; a
   navy-to-cyan brand pair is spent sparingly. Built by a radiologist, for radiologists — specificity
-  over hype. Tokens lifted from design-system/colors_and_type.css; rules from design-system/README.md.
+  over hype. Tokens lifted from design-system/colors_and_type.css; this file is self-contained and
+  is the authority for anything it states.
 colors:
   background: "#f8fafc"
   surface: "#ffffff"
