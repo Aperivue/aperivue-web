@@ -309,8 +309,10 @@ utility classes inside JSX rather than in a token file:
 | Dark link on a card | `#3b82f6` | 3.98:1 | `#4c8df7` |
 
 `design-system/colors_and_type.css` has been updated, so anything built on the design system picks
-the corrected values up already. `src/app/globals.css` and the component JSX have not. Treat the
-table above as the remediation backlog, and do not read a green gate as a cleared site.
+the corrected values up already. `src/app/globals.css` and the component JSX are fixed on the
+companion branch **`a11y/wcag-aa-contrast`** — 53 files, verified in the built CSS rather than the
+source. **Delete the table above when that branch lands**; until it does, do not read a green gate
+here as a cleared site.
 
 ### Other
 
