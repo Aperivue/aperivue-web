@@ -1,0 +1,250 @@
+/* =============================================================
+ * Aperivue Design System — Colors & Type
+ * Lifted from src/app/globals.css in aperivue-web.
+ * Clinical / medical-blue palette, calm neutrals, Inter body,
+ * monospace for code blocks. Korean-English bilingual via Pretendard.
+ * ============================================================= */
+
+/* Web fonts — Google Fonts stand-ins for the production stack.
+ * Original stack: Geist + Geist Mono (next/font/google).
+ * Swapped to Inter + JetBrains Mono here for broader availability,
+ * plus Pretendard for Korean glyph coverage. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+:root {
+  /* ── Brand / core palette ─────────────────────────────────── */
+  --ap-background: #f8fafc;   /* slate-50  — page bg */
+  --ap-surface:    #ffffff;   /* cards, sheets */
+  --ap-muted:      #f1f5f9;   /* slate-100 — section bg */
+  --ap-border:     #cbd5e1;   /* slate-300 */
+  --ap-foreground: #0f172a;   /* slate-900 */
+
+  --ap-primary:      #1e40af; /* blue-800  — brand blue */
+  --ap-primary-dark: #1e3a8a; /* blue-900 */
+  --ap-accent:       #0891b2; /* cyan-600  — aperture/accent */
+
+  /* ── Semantic fg tokens (opacity steps on foreground) ─────── */
+  --ap-fg-1: #0f172a;              /* primary text */
+  --ap-fg-2: rgba(15, 23, 42, 0.80); /* body */
+  --ap-fg-3: rgba(15, 23, 42, 0.60); /* secondary */
+  --ap-fg-4: rgba(15, 23, 42, 0.40); /* tertiary / meta */
+  --ap-fg-5: rgba(15, 23, 42, 0.10); /* dividers-on-text */
+
+  /* ── Status / RADS risk ───────────────────────────────────── */
+  --ap-success:  #16a34a;  /* green-600  — "Live", "Active" */
+  --ap-success-bg: rgba(34, 197, 94, 0.10);
+  --ap-warning:  #d97706;  /* amber-600 */
+  --ap-warning-bg: rgba(217, 119, 6, 0.10);
+  --ap-danger:   #dc2626;  /* red-600    — S-modifier, high risk */
+  --ap-danger-bg: rgba(220, 38, 38, 0.10);
+  --ap-info:     var(--ap-accent);
+  --ap-info-bg:  rgba(8, 145, 178, 0.10);
+
+  /* ── Accessible text variants ─────────────────────────────────
+   * Additive. Nothing above changes; these are the values to use when
+   * the colour carries TEXT rather than decoration. Each was solved as
+   * the smallest hue-preserving darkening that reaches WCAG AA (4.5:1)
+   * against the surface it actually sits on — measured, not guessed.
+   *
+   * Every value is a Tailwind palette step, not a bespoke mix — the house
+   * rule is that status colours are never invented.
+   *
+   * --ap-accent      cyan-600 #0891b2 on --ap-background = 3.52:1  FAIL
+   * --ap-accent-text cyan-700 #0e7490 on --ap-background = 5.12:1  PASS
+   *
+   * Status colours are measured on their own 10% tint over the page, which
+   * is what the eye sees, not on the tint's declared value. That surface is
+   * lighter than the page, so they need the -800 step where text on the page
+   * itself would clear at -700. */
+  --ap-accent-text:  #0e7490;  /* cyan-700 — eyebrows, accent copy, and any
+                                  gradient end that carries white text */
+  --ap-link-text:    var(--ap-primary);  /* 8.34:1 on background; darkened only in dark mode */
+  --ap-success-text: #166534;  /* green-800 — on --ap-success-bg → 6.29:1 */
+  --ap-warning-text: #92400e;  /* amber-800 — on --ap-warning-bg → 6.11:1 */
+  --ap-danger-text:  #b91c1c;  /* red-700   — on --ap-danger-bg  → 5.31:1 */
+
+  /* A gradient that carries white text stops at --ap-accent-text rather than
+   * --ap-accent: white on #0891b2 is 3.68:1, white on #0e7490 is 5.36:1. One
+   * value serves both roles, so there is no second token to keep in sync. */
+
+  /* ── Gradient tokens ──────────────────────────────────────── */
+  --ap-gradient-brand: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
+  --ap-gradient-brand-soft: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(8, 145, 178, 0.05) 100%);
+
+  /* ── Radii ───────────────────────────────────────────────── */
+  --ap-radius-xs: 4px;
+  --ap-radius-sm: 6px;    /* inputs, small chips */
+  --ap-radius-md: 8px;    /* buttons, selects (rounded-lg) */
+  --ap-radius-lg: 12px;   /* cards inside forms (rounded-xl) */
+  --ap-radius-xl: 16px;   /* hero cards (rounded-2xl) */
+  --ap-radius-full: 9999px;
+
+  /* ── Shadow system (Tailwind-parity) ─────────────────────── */
+  --ap-shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --ap-shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
+  --ap-shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.10), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+  --ap-shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.10), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+
+  /* ── Spacing (4px grid; same scale as Tailwind 4) ─────────── */
+  --ap-space-1: 4px;
+  --ap-space-2: 8px;
+  --ap-space-3: 12px;
+  --ap-space-4: 16px;
+  --ap-space-5: 20px;
+  --ap-space-6: 24px;
+  --ap-space-8: 32px;
+  --ap-space-10: 40px;
+  --ap-space-12: 48px;
+  --ap-space-16: 64px;
+  --ap-space-20: 80px;
+  --ap-space-24: 96px;
+
+  /* ── Type families ────────────────────────────────────────── */
+  --ap-font-sans: "Inter", "Pretendard Variable", Pretendard, -apple-system,
+                  BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo",
+                  "Noto Sans KR", sans-serif;
+  --ap-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+                  Consolas, "Liberation Mono", monospace;
+  --ap-font-ko:   "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
+                  "Noto Sans KR", sans-serif;
+
+  /* ── Type scale (px, 4px rhythm) ─────────────────────────── */
+  --ap-text-xs:   12px;   /* meta, timestamps, tags inside pills */
+  --ap-text-sm:   14px;   /* secondary body, nav links */
+  --ap-text-base: 16px;   /* body */
+  --ap-text-lg:   18px;   /* large body / hero sub */
+  --ap-text-xl:   20px;   /* section heads */
+  --ap-text-2xl:  24px;   /* h2 */
+  --ap-text-3xl:  30px;   /* h1 on interior pages */
+  --ap-text-4xl:  36px;   /* hero (sm) */
+  --ap-text-5xl:  48px;   /* hero (md) */
+  --ap-text-7xl:  72px;   /* hero (lg) */
+
+  /* ── Letter spacing ──────────────────────────────────────── */
+  --ap-tracking-tightest: -0.04em;
+  --ap-tracking-tighter:  -0.02em;   /* headlines, logo */
+  --ap-tracking-tight:    -0.015em;
+  --ap-tracking-normal:   0;
+  --ap-tracking-widest:   0.12em;    /* taglines / eyebrows (uppercase) */
+
+  /* ── Line heights ────────────────────────────────────────── */
+  --ap-leading-tight:    1.15;  /* hero */
+  --ap-leading-snug:     1.3;   /* headings */
+  --ap-leading-normal:   1.5;   /* body */
+  --ap-leading-relaxed:  1.625; /* long-form blog copy */
+
+  /* ── Motion ──────────────────────────────────────────────── */
+  --ap-ease:       cubic-bezier(0.2, 0.0, 0.2, 1);  /* default tailwind-ish */
+  --ap-dur-fast:   120ms;  /* hover states */
+  --ap-dur-base:   200ms;  /* transitions */
+  --ap-dur-slow:   400ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ap-background: #0f172a;
+    --ap-foreground: #e2e8f0;
+    --ap-surface:    #1e293b;
+    --ap-muted:      #1e293b;
+    --ap-border:     #334155;
+    --ap-primary:      #3b82f6;
+    --ap-primary-dark: #2563eb;
+    --ap-accent:       #22d3ee;
+    --ap-fg-1: #e2e8f0;
+    --ap-fg-2: rgba(226, 232, 240, 0.85);
+    --ap-fg-3: rgba(226, 232, 240, 0.60);
+    --ap-fg-4: rgba(226, 232, 240, 0.40);
+    --ap-fg-5: rgba(226, 232, 240, 0.10);
+
+    /* Dark accessible text variants. The accent needs none here —
+     * #22d3ee on #0f172a is already 9.88:1. The link does: #3b82f6
+     * clears on the page (4.85:1) but not on a --ap-surface card
+     * (3.98:1), and one value has to satisfy both. */
+    --ap-accent-text: var(--ap-accent);
+    --ap-link-text:   #60a5fa;   /* blue-400 — on card 5.75:1, on page 7.02:1 */
+  }
+}
+
+/* =============================================================
+ * Semantic element defaults — use as a base layer for any
+ * standalone Aperivue HTML artifact.
+ * ============================================================= */
+
+html, body {
+  background: var(--ap-background);
+  color: var(--ap-fg-1);
+  font-family: var(--ap-font-sans);
+  font-size: var(--ap-text-base);
+  line-height: var(--ap-leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: clamp(var(--ap-text-4xl), 4vw + 1rem, var(--ap-text-7xl));
+  line-height: var(--ap-leading-tight);
+  letter-spacing: var(--ap-tracking-tighter);
+  font-weight: 700;
+  color: var(--ap-fg-1);
+}
+h2 {
+  font-size: var(--ap-text-3xl);
+  line-height: var(--ap-leading-snug);
+  letter-spacing: var(--ap-tracking-tight);
+  font-weight: 600;
+}
+h3 { font-size: var(--ap-text-xl); line-height: 1.35; font-weight: 600; }
+h4 { font-size: var(--ap-text-lg); line-height: 1.4;  font-weight: 600; }
+
+p, li { font-size: var(--ap-text-base); line-height: var(--ap-leading-relaxed); color: var(--ap-fg-2); }
+
+/* --ap-fg-4 is the 40% step. On this page it composites to 2.53:1 — it is a
+ * DECORATION token (dividers, disabled marks), not a text token. The 60% step
+ * clears AA in both themes (4.62:1 light, 5.87:1 dark), so meta copy uses it. */
+small, .ap-meta {
+  font-size: var(--ap-text-xs);
+  color: var(--ap-fg-3);
+}
+
+/* Eyebrow / tagline — uppercase, accent-colored, used above every hero.
+ * Uses --ap-accent-text, not --ap-accent: at 12px the raw accent is 3.52:1. */
+.ap-eyebrow {
+  font-size: var(--ap-text-xs);
+  font-weight: 500;
+  color: var(--ap-accent-text);
+  text-transform: uppercase;
+  letter-spacing: var(--ap-tracking-widest);
+}
+
+/* Gradient headline span — brand-signature treatment */
+.ap-gradient-text {
+  background: var(--ap-gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--ap-font-mono);
+  font-size: 0.9em;
+}
+
+pre {
+  background: #0f172a;         /* dark by default — blog code blocks */
+  color: #e2e8f0;
+  border-radius: var(--ap-radius-lg);
+  padding: var(--ap-space-4) var(--ap-space-5);
+  overflow-x: auto;
+  line-height: 1.55;
+}
+pre code { background: transparent; padding: 0; }
+code { background: var(--ap-muted); padding: 2px 6px; border-radius: var(--ap-radius-xs); }
+
+a { color: var(--ap-link-text); text-decoration: none; transition: color var(--ap-dur-fast) var(--ap-ease); }
+a:hover { text-decoration: underline; }
+
+hr { border: 0; border-top: 1px solid var(--ap-border); margin: var(--ap-space-12) 0; }
+
+/* Korean copy automatically uses Pretendard */
+:lang(ko) { font-family: var(--ap-font-ko); }
