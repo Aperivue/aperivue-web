@@ -47,20 +47,26 @@
    * the smallest hue-preserving darkening that reaches WCAG AA (4.5:1)
    * against the surface it actually sits on — measured, not guessed.
    *
-   * --ap-accent      #0891b2 on --ap-background = 3.52:1  FAIL
-   * --ap-accent-text #077d9a on --ap-background = 4.55:1  PASS
-   * status colours are measured on their own 10% tint over the page,
-   * which is what the eye sees, not on the tint's declared value. */
-  --ap-accent-text:  #077d9a;  /* eyebrows, accent-coloured copy */
+   * Every value is a Tailwind palette step, not a bespoke mix — the house
+   * rule is that status colours are never invented.
+   *
+   * --ap-accent      cyan-600 #0891b2 on --ap-background = 3.52:1  FAIL
+   * --ap-accent-text cyan-700 #0e7490 on --ap-background = 5.12:1  PASS
+   *
+   * Status colours are measured on their own 10% tint over the page, which
+   * is what the eye sees, not on the tint's declared value. That surface is
+   * lighter than the page, so they need the -800 step where text on the page
+   * itself would clear at -700. */
+  --ap-accent-text:  #0e7490;  /* cyan-700 — eyebrows, accent copy, and any
+                                  gradient end that carries white text */
   --ap-link-text:    var(--ap-primary);  /* 8.34:1 on background; darkened only in dark mode */
-  --ap-success-text: #117d39;  /* on --ap-success-bg → 4.62:1 */
-  --ap-warning-text: #a25904;  /* on --ap-warning-bg → 4.56:1 */
-  --ap-danger-text:  #ca2121;  /* on --ap-danger-bg  → 4.60:1 */
+  --ap-success-text: #166534;  /* green-800 — on --ap-success-bg → 6.29:1 */
+  --ap-warning-text: #92400e;  /* amber-800 — on --ap-warning-bg → 6.11:1 */
+  --ap-danger-text:  #b91c1c;  /* red-700   — on --ap-danger-bg  → 5.31:1 */
 
-  /* White label on the brand gradient fails past this stop:
-   * white on #0891b2 = 3.68:1, white on #0e7490 = 5.36:1.
-   * Text-bearing gradient surfaces stop here instead of at --ap-accent. */
-  --ap-gradient-text-safe-end: #0e7490;
+  /* A gradient that carries white text stops at --ap-accent-text rather than
+   * --ap-accent: white on #0891b2 is 3.68:1, white on #0e7490 is 5.36:1. One
+   * value serves both roles, so there is no second token to keep in sync. */
 
   /* ── Gradient tokens ──────────────────────────────────────── */
   --ap-gradient-brand: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);

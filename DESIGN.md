@@ -16,8 +16,7 @@ colors:
   primary-dark: "#1e3a8a"
   primary-tint: "rgba(30, 64, 175, 0.10)"
   accent: "#0891b2"
-  accent-text: "#077d9a"
-  gradient-text-safe-end: "#0e7490"
+  accent-text: "#0e7490"
   on-brand: "#ffffff"
   fg-1: "#0f172a"
   fg-2: "rgba(15, 23, 42, 0.80)"
@@ -26,13 +25,13 @@ colors:
   fg-5: "rgba(15, 23, 42, 0.10)"
   success: "#16a34a"
   success-bg: "rgba(34, 197, 94, 0.10)"
-  success-text: "#117d39"
+  success-text: "#166534"
   warning: "#d97706"
   warning-bg: "rgba(217, 119, 6, 0.10)"
-  warning-text: "#a25904"
+  warning-text: "#92400e"
   danger: "#dc2626"
   danger-bg: "rgba(220, 38, 38, 0.10)"
-  danger-text: "#ca2121"
+  danger-text: "#b91c1c"
   code-surface: "#0f172a"
   code-foreground: "#e2e8f0"
 typography:
@@ -137,7 +136,7 @@ components:
     borderRadius: "{rounded.full}"
     typography: "{typography.body}"
   button-brand-gradient-end:
-    background: "{colors.gradient-text-safe-end}"
+    background: "{colors.accent-text}"
     foreground: "{colors.on-brand}"
     borderRadius: "{rounded.full}"
     typography: "{typography.body}"
@@ -203,10 +202,21 @@ the same place in both themes. `fg-4` is a decoration token — dividers, disabl
 and never carries text. Darkening it is not a fix: the value that clears AA is `#6e737e`, which is
 `fg-3` again.
 
-Colours that carry text have an explicit `-text` variant, each solved as the smallest hue-preserving
-darkening that reaches 4.5:1 on the surface it actually sits on. `accent` stays `#0891b2` for
-decoration; `accent-text` `#077d9a` is what an eyebrow uses. Status pills are measured against their
-own 10 % tint composited over the page, which is what the eye sees.
+Colours that carry text have an explicit `-text` variant. Every one is a **Tailwind palette step**,
+never a bespoke mix — inventing a status colour is against house rules, and the palette already
+holds a step that clears AA. `accent` stays cyan-600 for decoration; `accent-text` is cyan-700
+`#0e7490`, which an eyebrow uses and which is also where a gradient carrying white text must stop
+(white on cyan-600 is 3.68:1, on cyan-700 5.36:1 — one value, two roles, nothing to keep in sync).
+
+Status pills are measured against their own 10 % tint composited over the page, which is what the
+eye sees. That tint is lighter than the page, so a pill needs the **-800** step where the same
+colour as plain text on the page would clear at -700:
+
+| role | on the page | on its own 10 % tint |
+|---|---|---|
+| success | green-700 `#15803d` 4.79:1 | green-800 `#166534` 6.29:1 |
+| warning | amber-700 `#b45309` 4.80:1 | amber-800 `#92400e` 6.11:1 |
+| danger | red-700 `#b91c1c` 6.18:1 | red-700 `#b91c1c` 5.31:1 |
 
 Section rhythm comes from alternating `background` and `muted` bands separated by a 1 px `border`.
 The CTA block inverts fully: near-black `foreground` as the surface, `background` as the text.
@@ -270,8 +280,11 @@ width 1.5 on landing pages and 2 in buttons and nav. There is no icon font and n
   illustration. The only gradients permitted are the logo, `bg-clip-text` headline spans, the
   feature-card tint, and the RADS footer banner.
 - **Don't** put white text on the cyan end of the brand gradient at body size — white on `accent`
-  measures **3.68:1**. Behind text the gradient stops at `gradient-text-safe-end` `#0e7490`
-  (5.36:1); the full-saturation stop is for text-free surfaces only.
+  measures **3.68:1**. Behind text the gradient stops at `accent-text` cyan-700 (5.36:1); the
+  full-saturation stop is for text-free surfaces only. Gradient *headlines* (`bg-clip-text`) are
+  exempt: every one runs 36 px or larger, so the 3:1 large-text bar applies and accent clears it.
+- **Don't** touch the wordmark. WCAG exempts logotypes from contrast requirements, so the accent
+  `vue` in the logo stays cyan-600.
 - **Don't** substitute another icon family (Lucide, Font Awesome, Material).
 - **Don't** invent a status colour. Greens and reds come from the Tailwind defaults above.
 - **Don't** say "Revolutionary", or "AI-powered" as a standalone claim. When something is not
