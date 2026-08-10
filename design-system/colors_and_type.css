@@ -162,7 +162,7 @@
      * clears on the page (4.85:1) but not on a --ap-surface card
      * (3.98:1), and one value has to satisfy both. */
     --ap-accent-text: var(--ap-accent);
-    --ap-link-text:   #4c8df7;   /* on card 4.50:1, on page 5.49:1 */
+    --ap-link-text:   #60a5fa;   /* blue-400 — on card 5.75:1, on page 7.02:1 */
   }
 }
 

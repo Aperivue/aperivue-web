@@ -4,7 +4,7 @@
     "literal rather than token references \u2014 they come from the prefers-color-scheme: dark block in",
     "design-system/colors_and_type.css. Run with: --pairs DESIGN.contrast.dark.json --page-bg '#0f172a'",
     "Font sizes match the typography roles declared in DESIGN.md.",
-    "Foregrounds reflect the corrected dark tokens: meta moves from the 40% step to the 60% step, and links on a card use #4c8df7. The border pair was removed - borders are non-text and AA text thresholds do not apply to them."
+    "Foregrounds reflect the corrected dark tokens: meta moves from the 40% step to the 60% step, and links on a card use blue-400 #60a5fa. The border pair was removed - borders are non-text and AA text thresholds do not apply to them."
   ],
   "pairs": [
     {
@@ -65,7 +65,7 @@
     },
     {
       "label": "dark link on card",
-      "fg": "#4c8df7",
+      "fg": "#60a5fa",
       "bg": "#1e293b",
       "fontSize": 16,
       "bold": false
