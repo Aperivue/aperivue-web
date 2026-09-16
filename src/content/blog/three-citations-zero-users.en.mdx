@@ -1,0 +1,94 @@
+---
+title: "Three Papers Cite It. Nobody Has Written About Using It."
+description: "Five months of medsci-skills in numbers: 302 stars, 73 forks, three academic citations, and zero third-party usage reports. What that gap means, why I am not publishing download counts, and why I expect the project's growth to stop."
+date: "2026-09-16"
+tags: ["medsci-skills", "open-source", "medical-ai", "research-automation", "metrics"]
+---
+
+## The Number I Did Not Expect
+
+Three papers now cite the architecture behind this toolkit. I have not found a single person who has written publicly about using it.
+
+I went looking, twice. Blog posts, Reddit threads, Korean forums, roundups of "Claude skills physicians actually use." The tool appears in catalogues and awesome-lists. It does not appear in anyone's account of their own work.
+
+That gap is the most interesting fact about this project right now, and it is more useful to write about than a star count.
+
+## Five Months, Measured
+
+The repository is five months old today. First commit: 6 April 2026.
+
+- **302** stars, **73** forks, **12** watchers
+- **907** commits
+- **59** skills, **49** reporting guidelines, **90** integrity detectors, **251** CI gates
+- **2,179** views from **740** unique visitors in the last fourteen days
+- **4** merged pull requests from outside contributors, by **2** people
+
+The ratio I keep watching is forks to stars: 24.2%. In May, when the repository crossed a hundred stars, I argued that thirty forks mattered more than a hundred and six stars, because stars are bookmarks and forks signal intent to run or modify something. Typical open-source projects sit at five to ten percent. Four months later the ratio holds. Whatever else is true, the people arriving are not only saving the link.
+
+## Why I Am Not Showing You Downloads
+
+There are two larger numbers I could have put in that list, and both would have been dishonest.
+
+**Release downloads** grow with how often you tag a release, not with how many people use your software. Automated mirrors, scanners and crawlers fetch assets from every new release. Over one 37-day stretch earlier this year I cut 42 releases, and cumulative downloads roughly doubled. Downloads *per release* collapsed from 32 to 5. I was about to quote that doubling as evidence of adoption. It was evidence that I had tagged a lot of releases.
+
+**Clone counts** include continuous integration. GitHub counts every CI checkout as a clone, and this repository's own pipelines run on every push.
+
+Stars, forks and unique visitors are the numbers a person has to produce deliberately. Those are the ones above. The habit of asking *does this metric count users or does it count me* is the same habit the toolkit exists to enforce, and it would be strange to abandon it in a post about the toolkit.
+
+## What the Data Says About Non-Engineers Building Tools
+
+I am a physician. I did not learn to program in order to build this, and for a long time the honest description of what that means was unavailable to me, because the only evidence was my own impression of my own work.
+
+There is now better evidence. In June, Anthropic published an analysis of roughly 400,000 Claude Code sessions from about 235,000 users, covering October 2025 to April 2026. Two findings matter here.
+
+Verified success was reached in about **30%** of sessions for people in software occupations, and about **26%** for everyone else. Among sessions that produced code, all ten of the largest occupations in the dataset landed within seven points of software engineers. The paper states the conclusion directly: *"Domain expertise, and not coding proficiency, amplifies effective use of the tool."*
+
+The gap that did matter was expertise within a domain. Sessions rated novice reached verified success 15% of the time against 28 to 33% for intermediate and above, and when a session hit trouble, novices abandoned it 19% of the time against 5 to 7% for everyone else.
+
+That is why a radiologist could build a research toolkit. The part that decides whether a session succeeds turned out to be the part I already had: knowing what a wrong answer looks like in this field.
+
+## Cited Three Times, Used Zero Times
+
+The architecture paper went up in June. Three works have cited it since.
+
+A survey on recursive self-improvement cites it as the reference for what fails when an AI audits its own scientific output.
+
+A second paper applies the same structure to personal health records, and arrived at it independently. Extracted values stay provisional until a deterministic checker validates them against the source. The generator may not authorise its own output, ambiguous evidence triggers refusal, and rejected candidates go to a human queue instead of being dropped.
+
+A group in another country reached that design from a different problem. That was the most encouraging thing that happened to this project all year.
+
+The third is a white paper that names only two prior systems applying deterministic gates to a pipeline's own output, places this work as one of them, and writes: *"The present work uses the same verification primitive."*
+
+So the idea travels and the software does not. I think the reason is straightforward. An idea costs a paragraph to adopt; a toolkit costs an afternoon to install and a working knowledge of an agent host to run. The install path is the thing I have underinvested in, and the five clinician-facing "good first issue" tickets sitting unclaimed in the repository say the same thing from another direction.
+
+## The Part I Expect to Be True
+
+I expect this project's growth to stop.
+
+Foundation models keep improving, and the harnesses their makers ship keep absorbing capability that used to require assembly. Subagents, persistent memory, orchestration, skills as a first-class concept: all of it is now built in, and I never led on any of it. A single physician maintaining a research toolkit in evenings is not going to out-engineer that, and pretending otherwise would waste the time I have.
+
+Those harnesses do not absorb the labour underneath the domain-specific parts. When I audited the 49 EQUATOR reporting instruments this toolkit ships against their source documents, roughly two-thirds needed correction. Wrong item counts, invented thresholds where the original leaves a blank, one file that was not the instrument at all. Fixing that meant opening the original PDF, comparing line by line, and in one case writing to the body that distributes the instrument. A more capable model does not generate a verified checklist. It generates a plausible one, which is the problem.
+
+The same is true of the journal profiles, the submission failure modes, and the accumulated knowledge that one publisher's production system rejects a particular heading level. That is a record of what went wrong, kept by someone it went wrong for. No harness ships it.
+
+So the honest forecast is that the generic half of this project gets commoditised and the specific half keeps its value but needs maintenance, because guidelines get revised. QUADAS-2 was superseded by QUADAS-3 while this toolkit was being written.
+
+## Checking My Own Numbers
+
+While writing this post I traced every external statistic to its primary source. Two of the four were wrong as commonly quoted.
+
+The Anthropic success rates circulate widely as 34% and 29%. The paper says 30% and 26%. And a figure attributed to Stack Overflow's developer survey, that only 3% of developers fully trust AI output, does not appear in Stack Overflow's own write-up at all.
+
+Stack Overflow's actual figures are worth quoting: 84% of developers use or plan to use AI tools, up from about 70% in 2023, while trust fell to 29% from 40% the year before. Adoption climbing and trust falling at the same time is the entire premise of building verification into a research pipeline.
+
+Two of four numbers drifted in the retelling, and the only thing that caught them was opening the source. That is what the toolkit is for.
+
+## Where This Leaves the Project
+
+DHH said recently that the last year of AI coding turned on the harness rather than on raw intelligence: the loop where a model runs the code, reads the error, and fixes it without a human in the middle. He also said he shipped a Linux distribution written entirely by AI without opening the code.
+
+He can do that because a compiler tells him within seconds when something is wrong, and users tell him within hours. A clinical manuscript has no compiler. The judge is a reviewer three months later, or nobody. Every deterministic gate in this repository is an attempt to manufacture, for one narrow field, the feedback signal that programming already has.
+
+I do not know whether that attempt outlives my spare time. But three groups have now built on the idea, one of them independently, and the toolkit is MIT licensed and will stay where it is. If the contribution turns out to have been one step in something larger, that is a reasonable outcome for five months of evenings.
+
+The repository is at [github.com/Aperivue/medsci-skills](https://github.com/Aperivue/medsci-skills). If you use it for real work, I would rather read your account of that than gain another star.
