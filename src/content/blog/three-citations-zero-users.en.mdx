@@ -75,19 +75,21 @@ So the honest forecast is that the generic half of this project gets commoditise
 
 ## Checking My Own Numbers
 
-While writing this post I traced every external statistic to its primary source. Two of the four were wrong as commonly quoted.
+*Correction, 19 September 2026: an earlier version of this section said that two commonly quoted figures were wrong. Both are in their sources, under conditions the retellings dropped. The section has been rewritten; the original claim is described below.*
 
-The Anthropic success rates circulate widely as 34% and 29%. The paper says 30% and 26%. And a figure attributed to Stack Overflow's developer survey, that only 3% of developers fully trust AI output, does not appear in Stack Overflow's own write-up at all.
+While writing this post I traced every external statistic to its primary source, and my first pass called two of the four wrong as commonly quoted. A second pass showed that both are in the sources.
 
-Stack Overflow's actual figures are worth quoting: 84% of developers use or plan to use AI tools, up from about 70% in 2023, while trust fell to 29% from 40% the year before. Adoption climbing and trust falling at the same time is the entire premise of building verification into a research pipeline.
+The Anthropic success rates circulate as 34% and 29%. The paper reports 30% and 26% across all sessions, and 34% and 29% among sessions that produced code (its Figure 6). Both pairs are in the paper; what the retellings dropped was the cut. The Stack Overflow figure that "only 3% of developers trust AI output" is also real: 3.1% of respondents said they *highly* trust the accuracy of AI tools. What the retellings dropped was the word *highly*.
 
-Two of four numbers drifted in the retelling, and the only thing that caught them was opening the source. That is what the toolkit is for.
+Stack Overflow's other figures are worth quoting: 84% of developers use or plan to use AI tools, up from about 70% in 2023, while trust in accuracy fell to 29% from 40% in previous years. Adoption climbing and trust falling at the same time is the entire premise of building verification into a research pipeline.
+
+So the numbers did not drift in the retelling; their conditions did. And my own check, which opened each source once and stopped, missed the other cut and called two correct figures wrong. That is a more precise description of what the toolkit is for: not whether a number is right, but whether the denominator and the qualifier attached to it survived.
 
 ## Where This Leaves the Project
 
-DHH said recently that the last year of AI coding turned on the harness rather than on raw intelligence: the loop where a model runs the code, reads the error, and fixes it without a human in the middle. He also said he shipped a Linux distribution written entirely by AI without opening the code.
+DHH said recently that the last year of AI coding turned on the harness rather than on raw intelligence: the loop where a model runs the code, reads the error, and fixes it without a human in the middle. He also said that for the last two months of his Linux distribution, AI wrote all the code; he reviewed the critical parts and did not open much of the UI code.
 
-He can do that because a compiler tells him within seconds when something is wrong, and users tell him within hours. A clinical manuscript has no compiler. The judge is a reviewer three months later, or nobody. Every deterministic gate in this repository is an attempt to manufacture, for one narrow field, the feedback signal that programming already has.
+He can skip that much because a compiler tells him within seconds when something is wrong, and users tell him within hours. A clinical manuscript has no compiler. The judge is a reviewer three months later, or nobody. Every deterministic gate in this repository is an attempt to manufacture, for one narrow field, the feedback signal that programming already has.
 
 I do not know whether that attempt outlives my spare time. But three groups have now built on the idea, one of them independently, and the toolkit is MIT licensed and will stay where it is. If the contribution turns out to have been one step in something larger, that is a reasonable outcome for five months of evenings.
 
