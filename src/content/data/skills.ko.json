@@ -42,7 +42,7 @@
       "description": ".md / .docx / .bib / .tsv 원고의 투고 전 레퍼런스 감사. CrossRef + PubMed로 DOI/PMID를 검증하고 qc/reference_audit.json을 단일 진실 소스로 기록합니다. 가짜 레퍼런스가 투고되기 전에 차단합니다. Gate 5 PMID/DOI 중복 탐지 포함.",
       "features": [
         "CrossRef & PubMed 기반 DOI + PMID 검증",
-        "verified_references.tsv / library.bib / reference_audit.json 출력",
+        "qc/reference_audit.json만 출력, 레퍼런스·.bib은 수정하지 않음",
         "PostToolUse 훅이 원고 저장 시 자동 실행 (auto / warn / enforce 모드)",
         "PMID/DOI 중복 탐지"
       ],
@@ -152,7 +152,7 @@
       "name": "meta-analysis",
       "title": "메타분석",
       "category": "analysis_figures",
-      "description": "8단계 체계적 문헌고찰 및 메타분석 파이프라인. DTA (bivariate/HSROC) 및 중재 MA를 PRISMA-DTA 기준으로. Dual-extractor + cohort overlap 탐지 포함.",
+      "description": "10단계 체계적 문헌고찰 및 메타분석 파이프라인. DTA (bivariate/HSROC) 및 중재 MA를 PRISMA-DTA 기준으로. Dual-extractor + cohort overlap 탐지 포함.",
       "features": [
         "프로토콜부터 원고까지 파이프라인",
         "Bivariate & HSROC 모델",
@@ -393,12 +393,12 @@
       "name": "peer-review",
       "title": "동료 심사 초안",
       "category": "review_compliance",
-      "description": "의학영상 저널용 체계적 동료 심사 초안 작성. 저널별 포맷(RYAI, INSI, EURE, AJR, KJR), 간결성 목표(500~800단어), 제출 전 QC 체크리스트를 제공합니다. Phase 2A SR-MA 8-probe 확장 포함.",
+      "description": "의학영상 저널용 체계적 동료 심사 초안 작성. 저널별 포맷(RYAI, INSI, EURE, AJR, KJR), 분량 목표(기본 700~1,000단어), 제출 전 QC 체크리스트를 제공합니다. Phase 2A SR-MA probe 확장(P1–P19) 포함.",
       "features": [
         "근거 포함 Major/Minor/Reject 추천",
         "영상의학 5개 저널 포맷 프리셋",
         "제출 전 QC: 단어 수, 톤, 윤리 적신호",
-        "SR-MA Phase 2A (P1-P8)"
+        "SR-MA Phase 2A (P1–P19)"
       ],
       "isNew": true
     },
@@ -430,11 +430,11 @@
       "name": "obsidian-paper-vault",
       "title": "Obsidian 논문 볼트",
       "category": "literature_references",
-      "description": "연구 PDF 폴더를 Obsidian literature note(논문당 1개)와 교차 링크된 concept note로 변환. 기존 노트는 덮어쓰지 않음.",
+      "description": "연구 PDF 폴더를 Obsidian 노트로 바꿉니다. 논문마다 템플릿 기반 literature note를 하나씩 만들고, 여러 논문에 걸친 atomic concept note를 종합해 교차 링크합니다. 수치·저자·날짜는 PDF 본문에서 옮겨 적고, 기존 노트는 덮어쓰지 않습니다. .bib 파일이나 Zotero 라이브러리는 /lit-sync를 쓰세요.",
       "features": [
         "PDF마다 템플릿 기반 literature note 1개",
-        "여러 논문을 종합한 교차 링크 atomic concept note",
-        "수치·저자·날짜는 PDF 본문에서 옮겨 적고, 기존 노트는 덮어쓰지 않음"
+        "여러 논문을 잇는 교차 링크 atomic concept note",
+        "PDF 본문에서만 옮겨 적고, 기존 노트는 덮어쓰지 않음"
       ],
       "isNew": true
     },
@@ -445,7 +445,7 @@
       "description": "의학 AI 논문의 AI 검색 엔진(Perplexity, ChatGPT web, Elicit, Consensus, SciSpace) 및 RAG 문헌 도구 대상 노출 체크리스트. TRIPOD+AI, CLAIM, STARD-AI, TRIPOD-LLM, DECIDE-AI 보고 앵커를 generative-engine-optimization(GEO) 원칙과 결합합니다.",
       "features": [
         "Title, Abstract, Key Points, Plain-Language Summary, 프리프린트, README, CITATION.cff, Zenodo, Hugging Face 카드까지 커버",
-        "LLM 인용 조작 방어 (Agarwal 2025, Nat Commun)",
+        "LLM 인용 조작 방어",
         "가시적 PASS / PARTIAL / FAIL 체크리스트 — 은밀한 편집 금지"
       ],
       "isNew": true
@@ -548,9 +548,9 @@
     },
     {
       "category": "writing_manuscript",
-      "description": "학술 영어 일관성 린팅과 비원어민(ESL) 명료화 교정. 결정론적 린터가 약어·US/UK 철자·en-dash 범위·P/p 표기·하이픈·단위 간격 문제를 표시하고, 게이트형 교정이 수치·인용·과학적 의미를 건드리지 않고 문장만 다듬습니다.",
+      "description": "학술 영어 일관성 린팅과 비원어민(ESL) 명료화 교정. 결정론적 린터가 약어·US/UK 철자·en-dash 범위·P/p 표기·하이픈·숫자 표기·단위 간격 문제를 표시하고, 게이트형 교정이 수치·인용·과학적 의미를 건드리지 않고 문장만 다듬습니다.",
       "features": [
-        "7종 결정론적 일관성 리포트",
+        "8종 결정론적 일관성 리포트",
         "문체만 교정 — 수치·인용 불변",
         "humanize(AI 문체 제거)와 구분"
       ],
@@ -562,11 +562,12 @@
       "name": "model-selection",
       "title": "모델 선택",
       "category": "model_engineering",
-      "description": "논문에 근거한 의료영상 아키텍처 선택, 이어서 실제 repository·checkpoint의 licence, version pin, weight provenance, benchmark 중복 점검.",
+      "description": "의료영상 연구의 아키텍처 선택과 모델 검증. task·modality·데이터 규모·class imbalance를 근거로 논문에 기반한 아키텍처 후보를 좁히고, 실제로 쓸 repository·revision·checkpoint의 licence, version pin, weight provenance, benchmark 중복을 model dossier에 기록해 결정론적으로 게이트합니다.",
       "features": [
-        "Task → 아키텍처 의사결정 트리, 후보마다 원논문 명시",
+        "Task → 아키텍처 의사결정 트리, 아키타입마다 원논문 명시",
         "licence·intended use·pretrained weight provenance 기록",
-        "모델 개발에 쓰인 benchmark 위에 올라간 evaluation arm 적발"
+        "모델 개발에 쓰인 benchmark 위에 올라간 evaluation arm 적발",
+        "artifact를 검증할 뿐 내려받거나 실행하지 않음"
       ],
       "isNew": true
     },
@@ -586,11 +587,12 @@
       "name": "model-assessment",
       "title": "모델 검증·평가",
       "category": "model_engineering",
-      "description": "학습된 영상 모델의 validation 설계, task에 맞는 held-out metric(Dice + HD95, AUROC + AUPRC, FROC, calibration), uncertainty/OOD, explainability를 각각 게이트로 점검.",
+      "description": "엔지니어가 만든 의료영상 모델의 validation 설계, held-out metric, uncertainty, explainability를 각각 결정론적 게이트로 점검합니다. 환자 단위 split disjointness와 external validation, task에 맞는 metric(Dice + HD95, AUROC/AUPRC, FROC, calibration)과 환자 단위 bootstrap CI, OOD 가드, Grad-CAM sanity check를 다룹니다.",
       "features": [
         "Split-leakage 게이트로 환자 disjointness 증명",
-        "task에 맞는 held-out metric, 실행된 코드에서만 산출",
-        "uncertainty/OOD 및 saliency sanity-check 게이트"
+        "bootstrap CI를 포함한 task별 metric, 실행된 코드에서만 산출",
+        "측정되지 않은 uncertainty coverage·검증되지 않은 OOD 가드 적발",
+        "Grad-CAM sanity check + ground truth 대비 정량 localization"
       ],
       "isNew": true
     },
@@ -620,13 +622,14 @@
     },
     {
       "name": "imaging-data",
-      "title": "영상 데이터 준비",
+      "title": "영상 데이터 프로파일링·전처리",
       "category": "model_engineering",
-      "description": "DICOM/NIfTI 데이터셋의 spacing, orientation, intensity, label을 계획과 대조해 프로파일링하고, preprocessing·augmentation을 leakage 관점에서 설계·감사.",
+      "description": "의료영상 모델을 위한 데이터셋 프로파일링과 전처리. voxel spacing, orientation, intensity domain, 실제로 존재하는 label 값, target이 차지하는 부피 비율을 측정해 선언한 계획과 대조하고, DICOM/NIfTI resampling·normalization·augmentation을 설계·감사해 학습 전에 leakage-safe한 파이프라인을 만듭니다.",
       "features": [
         "ground truth가 없는 \"test set\"을 탐지",
         "label과 image의 grid 불일치·미등록 label index 적발",
-        "data-stage leakage 게이트 (normalizer는 train에서만 fit)"
+        "data-stage leakage 게이트 (normalizer는 train에서만 fit)",
+        "MONAI / TorchIO transform 통합"
       ],
       "isNew": true
     },
