@@ -29,7 +29,7 @@ const categories = [
         name: "write-protocol",
         label: "Protocol Writing",
         prompt: "/write-protocol Draft the IRB protocol for this study",
-        note: "SPIRIT-based 4 core sections + TODO markers",
+        note: "4 core sections in full prose + TODO markers for institution-specific parts",
       },
     ],
   },
@@ -79,7 +79,7 @@ const categories = [
         name: "self-review",
         label: "Self Review",
         prompt: "/self-review Review this manuscript before submission",
-        note: "Reviewer-perspective check across 10 categories. Major/Minor classification",
+        note: "Reviewer-perspective check across 12 categories. Major/Minor classification",
       },
       {
         name: "find-journal",

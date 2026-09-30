@@ -86,7 +86,7 @@
       "name": "analyze-stats",
       "title": "통계 분석",
       "category": "analysis_figures",
-      "description": "회귀분석, propensity score, 반복측정 등 13개 분석 유형을 위한 재현 가능한 Python/R 코드. 예측 모델에는 calibration 필수.",
+      "description": "회귀분석, propensity score, 반복측정 등 22개 분석 유형을 위한 재현 가능한 Python/R 코드. 예측 모델에는 calibration 필수.",
       "features": [
         "회귀(로지스틱/선형), propensity score (PSM/IPTW), 반복측정 (GEE/혼합모형)",
         "DTA, 생존분석, 인구통계, 일치도",
@@ -110,7 +110,7 @@
       "category": "submission_journals",
       "description": "연구의 중요성, 혁신성, 접근법, 마일스톤, 컨소시엄 역할을 구조화합니다.",
       "features": [
-        "NIH / 한국연구재단 형식 지원",
+        "한국 정부 산학과제 모드 (첨부 3종 구성)",
         "Specific Aims 페이지",
         "예산 정당화"
       ]
@@ -177,7 +177,7 @@
       "name": "self-review",
       "title": "자가 리뷰",
       "category": "review_compliance",
-      "description": "투고 전 10개 카테고리 점검. 연구 유형별 분기 지원 (AI, 관찰, 교육, 메타분석, 증례, 외과).",
+      "description": "투고 전 12개 카테고리 점검. 연구 유형별 분기 지원 (AI, 관찰, 교육, 메타분석, 증례, 외과).",
       "features": [
         "Major / Minor 심각도 분류",
         "예측 모델 calibration 필수 확인",
@@ -216,7 +216,7 @@
       "description": "SSOT ↔ submission 드리프트 감사 및 저널 패키지 도우미. submission/{journal}/를 파생 출력물로 취급하고 .journal_meta.json에 소스 해시를 기록하며, 드리프트가 발생한 패키지의 freeze를 차단합니다.",
       "features": [
         "SHA-256 소스 해시 기반 드리프트 감지",
-        "저널별 패키지 freeze / unfreeze 워크플로우",
+        "저널별 패키지 build / audit / freeze 명령",
         "SSOT 분기 시 투고 차단"
       ],
       "isNew": true
@@ -225,7 +225,7 @@
       "name": "calc-sample-size",
       "title": "표본 크기 계산",
       "category": "data_study_design",
-      "description": "결정 트리 기반 검정 선택으로 11개 설계를 지원하는 대화형 표본 크기 계산기. Cox regression EPV 포함.",
+      "description": "결정 트리 기반 검정 선택으로 17개 설계를 지원하는 대화형 표본 크기 계산기. Cox regression EPV 포함.",
       "features": [
         "DTA, t-test, ANOVA, chi-square, McNemar, 생존분석",
         "로지스틱 회귀 & Cox EPV (Peduzzi 규칙)",
@@ -252,7 +252,7 @@
       "description": "스코프, Impact Factor, 심사 기간, OA 정책을 기반으로 투고 저널을 매칭합니다.",
       "features": [
         "스코프 & 독자층 매칭",
-        "Impact Factor / CiteScore 조회",
+        "투고 준비도 사전 점검 + 거절 시 대체 저널 순서",
         "OA 비용 & 심사 기간 추정"
       ],
       "isNew": true
@@ -261,11 +261,11 @@
       "name": "write-protocol",
       "title": "프로토콜 작성",
       "category": "writing_manuscript",
-      "description": "SPIRIT 기준 연구 프로토콜과 체계적 문헌고찰용 PROSPERO 등록 초안을 생성합니다.",
+      "description": "IRB·윤리위원회 연구계획서 초안을 작성합니다. 배경, 연구 설계, 표본 크기, 통계 분석 계획은 완성된 문장으로 쓰고, 기관별 항목은 TODO 골격으로 남깁니다.",
       "features": [
-        "SPIRIT 체크리스트 통합",
-        "PROSPERO 등록 초안",
-        "윤리위원회 제출 보일러플레이트"
+        "4개 핵심 섹션을 완성된 문장으로 작성",
+        "기관별 항목은 지어내지 않고 TODO로 표시",
+        "기관 Word 양식 채우기는 /fill-protocol로 연계"
       ],
       "isNew": true
     },
@@ -337,7 +337,7 @@
       "features": [
         "자기조정 방지 & EPV 체크",
         "Bonferroni 보정 & 요약 히트맵",
-        "검증: KNHANES 18조합, 3국 45조합 성공"
+        "검증: KNHANES 및 다국가 조합에서 실행"
       ],
       "isNew": true
     },
@@ -349,7 +349,7 @@
       "features": [
         "원본 양식 구조 보존 — 레이아웃 깨짐 없음",
         "한국 IRB 양식 셀 레이블 매칭",
-        "원본 백업 + LibreOffice 변환"
+        "구형 .doc 양식은 LibreOffice로 .docx 변환"
       ],
       "isNew": true
     },
@@ -430,11 +430,11 @@
       "name": "obsidian-paper-vault",
       "title": "Obsidian 논문 볼트",
       "category": "literature_references",
-      "description": "연구 PDF 폴더를 Obsidian 노트로 바꿉니다. 논문마다 템플릿 기반 literature note를 하나씩 만들고, 여러 논문에 걸친 atomic concept note를 종합해 교차 링크합니다. 수치·저자·날짜는 PDF 본문에서 옮겨 적고, 기존 노트는 덮어쓰지 않습니다. .bib 파일이나 Zotero 라이브러리는 /lit-sync를 쓰세요.",
+      "description": "연구 PDF 폴더를 Obsidian literature note(논문당 1개)와 교차 링크된 concept note로 변환. 기존 노트는 덮어쓰지 않음.",
       "features": [
         "PDF마다 템플릿 기반 literature note 1개",
-        "여러 논문을 잇는 교차 링크 atomic concept note",
-        "PDF 본문에서만 옮겨 적고, 기존 노트는 덮어쓰지 않음"
+        "여러 논문을 종합한 교차 링크 atomic concept note",
+        "수치·저자·날짜는 PDF 본문에서 옮겨 적고, 기존 노트는 덮어쓰지 않음"
       ],
       "isNew": true
     },
@@ -562,7 +562,7 @@
       "name": "model-selection",
       "title": "모델 선택",
       "category": "model_engineering",
-      "description": "의료영상 연구의 아키텍처 선택과 모델 검증. task·modality·데이터 규모·class imbalance를 근거로 논문에 기반한 아키텍처 후보를 좁히고, 실제로 쓸 repository·revision·checkpoint의 licence, version pin, weight provenance, benchmark 중복을 model dossier에 기록해 결정론적으로 게이트합니다.",
+      "description": "논문에 근거한 의료영상 아키텍처 선택, 이어서 실제 repository·checkpoint의 licence, version pin, weight provenance, benchmark 중복 점검.",
       "features": [
         "Task → 아키텍처 의사결정 트리, 아키타입마다 원논문 명시",
         "licence·intended use·pretrained weight provenance 기록",
@@ -587,7 +587,7 @@
       "name": "model-assessment",
       "title": "모델 검증·평가",
       "category": "model_engineering",
-      "description": "엔지니어가 만든 의료영상 모델의 validation 설계, held-out metric, uncertainty, explainability를 각각 결정론적 게이트로 점검합니다. 환자 단위 split disjointness와 external validation, task에 맞는 metric(Dice + HD95, AUROC/AUPRC, FROC, calibration)과 환자 단위 bootstrap CI, OOD 가드, Grad-CAM sanity check를 다룹니다.",
+      "description": "학습된 영상 모델의 validation 설계, task에 맞는 held-out metric(Dice + HD95, AUROC + AUPRC, FROC, calibration), uncertainty/OOD, explainability를 각각 게이트로 점검.",
       "features": [
         "Split-leakage 게이트로 환자 disjointness 증명",
         "bootstrap CI를 포함한 task별 metric, 실행된 코드에서만 산출",
@@ -624,7 +624,7 @@
       "name": "imaging-data",
       "title": "영상 데이터 프로파일링·전처리",
       "category": "model_engineering",
-      "description": "의료영상 모델을 위한 데이터셋 프로파일링과 전처리. voxel spacing, orientation, intensity domain, 실제로 존재하는 label 값, target이 차지하는 부피 비율을 측정해 선언한 계획과 대조하고, DICOM/NIfTI resampling·normalization·augmentation을 설계·감사해 학습 전에 leakage-safe한 파이프라인을 만듭니다.",
+      "description": "DICOM/NIfTI 데이터셋의 spacing, orientation, intensity, label을 계획과 대조해 프로파일링하고, preprocessing·augmentation을 leakage 관점에서 설계·감사.",
       "features": [
         "ground truth가 없는 \"test set\"을 탐지",
         "label과 image의 grid 불일치·미등록 label index 적발",
