@@ -1,4 +1,4 @@
-import { BASE } from "@/lib/seo";
+import { BASE, SKILL_COUNT, DETECTOR_COUNT, GUIDELINE_COUNT } from "@/lib/seo";
 import { RADS_REGISTRY } from "@/lib/rads/registry";
 
 // Served at /llms.txt as a static text file (Next.js route handler, Non-UI Response).
@@ -22,7 +22,7 @@ ${radsLines}
 ## Sections
 - [RADS portal](${BASE}/en/rads): Index of all radiology reporting and data system (RADS) calculators.
 - [Blog](${BASE}/en/blog): Articles on medical AI and radiology.
-- [Skills](${BASE}/en/skills): MedSci Skills — open-source medical-research skills with a deterministic verification layer (stdlib-only integrity detectors that recompute what a manuscript asserts). Runs in Claude Code, Codex, Cursor, and GitHub Copilot.
+- [Skills](${BASE}/en/skills): MedSci Skills — ${SKILL_COUNT} open-source medical-research skills with a deterministic verification layer (${DETECTOR_COUNT} stdlib-only integrity detectors that recompute what a manuscript asserts) and ${GUIDELINE_COUNT} bundled reporting-guideline and risk-of-bias checklists. Runs in Claude Code, Codex, Cursor, and GitHub Copilot.
 - [About](${BASE}/en/about): Yoojin Nam, M.D. — radiologist and medical-AI researcher.
 - [Lectures](${BASE}/en/lectures): Talks and teaching material.
 

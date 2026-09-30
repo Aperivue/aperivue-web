@@ -70,7 +70,8 @@ export default async function SkillDetailPage({
 
   const catLabel =
     (t.categoryLabels as Record<string, string>)[skill.category] ?? skill.category;
-  const installCmd = `git clone https://github.com/aperivue/medsci-skills.git
+  const installCmd = `git clone https://github.com/Aperivue/medsci-skills.git
+mkdir -p ~/.claude/skills
 cp -r medsci-skills/skills/${skill.name} ~/.claude/skills/`;
 
   const jsonLd = {

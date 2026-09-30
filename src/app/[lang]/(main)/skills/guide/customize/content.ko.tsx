@@ -30,7 +30,7 @@ export default function ContentKo({ lang }: { lang: string }) {
           <div className="rounded-xl border border-border bg-surface p-4">
             <p className="text-xs font-medium text-foreground/60">최신 버전으로 업데이트</p>
             <p className="mt-2 text-sm text-foreground/80">
-              &quot;https://github.com/Aperivue/medsci-skills 에서 MedSci Skills를 최신 버전으로 업데이트해줘&quot;
+              &quot;npx medsci-skills@latest install 을 실행해서 MedSci Skills를 최신 버전으로 업데이트하고, Claude Code를 재시작하라고 안내해줘&quot;
             </p>
           </div>
         </div>
@@ -58,14 +58,9 @@ export default function ContentKo({ lang }: { lang: string }) {
           <pre className="mt-3 overflow-x-auto text-sm leading-relaxed text-foreground/70">
 {`---
 name: my-custom-skill
-description: 내 병원에 맞는 보고서 양식 생성
-triggers:
-  - "보고서"
-  - "report"
-tools:
-  - Read
-  - Write
-  - Edit
+description: 우리 병원 양식의 보고서를 요청할 때 사용. 아래 양식에 소견을 채워 넣습니다.
+metadata:
+  triggers: "보고서, report"
 ---
 
 # 규칙
@@ -87,13 +82,13 @@ tools:
             <strong>name</strong> — 스킬 이름 (폴더 이름과 같게)
           </p>
           <p>
-            <strong>description</strong> — Claude가 이 스킬의 용도를 이해하는 데 사용
+            <strong>description</strong> — 언제 쓰는 스킬인지, 그리고 무엇을 하는지. Claude는 이 문장을 보고
+            스킬을 불러올지 정하므로 &quot;…할 때 사용&quot;으로 시작해 짧게 씁니다 (MedSci Skills의 description은
+            모두 300자 이내)
           </p>
           <p>
-            <strong>triggers</strong> — 이 단어가 포함되면 자동으로 이 스킬이 활성화
-          </p>
-          <p>
-            <strong>tools</strong> — 이 스킬이 사용할 수 있는 도구 목록
+            <strong>metadata.triggers</strong> — 선택 항목인 키워드 목록으로, MedSci Skills의 자체 규칙입니다.
+            Claude는 이 목록이 아니라 description을 보고 판단합니다
           </p>
           <p>
             <strong>본문</strong> — Claude에게 주는 구체적인 지침 (자연어)
@@ -163,14 +158,28 @@ tools:
         </p>
         <div className="mt-4 space-y-2 text-sm text-foreground/70">
           <p>
-            1. GitHub에서 최신 ZIP을 다시 다운로드합니다.
+            1. 터미널에서{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills@latest install</code>을
+            실행합니다. classroom 설치 파일로 설치했다면 대신 바탕화면의 &quot;Update MedSci Skills&quot; 아이콘을
+            더블클릭하세요.
           </p>
           <p>
-            2. 새 ZIP의 <code className="rounded bg-muted px-1.5 py-0.5 text-xs">skills/</code> 폴더를
-            기존 <code className="rounded bg-muted px-1.5 py-0.5 text-xs">~/.claude/skills/</code>에 덮어쓰기합니다.
+            2. Claude Code를 재시작합니다.
           </p>
           <p className="text-xs text-foreground/60">
-            직접 수정한 스킬이 있다면 덮어쓰기 전에 백업하세요.
+            설치 프로그램은 직접 수정한 스킬을 교체하기 전에{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">~/.medsci-skills/backups/</code>에 복사해
+            둡니다. 새 ZIP으로 직접 덮어쓰는 경우, 복사는 파일을 추가만 하고 지우지는 않습니다. 수정한 스킬을 먼저
+            백업하고, v6에서 이름이 바뀐 스킬은{" "}
+            <a
+              href="https://github.com/Aperivue/medsci-skills/blob/main/MIGRATION-v6.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              MIGRATION-v6.md
+            </a>
+            를 따르세요.
           </p>
         </div>
       </section>
@@ -185,9 +194,9 @@ tools:
         </p>
         <p className="mt-2 text-sm text-foreground/60">
           나만의 스킬을 추가해도 orchestrate가 자동으로 인식합니다.
-          새 스킬의 <code className="rounded bg-surface px-1.5 py-0.5 text-xs">triggers</code>와{" "}
-          <code className="rounded bg-surface px-1.5 py-0.5 text-xs">description</code>만
-          잘 작성하면 됩니다.
+          새 스킬의{" "}
+          <code className="rounded bg-surface px-1.5 py-0.5 text-xs">description</code>에 언제 쓰는
+          스킬인지만 분명히 적으면 됩니다.
         </p>
       </section>
 
