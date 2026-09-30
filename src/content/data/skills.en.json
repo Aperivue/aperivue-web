@@ -430,7 +430,7 @@
       "name": "obsidian-paper-vault",
       "title": "Obsidian Paper Vault",
       "category": "literature_references",
-      "description": "Use when turning a folder of research PDFs into Obsidian notes. Writes one templated literature note per paper and extracts cross-linked atomic concept notes, never overwriting existing ones. A .bib or Zotero library is /lit-sync.",
+      "description": "Turns a folder of research PDFs into Obsidian literature notes, one per paper, plus cross-linked concept notes. Existing notes are never overwritten.",
       "features": [
         "One templated literature note per PDF",
         "Cross-linked atomic concept notes synthesized across papers",
@@ -562,7 +562,7 @@
       "name": "model-selection",
       "title": "Model Selection",
       "category": "model_engineering",
-      "description": "Use when choosing the model for a medical-imaging study. Picks a paper-grounded architecture family (CNN/ViT, U-Net/nnU-Net, detection, SAM/foundation, GNN), then vets the concrete repo or checkpoint for licence, version pin, weight provenance and benchmark overlap.",
+      "description": "Paper-grounded architecture choice for medical imaging, then a check of the actual repo or checkpoint: licence, version pin, weight provenance and benchmark overlap.",
       "features": [
         "Task → architecture decision tree, each card tied to its source paper",
         "Licence, intended use, and pretrained-weight provenance on the record",
@@ -586,7 +586,7 @@
       "name": "model-assessment",
       "title": "Model Assessment",
       "category": "model_engineering",
-      "description": "Use when validating or evaluating a trained medical-imaging model. Audits split leakage and validation design, computes task-correct held-out metrics (Dice + HD95, AUROC + AUPRC, FROC, calibration), and covers uncertainty/OOD and Grad-CAM explainability, each with a gate.",
+      "description": "Validation design, task-correct held-out metrics (Dice + HD95, AUROC + AUPRC, FROC, calibration), uncertainty/OOD and explainability for trained imaging models, each with a gate.",
       "features": [
         "Split-leakage gate proves patient disjointness",
         "Task-correct held-out metrics, computed only from executed code",
@@ -622,7 +622,7 @@
       "name": "imaging-data",
       "title": "Imaging Data Preparation",
       "category": "model_engineering",
-      "description": "Use when preparing a medical-imaging dataset (DICOM/NIfTI) for modelling. Profiles spacing, orientation, intensity, label integrity, foreground fraction and target volume, gates them against the plan, then plans and audits preprocessing and augmentation for leakage.",
+      "description": "Profiles a DICOM/NIfTI dataset (spacing, orientation, intensity, labels) against the plan, then designs and audits preprocessing and augmentation for leakage.",
       "features": [
         "Catches a \"test set\" that carries no ground truth",
         "Flags label/image grid mismatch and stray label indices",

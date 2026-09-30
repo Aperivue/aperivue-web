@@ -430,7 +430,7 @@
       "name": "obsidian-paper-vault",
       "title": "Obsidian 논문 볼트",
       "category": "literature_references",
-      "description": "연구 PDF 폴더를 Obsidian 노트로 만들 때 사용합니다. 논문마다 템플릿 기반 literature note를 하나씩 작성하고, 여러 논문에 걸친 atomic concept note를 교차 링크로 추출하며, 기존 노트는 덮어쓰지 않습니다. .bib 파일이나 Zotero 라이브러리는 /lit-sync가 담당합니다.",
+      "description": "연구 PDF 폴더를 Obsidian literature note(논문당 1개)와 교차 링크된 concept note로 변환. 기존 노트는 덮어쓰지 않음.",
       "features": [
         "PDF마다 템플릿 기반 literature note 1개",
         "여러 논문을 종합한 교차 링크 atomic concept note",
@@ -562,7 +562,7 @@
       "name": "model-selection",
       "title": "모델 선택",
       "category": "model_engineering",
-      "description": "의료영상 연구에 쓸 모델을 고를 때 사용합니다. 논문에 근거한 아키텍처 family(CNN/ViT, U-Net/nnU-Net, detection, SAM/foundation, GNN)를 고른 뒤, 실제로 쓸 repository나 checkpoint의 licence, version pin, weight provenance, benchmark 중복을 검증합니다.",
+      "description": "논문에 근거한 의료영상 아키텍처 선택, 이어서 실제 repository·checkpoint의 licence, version pin, weight provenance, benchmark 중복 점검.",
       "features": [
         "Task → 아키텍처 의사결정 트리, 후보마다 원논문 명시",
         "licence·intended use·pretrained weight provenance 기록",
@@ -586,7 +586,7 @@
       "name": "model-assessment",
       "title": "모델 검증·평가",
       "category": "model_engineering",
-      "description": "학습된 의료영상 모델을 검증하거나 평가할 때 사용합니다. split leakage와 validation 설계를 감사하고, task에 맞는 held-out metric(Dice + HD95, AUROC + AUPRC, FROC, calibration)을 산출하며, uncertainty/OOD와 Grad-CAM explainability까지 각각 게이트로 점검합니다.",
+      "description": "학습된 영상 모델의 validation 설계, task에 맞는 held-out metric(Dice + HD95, AUROC + AUPRC, FROC, calibration), uncertainty/OOD, explainability를 각각 게이트로 점검.",
       "features": [
         "Split-leakage 게이트로 환자 disjointness 증명",
         "task에 맞는 held-out metric, 실행된 코드에서만 산출",
@@ -622,7 +622,7 @@
       "name": "imaging-data",
       "title": "영상 데이터 준비",
       "category": "model_engineering",
-      "description": "모델링을 위해 의료영상 데이터셋(DICOM/NIfTI)을 준비할 때 사용합니다. spacing, orientation, intensity, label 무결성, foreground 비율, target 부피를 프로파일링해 선언한 계획과 대조하는 게이트를 걸고, 이어서 preprocessing과 augmentation을 leakage 관점에서 설계·감사합니다.",
+      "description": "DICOM/NIfTI 데이터셋의 spacing, orientation, intensity, label을 계획과 대조해 프로파일링하고, preprocessing·augmentation을 leakage 관점에서 설계·감사.",
       "features": [
         "ground truth가 없는 \"test set\"을 탐지",
         "label과 image의 grid 불일치·미등록 label index 적발",
