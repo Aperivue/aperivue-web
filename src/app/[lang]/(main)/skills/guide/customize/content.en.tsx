@@ -30,7 +30,7 @@ export default function ContentEn({ lang }: { lang: string }) {
           <div className="rounded-xl border border-border bg-surface p-4">
             <p className="text-xs font-medium text-foreground/60">Update to the latest version</p>
             <p className="mt-2 text-sm text-foreground/80">
-              &quot;Update MedSci Skills from https://github.com/Aperivue/medsci-skills to the latest version&quot;
+              &quot;Update MedSci Skills by running npx medsci-skills@latest install, then remind me to restart Claude Code&quot;
             </p>
           </div>
         </div>
@@ -58,14 +58,9 @@ export default function ContentEn({ lang }: { lang: string }) {
           <pre className="mt-3 overflow-x-auto text-sm leading-relaxed text-foreground/70">
 {`---
 name: my-custom-skill
-description: Generate report forms tailored to my hospital
-triggers:
-  - "report"
-  - "template"
-tools:
-  - Read
-  - Write
-  - Edit
+description: Use when I ask for a report in my hospital's format. Fills the template below from the findings.
+metadata:
+  triggers: "report, template"
 ---
 
 # Rules
@@ -87,13 +82,13 @@ tools:
             <strong>name</strong> — Skill name (should match the folder name)
           </p>
           <p>
-            <strong>description</strong> — Helps Claude understand what this skill is for
+            <strong>description</strong> — When to use the skill, then what it does. Claude reads it to
+            decide when to load the skill, so start with &quot;Use when …&quot; and keep it short (every
+            MedSci Skills description is under 300 characters)
           </p>
           <p>
-            <strong>triggers</strong> — Keywords that automatically activate this skill
-          </p>
-          <p>
-            <strong>tools</strong> — List of tools this skill is allowed to use
+            <strong>metadata.triggers</strong> — Optional keywords, a MedSci Skills convention. Claude
+            decides from the description, not from this list
           </p>
           <p>
             <strong>Body</strong> — Specific instructions for Claude (plain language)
@@ -163,14 +158,28 @@ tools:
         </p>
         <div className="mt-4 space-y-2 text-sm text-foreground/70">
           <p>
-            1. Download the latest ZIP from GitHub.
+            1. In a terminal, run{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">npx medsci-skills@latest install</code>. If
+            you used the classroom installer, double-click the &quot;Update MedSci Skills&quot; icon on your
+            Desktop instead.
           </p>
           <p>
-            2. Overwrite the existing <code className="rounded bg-muted px-1.5 py-0.5 text-xs">~/.claude/skills/</code> with
-            the <code className="rounded bg-muted px-1.5 py-0.5 text-xs">skills/</code> folder from the new ZIP.
+            2. Restart Claude Code.
           </p>
           <p className="text-xs text-foreground/60">
-            If you have customized any skills, back them up before overwriting.
+            The installer copies any skill you changed to{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-xs">~/.medsci-skills/backups/</code> before
+            replacing it. Updating by hand from a new ZIP instead? Copying adds files but never removes them, so
+            back up your edits first and follow{" "}
+            <a
+              href="https://github.com/Aperivue/medsci-skills/blob/main/MIGRATION-v6.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              MIGRATION-v6.md
+            </a>{" "}
+            for the skills renamed in v6.
           </p>
         </div>
       </section>
@@ -185,9 +194,9 @@ tools:
         </p>
         <p className="mt-2 text-sm text-foreground/60">
           When you add your own skills, orchestrate picks them up automatically.
-          Just make sure to write clear{" "}
-          <code className="rounded bg-surface px-1.5 py-0.5 text-xs">triggers</code> and a good{" "}
-          <code className="rounded bg-surface px-1.5 py-0.5 text-xs">description</code>.
+          Just make sure its{" "}
+          <code className="rounded bg-surface px-1.5 py-0.5 text-xs">description</code> says clearly when
+          to use it.
         </p>
       </section>
 

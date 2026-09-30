@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GUIDELINE_COUNT } from "@/lib/seo";
 
 const categories = [
   {
@@ -72,7 +73,7 @@ const categories = [
         name: "check-reporting",
         label: "보고 가이드라인 감사",
         prompt: "/check-reporting manuscript.docx를 STROBE로 감사해줘",
-        note: "48개 가이드라인 지원 (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI 등)",
+        note: `보고 가이드라인·비뚤림 위험 도구 ${GUIDELINE_COUNT}종 지원 (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI 등)`,
       },
       {
         name: "self-review",
@@ -84,7 +85,7 @@ const categories = [
         name: "find-journal",
         label: "저널 추천",
         prompt: "/find-journal 이 원고에 적합한 저널을 추천해줘",
-        note: "40개 저널 프로필과 의미론적 매칭",
+        note: "큐레이션된 저널 프로필과 의미론적 매칭",
       },
     ],
   },

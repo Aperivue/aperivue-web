@@ -64,10 +64,10 @@
       "name": "check-reporting",
       "title": "Reporting Guidelines",
       "category": "review_compliance",
-      "description": "Manuscript compliance audit against 48 reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
+      "description": "Manuscript compliance audit against reporting guidelines and risk-of-bias tools with item-by-item assessment and section boundary checks.",
       "features": [
         "STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM",
-        "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
+        "QUADAS-3, QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
         "Results/Discussion boundary check"
       ]
     },
@@ -369,9 +369,9 @@
       "name": "humanize",
       "title": "AI Pattern Remover",
       "category": "writing_manuscript",
-      "description": "Detect and remove AI writing patterns from academic manuscripts. Scans for 18 common patterns — significance inflation, AI vocabulary, copula avoidance — and rewrites flagged passages while preserving technical accuracy.",
+      "description": "Detect and remove AI writing patterns from academic manuscripts. Scans for 27 patterns — significance inflation, AI vocabulary, copula avoidance — and rewrites flagged passages while preserving technical accuracy.",
       "features": [
-        "18-pattern detection with per-instance flagging",
+        "27-pattern detection with per-instance flagging",
         "Density target: <2.0 AI instances per 1,000 words",
         "Rewrites preserve all numbers, p-values, and clinical terms"
       ],
@@ -423,6 +423,18 @@
         "Zotero import via Better BibTeX key matching",
         "Obsidian literature note generation with wikilinks",
         "Cross-cutting concept extraction from 10+ notes"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "obsidian-paper-vault",
+      "title": "Obsidian Paper Vault",
+      "category": "literature_references",
+      "description": "Turns a folder of research PDFs into Obsidian literature notes, one per paper, plus cross-linked concept notes. Existing notes are never overwritten.",
+      "features": [
+        "One templated literature note per PDF",
+        "Cross-linked atomic concept notes synthesized across papers",
+        "Numbers, authors, and dates transcribed from the PDF text; existing notes never overwritten"
       ],
       "isNew": true
     },
@@ -547,14 +559,14 @@
       "title": "Consistency Linter & ESL Polish"
     },
     {
-      "name": "architecture-zoo",
-      "title": "Architecture Zoo",
+      "name": "model-selection",
+      "title": "Model Selection",
       "category": "model_engineering",
-      "description": "\"Which architecture for which research question\" decision tool: maps task, modality, data scale, and class imbalance to a paper-grounded architecture shortlist — each with the source paper, when-to-use, medical-imaging use, reference implementation, and the matching scaffold template.",
+      "description": "Paper-grounded architecture choice for medical imaging, then a check of the actual repo or checkpoint: licence, version pin, weight provenance and benchmark overlap.",
       "features": [
-        "Task → architecture decision tree",
-        "Paper-grounded archetypes (CNN, ViT, U-Net, SAM/MedSAM, SSL)",
-        "Hands the choice to model-scaffold"
+        "Task → architecture decision tree, each card tied to its source paper",
+        "Licence, intended use, and pretrained-weight provenance on the record",
+        "Catches an evaluation arm sitting on the model's own development benchmark"
       ],
       "isNew": true
     },
@@ -562,23 +574,23 @@
       "name": "model-scaffold",
       "title": "Model Scaffold",
       "category": "model_engineering",
-      "description": "Generate a reproducible, runnable PyTorch training repo for a medical-imaging task — segmentation, classification, detection, synthesis, or self-supervised pretraining — with a patient-level seed-locked split, train/evaluate scripts, and a Methods stub. Integrates MONAI / nnU-Net, never reimplements them.",
+      "description": "Generate a reproducible, runnable PyTorch training repo for a medical-imaging task — segmentation, classification, detection, synthesis, self-supervised pretraining, or fine-tuning a pretrained backbone — with a patient-level seed-locked split, train/evaluate scripts, and a Methods stub. Integrates MONAI / nnU-Net, never reimplements them.",
       "features": [
-        "Five task templates, leakage-safe by construction",
+        "Six task templates, leakage-safe by construction",
         "Auditable patient-level seed-locked split",
         "Training-hygiene AST gate + network-free build test"
       ],
       "isNew": true
     },
     {
-      "name": "model-validation",
-      "title": "Model Validation",
+      "name": "model-assessment",
+      "title": "Model Assessment",
       "category": "model_engineering",
-      "description": "Design or audit the clinical-validation study for an engineer-built medical-imaging model: patient-level split disjointness, the data-leakage taxonomy, internal vs external validation, comparator design, and task-correct metric selection — with a deterministic split-leakage gate.",
+      "description": "Validation design, task-correct held-out metrics (Dice + HD95, AUROC + AUPRC, FROC, calibration), uncertainty/OOD and explainability for trained imaging models, each with a gate.",
       "features": [
         "Split-leakage gate proves patient disjointness",
-        "Leakage taxonomy + tuning-on-test checks",
-        "CLAIM 2024 / TRIPOD+AI / STARD-AI reporting fit"
+        "Task-correct held-out metrics, computed only from executed code",
+        "Uncertainty/OOD and saliency sanity-check gates"
       ],
       "isNew": true
     },
@@ -595,18 +607,6 @@
       "isNew": true
     },
     {
-      "name": "model-evaluation",
-      "title": "Model Evaluation",
-      "category": "model_engineering",
-      "description": "Compute and report task-correct held-out metrics for a trained model — Dice + HD95/NSD, AUROC/AUPRC with bootstrap CIs, FROC/mAP, calibration, and subgroup slices — emitting a per-case table for analyze-stats. Numbers come only from executed code.",
-      "features": [
-        "Task-correct metrics with bootstrap CIs",
-        "Calibration + subgroup performance",
-        "Metrics Reloaded / CLAIM 2024 gate"
-      ],
-      "isNew": true
-    },
-    {
       "name": "mllm-eval",
       "title": "LLM/MLLM Evaluation",
       "category": "model_engineering",
@@ -619,14 +619,14 @@
       "isNew": true
     },
     {
-      "name": "preprocess-imaging",
-      "title": "Preprocess Imaging",
+      "name": "imaging-data",
+      "title": "Imaging Data Preparation",
       "category": "model_engineering",
-      "description": "Design or audit DICOM/NIfTI intake, resampling, intensity normalisation, and augmentation so the pipeline is leakage-safe before training.",
+      "description": "Profiles a DICOM/NIfTI dataset (spacing, orientation, intensity, labels) against the plan, then designs and audits preprocessing and augmentation for leakage.",
       "features": [
-        "Declarative preprocessing manifest",
-        "Data-stage leakage gate (normaliser fit on train only)",
-        "Integrates MONAI / TorchIO transforms"
+        "Catches a \"test set\" that carries no ground truth",
+        "Flags label/image grid mismatch and stray label indices",
+        "Data-stage leakage gate (normaliser fit on train only)"
       ],
       "isNew": true
     },
@@ -639,54 +639,6 @@
         "Nested cross-validation (tuning never on reported folds)",
         "Feature-stability (ICC) filtering + calibration",
         "LASSO / SVM / random forest / XGBoost, learner-agnostic"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "explainability",
-      "title": "Explainability",
-      "category": "model_engineering",
-      "description": "Produce or audit Grad-CAM / saliency interpretability held to the reviewer bar — sanity checks, quantitative localisation vs ground truth, and attribution-not-validation framing.",
-      "features": [
-        "Adebayo model/data-randomisation sanity checks",
-        "Quantitative localisation (IoU / pointing game) vs ground truth",
-        "Cohort-level attribution, not cherry-picked cases"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "uncertainty-imaging",
-      "title": "Uncertainty & OOD",
-      "category": "model_engineering",
-      "description": "Design or audit the uncertainty-quantification, out-of-distribution detection, and selective-prediction layer of a deployment-framed imaging model.",
-      "features": [
-        "Calibrated per-case uncertainty (MC-dropout / ensemble / conformal)",
-        "OOD guard validated on a held-out set",
-        "Abstention at a pre-specified operating point"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "profile-imaging",
-      "title": "Imaging Data Profiling",
-      "category": "model_engineering",
-      "description": "Profile a medical-imaging dataset before any modelling decision is made — acquisition grid, voxel spacing and orientation spread, intensity domain, which label values are actually present, and how much of the volume the target occupies — then gate that profile against the plan you declared.",
-      "features": [
-        "Catches a \"test set\" that carries no ground truth",
-        "Flags label/image grid mismatch and stray label indices",
-        "Emits a dataset-profile JSON a stdlib-only gate can re-read"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "model-sourcing",
-      "title": "Model Sourcing",
-      "category": "model_engineering",
-      "description": "Vet the concrete third-party model a study will be built on — this repository, this revision, this checkpoint — not the architecture family. Records a model dossier and gates it deterministically.",
-      "features": [
-        "Catches an evaluation arm sitting on the model's own development benchmark",
-        "Licence, intended use, and pretrained-weight provenance on the record",
-        "Version pin enforced; it vets an artifact, never downloads or runs one"
       ],
       "isNew": true
     }

@@ -251,13 +251,7 @@ export default async function SkillsPage({
               {t.demoTitle}
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-foreground/70">
-              4 end-to-end demos — three clinical study types (diagnostic
-              accuracy (Wisconsin BC), meta-analysis (BCG vaccine, 13 RCTs), and
-              epidemiology (NHANES 2017-18)), each producing a complete
-              manuscript, 300 dpi figures, reporting-compliance audit (STARD /
-              PRISMA / STROBE), and a presentation; plus a medical-AI model demo
-              (PneumoniaMNIST CNN — training, evaluation, calibration, and
-              Grad-CAM). All from public data only.
+              {t.demoDesc}
             </p>
           </div>
           <a
@@ -351,11 +345,12 @@ export default async function SkillsPage({
           </div>
           <div>
             <h3 className="font-semibold text-primary">
-              46 Reporting Guidelines
+              {GUIDELINE_COUNT} Reporting Guidelines &amp; Risk-of-Bias Tools
             </h3>
             <p className="mt-2 text-sm text-foreground/60">
-              STROBE, STARD, TRIPOD+AI, PRISMA, ARRIVE built-in. CONSORT,
-              CARE, SPIRIT, CLAIM supported via knowledge-based assessment.
+              STROBE, STARD, CONSORT, PRISMA, TRIPOD+AI, CLAIM, CARE, SPIRIT,
+              QUADAS and more, each audited item by item against a bundled
+              checklist.
             </p>
           </div>
           <div>
@@ -404,8 +399,7 @@ export default async function SkillsPage({
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
-{`git clone https://github.com/aperivue/medsci-skills.git
-cp -r medsci-skills/skills/* ~/.claude/skills/`}
+{`npx medsci-skills install`}
               </code>
             </pre>
           </div>
@@ -415,12 +409,21 @@ cp -r medsci-skills/skills/* ~/.claude/skills/`}
             </p>
             <pre className="overflow-x-auto text-sm">
               <code className="text-foreground/80">
-{`git clone https://github.com/aperivue/medsci-skills.git
+{`git clone https://github.com/Aperivue/medsci-skills.git
+mkdir -p ~/.claude/skills
 cp -r medsci-skills/skills/check-reporting ~/.claude/skills/`}
               </code>
             </pre>
           </div>
         </div>
+        <p className="mt-4 text-sm">
+          <a
+            href={`/${lang}/skills/guide/install#other-ways`}
+            className="font-semibold text-primary hover:underline"
+          >
+            {t.cliMore} &rarr;
+          </a>
+        </p>
         {/* Read from the dictionary — this line was hardcoded, so it went on saying
             "Requires Claude Code Desktop or CLI" long after the installer gained
             three more hosts, and no gate could see it. */}

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import StepCard from "@/components/guide/StepCard";
 import OsTab from "@/components/guide/OsTab";
-import { SKILL_COUNT } from "@/lib/seo";
+import { SKILL_COUNT, SKILL_ALIAS_COUNT } from "@/lib/seo";
+
+const RELEASE_DOWNLOAD = "https://github.com/Aperivue/medsci-skills/releases/latest/download";
 
 export default function InstallContentEn({ lang }: { lang: string }) {
   return (
@@ -12,10 +14,10 @@ export default function InstallContentEn({ lang }: { lang: string }) {
         <br />
         No terminal or command line required.{" "}
         <span className="text-foreground/50">
-          Also works with Codex, Cursor, and GitHub Copilot — pass{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target codex</code>,{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target cursor</code>, or{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target all</code>.
+          Also works with Codex, Cursor, and GitHub Copilot — the installer sets up all of them by
+          default; add{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target claude</code> to install
+          for Claude Code only.
         </span>
       </p>
 
@@ -86,9 +88,67 @@ export default function InstallContentEn({ lang }: { lang: string }) {
         </div>
 
         <p className="mt-4 text-xs text-foreground/50">
-          <strong>No terminal at all?</strong> Follow the manual download-and-copy steps below. Note the manual
-          copy does <strong>not</strong> set up automatic update reminders, so re-run Option A or B (or re-download)
-          when a new version is announced.
+          <strong>No terminal at all?</strong> Download the classroom installer for{" "}
+          <a href={`${RELEASE_DOWNLOAD}/medsci-skills-classroom-macos.zip`} className="text-primary underline">macOS</a>{" "}
+          or{" "}
+          <a href={`${RELEASE_DOWNLOAD}/medsci-skills-classroom-windows.zip`} className="text-primary underline">Windows</a>,
+          unzip it, and double-click{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">installers/install-macos.command</code> or{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">installers/install-windows.cmd</code>. It
+          also turns on update reminders and adds an &quot;Update MedSci Skills&quot; icon to your Desktop.
+          The manual download-and-copy steps below work too, but set up <strong>no</strong> update reminders.
+        </p>
+      </section>
+
+      {/* Other install channels — mirrors docs/install.md in the repo */}
+      <section id="other-ways" className="mt-8 scroll-mt-24 rounded-2xl border border-border bg-surface p-6">
+        <h2 className="text-lg font-bold">Other ways to install</h2>
+        <div className="mt-4 space-y-5 text-sm text-foreground/80">
+          <div>
+            <p className="font-semibold">Claude Code plugin marketplace</p>
+            <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>{`/plugin marketplace add Aperivue/medsci-skills
+/plugin`}</code></pre>
+            <p className="mt-2 text-xs text-foreground/60">
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">/plugin</code> lists the category
+              plugins; enable the ones you want. A skill installed as a plugin is called under its plugin&apos;s
+              name, e.g.{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">/medsci-analysis:analyze-stats</code>.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold">GitHub CLI 2.90+</p>
+            <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>gh skill install Aperivue/medsci-skills --all --agent claude-code --scope user</code></pre>
+            <p className="mt-2 text-xs text-foreground/60">
+              Name one skill instead of <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--all</code> to
+              install just that one. Keep both flags: without{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--scope user</code> the skills go into the
+              current project instead of your home folder, and without{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--agent</code> they may be installed for
+              a different agent.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold">Staying on one release</p>
+            <p className="mt-1 text-xs text-foreground/60">
+              If a paper or protocol cites the version it used, install that version rather than the latest.
+              For v6.0.0:
+            </p>
+            <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>{`npx medsci-skills@6.0.0 install
+/plugin marketplace add Aperivue/medsci-skills@v6.0.0
+gh skill install Aperivue/medsci-skills --all --pin v6.0.0 --agent claude-code --scope user`}</code></pre>
+          </div>
+        </div>
+        <p className="mt-4 text-xs text-foreground/60">
+          Every option, where the files go, and how to update:{" "}
+          <a
+            href="https://github.com/Aperivue/medsci-skills/blob/main/docs/install.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline"
+          >
+            docs/install.md
+          </a>
+          .
         </p>
       </section>
 
@@ -213,7 +273,8 @@ export default function InstallContentEn({ lang }: { lang: string }) {
 │   └── SKILL.md
 ├── write-paper/
 │   └── SKILL.md
-└── ... (${SKILL_COUNT} folders total)`}
+└── ... (${SKILL_COUNT} skills, plus ${SKILL_ALIAS_COUNT} small folders
+         that redirect renamed skills)`}
                   </pre>
                 </div>
               </div>

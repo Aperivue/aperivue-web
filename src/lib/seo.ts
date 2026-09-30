@@ -69,3 +69,8 @@ export const SKILL_COUNT = skillsEn.skills.length;
  */
 export const DETECTOR_COUNT = catalogCounts.integrity_detectors;
 export const GUIDELINE_COUNT = catalogCounts.reporting_guidelines;
+/**
+ * Name-only stubs for skills renamed in v6. They ship in the repo's `skills/` folder, so a manual
+ * copy yields SKILL_COUNT + SKILL_ALIAS_COUNT folders, but they are not skills.
+ */
+export const SKILL_ALIAS_COUNT = catalogCounts.skill_aliases;

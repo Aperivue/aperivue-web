@@ -1,7 +1,9 @@
 import Link from "next/link";
 import StepCard from "@/components/guide/StepCard";
 import OsTab from "@/components/guide/OsTab";
-import { SKILL_COUNT } from "@/lib/seo";
+import { SKILL_COUNT, SKILL_ALIAS_COUNT } from "@/lib/seo";
+
+const RELEASE_DOWNLOAD = "https://github.com/Aperivue/medsci-skills/releases/latest/download";
 
 export default function InstallContentKo({ lang }: { lang: string }) {
   return (
@@ -12,10 +14,9 @@ export default function InstallContentKo({ lang }: { lang: string }) {
         <br />
         터미널(명령어 입력 창)은 사용하지 않습니다.{" "}
         <span className="text-foreground/50">
-          Codex, Cursor, GitHub Copilot에서도 동작합니다 —{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target codex</code>,{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target cursor</code>, 또는{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target all</code> 사용.
+          Codex, Cursor, GitHub Copilot에서도 동작합니다 — 설치 프로그램이 기본으로 모두 설정하며,
+          Claude Code에만 설치하려면{" "}
+          <code className="rounded bg-muted px-1 py-0.5 text-xs">--target claude</code>를 붙입니다.
         </span>
       </p>
 
@@ -82,8 +83,65 @@ export default function InstallContentKo({ lang }: { lang: string }) {
         </div>
 
         <p className="mt-4 text-xs text-foreground/50">
-          <strong>터미널이 전혀 부담스럽다면?</strong> 아래 수동 다운로드·복사 단계를 따라 하세요. 단, 수동 복사는
-          <strong> 자동 업데이트 알림이 설정되지 않으므로</strong>, 새 버전이 공지되면 방법 A·B를 다시 실행(또는 재다운로드)하세요.
+          <strong>터미널이 전혀 부담스럽다면?</strong>{" "}
+          <a href={`${RELEASE_DOWNLOAD}/medsci-skills-classroom-macos.zip`} className="text-primary underline">macOS</a>용
+          또는{" "}
+          <a href={`${RELEASE_DOWNLOAD}/medsci-skills-classroom-windows.zip`} className="text-primary underline">Windows</a>용
+          classroom 설치 파일을 내려받아 압축을 풀고,{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">installers/install-macos.command</code> 또는{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">installers/install-windows.cmd</code>를
+          더블클릭하세요. 업데이트 알림도 켜지고, 바탕화면에 &quot;Update MedSci Skills&quot; 아이콘이 생깁니다.
+          아래 수동 다운로드·복사 단계도 가능하지만, 이 경우 <strong>업데이트 알림은 설정되지 않습니다</strong>.
+        </p>
+      </section>
+
+      {/* Other install channels — mirrors docs/install.md in the repo */}
+      <section id="other-ways" className="mt-8 scroll-mt-24 rounded-2xl border border-border bg-surface p-6">
+        <h2 className="text-lg font-bold">다른 설치 방법</h2>
+        <div className="mt-4 space-y-5 text-sm text-foreground/80">
+          <div>
+            <p className="font-semibold">Claude Code 플러그인 마켓플레이스</p>
+            <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>{`/plugin marketplace add Aperivue/medsci-skills
+/plugin`}</code></pre>
+            <p className="mt-2 text-xs text-foreground/60">
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">/plugin</code>에 나오는 카테고리별
+              플러그인 중 필요한 것을 켜면 됩니다. 플러그인으로 설치한 스킬은 플러그인 이름을 붙여 부릅니다(예:{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">/medsci-analysis:analyze-stats</code>).
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold">GitHub CLI 2.90+</p>
+            <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>gh skill install Aperivue/medsci-skills --all --agent claude-code --scope user</code></pre>
+            <p className="mt-2 text-xs text-foreground/60">
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--all</code> 대신 스킬 이름을 쓰면 그
+              스킬만 설치합니다. 두 플래그는 꼭 붙이세요.{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--scope user</code>가 없으면 홈 폴더가 아닌
+              현재 프로젝트에 설치되고,{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-xs">--agent</code>가 없으면 다른 에이전트용으로
+              설치될 수 있습니다.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold">특정 릴리스에 고정하기</p>
+            <p className="mt-1 text-xs text-foreground/60">
+              논문이나 프로토콜에 사용한 버전을 적었다면, 최신판 대신 그 버전을 설치하세요. v6.0.0 예시:
+            </p>
+            <pre className="mt-2 overflow-x-auto rounded bg-muted px-3 py-2 text-sm"><code>{`npx medsci-skills@6.0.0 install
+/plugin marketplace add Aperivue/medsci-skills@v6.0.0
+gh skill install Aperivue/medsci-skills --all --pin v6.0.0 --agent claude-code --scope user`}</code></pre>
+          </div>
+        </div>
+        <p className="mt-4 text-xs text-foreground/60">
+          모든 설치 방법, 파일 위치, 업데이트 방법은{" "}
+          <a
+            href="https://github.com/Aperivue/medsci-skills/blob/main/docs/install.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline"
+          >
+            docs/install.md
+          </a>
+          에 정리되어 있습니다.
         </p>
       </section>
 
@@ -207,7 +265,8 @@ export default function InstallContentKo({ lang }: { lang: string }) {
 │   └── SKILL.md
 ├── write-paper/
 │   └── SKILL.md
-└── ... (${SKILL_COUNT}개 폴더)`}
+└── ... (스킬 ${SKILL_COUNT}개 + 이름이 바뀐 스킬로
+         연결하는 작은 폴더 ${SKILL_ALIAS_COUNT}개)`}
                   </pre>
                 </div>
               </div>

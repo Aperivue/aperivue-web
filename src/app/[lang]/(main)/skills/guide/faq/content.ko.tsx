@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: "하나의 스킬만 설치해도 되나요?",
-    a: "네. 예를 들어 보고 가이드라인 감사만 필요하다면 check-reporting 폴더만 복사하면 됩니다. 다만 orchestrate 스킬을 함께 설치하면 자동 라우팅이 가능해져서 편리합니다.",
+    a: "네. 예를 들어 보고 가이드라인 감사만 필요하다면 check-reporting 폴더만 복사하거나 'gh skill install Aperivue/medsci-skills check-reporting --agent claude-code --scope user'를 실행하면 됩니다. 일부 스킬은 다른 스킬의 스크립트를 함께 쓰므로, 확실하지 않으면 전체를 설치하세요. orchestrate 스킬을 함께 설치하면 자동 라우팅도 가능해져서 편리합니다.",
   },
   {
     q: "이 도구로 쓴 논문을 투고해도 되나요?",
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     q: "스킬 업데이트는 어떻게 하나요?",
-    a: "가장 쉬운 방법: Claude에게 'https://github.com/Aperivue/medsci-skills 에서 MedSci Skills 최신 버전으로 업데이트해줘'라고 말하면 알아서 최신 버전을 받아 덮어씁니다. 또는 GitHub에서 최신 ZIP을 직접 다운로드해서 skills/ 폴더를 덮어쓸 수도 있습니다. 직접 수정한 스킬이 있다면 백업 후 덮어쓰기하세요.",
+    a: "터미널에서 'npx medsci-skills@latest install'을 실행하거나, Claude에게 대신 실행해 달라고 하세요. classroom 설치 파일로 설치했다면 바탕화면의 'Update MedSci Skills' 아이콘을 더블클릭하면 됩니다. 설치 프로그램은 직접 수정한 스킬을 교체하기 전에 백업해 둡니다. 새 ZIP으로 직접 덮어쓰면 파일이 추가만 되고 지워지지는 않으므로, 수정한 스킬을 먼저 백업하고 v6에서 이름이 바뀐 스킬은 저장소의 MIGRATION-v6.md를 따르세요.",
   },
   {
     q: "슬래시 명령어를 외워야 하나요?",

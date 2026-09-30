@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: "Can I install just one skill?",
-    a: "Yes. For example, if you only need reporting guideline audits, copy just the check-reporting folder. That said, installing the orchestrate skill alongside it enables automatic routing, which is more convenient.",
+    a: "Yes. For example, if you only need reporting guideline audits, copy just the check-reporting folder, or run 'gh skill install Aperivue/medsci-skills check-reporting --agent claude-code --scope user'. Some skills run another skill's scripts, so install everything if you are unsure. Installing the orchestrate skill alongside also enables automatic routing, which is more convenient.",
   },
   {
     q: "Can I submit a paper written with this tool?",
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     q: "How do I update the skills?",
-    a: "The easiest way: tell Claude 'Update MedSci Skills from https://github.com/Aperivue/medsci-skills' and it will pull the latest version and overwrite the files. Alternatively, download the latest ZIP from GitHub and overwrite the skills/ folder manually. If you have customized any skills, back them up before overwriting.",
+    a: "Run 'npx medsci-skills@latest install' in a terminal, or ask Claude to run it for you. If you used the classroom installer, double-click the 'Update MedSci Skills' icon on your Desktop. The installer backs up any skill you changed before replacing it. Updating by hand from a new ZIP adds files but never removes them, so back up your edits first and follow MIGRATION-v6.md in the repository for the skills renamed in v6.",
   },
   {
     q: "Do I need to memorize slash commands?",

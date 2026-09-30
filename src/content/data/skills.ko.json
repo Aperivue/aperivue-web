@@ -64,10 +64,10 @@
       "name": "check-reporting",
       "title": "보고 가이드라인",
       "category": "review_compliance",
-      "description": "48개 보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
+      "description": "보고 가이드라인 및 비뚤림 위험 도구 대비 원고 준수 감사. 항목별 평가와 섹션 경계 확인을 제공합니다.",
       "features": [
         "STROBE, STARD, STARD-AI, PRISMA, CONSORT, TRIPOD+AI, CARE, MI-CLEAR-LLM",
-        "QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
+        "QUADAS-3, QUADAS-2, RoB 2, ROBINS-I, PROBAST, NOS",
         "Results/Discussion 경계 확인"
       ]
     },
@@ -369,9 +369,9 @@
       "name": "humanize",
       "title": "AI 문체 제거",
       "category": "writing_manuscript",
-      "description": "학술 원고에서 AI 작문 패턴을 탐지하고 제거합니다. 18개 패턴(significance inflation, AI 어휘, copula 회피 등)을 스캔하여 기술적 정확성을 유지하면서 자연스러운 문체로 재작성합니다.",
+      "description": "학술 원고에서 AI 작문 패턴을 탐지하고 제거합니다. 27개 패턴(significance inflation, AI 어휘, copula 회피 등)을 스캔하여 기술적 정확성을 유지하면서 자연스러운 문체로 재작성합니다.",
       "features": [
-        "인스턴스별 플래깅으로 18패턴 탐지",
+        "인스턴스별 플래깅으로 27패턴 탐지",
         "밀도 목표: 1,000단어당 AI 표현 2.0건 미만",
         "p값·임상 용어 등 모든 수치 보존 재작성"
       ],
@@ -423,6 +423,18 @@
         "Better BibTeX 키 매칭으로 Zotero 가져오기",
         "위키링크 포함 Obsidian 문헌 노트 생성",
         "10개 이상 노트에서 교차 개념 자동 추출"
+      ],
+      "isNew": true
+    },
+    {
+      "name": "obsidian-paper-vault",
+      "title": "Obsidian 논문 볼트",
+      "category": "literature_references",
+      "description": "연구 PDF 폴더를 Obsidian literature note(논문당 1개)와 교차 링크된 concept note로 변환. 기존 노트는 덮어쓰지 않음.",
+      "features": [
+        "PDF마다 템플릿 기반 literature note 1개",
+        "여러 논문을 종합한 교차 링크 atomic concept note",
+        "수치·저자·날짜는 PDF 본문에서 옮겨 적고, 기존 노트는 덮어쓰지 않음"
       ],
       "isNew": true
     },
@@ -547,14 +559,14 @@
       "title": "일관성 린터 & ESL 교정"
     },
     {
-      "name": "architecture-zoo",
-      "title": "아키텍처 가이드",
+      "name": "model-selection",
+      "title": "모델 선택",
       "category": "model_engineering",
-      "description": "\"어떤 연구 질문에 어떤 아키텍처\"를 정하는 의사결정 도구. task·modality·데이터 규모·class imbalance를 근거로 논문에 기반한 아키텍처 후보를 좁혀 주며, 각 후보에 원논문·사용 시점·의료영상 활용·reference 구현·대응 scaffold 템플릿을 함께 제시합니다.",
+      "description": "논문에 근거한 의료영상 아키텍처 선택, 이어서 실제 repository·checkpoint의 licence, version pin, weight provenance, benchmark 중복 점검.",
       "features": [
-        "Task → 아키텍처 의사결정 트리",
-        "논문 기반 아키타입 (CNN, ViT, U-Net, SAM/MedSAM, SSL)",
-        "선택을 model-scaffold로 인계"
+        "Task → 아키텍처 의사결정 트리, 후보마다 원논문 명시",
+        "licence·intended use·pretrained weight provenance 기록",
+        "모델 개발에 쓰인 benchmark 위에 올라간 evaluation arm 적발"
       ],
       "isNew": true
     },
@@ -562,23 +574,23 @@
       "name": "model-scaffold",
       "title": "Model Scaffold",
       "category": "model_engineering",
-      "description": "의료영상 task(segmentation, classification, detection, synthesis, self-supervised pretraining)를 위한 재현 가능하고 바로 실행되는 PyTorch 학습 레포를 생성합니다. 환자 단위 seed-locked split, train/evaluate 스크립트, Methods stub을 함께 제공하며, MONAI / nnU-Net을 통합할 뿐 재구현하지 않습니다.",
+      "description": "의료영상 task(segmentation, classification, detection, synthesis, self-supervised pretraining, pretrained backbone fine-tuning)를 위한 재현 가능하고 바로 실행되는 PyTorch 학습 레포를 생성합니다. 환자 단위 seed-locked split, train/evaluate 스크립트, Methods stub을 함께 제공하며, MONAI / nnU-Net을 통합할 뿐 재구현하지 않습니다.",
       "features": [
-        "5개 task 템플릿, 구조적으로 leakage-safe",
+        "6개 task 템플릿, 구조적으로 leakage-safe",
         "감사 가능한 환자 단위 seed-locked split",
         "Training-hygiene AST 게이트 + 네트워크 불필요 빌드 테스트"
       ],
       "isNew": true
     },
     {
-      "name": "model-validation",
-      "title": "Model Validation",
+      "name": "model-assessment",
+      "title": "모델 검증·평가",
       "category": "model_engineering",
-      "description": "엔지니어가 만든 의료영상 모델의 임상 검증 설계를 점검하거나 설계합니다. 환자 단위 split disjointness, data-leakage taxonomy, internal vs external validation, comparator 설계, task에 맞는 metric 선택을 다루며, 결정론적 split-leakage 게이트를 제공합니다.",
+      "description": "학습된 영상 모델의 validation 설계, task에 맞는 held-out metric(Dice + HD95, AUROC + AUPRC, FROC, calibration), uncertainty/OOD, explainability를 각각 게이트로 점검.",
       "features": [
         "Split-leakage 게이트로 환자 disjointness 증명",
-        "Leakage taxonomy + tuning-on-test 점검",
-        "CLAIM 2024 / TRIPOD+AI / STARD-AI 보고 적합성"
+        "task에 맞는 held-out metric, 실행된 코드에서만 산출",
+        "uncertainty/OOD 및 saliency sanity-check 게이트"
       ],
       "isNew": true
     },
@@ -595,18 +607,6 @@
       "isNew": true
     },
     {
-      "name": "model-evaluation",
-      "title": "Model Evaluation",
-      "category": "model_engineering",
-      "description": "학습된 모델의 held-out 성능을 task에 맞게 산출·보고합니다. Dice + HD95/NSD, bootstrap CI를 포함한 AUROC/AUPRC, FROC/mAP, calibration, subgroup 분석을 수행하고, analyze-stats용 case 단위 표를 생성합니다. 모든 수치는 실행된 코드에서만 나옵니다.",
-      "features": [
-        "Task에 맞는 metric + bootstrap CI",
-        "Calibration + subgroup 성능",
-        "Metrics Reloaded / CLAIM 2024 게이트"
-      ],
-      "isNew": true
-    },
-    {
       "name": "mllm-eval",
       "title": "LLM/MLLM Evaluation",
       "category": "model_engineering",
@@ -619,14 +619,14 @@
       "isNew": true
     },
     {
-      "name": "preprocess-imaging",
-      "title": "영상 전처리",
+      "name": "imaging-data",
+      "title": "영상 데이터 준비",
       "category": "model_engineering",
-      "description": "DICOM/NIfTI 로딩, resampling, intensity normalization, augmentation를 설계·감사하여 학습 전에 leakage-safe한 전처리 파이프라인을 만듭니다.",
+      "description": "DICOM/NIfTI 데이터셋의 spacing, orientation, intensity, label을 계획과 대조해 프로파일링하고, preprocessing·augmentation을 leakage 관점에서 설계·감사.",
       "features": [
-        "선언적 preprocessing manifest",
-        "data-stage leakage 게이트 (normalizer는 train에서만 fit)",
-        "MONAI / TorchIO transform 통합"
+        "ground truth가 없는 \"test set\"을 탐지",
+        "label과 image의 grid 불일치·미등록 label index 적발",
+        "data-stage leakage 게이트 (normalizer는 train에서만 fit)"
       ],
       "isNew": true
     },
@@ -639,54 +639,6 @@
         "nested cross-validation (보고 fold에서 튜닝 금지)",
         "feature-stability (ICC) 필터링 + calibration",
         "LASSO / SVM / random forest / XGBoost, learner-무관"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "explainability",
-      "title": "설명가능성 (Explainability)",
-      "category": "model_engineering",
-      "description": "Grad-CAM / saliency 해석을 reviewer 기준으로 생성·감사합니다 — sanity check, ground truth 대비 정량적 localization, attribution(정답 증명 아님) framing.",
-      "features": [
-        "Adebayo model/data-randomization sanity check",
-        "ground truth 대비 정량 localization (IoU / pointing game)",
-        "cherry-pick이 아닌 cohort 단위 attribution"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "uncertainty-imaging",
-      "title": "Uncertainty & OOD",
-      "category": "model_engineering",
-      "description": "배포를 전제한 imaging model의 uncertainty quantification, out-of-distribution 탐지, selective prediction 계층을 설계·감사합니다.",
-      "features": [
-        "case별 calibrated uncertainty (MC-dropout / ensemble / conformal)",
-        "held-out set에서 검증된 OOD 가드",
-        "사전 지정 operating point에서 abstention"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "profile-imaging",
-      "title": "Imaging Data Profiling",
-      "category": "model_engineering",
-      "description": "모델링 결정을 내리기 전에 의료영상 데이터셋을 프로파일링합니다. acquisition grid, voxel spacing과 orientation 분포, intensity domain, 실제로 존재하는 label 값, target이 차지하는 부피 비율을 측정한 뒤, 선언한 계획과 대조해 게이트를 겁니다.",
-      "features": [
-        "ground truth가 없는 \"test set\"을 탐지",
-        "label과 image의 grid 불일치·미등록 label index 적발",
-        "stdlib만으로 재검증 가능한 dataset-profile JSON 산출"
-      ],
-      "isNew": true
-    },
-    {
-      "name": "model-sourcing",
-      "title": "Model Sourcing",
-      "category": "model_engineering",
-      "description": "연구가 올라탈 third-party 모델을 architecture family가 아니라 구체적 대상(이 repository, 이 revision, 이 checkpoint)으로 검증합니다. model dossier를 기록하고 결정론적으로 게이트합니다.",
-      "features": [
-        "모델 개발에 쓰인 benchmark 위에 올라간 evaluation arm 적발",
-        "licence·intended use·pretrained weight provenance 기록",
-        "revision 고정 강제. artifact를 검증할 뿐 내려받거나 실행하지 않음"
       ],
       "isNew": true
     }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GUIDELINE_COUNT } from "@/lib/seo";
 
 const categories = [
   {
@@ -72,7 +73,7 @@ const categories = [
         name: "check-reporting",
         label: "Reporting Guideline Audit",
         prompt: "/check-reporting Audit manuscript.docx against STROBE",
-        note: "Supports 48 guidelines (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI, etc.)",
+        note: `Supports ${GUIDELINE_COUNT} reporting guidelines and risk-of-bias tools (STROBE, STARD, PRISMA, CONSORT, TRIPOD+AI, etc.)`,
       },
       {
         name: "self-review",
@@ -84,7 +85,7 @@ const categories = [
         name: "find-journal",
         label: "Journal Recommendation",
         prompt: "/find-journal Recommend suitable journals for this manuscript",
-        note: "Semantic matching against 40 journal scope profiles",
+        note: "Semantic matching against curated journal scope profiles",
       },
     ],
   },
