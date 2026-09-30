@@ -29,7 +29,7 @@ const categories = [
         name: "write-protocol",
         label: "프로토콜 작성",
         prompt: "/write-protocol 이 연구의 IRB 프로토콜을 작성해줘",
-        note: "SPIRIT 기반 4개 핵심 섹션 + TODO 마커",
+        note: "4개 핵심 섹션 완성 + 기관별 항목은 TODO 마커",
       },
     ],
   },
@@ -79,7 +79,7 @@ const categories = [
         name: "self-review",
         label: "셀프 리뷰",
         prompt: "/self-review 이 원고를 투고 전에 검토해줘",
-        note: "리뷰어 관점 10개 카테고리 점검. Major/Minor 분류",
+        note: "리뷰어 관점 12개 카테고리 점검. Major/Minor 분류",
       },
       {
         name: "find-journal",
