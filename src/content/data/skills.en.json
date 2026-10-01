@@ -285,7 +285,7 @@
       "name": "deidentify",
       "title": "De-identification",
       "category": "data_study_design",
-      "description": "De-identify clinical research data before LLM-assisted analysis. Standalone Python CLI with 10 country locale packs. No LLM involved.",
+      "description": "De-identify clinical research data before LLM-assisted analysis. Standalone Python CLI with 11 country locale packs. No LLM involved.",
       "features": [
         "PHI detection via regex + heuristics",
         "Interactive terminal review",
