@@ -285,7 +285,7 @@
       "name": "deidentify",
       "title": "비식별화",
       "category": "data_study_design",
-      "description": "LLM 분석 전 임상 연구 데이터를 비식별화합니다. 10개국 로케일 팩을 지원하는 독립 Python CLI. LLM 미사용.",
+      "description": "LLM 분석 전 임상 연구 데이터를 비식별화합니다. 11개국 로케일 팩을 지원하는 독립 Python CLI. LLM 미사용.",
       "features": [
         "정규식 + 휴리스틱 기반 PHI 탐지",
         "대화형 터미널 검토",
