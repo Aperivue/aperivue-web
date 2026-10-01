@@ -1,0 +1,66 @@
+---
+title: "medsci-skills 6.0: A Re-audit Found Results That Were Wrong"
+description: "Version 6.0 added almost no features. It cut the skills down and re-audited the whole toolkit, which found wrong results in sample size, de-identification, reference verification and meta-analysis. Here is what was fixed and which earlier results to re-check."
+date: "2026-10-01"
+tags: ["medsci-skills", "open-source", "medical-ai", "research-integrity", "release"]
+---
+
+## What 6.0 is
+
+When the repository passed 300 stars in September, I wrote that I would stop adding features and work on the checks medical research needs. Version 6.0 is that work. It adds almost nothing new. It makes the toolkit smaller, then audits all of it again.
+
+The skill count went from 59 to 54: twelve imaging and model-engineering skills were merged into seven, and the old names keep working until v7. The skill instructions (the SKILL.md files) went from about 158,000 words to 109,000, close to a third shorter, and the README from 1,070 lines to 181. A long instruction file is easier for an agent to skip through, and harder for a new user to find a starting point in.
+
+## What the audit found
+
+The audit was split by area: code, privacy, source fidelity, statistics, development process, documentation, host compatibility, and comparison with similar repositories. Several defects changed numbers a user could have relied on.
+
+- **Sample size.** Some formulas returned sizes up to about four times too small. For a survival comparison at a hazard ratio of 0.7 with 1:1 allocation, the event count came out as 62 where 247 are needed.
+- **De-identification.** Columns the scan could not classify (free text, ID-like numbers, a column whose name contains an identifier word) were marked safe, and pressing Enter kept them. Scan reports could contain actual cell values.
+- **Reference verification.** A reference with a DOI that does not exist and an invented title could be reported as verified.
+- **Meta-analysis.** The R template exponentiated mean differences and standardized mean differences as if they were ratios.
+- **Radiomics.** The nested cross-validation template split by row, so lesions from one patient could land on both sides of a split and inflate the AUROC.
+- **Statistics templates.** The confidence interval of a survey-weighted analysis ignored the sampling design and was far too narrow, and the default Cox fit pulled the hazard ratio toward 1. Propensity scores and decision curves had problems too.
+
+Two security issues (cell values left in de-identification reports, and a code-injection path in the literature-search and model-scaffold scripts) were published as GitHub security advisories.
+
+## Six more on release day
+
+Building with Claude and checking with Claude kept missing the same things, so this time OpenAI's Codex reviewed the work. After each area was reported done, Codex reviewed the complete final change and found 17 more defects. Statistical results were compared against the reference R packages (survey, MatchIt, lme4, dcurves and others) on the same data, and every fix ships with a test that fails on the code before the fix.
+
+Even so, when Codex re-evaluated the whole repository on release day, it found six more places that reported a pass without checking:
+
+- Reference verification did not compare the cited title once a DOI resolved, so an invented title on a real DOI passed.
+- De-identification applied a review to data that had changed after it.
+- The imaging preprocessing check called an empty input file free of leakage.
+- The guidance for explaining a correlation in plain language used its absolute value, so a negative association read as an increase.
+- The statistics template test counted a run that crashed halfway as a pass.
+- The install guide said R was never needed.
+
+Version 6.0.1 fixed them the same day. Codex reviewed the fixes twice more, and 50 real references were run through CrossRef and PubMed to confirm the new version gives the same verdicts as the old one on correct citations. A real DOI with an invented title passed in 6.0.0 and is caught in 6.0.1.
+
+## If you have results from an earlier version
+
+Please re-run these with 6.0.1:
+
+- every sample size from `/calc-sample-size`
+- files from `/deidentify` made by accepting the recommendations. Check the columns that were not classified, and keep earlier scan reports and audit logs with the raw data, away from the de-identified output.
+- continuous outcomes analysed with the `/meta-analysis` template
+- reference lists checked with `/verify-refs`, including those checked with 6.0.0
+- cross-validation results from the `/radiomics-ml` template
+- survey-weighted ORs and confidence intervals, Cox hazard ratios, propensity-score effects and decision curves from the `/analyze-stats` templates
+- de-identified files whose input was edited between review and apply, and any plain-language sentence written from a negative correlation
+
+The complete lists open the [6.0.0 release notes](https://github.com/Aperivue/medsci-skills/releases/tag/v6.0.0) and the [6.0.1 release notes](https://github.com/Aperivue/medsci-skills/releases/tag/v6.0.1).
+
+To update, use the channel you installed with: `npx medsci-skills@latest install` for npx, the Update MedSci Skills icon on the desktop for the classroom installer, or a manual update from `/plugin` for the Claude Code plugin. The [upgrade guide](https://github.com/Aperivue/medsci-skills/blob/v6.0.1/MIGRATION-v6.md) lists the renamed skills and every channel.
+
+## What is still missing
+
+Reviewing an AI-built tool with AI has limits. Codex and Claude come from different companies, but both look only where I point them. No statistician or privacy specialist has reviewed the toolkit independently yet. If that is your field and you could look at any part of it, it would help a great deal.
+
+## Contributions from people I have not met
+
+This release includes two changes sent by people I do not know: a de-identification pack that recognises Italian identifiers such as the Codice Fiscale, and an example review for a paper whose comparator is inadequate.
+
+The repository is at [github.com/Aperivue/medsci-skills](https://github.com/Aperivue/medsci-skills). If something looks wrong when you re-run an earlier result, please open a GitHub issue.
