@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getDictionary, hasLocale, type Locale } from "../../dictionaries";
 import { notFound } from "next/navigation";
 import { buildAlternates } from "@/lib/seo";
+import { SOCIAL_LINKS, externalProps } from "@/lib/social";
 
 export async function generateMetadata({
   params,
@@ -28,10 +29,7 @@ export default async function AboutPage({
 
   return (
     <main className="mx-auto flex max-w-4xl flex-1 flex-col px-6 py-16">
-      <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
-        About
-      </p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+      <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
         {t.title}
       </h1>
 
@@ -110,29 +108,25 @@ export default async function AboutPage({
         <p className="mt-4 text-foreground/60">
           {t.contactSub}
         </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {[
-            { label: "Email", href: "mailto:contact@aperivue.com", text: "contact@aperivue.com" },
-            { label: "GitHub", href: "https://github.com/aperivue", text: "github.com/aperivue", external: true },
-            { label: "YouTube", href: "https://youtube.com/@scrubcode", text: "@scrubcode — Medical AI & Deep Learning", external: true },
-            { label: "LinkedIn", href: "https://www.linkedin.com/company/aperivue", text: "Aperivue", external: true },
-            { label: "Instagram", href: "https://instagram.com/aperivue", text: "@aperivue", external: true },
-            { label: "X (Twitter)", href: "https://x.com/aperivue", text: "@aperivue", external: true },
-          ].map((item) => (
-            <div key={item.label} className="rounded-2xl border border-border bg-surface p-6">
-              <h3 className="text-xs font-medium uppercase tracking-wider text-foreground/60">
-                {item.label}
-              </h3>
-              <a
-                href={item.href}
-                {...("external" in item && item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="mt-2 block text-sm font-medium text-primary hover:underline"
-              >
-                {item.text}
-              </a>
+        <dl className="mt-6 border-t border-border">
+          {SOCIAL_LINKS.map((item) => (
+            <div
+              key={item.label}
+              className="flex flex-col gap-1 border-b border-border py-3 sm:flex-row sm:gap-6"
+            >
+              <dt className="text-sm text-foreground/60 sm:w-24 sm:pt-0.5">{item.label}</dt>
+              <dd>
+                <a
+                  href={item.href}
+                  {...(item.external ? externalProps : {})}
+                  className="font-medium text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+                >
+                  {item.text}
+                </a>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </section>
     </main>
   );

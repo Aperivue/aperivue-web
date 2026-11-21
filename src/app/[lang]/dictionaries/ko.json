@@ -1,33 +1,23 @@
 {
   "nav": {
-    "products": "제품",
-    "skills": "스킬",
-    "rads": "RADS",
-    "blog": "블로그",
+    "tools": "도구",
     "lectures": "강의",
+    "blog": "블로그",
     "about": "소개"
   },
   "home": {
-    "tagline": "의료 AI 도구 & 연구",
-    "hero": "보이지 않는 것을",
-    "heroHighlight": "열다",
-    "descriptionLine1": "영상의학과 의사가 만든 진단 도구와 근거 기반 콘텐츠.",
-    "descriptionLine2": "구조화된 RADS 스코어링부터 AI 연구까지.",
-    "ctaRads": "Aperivue RADS 둘러보기",
-    "ctaYoutube": "ScrubCode 보기",
-    "credibility": "영상의학과 의사가 직접 개발",
-    "whatWeBuild": "만드는 것들",
-    "whatWeBuildSub": "AI 연구와 임상 사이의 격차를 연결하는 도구와 콘텐츠.",
-    "radsDesc": "TI-RADS, BI-RADS, Lung-RADS, LI-RADS 통합 계산기. 근거 기반 권고와 함께하는 구조화된 영상의학 리포트 — 모든 스코어링 시스템을 하나의 도구로.",
-    "scrubcodeDesc": "Medical AI 논문과 딥러닝 개념을 해설하는 YouTube 채널. 기초, 핫테이크, 그리고 바이브 코딩 — 기술을 이해하고 싶은 임상의를 위해.",
-    "medglowDesc": "근거 기반 스킨케어와 피부과학의 만남. 뷰티 산업의 마케팅 주장과 임상 근거를 분리하는 YouTube 콘텐츠.",
-    "followResearch": "연구를 팔로우하세요",
-    "followSub": "의료 AI 인사이트, 논문 분석, 도구 업데이트 — 직접 만드는 영상의학과 의사로부터.",
-    "readBlog": "블로그 읽기",
-    "peerReviewed": "동료심사 논문",
-    "radiologist": "영상의학과 의사",
-    "medicalImaging": "의료 영상 연구",
-    "openSource": "오픈소스"
+    "title": "보이지 않는 것을 열다",
+    "intro": "영상의학과 의사가 만든 RADS 계산기와 Claude Code용 오픈소스 연구 스킬 medsci-skills를 공개하고, 의사를 위한 AI 강의를 합니다.",
+    "radsTitle": "RADS 계산기",
+    "radsDesc": "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS, O-RADS 점수를 계산하고 구조화 판독문을 만듭니다.",
+    "radsLink": "RADS 계산기 열기",
+    "skillsTitle": "medsci-skills",
+    "skillsDesc": "문헌 검색부터 원고 수정까지 의학 연구 과정을 다루는 오픈소스 스킬 {count}개. MIT 라이선스.",
+    "skillsLink": "스킬 목록 보기",
+    "lecturesTitle": "강의",
+    "lecturesDesc": "의사와 병원 직원을 위한 AI 핸즈온 워크숍과 초청 강연.",
+    "lecturesCount": "{year}년 {count}회.",
+    "lecturesLink": "강의 기록 보기"
   },
   "about": {
     "title": "Aperivue를 만드는 사람",
@@ -145,13 +135,14 @@
     "contribCta": "열린 이슈 보기"
   },
   "products": {
-    "title": "제품 소개",
-    "description": "영상의학과 의사와 의학 연구자를 위한 무료 오픈소스 도구."
+    "title": "도구",
+    "description": "영상의학과 의사와 의학 연구자를 위한 무료 도구 두 가지.",
+    "paused": "YouTube (휴재 중):"
   },
   "lectures": {
-    "title": "강의 · 워크숍",
+    "title": "강의",
     "tagline": "의사를 위한 AI 바이브코딩",
-    "description": "의사가 자기 진료와 연구에 AI를 직접 붙여 쓰도록 돕는 핸즈온 워크숍. 데스크탑에서 코딩하는 영상의학과 의사가 진행합니다.",
+    "description": "의사와 병원 직원이 AI를 진료·연구·업무에 직접 쓰도록 돕는 핸즈온 워크숍과, 학회·대학에서 한 초청 강연을 모았습니다. 진행은 영상의학과 의사 남유진이 합니다.",
     "whatYouLearn": "무엇을 배우나요",
     "learn1Title": "내 업무를 위한 도구를 직접 만든다",
     "learn1Desc": "스케줄 도우미부터 판독 템플릿까지 — 매일 느끼던 불편함을 몇 시간 만에 돌아가는 프로그램으로.",
@@ -169,7 +160,10 @@
     "proposeDesc": "병원, 학회, 과별 초청을 환영합니다. 영상의학, 외과, 일반 임상 청중 대상으로 진행한 경험이 있습니다.",
     "proposeContact": "강의 제안하기",
     "participants": "명 참가",
-    "testimonials": "현장의 목소리"
+    "testimonials": "현장의 목소리",
+    "summary": "{year}년 {count}회 진행했습니다.",
+    "summaryInvited": "{year}년 {count}회 진행했고, 이 중 {invited}회는 학회 초청 강연입니다.",
+    "workshopTitle": "핸즈온 워크숍에서 다루는 것"
   },
   "guide": {
     "nav": {

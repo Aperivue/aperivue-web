@@ -7,11 +7,9 @@ import AperivueLogo from "./AperivueLogo";
 
 interface NavDict {
   nav: {
-    products: string;
-    skills: string;
-    rads: string;
-    blog: string;
+    tools: string;
     lectures: string;
+    blog: string;
     about: string;
   };
 }
@@ -44,15 +42,24 @@ export default function Header({
   dict: NavDict;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
-    { href: `/${lang}/products`, label: dict.nav.products },
-    { href: `/${lang}/skills`, label: dict.nav.skills },
-    { href: `/${lang}/rads`, label: dict.nav.rads },
-    { href: `/${lang}/blog`, label: dict.nav.blog },
+    { href: `/${lang}/products`, label: dict.nav.tools },
     { href: `/${lang}/lectures`, label: dict.nav.lectures },
+    { href: `/${lang}/blog`, label: dict.nav.blog },
     { href: `/${lang}/about`, label: dict.nav.about },
   ];
+
+  // The tools item stays current on the tool pages it lists.
+  const isCurrent = (href: string) => {
+    if (href === `/${lang}/products`) {
+      return [`/${lang}/products`, `/${lang}/skills`, `/${lang}/rads`].some(
+        (p) => pathname === p || pathname.startsWith(`${p}/`)
+      );
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
@@ -68,7 +75,10 @@ export default function Header({
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm font-medium text-foreground/70 transition-colors hover:text-primary"
+                  aria-current={isCurrent(link.href) ? "page" : undefined}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    isCurrent(link.href) ? "text-foreground" : "text-foreground/70"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -84,6 +94,7 @@ export default function Header({
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             <svg
               className="h-6 w-6"
@@ -119,7 +130,10 @@ export default function Header({
               <Link
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-foreground/70 hover:text-primary"
+                aria-current={isCurrent(link.href) ? "page" : undefined}
+                className={`block text-base font-medium hover:text-primary ${
+                  isCurrent(link.href) ? "text-foreground" : "text-foreground/70"
+                }`}
               >
                 {link.label}
               </Link>

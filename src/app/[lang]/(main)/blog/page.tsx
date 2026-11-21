@@ -39,9 +39,6 @@ export default async function BlogPage({ params }: Props) {
   return (
     <main className="mx-auto flex max-w-3xl flex-1 flex-col px-6 py-16">
       <div className="border-b border-border pb-10">
-        <p className="mb-3 text-xs font-medium tracking-widest text-accent-text uppercase">
-          {isKo ? "아페리뷰 블로그" : "Aperivue Blog"}
-        </p>
         <h1 className="text-3xl font-bold tracking-tighter md:text-4xl">
           {isKo ? "인사이트" : "Perspectives"}
         </h1>
@@ -62,11 +59,6 @@ export default async function BlogPage({ params }: Props) {
         <div className="mt-10 space-y-0">
           {featured && (
             <article className="border-b border-border py-10">
-              {featured.tags.length > 0 && (
-                <p className="mb-3 text-xs font-medium tracking-widest text-accent-text uppercase">
-                  {featured.tags[0]}
-                </p>
-              )}
               <Link href={`/${lang}/blog/${featured.slug}`}>
                 <h2 className="text-2xl font-bold tracking-tighter hover:text-primary md:text-3xl">
                   {featured.title}
@@ -96,11 +88,6 @@ export default async function BlogPage({ params }: Props) {
               key={post.slug}
               className="border-b border-border py-8 last:border-b-0"
             >
-              {post.tags.length > 0 && (
-                <p className="mb-2 text-xs font-medium tracking-widest text-accent-text uppercase">
-                  {post.tags[0]}
-                </p>
-              )}
               <Link href={`/${lang}/blog/${post.slug}`}>
                 <h2 className="text-lg font-semibold tracking-tight hover:text-primary">
                   {post.title}

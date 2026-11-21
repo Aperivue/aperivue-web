@@ -106,3 +106,36 @@ export function getLectureBySlug(
 export function getAllLectureSlugs(): string[] {
   return uniqueSlugs();
 }
+
+// Tags that mark an entry as a society invited talk, or as a write-up that looks back on
+// sessions already listed separately (so it is not a session of its own).
+const INVITED_TAGS = new Set(["학회 초청강연", "Invited talk"]);
+const RETROSPECTIVE_TAGS = new Set(["시리즈 회고", "Series retrospective"]);
+
+export const isInvitedTalk = (l: LectureMeta) =>
+  l.tags.some((t) => INVITED_TAGS.has(t));
+
+export interface LectureStats {
+  year: string;
+  sessions: number;
+  invited: number;
+}
+
+/**
+ * Count completed sessions in the year of the most recent completed lecture, read from
+ * the content files so the numbers follow whatever lectures exist.
+ */
+export function getLectureStats(lang: string = "ko"): LectureStats | null {
+  const completed = getAllLectures(lang).filter(
+    (l) =>
+      l.status === "completed" && !l.tags.some((t) => RETROSPECTIVE_TAGS.has(t))
+  );
+  if (completed.length === 0) return null;
+  const year = completed[0].date.slice(0, 4);
+  const inYear = completed.filter((l) => l.date.startsWith(year));
+  return {
+    year,
+    sessions: inYear.length,
+    invited: inYear.filter(isInvitedTalk).length,
+  };
+}

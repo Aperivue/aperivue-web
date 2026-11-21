@@ -1,33 +1,23 @@
 {
   "nav": {
-    "products": "Products",
-    "skills": "Skills",
-    "rads": "RADS",
-    "blog": "Blog",
+    "tools": "Tools",
     "lectures": "Lectures",
+    "blog": "Blog",
     "about": "About"
   },
   "home": {
-    "tagline": "Medical AI Tools & Research",
-    "hero": "Opening What",
-    "heroHighlight": "Cannot Be Seen",
-    "descriptionLine1": "Diagnostic tools and evidence-based content for radiologists —",
-    "descriptionLine2": "from structured RADS scoring to AI research. Built by a radiologist, for radiologists.",
-    "ctaRads": "Explore Aperivue RADS",
-    "ctaYoutube": "Watch ScrubCode",
-    "credibility": "Built by a radiologist",
-    "whatWeBuild": "What We Build",
-    "whatWeBuildSub": "Tools and content that bridge the gap between AI research and clinical practice.",
-    "radsDesc": "Unified calculator for TI-RADS, BI-RADS, Lung-RADS, and LI-RADS. Structured radiology reporting with evidence-based recommendations — one tool for all scoring systems.",
-    "scrubcodeDesc": "YouTube channel breaking down Medical AI papers and deep learning concepts. Foundations, hot takes, and vibe coding — for clinicians who want to understand the technology.",
-    "medglowDesc": "Evidence-based skincare meets dermatology science. YouTube content with a medical lens on the beauty industry — separating marketing claims from clinical evidence.",
-    "followResearch": "Follow the Research",
-    "followSub": "Medical AI insights, paper breakdowns, and tool updates — from a radiologist who builds.",
-    "readBlog": "Read the Blog",
-    "peerReviewed": "Peer-Reviewed Publications",
-    "radiologist": "Radiologist",
-    "medicalImaging": "Medical Imaging Research",
-    "openSource": "Open Source"
+    "title": "Opening what cannot be seen",
+    "intro": "Aperivue publishes RADS calculators and medsci-skills, open-source research skills for Claude Code, and runs AI lectures for physicians. Built by a radiologist.",
+    "radsTitle": "RADS calculators",
+    "radsDesc": "Score TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS and O-RADS, and generate a structured report.",
+    "radsLink": "Open the RADS calculators",
+    "skillsTitle": "medsci-skills",
+    "skillsDesc": "{count} open-source skills covering medical research from literature search to manuscript revision. MIT licence.",
+    "skillsLink": "Browse the skills",
+    "lecturesTitle": "Lectures",
+    "lecturesDesc": "Hands-on AI workshops and invited talks for physicians and hospital staff.",
+    "lecturesCount": "{count} sessions in {year}.",
+    "lecturesLink": "See the lectures"
   },
   "about": {
     "title": "The Team Behind Aperivue",
@@ -145,13 +135,14 @@
     "contribCta": "See the open issues"
   },
   "products": {
-    "title": "Our Products",
-    "description": "Free, open-source tools built for radiologists and medical researchers."
+    "title": "Tools",
+    "description": "Two free tools for radiologists and medical researchers.",
+    "paused": "YouTube (paused):"
   },
   "lectures": {
-    "title": "Lectures & Workshops",
+    "title": "Lectures",
     "tagline": "AI Vibe Coding for Physicians",
-    "description": "Hands-on workshops that help physicians use AI in their own practice and research. Run by a radiologist who codes.",
+    "description": "Hands-on workshops that help physicians and hospital staff put AI to work in their own practice, research and operations, plus invited talks at societies and universities. Given by Yoojin Nam, a radiologist.",
     "whatYouLearn": "What You'll Learn",
     "learn1Title": "Build tools for your own workflow",
     "learn1Desc": "From scheduling helpers to report templates — turn daily frustrations into working software in a few hours.",
@@ -166,10 +157,13 @@
     "readRecap": "Read full recap",
     "lectureDetails": "Details",
     "proposeTitle": "Host a Lecture at Your Institution",
-    "proposeDesc": "Open to invitations from hospitals, academic societies, and departments. We've run lectures for radiology, surgery, and general clinical audiences.",
+    "proposeDesc": "Open to invitations from hospitals, academic societies and departments. Past audiences include radiology, surgery and general clinical staff.",
     "proposeContact": "Propose a lecture",
     "participants": "participants",
-    "testimonials": "Voices from the room"
+    "testimonials": "Voices from the room",
+    "summary": "{count} sessions in {year}.",
+    "summaryInvited": "{count} sessions in {year}, {invited} of them invited talks at academic societies.",
+    "workshopTitle": "What the hands-on workshops cover"
   },
   "guide": {
     "nav": {
