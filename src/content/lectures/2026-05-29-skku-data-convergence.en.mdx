@@ -1,0 +1,43 @@
+---
+title: "Sungkyunkwan University School of Medicine · Data Convergence and Future Medicine, 90-Minute AI Vibe Coding Sampler"
+description: "A demo-led session for graduate students and researchers with engineering, bio, and biomedical engineering backgrounds. It covered many topics briefly so the department could choose what to teach in depth in July and August."
+date: "2026-05-29"
+status: "completed"
+institution: "Sungkyunkwan University School of Medicine"
+department: "Department of Data Convergence and Future Medicine"
+tags: ["AI", "Vibe Coding", "Claude", "Medical AI", "medsci-skills", "Harness", "Research"]
+---
+
+## Overview
+
+- **Date:** Friday, 29 May 2026, 16:30–18:00 (90 minutes)
+- **Host:** Department of Data Convergence and Future Medicine, Sungkyunkwan University School of Medicine
+- **Talk title:** Vibe coding that physicians can do: building research, apps, and automation with AI from start to finish
+- **Format:** Demo-led with optional hands-on. Installing the tools was optional, and those who had installed them followed along
+
+## Why this session
+
+The host professor set this up as a rehearsal for a fuller training course in July and August. Most of the audience were graduate students and researchers from engineering, bio, and biomedical engineering, so code and data were familiar to them. I kept the installation part short and spent the time on how the setup is built and what it can do.
+
+The plan was to show many topics briefly and then choose, together with the audience, which ones the main course would cover in depth.
+
+## What it covered
+
+The first part walked through my whole Claude setup: skills, MCP, memory and harness, and the 2nd Brain I keep in Obsidian. I introduced the five-step ladder *prompt → context → skill → MCP → harness* and said there is no need to climb it in one go. One step at a time is enough.
+
+The main demo started from a single CSV.
+
+- `/deidentify` removed identifiers first
+- `/clean-data` reported variable types, missing values, and outliers
+- `/analyze-stats` built Table 1 and `/make-figures` drew a figure
+- The same data then became an HTML prototype tool
+
+For an engineering audience I pointed out where a person has to step in: where type inference goes wrong, and whether missing-value and outlier handling matches domain sense. I also showed a contact-lens fitting MVP built at an ophthalmologist's request, plus context hygiene and managing token usage.
+
+## The Co-Scientist case
+
+I presented a security-first multi-agent research automation system under development at MI2RL. On-premises LLMs inside the hospital handle patient data, a sentinel LLM checks anything that leaves, and only some roles use commercial LLMs.
+
+## Looking ahead
+
+The last slide listed six candidate topics for the July and August course: research automation, data analysis workflow, building tools in plain language, agentic AI and Co-Scientist, 2nd Brain with MCP and harness setup, and safety and governance. The audience was asked to pick from it. Thanks to the host professor and the department members for the invitation.

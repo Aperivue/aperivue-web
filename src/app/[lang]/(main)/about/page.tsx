@@ -67,6 +67,23 @@ export default async function AboutPage({
       </section>
 
       <section className="mt-16">
+        <h2 className="text-2xl font-semibold">{t.recognition}</h2>
+        <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-start">
+          <Image
+            src="/about/kcr-2026-kjr-most-cited-award.webp"
+            alt={t.awardAlt}
+            width={480}
+            height={360}
+            className="w-full rounded-2xl object-cover md:w-80"
+          />
+          <div>
+            <p className="font-semibold">{t.awardTitle}</p>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/80">{t.awardDetail}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-16">
         <h2 className="text-2xl font-semibold">{t.timeline}</h2>
         <div className="mt-6 space-y-4 border-l-2 border-primary/30 pl-6">
           {[
@@ -76,6 +93,7 @@ export default async function AboutPage({
             { year: "2024", text: "MI2RL, Asan Medical Center — Medical AI Research" },
             { year: "2026", text: "Aperivue founded" },
             { year: "2026", text: "Asan Medical Center — Neuroradiology Fellow" },
+            { year: "2026", text: "KCR 2026 — KSR Most-Cited KJR Paper Award" },
           ].map((item) => (
             <div key={item.year + item.text} className="relative">
               <div className="absolute -left-[1.65rem] top-1 h-3 w-3 rounded-full bg-primary" />

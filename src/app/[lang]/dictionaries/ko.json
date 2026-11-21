@@ -38,7 +38,11 @@
     "missionText": "Aperivue는 영상의학을 더 똑똑하고 접근하기 쉽게 만드는 것을 목표로 합니다. 구조화된 RADS 스코어링 계산기부터 AI 지원 진단 파이프라인까지, 영상의학과 의사가 더 효율적으로 일할 수 있도록 돕는 실용적인 도구를 만듭니다.",
     "timeline": "타임라인",
     "contact": "연락처",
-    "contactSub": "질문이 있거나 협업하고 싶으신가요? 아래로 연락주세요."
+    "contactSub": "질문이 있거나 협업하고 싶으신가요? 아래로 연락주세요.",
+    "recognition": "수상",
+    "awardTitle": "KSR 최다피인용 KJR 논문상",
+    "awardDetail": "대한영상의학회 KCR 2026 학술상(2026년 9월 12일 시상). 수상 논문 \"Multimodal Large Language Models in Medical Imaging: Current State and Future Directions\" (Korean Journal of Radiology, 2025)의 공동 1저자 김동영과 함께 공동 수상했다.",
+    "awardAlt": "KCR 2026 KSR 최다피인용 KJR 논문상 시상식에서 상장을 받는 남유진"
   },
   "footer": {
     "tagline": "보이지 않는 것을 열다.",

@@ -1,0 +1,46 @@
+---
+title: "KSNR 2026 Autumn Symposium · Medical AI without Coding"
+description: "A twenty-minute talk in Session 3, \"Neuroimaging Frontiers: What's Next?\", of the Korean Society of Neuroradiology autumn symposium. It covered what has changed in using AI without code, results from my own research, tools built by clinicians, and rules for using them in a hospital."
+date: "2026-10-30"
+status: "completed"
+institution: "Korean Society of Neuroradiology (KSNR)"
+department: "2026 Autumn Symposium · Session 3"
+cover: "/lectures/ksnr-2026-fall/cover.webp"
+photos:
+  - "/lectures/ksnr-2026-fall/cover.webp"
+  - "/lectures/ksnr-2026-fall/photo-02.webp"
+tags: ["AI", "Vibe Coding", "Claude", "Medical AI", "Radiology", "Harness", "Invited talk"]
+---
+
+## Overview
+
+- **Date:** Friday, 30 October 2026, 15:30–15:50 (20 minutes; session Q&A 15:50–16:00)
+- **Venue:** Songbong Hall, Chung-Ang University Hospital
+- **Host:** Korean Society of Neuroradiology (KSNR), 2026 KSNR Autumn Symposium
+- **Session:** Session 3 · Neuroimaging Frontiers: What's Next?
+- **Talk title:** Medical AI without coding: A practical introduction
+- **Format:** 34-slide talk. Materials from earlier hands-on courses were shared through a QR code on the last slide
+
+## What has changed
+
+My usual format is a two- to three-hour hands-on course. With twenty minutes, I focused on the overall picture, actual results, and the rules worth keeping.
+
+Over about ten talks in the past six months, the same tool drew different questions: residents asked how to take work off their plate, and faculty asked how to build tools that did not exist yet. Two of those tools were actually built: a contact-lens fitting calculator, and a case-management program a faculty member built and shared. As building gets easier, defining the problem, dividing roles, and checking results matter more, and that is what faculty already do when they delegate to residents and graduate students. I also went over the shift from chatbot to agent, and from prompt and context engineering to harness engineering.
+
+## What I tried in research
+
+- **MedSci Skills.** An open skill collection linking data cleaning and statistics to drafting and submission, with checks that confirm cited papers exist and that numbers agree across text, tables, and abstract.
+- **nnU-Net.** A public model trained for organ segmentation on public data and validated on an external dataset.
+- **Paper 1 (npj Digital Medicine).** Building and validating board-exam study material: 6,000 text cards and 833 infographics, checked by residents and specialists. Text that passed automated checks had a blocking-error FNR of 1.00%, missing the pre-specified 0.3% threshold, so human review is still needed.
+- **Paper 2 (BMC Medical Education).** A deployment pilot with 41 residents. Changes in cognitive load and self-efficacy did not differ significantly between groups.
+- **Paper 3 (medRxiv preprint).** A pre-registered study of whether 60 radiologists can tell AI-generated images from real ones. Pooled AUC was 0.71 (0.69–0.74), below the pre-set 0.75 threshold. I built the reader-study web app with Claude Code, and gave the audience a short quiz with the actual images.
+
+## Tools from the field, and rules
+
+I showed three tools built by clinicians: Clinova, a charting-draft tool from clinic conversations made by an orthopaedic surgeon; Altician, an endoscopic spine simulator made by a neurosurgeon; and Aperivue RADS, which I built.
+
+For hospital use I proposed four rules: remove patient information locally before anything goes in, treat every output as a draft that a person signs, decide in advance how much to delegate, and start with work that involves no patient data. Two studies showed why the final check stays with people. In an independent evaluation of an approved aneurysm AI on routine clinical MRA, one mark in eight was a real aneurysm (Ito 2026). In a reader study, false marks changed residents' calls but not neuroradiologists' (Kim 2025).
+
+## Looking ahead
+
+The QR code on the last slide shared the slides, lecture notes, installation guide, and a synthetic checkup dataset for practice. Thanks to the Korean Society of Neuroradiology and to the Session 3 chair for the opportunity.
