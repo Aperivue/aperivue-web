@@ -1,0 +1,59 @@
+---
+title: "Medical AI Without Coding: A Symposium Talk, Written Up"
+description: "A written version of the talk \"Medical AI without coding\", given at the KSNR 2026 Fall Symposium in October and at the Catholic University of Korea radiology department in November. It covers the shift from chatbots to agents, what this looked like in my own research, tools clinicians have built, rules for hospital use, and how to start."
+date: "2026-11-21"
+tags: ["medical-ai", "claude-code", "medsci-skills", "radiology", "research-automation"]
+---
+
+## What changed
+
+On October 30 I gave a 20-minute talk, "Medical AI without coding: A practical introduction", in Session 3 of the Korean Society of Neuro and Head and Neck Radiology (KSNR) 2026 Fall Symposium. On November 11 I gave it again at an online academic meeting of the Catholic University of Korea radiology department, with an added hands-on section. This post is the written version of both. It is meant for radiologists and other physicians who have never coded and want to know whether AI agents are usable for their clinical work and research.
+
+Over the past six months I have taught this topic about ten times, and the same tools drew different questions. Residents asked about lightening their own load: report wording, presentation slides, data cleaning. Faculty wanted tools that did not exist yet, such as implant sizing for breast reconstruction, orthokeratology lens prescriptions, and case management. Two of these were actually built: an orthokeratology lens fitting calculator that an ophthalmologist asked for, and a case management program that a radiology professor at another hospital built and shared.
+
+A chatbot answers a question and explains how to do something. An agent takes a goal and carries it out, writing code, editing documents and searching the web. Through a connection standard called MCP it can also work with other services and programs. A single sentence such as "make a baseline table from this CSV and draw a ROC curve" comes back as an actual table and figure file. You do not memorize or type code. You describe the goal in your own language, look at the result, and judge whether it is right.
+
+As building gets easier, defining the problem, dividing the work and checking the result matter more. That is the same structure as checking a resident's reads, or acting as a PI who assigns work and reviews it. The worker is now an AI agent, which puts senior physicians who have done this for years at an advantage.
+
+The vocabulary has also moved, from prompt engineering to context engineering and now to harness engineering. An LLM produces the next word probabilistically, so it makes errors. A harness adds code, constraints and checks that keep it heading where you want. After I submitted the slides, Meta released Muse (September 8) and ChatGPT released dots (September 29), services that help you hand work to an agent and automate it. Someone starting today can get good results from services like these alone. Trusting the output still requires a structure for checking it.
+
+## What I did in research
+
+For research I built [MedSci Skills](/en/skills), a set of skills that connects data cleaning and statistics through manuscript writing and submission. It has 54 research skills, 93 automated validation gates and 49 reporting guidelines, and it is free under the MIT license. It runs in Claude, Codex and Cursor. It checks that each cited paper exists in PubMed and CrossRef, and it stops when numbers in the text, tables and abstract disagree. Checks that can be repeated run automatically; clinical context and the final decision to cite stay with a person.
+
+Designing new architectures and large-scale pretraining remain work for engineering collaborators. Applying a published model to your own data and validating it is research a clinician can lead. I downloaded nnU-Net from GitHub and trained it for spleen segmentation on CT from the MSD dataset. The median Dice was 0.959 on internal validation (MSD held-out, n = 9) and 0.894 on external validation (AMOS CT, n = 298). It took nine days and about 50 GPU-hours. I set the study design and evaluation criteria, and worked through infrastructure problems such as cluster access with Claude Code.
+
+Three studies followed the same approach. All of them used existing models only.
+
+- **npj Digital Medicine.** We generated and validated board exam study material: 6,000 text cards and 833 infographics. Nine residents and 11 specialists validated 1,284 cards. The blocking-error FNR of text that passed automated checks was 1.00%, missing the prespecified threshold of 0.3%. The conclusion was that human review is still needed after automated checks.
+- **BMC Medical Education.** A pilot that distributed the material as Anki cards to 41 residents. Changes in cognitive load and self-efficacy did not differ significantly between groups.
+- **medRxiv preprint.** A preregistered study asking whether 60 radiologists could tell AI-generated images from real ones across 6 modalities and 9 subspecialties. The pooled AUC was 0.71 (95% CI 0.69–0.74), above chance but short of the prespecified detector threshold of 0.75. I built the reader study web app for it with Claude Code in one day, without an engineer.
+
+## Tools clinicians have built
+
+The talk showed three tools that clinicians built because they needed them.
+
+- **Clinova**, built by an orthopedic surgeon, records the clinic conversation and turns it into a chart draft in the hospital's format. It offers local processing, keeps the existing EMR, and enters nothing into the EMR until the physician has checked it.
+- **Altician**, built by a neurosurgeon, is an endoscopic spine surgery simulator. It segments structures on CT and lets the surgeon check the approach, endoscopic view and instrument placement in advance. Conventional surgical navigation needs hardware costing 500 million won, 30 minutes of setup and two extra staff, so most operations go without it. The project has moved toward connecting equipment surgeons already use through software.
+- **[Aperivue RADS](/en/rads)**, which I built, is a structured reporting tool. Select the findings and it returns the score, the category and a draft report sentence.
+
+## Four rules for the hospital
+
+1. Remove patient information locally before anything goes in. De-identification runs as a local script that does not touch the network or an LLM.
+2. Every output is a draft, and a person signs.
+3. Decide in advance how far to delegate: drafting only, or execution too.
+4. Start with work that involves no patient data, such as organizing documents, slides, or analysis of public data.
+
+Whether you build a tool or buy one, a person does the final check. In an independent evaluation of a cleared aneurysm AI on 442 clinical MRAs ([Ito 2026](https://doi.org/10.2463/mrms.mp.2024-0183)), it found 73 of 94 aneurysms and placed 520 false marks (1.18 per case), so only one mark in eight was a real aneurysm. In a reader study where 9 readers with different levels of experience read 20 TOF-MRA cases with and without marks from a commercial aneurysm AI ([Kim 2025](https://doi.org/10.1007/s11547-025-01964-6)), false marks raised suspicion of an aneurysm, and less experienced readers recommended more intensive follow-up. Reading was faster with AI at every experience level. The faster the read, the more the reader's experience matters for catching false marks.
+
+## How to start
+
+At the Catholic University session I added ten hands-on slides showing what to do after opening the app.
+
+1. In the Claude app, open the Code tab at the top left and pick a folder below the input box. In the ChatGPT app, open Codex and pick a project. Then ask in plain language, for example "make Table 1 from the CSV in this folder".
+2. Try Table 1 and ROC on a synthetic health checkup CSV. In the demo, the AI found and handled planted anomalies (a weight of 6.5 kg, fasting glucose of 999, smoking recorded as "NEVER"), left some values based on an unsupported guess, and noted that its AUC of 0.822 was an optimistic in-sample estimate. Reading that summary and deciding what holds up is the job of whoever designs the study.
+3. Use manual permission mode at first and start large tasks in plan mode. Do not use the mode that skips permissions in a folder that holds patient data.
+4. Save three requests: ask the agent to question you before it starts, to show the code it ran and the output instead of only saying it is done, and to summarize decisions and remaining work before you move to a new conversation.
+5. When stuck, press Esc to stop, paste the error message as is, and ask for the next steps. Copy the folder before you start.
+
+Slides and lecture notes are on the [KSNR Fall Symposium lecture page](/en/lectures/2026-10-30-ksnr-2026-fall) and the [Catholic University lecture page](/en/lectures/2026-11-11-catholic-radiology). After installing [MedSci Skills](/en/skills), ask for Table 1 and ROC on the synthetic checkup data in one sentence, then compare the result with the answer example and find where they differ.
