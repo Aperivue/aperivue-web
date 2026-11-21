@@ -6,18 +6,25 @@
     "about": "About"
   },
   "home": {
-    "title": "Opening what cannot be seen",
-    "intro": "Aperivue publishes RADS calculators and medsci-skills, open-source research skills for Claude Code, and runs AI lectures for physicians. Built by a radiologist.",
+    "hero": "Opening what",
+    "heroHighlight": "cannot be seen",
+    "intro": "Free tools for radiology reporting and medical research: structured RADS calculators and research skills for Claude Code, built and published by a radiologist.",
+    "ctaRads": "Open the RADS calculators",
+    "ctaSkills": "See medsci-skills",
+    "toolsTitle": "Tools",
+    "toolsSub": "Ready to use in the reading room and the research lab.",
     "radsTitle": "RADS calculators",
-    "radsDesc": "Score TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS and O-RADS, and generate a structured report.",
-    "radsLink": "Open the RADS calculators",
-    "skillsTitle": "medsci-skills",
-    "skillsDesc": "{count} open-source skills covering medical research from literature search to manuscript revision. MIT licence.",
+    "radsAll": "All calculators",
+    "radsDesc": "Enter the findings and get the guideline score, the recommendation and a structured report. For education and research; not a medical device.",
+    "skillsDesc": "{count} open-source skills covering medical research: literature search, statistics, figures, manuscript writing, reporting-guideline checks and submission prep. Works in Claude Code, Codex and Cursor. MIT licence.",
     "skillsLink": "Browse the skills",
-    "lecturesTitle": "Lectures",
-    "lecturesDesc": "Hands-on AI workshops and invited talks for physicians and hospital staff.",
-    "lecturesCount": "{count} sessions in {year}.",
-    "lecturesLink": "See the lectures"
+    "factCalculators": "RADS calculators",
+    "factSkills": "Research skills",
+    "factFreeValue": "Free",
+    "factFree": "No sign-up",
+    "ctaTitle": "New calculators and skills",
+    "ctaSub": "Calculator how-tos, guideline explainers and skill updates go to the blog and GitHub.",
+    "readBlog": "Read the blog"
   },
   "about": {
     "title": "The Team Behind Aperivue",
@@ -31,8 +38,7 @@
     "contactSub": "Have questions or want to collaborate? Reach out below.",
     "recognition": "Recognition",
     "awardTitle": "KSR Most-Cited KJR Paper Award",
-    "awardDetail": "Korean Society of Radiology academic award, presented at KCR 2026 on September 12, 2026, for \"Multimodal Large Language Models in Medical Imaging: Current State and Future Directions\" (Korean Journal of Radiology, 2025). Received jointly with co-first author Dong Yeong Kim.",
-    "awardAlt": "Yoojin Nam receiving the KSR Most-Cited KJR Paper Award at KCR 2026"
+    "awardDetail": "Korean Society of Radiology academic award, presented at KCR 2026 on September 12, 2026, for \"Multimodal Large Language Models in Medical Imaging: Current State and Future Directions\" (Korean Journal of Radiology, 2025). Received jointly with co-first author Dong Yeong Kim."
   },
   "footer": {
     "tagline": "Opening what cannot be seen.",
