@@ -38,7 +38,11 @@
     "missionText": "Aperivue aims to make radiology smarter and more accessible. We build practical tools that help radiologists work more efficiently — from structured RADS scoring calculators to AI-assisted diagnostic pipelines. Our content bridges the gap between cutting-edge AI research and everyday clinical practice.",
     "timeline": "Timeline",
     "contact": "Contact",
-    "contactSub": "Have questions or want to collaborate? Reach out below."
+    "contactSub": "Have questions or want to collaborate? Reach out below.",
+    "recognition": "Recognition",
+    "awardTitle": "KSR Most-Cited KJR Paper Award",
+    "awardDetail": "Korean Society of Radiology academic award, presented at KCR 2026 on September 12, 2026, for \"Multimodal Large Language Models in Medical Imaging: Current State and Future Directions\" (Korean Journal of Radiology, 2025). Received jointly with co-first author Dong Yeong Kim.",
+    "awardAlt": "Yoojin Nam receiving the KSR Most-Cited KJR Paper Award at KCR 2026"
   },
   "footer": {
     "tagline": "Opening what cannot be seen.",
