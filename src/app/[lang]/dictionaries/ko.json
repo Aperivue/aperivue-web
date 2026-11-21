@@ -6,18 +6,25 @@
     "about": "소개"
   },
   "home": {
-    "title": "보이지 않는 것을 열다",
-    "intro": "영상의학과 의사가 만든 RADS 계산기와 Claude Code용 오픈소스 연구 스킬 medsci-skills를 공개하고, 의사를 위한 AI 강의를 합니다.",
+    "hero": "보이지 않는 것을",
+    "heroHighlight": "열다",
+    "intro": "영상의학 판독과 의학 연구를 돕는 무료 도구. 구조화 RADS 계산기와 Claude Code용 연구 스킬을 영상의학과 의사가 직접 만들고 공개합니다.",
+    "ctaRads": "RADS 계산기 열기",
+    "ctaSkills": "medsci-skills 보기",
+    "toolsTitle": "도구",
+    "toolsSub": "판독실과 연구실에서 바로 쓰는 도구입니다.",
     "radsTitle": "RADS 계산기",
-    "radsDesc": "TI-RADS, Lung-RADS, BI-RADS, LI-RADS, PI-RADS, O-RADS 점수를 계산하고 구조화 판독문을 만듭니다.",
-    "radsLink": "RADS 계산기 열기",
-    "skillsTitle": "medsci-skills",
-    "skillsDesc": "문헌 검색부터 원고 수정까지 의학 연구 과정을 다루는 오픈소스 스킬 {count}개. MIT 라이선스.",
+    "radsAll": "전체 계산기",
+    "radsDesc": "소견을 입력하면 가이드라인 점수와 권고, 구조화 판독문을 만듭니다. 교육·연구용이며 의료기기가 아닙니다.",
+    "skillsDesc": "문헌 검색, 통계, 그림, 원고 작성, 보고 지침 점검, 투고 준비까지 의학 연구 과정을 다루는 오픈소스 스킬 {count}개. Claude Code, Codex, Cursor에서 쓸 수 있고 MIT 라이선스입니다.",
     "skillsLink": "스킬 목록 보기",
-    "lecturesTitle": "강의",
-    "lecturesDesc": "의사와 병원 직원을 위한 AI 핸즈온 워크숍과 초청 강연.",
-    "lecturesCount": "{year}년 {count}회.",
-    "lecturesLink": "강의 기록 보기"
+    "factCalculators": "RADS 계산기",
+    "factSkills": "연구 스킬",
+    "factFreeValue": "무료",
+    "factFree": "가입 없이 사용",
+    "ctaTitle": "새 계산기와 스킬 소식",
+    "ctaSub": "계산기 사용법, 가이드라인 해설, 스킬 업데이트를 블로그와 GitHub에 올립니다.",
+    "readBlog": "블로그 읽기"
   },
   "about": {
     "title": "Aperivue를 만드는 사람",
@@ -31,8 +38,7 @@
     "contactSub": "질문이 있거나 협업하고 싶으신가요? 아래로 연락주세요.",
     "recognition": "수상",
     "awardTitle": "KSR 최다피인용 KJR 논문상",
-    "awardDetail": "대한영상의학회 KCR 2026 학술상(2026년 9월 12일 시상). 수상 논문 \"Multimodal Large Language Models in Medical Imaging: Current State and Future Directions\" (Korean Journal of Radiology, 2025)의 공동 1저자 김동영과 함께 공동 수상했다.",
-    "awardAlt": "KCR 2026 KSR 최다피인용 KJR 논문상 시상식에서 상장을 받는 남유진"
+    "awardDetail": "대한영상의학회 KCR 2026 학술상(2026년 9월 12일 시상). 수상 논문 \"Multimodal Large Language Models in Medical Imaging: Current State and Future Directions\" (Korean Journal of Radiology, 2025)의 공동 1저자 김동영과 함께 공동 수상했다."
   },
   "footer": {
     "tagline": "보이지 않는 것을 열다.",
