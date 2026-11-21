@@ -6,7 +6,7 @@ Aperivue (아페리뷰) 회사 웹사이트 + 블로그. Next.js on Vercel.
 
 ## Pages
 - `/` — Home (hero + features + CTA)
-- `/products` — RADS Tool, ScrubCode, MedGlow
+- `/products` — Tools: RADS calculators + medsci-skills (nav label 도구 / Tools)
 - `/about` — Yoojin Nam profile + timeline
 - `/blog` — MDX blog listing
 - `/blog/[slug]` — Individual posts

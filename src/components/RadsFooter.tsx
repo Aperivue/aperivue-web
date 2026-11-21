@@ -1,21 +1,8 @@
+import { SOCIAL_LINKS, externalProps } from "@/lib/social";
+
 export default function RadsFooter() {
   return (
     <footer className="mt-auto border-t border-border">
-      {/* YouTube CTA Banner */}
-      <div className="bg-gradient-to-r from-primary to-accent-text px-6 py-6 text-center text-white">
-        <p className="text-sm font-semibold">
-          Learn radiology with evidence-based video content
-        </p>
-        <a
-          href="https://youtube.com/@scrubcode"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 inline-block rounded-full border border-white/30 px-5 py-1.5 text-xs font-medium transition-colors hover:bg-white/10"
-        >
-          Watch ScrubCode on YouTube &#9654;
-        </a>
-      </div>
-
       {/* Info */}
       <div className="bg-muted px-6 py-6">
         <div className="mx-auto max-w-4xl space-y-4 text-xs text-foreground/50 leading-relaxed">
@@ -43,6 +30,19 @@ export default function RadsFooter() {
               </a>
               . All rights reserved.
             </p>
+            <ul className="flex flex-wrap gap-x-4 gap-y-1">
+              {SOCIAL_LINKS.filter((l) => l.label !== "Email").map((l) => (
+                <li key={l.label}>
+                  <a
+                    href={l.href}
+                    {...externalProps}
+                    className="hover:text-primary hover:underline"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
             <p className="text-foreground/60">
               Powered by{" "}
               <a

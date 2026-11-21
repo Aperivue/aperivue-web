@@ -140,10 +140,7 @@ export default async function SkillsPage({
       <JsonLd data={faqJsonLd} />
       {/* Hero */}
       <section className="text-center">
-        <p className="text-xs font-medium uppercase tracking-widest text-accent-text">
-          {t.badge}
-        </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+        <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
           {t.title}
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-foreground/60">
