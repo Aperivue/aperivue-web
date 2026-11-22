@@ -30,9 +30,9 @@ ${radsLines}
 MedSci Skills is a set of Agent Skills for clinical research: literature and references, study design, statistics, figures, manuscript drafting, reporting-guideline checks and journal submission, plus a lane for building and validating medical-imaging AI models. It has ${SKILL_COUNT} skills, ${GUIDELINE_COUNT} reporting guidelines and risk-of-bias tools, and ${DETECTOR_COUNT} deterministic detectors.
 - For: physicians and biomedical or medical-engineering researchers who work in Claude Code, Codex, Cursor or GitHub Copilot.
 - Limits: not a diagnostic tool and not an autonomous author. The skills draft and check, bundled scripts recompute what can be recomputed, and every output needs review by a qualified researcher. Do not give an agent identifiable patient data.
-- Install: \`npx medsci-skills install\`
+- Install: \`npx medsci-skills install\` (needs Node 18+ and Python 3.9+; a no-terminal installer is described in the repository's docs/install.md)
 - Repository: https://github.com/Aperivue/medsci-skills (MIT license; some bundled material carries its own terms)
-- Cite: https://doi.org/10.5281/zenodo.20155321
+- Cite: https://doi.org/10.5281/zenodo.20155321 (this DOI always resolves to the latest release; cite the version you used)
 - Page: ${BASE}/en/skills
 Stages and skills:
 - Project & Workflow: author-strategy, find-cohort-gap, intake-project, ma-scout, manage-project, orchestrate
