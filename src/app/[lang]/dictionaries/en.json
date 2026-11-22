@@ -97,7 +97,7 @@
     "detailCategory": "Category",
     "detailRelated": "Related skills",
     "auditTitle": "MedSci-Audit — the deterministic verification layer",
-    "auditDesc": "{detectors} stdlib-only detectors that recompute what a manuscript already asserts, rather than asking a language model to judge it. A model asked to check its own work inherits the blind spots that produced the error; a script that recomputes the number does not. Every detector ships a synthetic challenge card — a positive case and a negative control — that runs in continuous integration, so a clean result means something and a flagged defect is reproducible.",
+    "auditDesc": "{detectors} stdlib-only detectors that recompute what a manuscript already asserts, rather than asking a language model to judge it. A model asked to check its own work inherits the blind spots that produced the error; a script that recomputes the number does not. New detectors ship with a synthetic challenge card, a positive case and a negative control, that runs offline, so a flagged defect is reproducible. Challenge-card coverage of the existing detectors is partial, and the repository says so.",
     "auditExamples": [
       "A reported P value is recomputed from the 2×2 counts it was derived from — in pure stdlib.",
       "Every reference is re-resolved against PubMed and CrossRef; a fabricated author is caught, not guessed at.",
