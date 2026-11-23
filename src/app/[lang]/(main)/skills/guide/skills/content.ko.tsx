@@ -11,7 +11,7 @@ const categories = [
         name: "search-lit",
         label: "문헌 검색",
         prompt: '/search-lit "주제 키워드" 관련 최근 5년 문헌을 검색해줘',
-        note: "PubMed + Semantic Scholar. 모든 인용은 API로 검증 — 날조 제로",
+        note: "PubMed + Semantic Scholar. 문헌마다 API로 확인하고 확인 여부를 표시합니다",
       },
       {
         name: "design-study",
@@ -38,6 +38,12 @@ const categories = [
     title: "데이터가 있어요",
     description: "CSV/Excel 데이터가 있고 분석을 시작하려는 단계",
     skills: [
+      {
+        name: "deidentify",
+        label: "비식별화",
+        prompt: "/deidentify 분석하기 전에 patients.csv에 환자 식별정보가 있는지 확인해줘",
+        note: "네트워크 연결이나 AI 호출 없이 내 컴퓨터에서 실행. 12개국 규칙으로 식별정보를 찾고, 찾은 것을 직접 확인한 뒤에 바꿉니다",
+      },
       {
         name: "clean-data",
         label: "데이터 정리",
@@ -91,6 +97,31 @@ const categories = [
   },
   {
     emoji: "4",
+    title: "투고 전에 점검하고 싶어요",
+    description: "초고는 있고 참고문헌과 영어 문장을 확인하려는 단계",
+    skills: [
+      {
+        name: "verify-refs",
+        label: "참고문헌 확인",
+        prompt: "/verify-refs manuscript.docx의 참고문헌을 전부 확인해줘",
+        note: "PubMed, CrossRef, OpenAlex에서 조회해 OK, MISMATCH, UNVERIFIED, FABRICATED로 표시. 보고만 하고 참고문헌을 고치지는 않습니다",
+      },
+      {
+        name: "polish-language",
+        label: "영문 교정",
+        prompt: "/polish-language 이 원고의 표기 일관성과 영어 문장을 교정해줘",
+        note: "약어, 미국식/영국식 철자, 숫자 표기, 단위 띄어쓰기를 찾아 표시한 뒤 문체만 다듬습니다",
+      },
+      {
+        name: "humanize",
+        label: "AI 문체 정리",
+        prompt: "/humanize 이 원고에서 AI가 쓴 것처럼 읽히는 부분을 찾아 고쳐줘",
+        note: "AI 문체 패턴 27가지를 찾아 해당 부분을 다시 쓰되 기술적 정확성은 유지합니다",
+      },
+    ],
+  },
+  {
+    emoji: "5",
     title: "리비전이 왔어요",
     description: "리뷰어 코멘트에 대응해야 하는 단계",
     skills: [
@@ -103,7 +134,7 @@ const categories = [
     ],
   },
   {
-    emoji: "5",
+    emoji: "6",
     title: "메타분석을 하고 싶어요",
     description: "체계적 문헌고찰 + 메타분석 전 과정",
     skills: [
@@ -116,7 +147,7 @@ const categories = [
     ],
   },
   {
-    emoji: "6",
+    emoji: "7",
     title: "학회 발표를 준비해요",
     description: "논문을 슬라이드로 만들어야 하는 단계",
     skills: [
@@ -129,7 +160,7 @@ const categories = [
     ],
   },
   {
-    emoji: "7",
+    emoji: "8",
     title: "다국가 비교 또는 배치 분석을 하고 싶어요",
     description: "다른 DB에서 연구를 복제하거나, 노출 × 결과 매트릭스를 돌리는 단계",
     skills: [
