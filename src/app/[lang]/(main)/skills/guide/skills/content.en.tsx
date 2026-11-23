@@ -11,7 +11,7 @@ const categories = [
         name: "search-lit",
         label: "Literature Search",
         prompt: '/search-lit Search the last 5 years of literature on "topic keywords"',
-        note: "PubMed + Semantic Scholar. Every citation is API-verified — zero hallucinations",
+        note: "PubMed + Semantic Scholar. Only references verified through an API are included",
       },
       {
         name: "design-study",
@@ -38,6 +38,12 @@ const categories = [
     title: "I have data ready",
     description: "You have CSV/Excel data and want to start analysis",
     skills: [
+      {
+        name: "deidentify",
+        label: "De-identification",
+        prompt: "/deidentify Check patients.csv for patient identifiers before I analyse it",
+        note: "Runs on your computer with no network or AI calls. Finds identifiers with rules for 12 countries, and you review what it found before anything is replaced",
+      },
       {
         name: "clean-data",
         label: "Data Cleaning",
@@ -91,6 +97,31 @@ const categories = [
   },
   {
     emoji: "4",
+    title: "I want to check it before submitting",
+    description: "The draft exists and you want the references and the English checked",
+    skills: [
+      {
+        name: "verify-refs",
+        label: "Reference Check",
+        prompt: "/verify-refs Check every reference in manuscript.docx",
+        note: "Looks references up in PubMed, CrossRef and OpenAlex and marks each one OK, MISMATCH, UNVERIFIED or FABRICATED. It reports and never edits your references",
+      },
+      {
+        name: "polish-language",
+        label: "Language Copy-edit",
+        prompt: "/polish-language Copy-edit this manuscript for consistency and clear English",
+        note: "Flags abbreviation, US/UK spelling, number style and unit spacing issues, then polishes style only",
+      },
+      {
+        name: "humanize",
+        label: "AI-Pattern Cleanup",
+        prompt: "/humanize Find passages in this manuscript that read as AI-written and rewrite them",
+        note: "Scans for 27 AI writing patterns and rewrites the flagged passages while preserving technical accuracy",
+      },
+    ],
+  },
+  {
+    emoji: "5",
     title: "I got reviewer comments",
     description: "You need to respond to peer-review comments",
     skills: [
@@ -103,7 +134,7 @@ const categories = [
     ],
   },
   {
-    emoji: "5",
+    emoji: "6",
     title: "I want to run a meta-analysis",
     description: "Full systematic review + meta-analysis pipeline",
     skills: [
@@ -116,7 +147,7 @@ const categories = [
     ],
   },
   {
-    emoji: "6",
+    emoji: "7",
     title: "I need to prepare a presentation",
     description: "You need to turn a paper into slides",
     skills: [
@@ -129,7 +160,7 @@ const categories = [
     ],
   },
   {
-    emoji: "7",
+    emoji: "8",
     title: "I want to do cross-national or batch research",
     description: "Replicate studies across databases or run exposure × outcome matrices",
     skills: [
