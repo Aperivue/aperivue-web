@@ -11,7 +11,7 @@ const categories = [
         name: "search-lit",
         label: "Literature Search",
         prompt: '/search-lit Search the last 5 years of literature on "topic keywords"',
-        note: "PubMed + Semantic Scholar. Only references verified through an API are included",
+        note: "PubMed + Semantic Scholar. Each reference is checked through an API and marked verified or not",
       },
       {
         name: "design-study",

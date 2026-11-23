@@ -11,7 +11,7 @@ const categories = [
         name: "search-lit",
         label: "문헌 검색",
         prompt: '/search-lit "주제 키워드" 관련 최근 5년 문헌을 검색해줘',
-        note: "PubMed + Semantic Scholar. API로 확인된 문헌만 넣습니다",
+        note: "PubMed + Semantic Scholar. 문헌마다 API로 확인하고 확인 여부를 표시합니다",
       },
       {
         name: "design-study",
