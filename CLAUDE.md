@@ -11,6 +11,7 @@ Aperivue (아페리뷰) 회사 웹사이트 + 블로그. Next.js on Vercel.
 - `/blog` — MDX blog listing
 - `/blog/[slug]` — Individual posts
 - `/contact` — Contact info
+- `/privacy` — Privacy policy (site + internal Google API tool; also the OAuth consent-screen privacy URL). Text lives in the dictionaries.
 
 ## Blog
 - Posts go in `src/content/blog/` as a pair: `{slug}.en.mdx` and `{slug}.ko.mdx`

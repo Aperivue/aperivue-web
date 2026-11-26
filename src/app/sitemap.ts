@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/skills/guide", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/lectures", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/about", priority: 0.5, changeFrequency: "yearly" as const },
+    { path: "/privacy", priority: 0.2, changeFrequency: "yearly" as const },
     { path: "/rads", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/rads/tirads", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/rads/lungrads", priority: 0.9, changeFrequency: "monthly" as const },

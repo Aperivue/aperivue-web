@@ -42,7 +42,8 @@
   },
   "footer": {
     "tagline": "Opening what cannot be seen.",
-    "company": "Company"
+    "company": "Company",
+    "privacy": "Privacy"
   },
   "skills": {
     "badge": "Open Source",
@@ -180,5 +181,36 @@
       "customize": "4. Customize",
       "faq": "FAQ"
     }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "effective": "Effective date: November 26, 2026",
+    "intro": "This policy explains what information Aperivue collects through aperivue.com and through Aperivue's internal Google Workspace tool, and how it is used.",
+    "sections": [
+      {
+        "heading": "Website visitors",
+        "paragraphs": [
+          "The website has no user accounts and no forms. You can read every page without giving us any personal information.",
+          "We use Google Analytics 4 to count page views and a few events (for example, which RADS calculator's report was copied, or how far an intro video was played). Google Analytics records information such as the pages you visit, your browser and device type, and approximate location. Google processes this data under its own privacy policy.",
+          "The RADS calculators run entirely in your browser. The findings you enter and the report text are not sent to Aperivue or stored by us.",
+          "A cookie named NEXT_LOCALE remembers your language choice for one year. The skills page embeds a YouTube video in privacy-enhanced mode (youtube-nocookie.com); YouTube may collect data when you play it.",
+          "The site is hosted on Vercel, which keeps standard server logs (such as IP address and requested page) to operate and secure the service."
+        ]
+      },
+      {
+        "heading": "Google user data (internal tool)",
+        "paragraphs": [
+          "Aperivue registers a command-line tool in Google Cloud so that Aperivue's founder can work with the founder's own Google account (Gmail, Calendar, Drive, Docs, Sheets and Tasks) from a personal computer. The tool is not offered to anyone else, and no other person's account is connected to it.",
+          "Data accessed through the tool is used only for the founder's own work. It is processed on the founder's computer and by the AI assistant tools the founder uses for that work. It is not sold, not used for advertising, and not shared with anyone else.",
+          "Aperivue's use of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "paragraphs": [
+          "Questions about this policy: contact@aperivue.com. If the policy changes, the effective date above will be updated."
+        ]
+      }
+    ]
   }
 }

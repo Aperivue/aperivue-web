@@ -42,7 +42,8 @@
   },
   "footer": {
     "tagline": "보이지 않는 것을 열다.",
-    "company": "회사"
+    "company": "회사",
+    "privacy": "개인정보처리방침"
   },
   "skills": {
     "badge": "오픈소스",
@@ -180,5 +181,36 @@
       "customize": "4. 커스터마이즈",
       "faq": "FAQ"
     }
+  },
+  "privacy": {
+    "title": "개인정보처리방침",
+    "effective": "시행일: 2026년 11월 26일",
+    "intro": "Aperivue가 aperivue.com과 내부용 Google Workspace 도구를 통해 어떤 정보를 수집하고 어떻게 쓰는지 설명합니다.",
+    "sections": [
+      {
+        "heading": "웹사이트 방문자",
+        "paragraphs": [
+          "이 사이트에는 회원 가입과 입력 양식이 없습니다. 개인정보를 주지 않고도 모든 페이지를 볼 수 있습니다.",
+          "페이지 조회 수와 일부 이벤트(어느 RADS 계산기의 보고서를 복사했는지, 소개 영상을 어디까지 재생했는지 등)를 세기 위해 Google Analytics 4를 씁니다. Google Analytics는 방문한 페이지, 브라우저와 기기 종류, 대략적인 위치 같은 정보를 기록하며, 이 정보는 Google의 개인정보처리방침에 따라 처리됩니다.",
+          "RADS 계산기는 브라우저 안에서만 계산합니다. 입력한 소견과 보고서 문장은 Aperivue로 전송되거나 저장되지 않습니다.",
+          "NEXT_LOCALE 쿠키가 언어 선택을 1년 동안 기억합니다. 스킬 페이지의 YouTube 영상은 개인정보 보호 모드(youtube-nocookie.com)로 넣었으며, 영상을 재생하면 YouTube가 정보를 수집할 수 있습니다.",
+          "사이트는 Vercel에서 호스팅하며, Vercel은 서비스 운영과 보안을 위해 IP 주소와 요청한 페이지 같은 일반 서버 기록을 남깁니다."
+        ]
+      },
+      {
+        "heading": "Google 사용자 데이터 (내부용 도구)",
+        "paragraphs": [
+          "Aperivue는 창업자가 개인 컴퓨터에서 본인의 Google 계정(Gmail, Calendar, Drive, Docs, Sheets, Tasks)을 다루기 위한 명령줄 도구를 Google Cloud에 등록해 두었습니다. 이 도구는 다른 사람에게 제공하지 않으며, 다른 사람의 계정은 연결되어 있지 않습니다.",
+          "이 도구로 접근한 데이터는 창업자 본인의 업무에만 씁니다. 창업자의 컴퓨터와 그 업무에 쓰는 AI 보조 도구에서 처리되며, 판매하거나 광고에 쓰거나 다른 사람과 공유하지 않습니다.",
+          "Aperivue가 Google API로 받은 정보를 쓰는 방식은 제한적 사용(Limited Use) 요건을 포함한 Google API 서비스 사용자 데이터 정책을 따릅니다."
+        ]
+      },
+      {
+        "heading": "문의",
+        "paragraphs": [
+          "이 방침에 대한 문의: contact@aperivue.com. 방침이 바뀌면 위의 시행일을 고칩니다."
+        ]
+      }
+    ]
   }
 }

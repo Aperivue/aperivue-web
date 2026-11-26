@@ -9,7 +9,7 @@ interface FooterDict {
     blog: string;
     about: string;
   };
-  footer: { tagline: string };
+  footer: { tagline: string; privacy: string };
 }
 
 export default function Footer({
@@ -61,8 +61,11 @@ export default function Footer({
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-6 text-xs text-foreground/60">
+        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-6 text-xs text-foreground/60">
           <p>&copy; {new Date().getFullYear()} Aperivue. All rights reserved.</p>
+          <Link href={`/${lang}/privacy`} className="hover:text-primary hover:underline">
+            {dict.footer.privacy}
+          </Link>
         </div>
       </div>
     </footer>
